@@ -18,6 +18,7 @@ use App\Models\reference\minutes;
 use App\Models\users\application;
 use App\Models\users\Ipcr;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -202,5 +203,11 @@ class HomeController extends Controller
         $minutes = minutes::get();
 
         return response()->json($minutes, Response::HTTP_OK);
+    }
+
+    public function setStorage()
+    {
+        Artisan::call('storage:link');
+        dd(Artisan::output());
     }
 }

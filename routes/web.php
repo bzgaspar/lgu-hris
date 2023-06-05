@@ -54,6 +54,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/setStorage', [HomeController::class, 'setStorage']);
 Route::get('/', [HomeController::class, 'index'])->name('publication');
 Auth::routes(['verify' => true]);
 
