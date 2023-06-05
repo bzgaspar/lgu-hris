@@ -170,16 +170,16 @@
                             <td data-title="">
                                 <div class="btn-group btn-group-sm align-items-center" role="group"
                                     aria-label="Small button group">
-                                    <a href="{{ route('admin.user.reset', $user->id) }}"
-                                        class="btn btn-outline-primary text-small fw-bold">
-                                        Reset
-                                    </a>
                                     <form action="{{ route('admin.user.delete', $user->id) }}" method="post">
                                         @csrf
                                         @method('DELETE')
 
-                                        <button type="submit" class="btn btn-dark btn-sm"><i class="fa-solid fa-trash-can"></i></button>
+                                        <button type="submit" class="btn btn-dark btn-sm"><i class="fa-solid fa-trash-can text-white"></i></button>
                                     </form>
+                                    <a href="{{ route('admin.user.reset', $user->id) }}"
+                                        class="btn btn-outline-primary text-small fw-bold">
+                                        Reset
+                                    </a>
                                     @if ($user->trashed())
                                         <button data-bs-toggle="modal" data-bs-target="#patch-notif-modal"
                                             data-confirm="Are you sure to Unblock this User?"
