@@ -100,115 +100,126 @@
                                         <td class="text-start fw-bold fs-6 ps-1" colspan="5">Core Competencies</td>
                                     </tr>
                                     @forelse ($surveyAnswer->surveyForm->surveyFormDetails as $item)
-                                        @if ($item->surveyQuestion->type == 'Core Competencies')
-                                            <tr>
-                                                <td data-title="Question" class="ms-2 text-start">
-                                                    {{ $item->surveyQuestion->question }}
-                                                </td>
-                                                <td data-title="Standard">{{ $item->standard }}</td>
-                                                <td data-title="Actual">
-                                                    @if ($item->surveyAnswerDetails)
-                                                        {{ $item->surveyAnswerDetails->answer }}
-                                                    @else
-                                                        -
-                                                    @endif
-                                                </td>
-                                                <td data-title="Gap">
-                                                    @if ($item->surveyAnswerDetails)
-                                                        {{ $item->surveyAnswerDetails->gap }}
-                                                    @else
-                                                        -
-                                                    @endif
-                                                </td>
-                                            </tr>
+                                        @if ($item->surveyQuestion)
+                                            @if ($item->surveyQuestion->type == 'Core Competencies')
+                                                <tr>
+                                                    <td data-title="Question" class="ms-2 text-start">
+                                                        {{ $item->surveyQuestion->question }}
+                                                    </td>
+                                                    <td data-title="Standard">{{ $item->standard }}</td>
+                                                    <td data-title="Actual">
+                                                        @if ($item->surveyAnswerDetails)
+                                                            {{ $item->surveyAnswerDetails->answer }}
+                                                        @else
+                                                            -
+                                                        @endif
+                                                    </td>
+                                                    <td data-title="Gap">
+                                                        @if ($item->surveyAnswerDetails)
+                                                            {{ $item->surveyAnswerDetails->gap }}
+                                                        @else
+                                                            -
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                            @endif
                                         @endif
                                     @empty
                                     @endforelse
                                     {{-- Org --}}
                                     <tr>
-                                        <td class="text-start fw-bold fs-6 ps-1" colspan="5">Organizational Competencies
+                                        <td class="text-start fw-bold fs-6 ps-1" colspan="5">Organizational
+                                            Competencies
                                         </td>
                                     </tr>
                                     @forelse ($surveyAnswer->surveyForm->surveyFormDetails as $item)
-                                        @if ($item->surveyQuestion->type == 'Organizational Competencies')
-                                            <tr>
-                                                <td data-title="Question" class="ms-2 text-start">
-                                                    {{ $item->surveyQuestion->question }}
-                                                </td>
-                                                <td data-title="Standard">{{ $item->standard }}</td>
-                                                <td data-title="Actual">
-                                                    @if ($item->surveyAnswerDetails)
-                                                        {{ $item->surveyAnswerDetails->answer }}
-                                                    @else
-                                                        -
-                                                    @endif
-                                                </td>
-                                                <td data-title="Gap">
-                                                    @if ($item->surveyAnswerDetails)
-                                                        {{ $item->surveyAnswerDetails->gap }}
-                                                    @else
-                                                        -
-                                                    @endif
-                                                </td>
-                                            </tr>
+                                        @if ($item->surveyQuestion)
+                                            @if ($item->surveyQuestion->type == 'Organizational Competencies')
+                                                <tr>
+                                                    <td data-title="Question" class="ms-2 text-start">
+                                                        {{ $item->surveyQuestion->question }}
+                                                    </td>
+                                                    <td data-title="Standard">{{ $item->standard }}</td>
+                                                    <td data-title="Actual">
+                                                        @if ($item->surveyAnswerDetails)
+                                                            {{ $item->surveyAnswerDetails->answer }}
+                                                        @else
+                                                            -
+                                                        @endif
+                                                    </td>
+                                                    <td data-title="Gap">
+                                                        @if ($item->surveyAnswerDetails)
+                                                            {{ $item->surveyAnswerDetails->gap }}
+                                                        @else
+                                                            -
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                            @endif
                                         @endif
                                     @empty
                                     @endforelse
                                     {{-- Technical --}}
                                     <tr>
-                                        <td class="text-start fw-bold fs-6 ps-1" colspan="5">Technical Competencies</td>
+                                        <td class="text-start fw-bold fs-6 ps-1" colspan="5">Technical Competencies
+                                        </td>
                                     </tr>
                                     @forelse ($surveyAnswer->surveyForm->surveyFormDetails as $item)
-                                        @if ($item->surveyQuestion->type == 'Technical Competencies')
-                                            <tr>
-                                                <td data-title="Question" class="ms-2 text-start">
-                                                    {{ $item->surveyQuestion->question }}
-                                                </td>
-                                                <td data-title="Standard">{{ $item->standard }}</td>
-                                                <td data-title="Actual">
-                                                    @if ($item->surveyAnswerDetails)
-                                                        {{ $item->surveyAnswerDetails->answer }}
-                                                    @else
-                                                        -
-                                                    @endif
-                                                </td>
-                                                <td data-title="Gap">
-                                                    @if ($item->surveyAnswerDetails)
-                                                        {{ $item->surveyAnswerDetails->gap }}
-                                                    @else
-                                                        -
-                                                    @endif
-                                                </td>
-                                            </tr>
+                                        @if ($item->surveyQuestion)
+                                            @if ($item->surveyQuestion->type == 'Technical Competencies')
+                                                <tr>
+                                                    <td data-title="Question" class="ms-2 text-start">
+                                                        {{ $item->surveyQuestion->question }}
+                                                    </td>
+                                                    <td data-title="Standard">{{ $item->standard }}</td>
+                                                    <td data-title="Actual">
+                                                        @if ($item->surveyAnswerDetails)
+                                                            {{ $item->surveyAnswerDetails->answer }}
+                                                        @else
+                                                            -
+                                                        @endif
+                                                    </td>
+                                                    <td data-title="Gap">
+                                                        @if ($item->surveyAnswerDetails)
+                                                            {{ $item->surveyAnswerDetails->gap }}
+                                                        @else
+                                                            -
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                            @endif
                                         @endif
                                     @empty
                                     @endforelse
                                     {{-- Leadership --}}
                                     <tr>
-                                        <td class="text-start fw-bold fs-6 ps-1" colspan="5">Leadership Competencies</td>
+                                        <td class="text-start fw-bold fs-6 ps-1" colspan="5">Leadership Competencies
+                                        </td>
                                     </tr>
                                     @forelse ($surveyAnswer->surveyForm->surveyFormDetails as $item)
-                                        @if ($item->surveyQuestion->type == 'Leadership Competencies')
-                                            <tr>
-                                                <td data-title="Question" class="ms-2 text-start">
-                                                    {{ $item->surveyQuestion->question }}
-                                                </td>
-                                                <td data-title="Standard">{{ $item->standard }}</td>
-                                                <td data-title="Actual">
-                                                    @if ($item->surveyAnswerDetails)
-                                                        {{ $item->surveyAnswerDetails->answer }}
-                                                    @else
-                                                        -
-                                                    @endif
-                                                </td>
-                                                <td data-title="Gap">
-                                                    @if ($item->surveyAnswerDetails)
-                                                        {{ $item->surveyAnswerDetails->gap }}
-                                                    @else
-                                                        -
-                                                    @endif
-                                                </td>
-                                            </tr>
+                                        @if ($item->surveyQuestion)
+                                            @if ($item->surveyQuestion->type == 'Leadership Competencies')
+                                                <tr>
+                                                    <td data-title="Question" class="ms-2 text-start">
+                                                        {{ $item->surveyQuestion->question }}
+                                                    </td>
+                                                    <td data-title="Standard">{{ $item->standard }}</td>
+                                                    <td data-title="Actual">
+                                                        @if ($item->surveyAnswerDetails)
+                                                            {{ $item->surveyAnswerDetails->answer }}
+                                                        @else
+                                                            -
+                                                        @endif
+                                                    </td>
+                                                    <td data-title="Gap">
+                                                        @if ($item->surveyAnswerDetails)
+                                                            {{ $item->surveyAnswerDetails->gap }}
+                                                        @else
+                                                            -
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                            @endif
                                         @endif
                                     @empty
                                     @endforelse
