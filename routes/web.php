@@ -149,6 +149,7 @@ Route::get('/getUser', [HomeController::class, 'getUser'])->name('getUser');
     #admin
     Route::group(['prefix'=> 'admin','as'=>'admin.','middleware'=>'role:0'], function () {
         Route::resource('/user', UserController::class);
+        Route::delete('/user/{id}/delete', [User::class, 'delete'])->name('user.delete');
         Route::get('/user/{id}/reset', [User::class, 'reset'])->name('user.reset');
         Route::patch('/user/{id}/activate', [User::class, 'activate'])->name('user.activate');
         Route::patch('/user/{id}/unbanned', [User::class, 'unbanned'])->name('user.unbanned');
