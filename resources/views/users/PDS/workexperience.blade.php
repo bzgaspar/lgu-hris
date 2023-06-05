@@ -174,10 +174,10 @@
             <table class="table table-hover table-striped smnall table-sm">
                 <thead>
                     <tr class="table-light">
-                        <th class="numeric" width="5%">From</th>
-                        <th class="numeric" width="5%">To</th>
+                        <th class="numeric" width="10%">From</th>
+                        <th class="numeric" width="10%">To</th>
                         <th class="numeric" width="30%">Position Title</th>
-                        <th class="numeric" width="30%">Department/Agency</th>
+                        <th class="numeric" width="20%">Department/Agency</th>
                         <th class="numeric" width="5%">Monthly Salary</th>
                         <th class="numeric" width="5%">Salary Grade</th>
                         <th class="numeric" width="5%">Status</th>
