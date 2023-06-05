@@ -109,10 +109,7 @@ class User extends Controller
 
     function delete($id)
     {
-        $user = $this->user->findOrFail($id);
-        $user->forceDelete();
-
-        if ($user->save()) {
+        if ($this->user->where('id',$id)->forceDelete()) {
             Session::flash('alert', 'success|User has been Delete!');
         } else {
             Session::flash('alert', 'danger|User has not Delete!');

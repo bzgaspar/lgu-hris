@@ -173,8 +173,12 @@
                                     <form action="{{ route('admin.user.delete', $user->id) }}" method="post">
                                         @csrf
                                         @method('DELETE')
+                                        <button data-bs-toggle="modal" data-bs-target="#delete-notif-modal"
+                                        data-confirm="Are you sure to Delete this User??"
+                                        data-target="{{ route('admin.user.delete', $user->id) }}"
+                                        class="btn btn-dark btn-sm text-white delete"
+                                        value="{{ $user->id }}">Delete</button>
 
-                                        <button type="submit" class="btn btn-dark btn-sm"><i class="fa-solid fa-trash-can text-white"></i></button>
                                     </form>
                                     <a href="{{ route('admin.user.reset', $user->id) }}"
                                         class="btn btn-outline-primary text-small fw-bold">
