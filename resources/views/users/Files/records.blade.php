@@ -7,7 +7,7 @@
         <div class="col-11 col-lg m-1 bg-success bg-gradient text-white rounded">
             <p class=" h3 text-center mb-3 fw-bold">Latest Plantilla</p>
             <div class="row justify-content-between">
-                <div class="col">
+                <div class="col-4">
                     <p>
                         No. :
                     </p>
@@ -24,7 +24,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col">
+                <div class="col-4">
 
                     <p>
                         Position :
@@ -41,7 +41,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col">
+                <div class="col-4">
                     <p>
                         Department :
                     </p>
@@ -57,7 +57,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col">
+                <div class="col-4">
 
                     <p>
                         Designation :
@@ -104,7 +104,7 @@
                         <div class="col-4 text-end">
                             <strong>
                                 @if ($user->leaveCreditlatest)
-                                    {{ $user->leaveCreditlatest->elc_vl_balance }}
+                                    {{ $user->leaveCreditlatest->elc_sl_balance }}
                                 @else
                                     -
                                 @endif
@@ -112,33 +112,6 @@
                         </div>
                     </div>
                 </div>
-                {{-- <div class="col-11 col-md border border-1 rounded m-1">
-                    <p class="text-center">Force Leave Balance</p>
-                    <div class="row justify-content-between">
-                        <div class="col">
-                            <p>
-                                Vacation Leave
-                            </p>
-                        </div>
-                        <div class="col-3 text-end">
-                            <p>
-                                1
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row justify-content-between">
-                        <div class="col">
-                            <p>
-                                Sick Leave
-                            </p>
-                        </div>
-                        <div class="col-3 text-end">
-                            <p>
-                                2
-                            </p>
-                        </div>
-                    </div>
-                </div> --}}
             </div>
         </div>
     </div>
@@ -168,14 +141,4 @@
             </div>
         </div>
     </div>
-    {{-- <div class="row">
-                <div class="col-12 col-md bg-success bg-gradient text-white rounded">
-                    <p class=" h3 text-center mb-3 fw-bold">Latest Plantilla</p>
-
-                </div>
-                <div class="col-12 col-md bg-success bg-gradient text-white rounded">
-                    <p class="h3 text-center mb-3 fw-bold">Leave Credit</p>
-
-                </div>
-            </div> --}}
 @endsection
