@@ -27,7 +27,7 @@ class VoluntaryWork extends Controller
     public function index()
     {
         $voluntarywork = $this->voluntarywork->where('user_id', Auth::user()->id)->paginate(10);
-        return view('users.pds.voluntarywork')->with('voluntarywork', $voluntarywork)->with('edit_vol', null);
+        return view('users.PDS.voluntarywork')->with('voluntarywork', $voluntarywork)->with('edit_vol', null);
     }
 
     /**
@@ -103,7 +103,7 @@ class VoluntaryWork extends Controller
     {
         $voluntarywork = $this->voluntarywork->where('user_id', Auth::user()->id)->paginate(10);
         $edit_work = $this->voluntarywork->findOrFail($id);
-        return view('users.pds.voluntarywork')->with('voluntarywork', $voluntarywork)->with('edit_vol', $edit_work);
+        return view('users.PDS.voluntarywork')->with('voluntarywork', $voluntarywork)->with('edit_vol', $edit_work);
     }
 
     /**

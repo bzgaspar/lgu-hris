@@ -62,8 +62,11 @@
                     <span v-else-if="item.status == 3" class="badge bg-primary"
                         >Casual</span
                     >
-                    <span v-else-if="item.status == 4" class="badge bg-orange"
+                    <span v-else-if="item.status == 4" class="badge bg-warning"
                         >Appointed</span
+                    >
+                    <span v-else-if="item.status == 5" class="badge bg-info"
+                        >Elective</span
                     >
                 </template>
                 <template v-slot:item.actions="{ item }">

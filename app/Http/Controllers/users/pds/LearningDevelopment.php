@@ -27,7 +27,7 @@ class LearningDevelopment extends Controller
     public function index()
     {
         $learningdevelopment = $this->learningdevelopment->where('user_id', Auth::user()->id)->paginate(10);
-        return view('users.pds.learningdevelopment')->with('learningdevelopment', $learningdevelopment)->with('edit_lnd', null);
+        return view('users.PDS.learningdevelopment')->with('learningdevelopment', $learningdevelopment)->with('edit_lnd', null);
     }
 
     /**
@@ -107,7 +107,7 @@ class LearningDevelopment extends Controller
     {
         $learningdevelopment = $this->learningdevelopment->where('user_id', Auth::user()->id)->paginate(10);
         $edit_work = $this->learningdevelopment->findOrFail($id);
-        return view('users.pds.learningdevelopment')->with('learningdevelopment', $learningdevelopment)->with('edit_lnd', $edit_work);
+        return view('users.PDS.learningdevelopment')->with('learningdevelopment', $learningdevelopment)->with('edit_lnd', $edit_work);
     }
 
     /**

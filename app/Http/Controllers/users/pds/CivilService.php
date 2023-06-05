@@ -27,7 +27,7 @@ class CivilService extends Controller
     public function index()
     {
         $civilservice = $this->civilservice->where('user_id', Auth::user()->id)->paginate(10);
-        return view('users.pds.civilservice')->with('civilservice', $civilservice)->with('edit_civil', null);
+        return view('users.PDS.civilservice')->with('civilservice', $civilservice)->with('edit_civil', null);
     }
 
     /**
@@ -96,7 +96,7 @@ class CivilService extends Controller
     {
         $civilservice = $this->civilservice->where('user_id', Auth::user()->id)->paginate(10);
         $edit_civil = $this->civilservice->findOrFail($id);
-        return view('users.pds.civilservice')->with('civilservice', $civilservice)->with('edit_civil', $edit_civil);
+        return view('users.PDS.civilservice')->with('civilservice', $civilservice)->with('edit_civil', $edit_civil);
     }
 
     /**

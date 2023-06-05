@@ -174,6 +174,12 @@
                                         class="btn btn-outline-primary text-small fw-bold">
                                         Reset
                                     </a>
+                                    <form action="{{ route('admin.user.delete', $user->id) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <button type="submit" class="btn btn-dark btn-sm"><i class="fa-solid fa-trash-can"></i></button>
+                                    </form>
                                     @if ($user->trashed())
                                         <button data-bs-toggle="modal" data-bs-target="#patch-notif-modal"
                                             data-confirm="Are you sure to Unblock this User?"
@@ -192,7 +198,7 @@
                                         </button> --}}
                                     @endif
                                     @if ($user->status == 0)
-                                    <button data-bs-toggle="modal" data-bs-target="#patch-notif-modal"
+                                        <button data-bs-toggle="modal" data-bs-target="#patch-notif-modal"
                                             data-confirm="Are you sure to Unbanned this User??"
                                             data-target="{{ route('admin.user.unbanned', $user->id) }}"
                                             class="btn btn-warning btn-sm  text-white patch"

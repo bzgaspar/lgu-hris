@@ -27,7 +27,7 @@ class OtherInformation extends Controller
     public function index()
     {
         $otherinformation = $this->otherinformation->where('user_id', Auth::user()->id)->paginate(10);
-        return view('users.pds.otherinformation')->with('otherinformation', $otherinformation)->with('edit_other', null);
+        return view('users.PDS.otherinformation')->with('otherinformation', $otherinformation)->with('edit_other', null);
     }
 
     /**
@@ -98,7 +98,7 @@ class OtherInformation extends Controller
     {
         $otherinformation = $this->otherinformation->where('user_id', Auth::user()->id)->paginate(10);
         $edit_other = $this->otherinformation->findOrFail($id);
-        return view('users.pds.otherinformation')->with('otherinformation', $otherinformation)->with('edit_other', $edit_other);
+        return view('users.PDS.otherinformation')->with('otherinformation', $otherinformation)->with('edit_other', $edit_other);
     }
 
     /**

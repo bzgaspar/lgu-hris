@@ -27,7 +27,7 @@ class Family extends Controller
     {
         $family = $this->family->where('user_id',Auth::user()->id)->first();
         $familyC = $this->familyC->where('user_id',Auth::user()->id)->paginate(10);
-        return view('users.pds.family')
+        return view('users.PDS.family')
         ->with('familyC',$familyC)
         ->with('family',$family);
     }

@@ -106,4 +106,17 @@ class User extends Controller
         }
         return redirect()->back();
     }
+
+    function delete($id)
+    {
+        $user = $this->user->findOrFail($id);
+        $user->forceDelete();
+
+        if ($user->save()) {
+            Session::flash('alert', 'success|User has been Delete!');
+        } else {
+            Session::flash('alert', 'danger|User has not Delete!');
+        }
+        return redirect()->back();
+    }
 }

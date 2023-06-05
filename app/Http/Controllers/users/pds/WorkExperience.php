@@ -27,7 +27,7 @@ class WorkExperience extends Controller
     public function index()
     {
         $workexperience = $this->workexperience->where('user_id', Auth::user()->id)->paginate(10);
-        return view('users.pds.workexperience')->with('workexperience', $workexperience)->with('edit_work', null);
+        return view('users.PDS.workexperience')->with('workexperience', $workexperience)->with('edit_work', null);
     }
 
     /**
@@ -112,7 +112,7 @@ class WorkExperience extends Controller
     {
         $workexperience = $this->workexperience->where('user_id', Auth::user()->id)->paginate(10);
         $edit_work = $this->workexperience->findOrFail($id);
-        return view('users.pds.workexperience')->with('workexperience', $workexperience)->with('edit_work', $edit_work);
+        return view('users.PDS.workexperience')->with('workexperience', $workexperience)->with('edit_work', $edit_work);
     }
 
     /**

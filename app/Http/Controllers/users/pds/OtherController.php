@@ -30,7 +30,7 @@ class OtherController extends Controller
     public function index()
     {
         $other = $this->other->where('user_id', Auth::user()->id)->first();
-        return view('users.pds.other')->with('edit_other', $other);
+        return view('users.PDS.other')->with('edit_other', $other);
     }
 
     /**

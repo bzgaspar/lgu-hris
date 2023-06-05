@@ -27,7 +27,7 @@ class Educational extends Controller
     public function index()
     {
         $educational = $this->educational->where('user_id', Auth::user()->id)->paginate(10);
-        return view('users.pds.educational')->with('educational', $educational)->with('edit_educ', null);
+        return view('users.PDS.educational')->with('educational', $educational)->with('edit_educ', null);
     }
 
     /**
@@ -107,7 +107,7 @@ class Educational extends Controller
     {
         $educational = $this->educational->where('user_id', Auth::user()->id)->paginate(10);
         $edit_educ = $this->educational->findOrFail($id);
-        return view('users.pds.educational')->with('educational', $educational)->with('edit_educ', $edit_educ);
+        return view('users.PDS.educational')->with('educational', $educational)->with('edit_educ', $edit_educ);
     }
 
     /**
