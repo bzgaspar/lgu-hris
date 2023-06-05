@@ -105,7 +105,7 @@ class surveyFormController extends Controller
                     'standard' => 'required|min:1'
                     ]);
                 for ($i = 0; $i < count($request->question); $i++) {
-                    if ($request->question != "" && $request->standard != "") {
+                    if ($request->question[$i] != "" || $request->standard[$i] != "") {
                         $details[] = [
                             'form_id' => $form->id,
                             'question_id' => $request->question[$i],
