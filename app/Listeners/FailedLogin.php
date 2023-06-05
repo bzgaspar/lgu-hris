@@ -27,8 +27,10 @@ class FailedLogin
      */
     public function handle($event)
     {
-        $event->user->unsuccessful_login_count += 1 ;
-        $unsuccessful_count =   5;
+        if($event->user)
+        {
+            $event->user->unsuccessful_login_count += 1 ;
+            $unsuccessful_count =   5;
 
         if ($event->user->unsuccessful_login_count > $unsuccessful_count) {
             $event->user->status = 0;
@@ -40,6 +42,7 @@ class FailedLogin
             Session::flash('alert', 'danger|Your have been blocked! Contact Administrator ');
         } else {
             Session::flash('alert', 'danger|Failed Attempts: '.$event->user->unsuccessful_login_count.'. Remaining: '. ($unsuccessful_count- $event->user->unsuccessful_login_count).'You will be blocked');
+        }
         }
     }
 }
