@@ -99,7 +99,7 @@
                         @forelse ($surveyForm->surveyFormDetails as $item)
                             @if ($item->surveyQuestion)
                                 @if ($item->surveyQuestion->type == 'Technical Competencies')
-                                <h4 class="text-center mt-4">Technical Competencies</h4>
+                                    <h4 class="text-center mt-4">Technical Competencies</h4>
                                     <div class="row justify-content-center">
                                         <div class="col-12 col-md">
                                             <p class="text-muted">
@@ -202,58 +202,60 @@
                                     <td class="text-start fw-bold fs-5" colspan="5">Core Competencies</td>
                                 </tr>
                                 @forelse ($surveyForm->surveyFormDetails as $item)
-                                    @if ($item->surveyQuestion->type == 'Core Competencies')
-                                        <tr>
-                                            <td data-title="Question" class=" text-start">
-                                                {{ $item->surveyQuestion->question }}
-                                            </td>
-                                            <td data-title="Standard">{{ $item->standard }}</td>
-                                            <td data-title="Actual">
-                                                @if ($item->surveyAnswerDetails)
-                                                    {{ $item->surveyAnswerDetails->answer }}
-                                                @else
-                                                    -
-                                                @endif
-                                            </td>
-                                            <td data-title="Gap">
-                                                @if ($item->surveyAnswerDetails)
-                                                    {{ $item->surveyAnswerDetails->gap }}
-                                                @else
-                                                    -
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @if ($item->surveyAnswerDetails)
-                                                    @if ($item->surveyAnswerDetails->gap > 0 && $item->surveyAnswerDetails->status == 1)
-                                                        <!-- Button trigger modal -->
-                                                        <button type="button"
-                                                            class="btn btn-outline-success btn-sm fw-bold"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#comply-{{ $item->id }}">
-                                                            Need Training
-                                                        </button>
-                                                        @include('users.modal.comply-modal')
-                                                    @elseif ($item->surveyAnswerDetails->status == 2)
-                                                        <div class="row justify-content-center">
-                                                            <div class="col">
-                                                                <span class="badge bg-success">Complied</span>
-                                                            </div>
-                                                            <div class="col">
-                                                                <a target="_blank"
-                                                                    href="{{ asset('/storage/compliance/' . $item->surveyAnswerDetails->surveyFiles->document) }}"
-                                                                    class="btn btn-warning btn-sm  text-white">
-                                                                    <i class="fa-solid fa-eye me-2"></i>View
-                                                                </a>
-                                                            </div>
-                                                        </div>
+                                    @if ($item->surveyQuestion)
+                                        @if ($item->surveyQuestion->type == 'Core Competencies')
+                                            <tr>
+                                                <td data-title="Question" class=" text-start">
+                                                    {{ $item->surveyQuestion->question }}
+                                                </td>
+                                                <td data-title="Standard">{{ $item->standard }}</td>
+                                                <td data-title="Actual">
+                                                    @if ($item->surveyAnswerDetails)
+                                                        {{ $item->surveyAnswerDetails->answer }}
                                                     @else
                                                         -
                                                     @endif
-                                                @else
-                                                    -
-                                                @endif
-                                            </td>
-                                        </tr>
+                                                </td>
+                                                <td data-title="Gap">
+                                                    @if ($item->surveyAnswerDetails)
+                                                        {{ $item->surveyAnswerDetails->gap }}
+                                                    @else
+                                                        -
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if ($item->surveyAnswerDetails)
+                                                        @if ($item->surveyAnswerDetails->gap > 0 && $item->surveyAnswerDetails->status == 1)
+                                                            <!-- Button trigger modal -->
+                                                            <button type="button"
+                                                                class="btn btn-outline-success btn-sm fw-bold"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#comply-{{ $item->id }}">
+                                                                Need Training
+                                                            </button>
+                                                            @include('users.modal.comply-modal')
+                                                        @elseif ($item->surveyAnswerDetails->status == 2)
+                                                            <div class="row justify-content-center">
+                                                                <div class="col">
+                                                                    <span class="badge bg-success">Complied</span>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <a target="_blank"
+                                                                        href="{{ asset('/storage/compliance/' . $item->surveyAnswerDetails->surveyFiles->document) }}"
+                                                                        class="btn btn-warning btn-sm  text-white">
+                                                                        <i class="fa-solid fa-eye me-2"></i>View
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        @else
+                                                            -
+                                                        @endif
+                                                    @else
+                                                        -
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        @endif
                                     @endif
                                 @empty
                                 @endforelse
@@ -262,57 +264,59 @@
                                     <td class="text-start fw-bold fs-5" colspan="5">Organizational Competencies</td>
                                 </tr>
                                 @forelse ($surveyForm->surveyFormDetails as $item)
-                                    @if ($item->surveyQuestion->type == 'Organizational Competencies')
-                                        <tr>
-                                            <td data-title="Question" class=" text-start">
-                                                {{ $item->surveyQuestion->question }}
-                                            </td>
-                                            <td data-title="Standard">{{ $item->standard }}</td>
-                                            <td data-title="Actual">
-                                                @if ($item->surveyAnswerDetails)
-                                                    {{ $item->surveyAnswerDetails->answer }}
-                                                @else
-                                                    -
-                                                @endif
-                                            </td>
-                                            <td data-title="Gap">
-                                                @if ($item->surveyAnswerDetails)
-                                                    {{ $item->surveyAnswerDetails->gap }}
-                                                @else
-                                                    -
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @if ($item->surveyAnswerDetails)
-                                                    @if ($item->surveyAnswerDetails->gap > 0 && $item->surveyAnswerDetails->status == 1)
-                                                        <button type="button"
-                                                            class="btn btn-outline-success btn-sm fw-bold"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#comply-{{ $item->id }}">
-                                                            Need Training
-                                                        </button>
-                                                        @include('users.modal.comply-modal')
-                                                    @elseif ($item->surveyAnswerDetails->status == 2)
-                                                        <div class="row justify-content-center">
-                                                            <div class="col">
-                                                                <span class="badge bg-success">Complied</span>
-                                                            </div>
-                                                            <div class="col">
-                                                                <a target="_blank"
-                                                                    href="{{ asset('/storage/compliance/' . $item->surveyAnswerDetails->surveyFiles->document) }}"
-                                                                    class="btn btn-warning btn-sm  text-white">
-                                                                    <i class="fa-solid fa-eye me-2"></i>View
-                                                                </a>
-                                                            </div>
-                                                        </div>
+                                    @if ($item->surveyQuestion)
+                                        @if ($item->surveyQuestion->type == 'Organizational Competencies')
+                                            <tr>
+                                                <td data-title="Question" class=" text-start">
+                                                    {{ $item->surveyQuestion->question }}
+                                                </td>
+                                                <td data-title="Standard">{{ $item->standard }}</td>
+                                                <td data-title="Actual">
+                                                    @if ($item->surveyAnswerDetails)
+                                                        {{ $item->surveyAnswerDetails->answer }}
                                                     @else
                                                         -
                                                     @endif
-                                                @else
-                                                    -
-                                                @endif
-                                            </td>
-                                        </tr>
+                                                </td>
+                                                <td data-title="Gap">
+                                                    @if ($item->surveyAnswerDetails)
+                                                        {{ $item->surveyAnswerDetails->gap }}
+                                                    @else
+                                                        -
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if ($item->surveyAnswerDetails)
+                                                        @if ($item->surveyAnswerDetails->gap > 0 && $item->surveyAnswerDetails->status == 1)
+                                                            <button type="button"
+                                                                class="btn btn-outline-success btn-sm fw-bold"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#comply-{{ $item->id }}">
+                                                                Need Training
+                                                            </button>
+                                                            @include('users.modal.comply-modal')
+                                                        @elseif ($item->surveyAnswerDetails->status == 2)
+                                                            <div class="row justify-content-center">
+                                                                <div class="col">
+                                                                    <span class="badge bg-success">Complied</span>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <a target="_blank"
+                                                                        href="{{ asset('/storage/compliance/' . $item->surveyAnswerDetails->surveyFiles->document) }}"
+                                                                        class="btn btn-warning btn-sm  text-white">
+                                                                        <i class="fa-solid fa-eye me-2"></i>View
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        @else
+                                                            -
+                                                        @endif
+                                                    @else
+                                                        -
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        @endif
                                     @endif
                                 @empty
                                 @endforelse
@@ -321,57 +325,59 @@
                                     <td class="text-start fw-bold fs-5" colspan="5">Technical Competencies</td>
                                 </tr>
                                 @forelse ($surveyForm->surveyFormDetails as $item)
-                                    @if ($item->surveyQuestion->type == 'Technical Competencies')
-                                        <tr>
-                                            <td data-title="Question" class=" text-start">
-                                                {{ $item->surveyQuestion->question }}
-                                            </td>
-                                            <td data-title="Standard">{{ $item->standard }}</td>
-                                            <td data-title="Actual">
-                                                @if ($item->surveyAnswerDetails)
-                                                    {{ $item->surveyAnswerDetails->answer }}
-                                                @else
-                                                    -
-                                                @endif
-                                            </td>
-                                            <td data-title="Gap">
-                                                @if ($item->surveyAnswerDetails)
-                                                    {{ $item->surveyAnswerDetails->gap }}
-                                                @else
-                                                    -
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @if ($item->surveyAnswerDetails)
-                                                    @if ($item->surveyAnswerDetails->gap > 0 && $item->surveyAnswerDetails->status == 1)
-                                                        <button type="button"
-                                                            class="btn btn-outline-success btn-sm fw-bold"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#comply-{{ $item->id }}">
-                                                            Need Training
-                                                        </button>
-                                                        @include('users.modal.comply-modal')
-                                                    @elseif ($item->surveyAnswerDetails->status == 2)
-                                                        <div class="row justify-content-center">
-                                                            <div class="col">
-                                                                <span class="badge bg-success">Complied</span>
-                                                            </div>
-                                                            <div class="col">
-                                                                <a target="_blank"
-                                                                    href="{{ asset('/storage/compliance/' . $item->surveyAnswerDetails->surveyFiles->document) }}"
-                                                                    class="btn btn-warning btn-sm  text-white">
-                                                                    <i class="fa-solid fa-eye me-2"></i>View
-                                                                </a>
-                                                            </div>
-                                                        </div>
+                                    @if ($item->surveyQuestion)
+                                        @if ($item->surveyQuestion->type == 'Technical Competencies')
+                                            <tr>
+                                                <td data-title="Question" class=" text-start">
+                                                    {{ $item->surveyQuestion->question }}
+                                                </td>
+                                                <td data-title="Standard">{{ $item->standard }}</td>
+                                                <td data-title="Actual">
+                                                    @if ($item->surveyAnswerDetails)
+                                                        {{ $item->surveyAnswerDetails->answer }}
                                                     @else
                                                         -
                                                     @endif
-                                                @else
-                                                    -
-                                                @endif
-                                            </td>
-                                        </tr>
+                                                </td>
+                                                <td data-title="Gap">
+                                                    @if ($item->surveyAnswerDetails)
+                                                        {{ $item->surveyAnswerDetails->gap }}
+                                                    @else
+                                                        -
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if ($item->surveyAnswerDetails)
+                                                        @if ($item->surveyAnswerDetails->gap > 0 && $item->surveyAnswerDetails->status == 1)
+                                                            <button type="button"
+                                                                class="btn btn-outline-success btn-sm fw-bold"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#comply-{{ $item->id }}">
+                                                                Need Training
+                                                            </button>
+                                                            @include('users.modal.comply-modal')
+                                                        @elseif ($item->surveyAnswerDetails->status == 2)
+                                                            <div class="row justify-content-center">
+                                                                <div class="col">
+                                                                    <span class="badge bg-success">Complied</span>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <a target="_blank"
+                                                                        href="{{ asset('/storage/compliance/' . $item->surveyAnswerDetails->surveyFiles->document) }}"
+                                                                        class="btn btn-warning btn-sm  text-white">
+                                                                        <i class="fa-solid fa-eye me-2"></i>View
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        @else
+                                                            -
+                                                        @endif
+                                                    @else
+                                                        -
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        @endif
                                     @endif
                                 @empty
                                 @endforelse
@@ -380,57 +386,59 @@
                                     <td class="text-start fw-bold fs-5" colspan="5">Leadership Competencies</td>
                                 </tr>
                                 @forelse ($surveyForm->surveyFormDetails as $item)
-                                    @if ($item->surveyQuestion->type == 'Leadership Competencies')
-                                        <tr>
-                                            <td data-title="Question" class=" text-start">
-                                                {{ $item->surveyQuestion->question }}
-                                            </td>
-                                            <td data-title="Standard">{{ $item->standard }}</td>
-                                            <td data-title="Actual">
-                                                @if ($item->surveyAnswerDetails)
-                                                    {{ $item->surveyAnswerDetails->answer }}
-                                                @else
-                                                    -
-                                                @endif
-                                            </td>
-                                            <td data-title="Gap">
-                                                @if ($item->surveyAnswerDetails)
-                                                    {{ $item->surveyAnswerDetails->gap }}
-                                                @else
-                                                    -
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @if ($item->surveyAnswerDetails)
-                                                    @if ($item->surveyAnswerDetails->gap > 0 && $item->surveyAnswerDetails->status == 1)
-                                                        <button type="button"
-                                                            class="btn btn-outline-success btn-sm fw-bold"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#comply-{{ $item->id }}">
-                                                            Need Training
-                                                        </button>
-                                                        @include('users.modal.comply-modal')
-                                                    @elseif ($item->surveyAnswerDetails->status == 2)
-                                                        <div class="row justify-content-center">
-                                                            <div class="col">
-                                                                <span class="badge bg-success">Complied</span>
-                                                            </div>
-                                                            <div class="col">
-                                                                <a target="_blank"
-                                                                    href="{{ asset('/storage/compliance/' . $item->surveyAnswerDetails->surveyFiles->document) }}"
-                                                                    class="btn btn-warning btn-sm  text-white">
-                                                                    <i class="fa-solid fa-eye me-2"></i>View
-                                                                </a>
-                                                            </div>
-                                                        </div>
+                                    @if ($item->surveyQuestion)
+                                        @if ($item->surveyQuestion->type == 'Leadership Competencies')
+                                            <tr>
+                                                <td data-title="Question" class=" text-start">
+                                                    {{ $item->surveyQuestion->question }}
+                                                </td>
+                                                <td data-title="Standard">{{ $item->standard }}</td>
+                                                <td data-title="Actual">
+                                                    @if ($item->surveyAnswerDetails)
+                                                        {{ $item->surveyAnswerDetails->answer }}
                                                     @else
                                                         -
                                                     @endif
-                                                @else
-                                                    -
-                                                @endif
-                                            </td>
-                                        </tr>
+                                                </td>
+                                                <td data-title="Gap">
+                                                    @if ($item->surveyAnswerDetails)
+                                                        {{ $item->surveyAnswerDetails->gap }}
+                                                    @else
+                                                        -
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if ($item->surveyAnswerDetails)
+                                                        @if ($item->surveyAnswerDetails->gap > 0 && $item->surveyAnswerDetails->status == 1)
+                                                            <button type="button"
+                                                                class="btn btn-outline-success btn-sm fw-bold"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#comply-{{ $item->id }}">
+                                                                Need Training
+                                                            </button>
+                                                            @include('users.modal.comply-modal')
+                                                        @elseif ($item->surveyAnswerDetails->status == 2)
+                                                            <div class="row justify-content-center">
+                                                                <div class="col">
+                                                                    <span class="badge bg-success">Complied</span>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <a target="_blank"
+                                                                        href="{{ asset('/storage/compliance/' . $item->surveyAnswerDetails->surveyFiles->document) }}"
+                                                                        class="btn btn-warning btn-sm  text-white">
+                                                                        <i class="fa-solid fa-eye me-2"></i>View
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        @else
+                                                            -
+                                                        @endif
+                                                    @else
+                                                        -
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        @endif
                                     @endif
                                 @empty
                                 @endforelse
