@@ -127,7 +127,7 @@
                         <label for="formFile" class="form-label small m-0 p-0">Upload Document</label>
                         <input name="document" class="form-control" type="file" id="formFile"
                             aria-describedby="file-info" accept=".pdf">
-                        <div class="small" id="file-info">The maximun file is 25mb (PDF only)</div>
+                        <div class="small" id="file-info">The maximun file is 2mb (PDF only)</div>
                         @error('document')
                             <p class="text-danger small">{{ $message }}</p>
                         @enderror
