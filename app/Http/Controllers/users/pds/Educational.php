@@ -54,7 +54,7 @@ class Educational extends Controller
             'EDpoaFROM'=>'required|min:1',
             'EDpoaTO'=>'required|min:1',
             'EDyeargrad'=>'required|min:1',
-            'document'=>'max:25000|mimes:pdf',
+            'document'=>'max:2048|mimes:pdf',
         ], [
             'EDNameSchool.required' =>'School Name is Empty',
             'EDBEDC.required' =>'Degree is Empty',
@@ -125,7 +125,7 @@ class Educational extends Controller
             'EDpoaFROM'=>'required|min:1',
             'EDpoaTO'=>'required|min:1',
             'EDyeargrad'=>'required|min:1',
-            'document'=>'max:25000|mimes:pdf',
+            'document'=>'max:2048|mimes:pdf',
         ], [
             'EDNameSchool.required' =>'School Name is Empty',
             'EDBEDC.required' =>'Degree is Empty',

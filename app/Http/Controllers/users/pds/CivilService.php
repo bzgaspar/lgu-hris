@@ -50,7 +50,7 @@ class CivilService extends Controller
     {
         $request->validate([
             'CSCareer'=>'required|min:1',
-            'document'=>'max:25000|mimes:pdf',
+            'document'=>'max:2048|mimes:pdf',
         ], [
             'CSCareer.required' =>'Career is Empty',
             'document.max' =>'File is to big',
@@ -110,7 +110,7 @@ class CivilService extends Controller
     {
         $request->validate([
             'CSCareer'=>'required|min:1',
-            'document'=>'max:25000|mimes:pdf',
+            'document'=>'max:2048|mimes:pdf',
         ], [
             'CSCareer.required' =>'Career is Empty',
         ]);

@@ -54,7 +54,7 @@ class VoluntaryWork extends Controller
             'VWidto'=>'required|min:1',
             'VWNumHours'=>'required|min:1',
             'VWpostion'=>'required|min:1',
-            'document'=>'max:25000|mimes:pdf',
+            'document'=>'max:2048|mimes:pdf',
         ], [
             'VWname.required' =>'Voluntary Work is Empty',
             'VWidfrom.required' =>'From is Empty',
@@ -121,7 +121,7 @@ class VoluntaryWork extends Controller
             'VWidto'=>'required|min:1',
             'VWNumHours'=>'required|min:1',
             'VWpostion'=>'required|min:1',
-            'document'=>'max:25000|mimes:pdf',
+            'document'=>'max:2048|mimes:pdf',
         ], [
             'VWname.required' =>'Voluntary Work is Empty',
             'VWidfrom.required' =>'From is Empty',
