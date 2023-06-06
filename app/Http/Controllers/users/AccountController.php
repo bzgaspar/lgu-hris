@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use Image;
 
 class AccountController extends Controller
 {
@@ -103,9 +104,9 @@ class AccountController extends Controller
         }
         if ($request->avatar) {
             $request->validate([
-            'avatar'=>'max:25000|mimes:jpeg,jpg,png,gif',
+            'avatar'=>'mimes:jpeg,jpg,png,gif',
             ]);
-            if($user->avatar != 'avatar.png'){
+            if($user->avatar != 'avatar.png') {
                 $this->deleteFile($user->avatar);
             }
             $user->avatar = $this->saveFile($request->avatar);
@@ -136,7 +137,7 @@ class AccountController extends Controller
         $filenameWithExt = $file->getClientOriginalName();
 
         //Get just the file name
-        $filenameWithoutExy = pathinfo( $filenameWithExt, PATHINFO_FILENAME );
+        $filenameWithoutExy = pathinfo($filenameWithExt, PATHINFO_FILENAME);
 
         // creating new name
         $filename = $filenameWithoutExy."-".time()."-".Auth::user()->id.".". $file->extension();
@@ -149,8 +150,11 @@ class AccountController extends Controller
 
             $filename_path = self::LOCAL_STORAGE_FOLDER_DELETE . $filename;
         }
+        $image_resize = Image::make($file->path());
+        $image_resize->resize(750, 750, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save("storage/user_avatar/".$filename);
 
-        $file->storeAs(self::LOCAL_STORAGE_FOLDER, $filename);
 
         return $filename;
     }
