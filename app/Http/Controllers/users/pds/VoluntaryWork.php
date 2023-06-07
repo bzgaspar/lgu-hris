@@ -50,17 +50,9 @@ class VoluntaryWork extends Controller
     {
         $request->validate([
             'VWname'=>'required|min:1',
-            'VWidfrom'=>'required|min:1',
-            'VWidto'=>'required|min:1',
-            'VWNumHours'=>'required|min:1',
-            'VWpostion'=>'required|min:1',
             'document'=>'max:2048|mimes:pdf',
         ], [
             'VWname.required' =>'Voluntary Work is Empty',
-            'VWidfrom.required' =>'From is Empty',
-            'VWidto.required' =>'To is Empty',
-            'VWNumHours.required' =>'Hours is Empty',
-            'VWpostion.required' =>'Position is Empty',
             'document.max' =>'File is to big',
             'document.mimes' =>'Invalid File type',
         ]);
@@ -117,17 +109,9 @@ class VoluntaryWork extends Controller
     {
         $request->validate([
             'VWname'=>'required|min:1',
-            'VWidfrom'=>'required|min:1',
-            'VWidto'=>'required|min:1',
-            'VWNumHours'=>'required|min:1',
-            'VWpostion'=>'required|min:1',
             'document'=>'max:2048|mimes:pdf',
         ], [
             'VWname.required' =>'Voluntary Work is Empty',
-            'VWidfrom.required' =>'From is Empty',
-            'VWidto.required' =>'To is Empty',
-            'VWNumHours.required' =>'Hours is Empty',
-            'VWpostion.required' =>'Position is Empty',
             'document.max' =>'File is to big',
             'document.mimes' =>'Invalid File type',
         ]);
@@ -159,8 +143,7 @@ class VoluntaryWork extends Controller
     public function destroy($id)
     {
         $educ = $this->voluntarywork->findOrFail($id);
-        if($educ->document)
-        {
+        if($educ->document) {
             $this->deleteFile($educ->document);
         }
 
@@ -179,7 +162,7 @@ class VoluntaryWork extends Controller
         $filenameWithExt = $file->getClientOriginalName();
 
         //Get just the file name
-        $filenameWithoutExy = pathinfo( $filenameWithExt, PATHINFO_FILENAME );
+        $filenameWithoutExy = pathinfo($filenameWithExt, PATHINFO_FILENAME);
 
         // creating new name
         $filename = $filenameWithoutExy."-".time()."-".Auth::user()->id.".". $file->extension();
