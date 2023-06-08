@@ -251,7 +251,9 @@
             <td rowspan=2 height=33 class=xl23024097 style='height:21pt'>6</td>
             <td colspan=2 rowspan=2 class=xl32024097 style='border-right:.5pt solid black'>CIVIL
                 STATUS</td>
-            <td colspan=3 rowspan=2 class=xl27424097>&nbsp;</td>
+            <td colspan=3 rowspan=2 class=xl27424097>&nbsp;@if ($user->pdsPersonal)
+                {{ $user->pdsPersonal->civil_service }}
+            @endif</td>
             <td class=xl10024097 colspan=2>17. RESIDENTIAL ADDRESS</td>
             <td colspan=3 class=xl28024097>&nbsp; @if ($user->pdsPersonal)
                     {{ $user->pdsPersonal->h_b_l_no }}
