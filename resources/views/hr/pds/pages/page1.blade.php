@@ -618,7 +618,7 @@
                         <td class=xl9024097>SURNAME</td>
                         <td class=xl9024097>&nbsp;</td>
                         <td colspan=5 class=xl30524097>&nbsp;@if ($user->pdsFamily)
-                            {{ $user->pdsFamily->Slname }}
+                            {{ $user->pdsFamily->Mlname }}
                         @endif</td>
                     </tr>
                     <tr height=28 style='mso-height-source:userset;height:18pt'>

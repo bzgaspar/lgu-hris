@@ -251,7 +251,7 @@
                         <div class="form-floating mb-1">
                             <input type="text" class="form-control text-uppercase" name="h_b_l_no" id="h_b_l_no"
                                 placeholder=""
-                                @if ($personal) value="{{ old('h_b_l_no', $personal->middle_name) }}"
+                                @if ($personal) value="{{ old('h_b_l_no', $personal->h_b_l_no) }}"
                                     @else
                                     value="{{ old('h_b_l_no') }}" @endif>
                             <label for="h_b_l_no" class="form-label text-muted">House/Block/Lot #</label>
