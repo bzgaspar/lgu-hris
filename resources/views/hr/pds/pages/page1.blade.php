@@ -254,7 +254,7 @@
             <td colspan=3 rowspan=2 class=xl27424097>&nbsp;@if ($user->pdsPersonal)
                 {{ $user->pdsPersonal->civil_service }}
             @endif</td>
-            <td class=xl10024097 colspan=2>17. RESIDENTIAL ADDRESS</td>
+            <td class="xl10024097 text-wrap" colspan=2>17. RESIDENTIAL ADDRESS</td>
             <td colspan=3 class=xl28024097>&nbsp; @if ($user->pdsPersonal)
                     {{ $user->pdsPersonal->h_b_l_no }}
                 @endif
@@ -368,7 +368,7 @@
                     {{ $user->pdsPersonal->blood_type }}
                 @endif
             </td>
-            <td class=xl11024097 colspan=2>18. PERMANENT ADDRESS</td>
+            <td class="xl11024097 text-wrap" colspan=2>18. PERMANENT ADDRESS</td>
             <td colspan=3 class=xl28024097>&nbsp;@if ($user->pdsPersonal)
                     {{ $user->pdsPersonal->h_b_l_no_2 }}
                 @endif
