@@ -520,8 +520,7 @@
                             LGU Delfin Albano
                         </h6>
                         <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo rerum ullam eligendi fuga
-                            doloribus, error cum sapiente ab veniam sunt?
+                            Taas Noo kahit kanino, Ako'y Taga Delfin Albano.
                         </p>
                     </div>
                     <!-- Grid column -->
@@ -535,7 +534,11 @@
                             <i class="fas fa-envelope me-3"></i>
                             mhrmo.delfinalbano@gmail.com
                         </p>
-                        <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
+                        <p>
+                            <i class="fas fa-envelope me-3"></i>
+                            delfinalbano_gc@yahoo.com
+                        </p>
+                        {{-- <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p> --}}
                     </div>
                     <!-- Grid column -->
                 </div>
@@ -549,7 +552,7 @@
         <!-- Copyright -->
         <div class="text-center p-2 bottom-0" style="background-color: rgba(0, 0, 0, 0.05);">
             © 2023 Copyright:
-            <a class="text-reset fw-bold" href="#">LGU Delfin Albano</a>
+            <a class="text-reset fw-bold" href="{{ env(app.url) }}">LGU Delfin Albano</a>
         </div>
         <!-- Copyright -->
     </footer>
