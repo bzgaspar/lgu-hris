@@ -552,7 +552,7 @@
         <!-- Copyright -->
         <div class="text-center p-2 bottom-0" style="background-color: rgba(0, 0, 0, 0.05);">
             © 2023 Copyright:
-            <a class="text-reset fw-bold" href="{{ env(app.url) }}">LGU Delfin Albano</a>
+            <a class="text-reset fw-bold" href="{{ env(APP_URL) }}">LGU Delfin Albano</a>
         </div>
         <!-- Copyright -->
     </footer>
