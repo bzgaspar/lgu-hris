@@ -69,7 +69,7 @@ class PublicationController extends Controller
             'eligibility' => 'required',
             'competency' => 'required',
             'assignment' => 'required',
-            'document'=>'max:2048|mimes:pdf',
+            'document'=>'max:8000|mimes:pdf',
         ]);
 
         $this->publication->title = $request->title;
@@ -140,7 +140,7 @@ class PublicationController extends Controller
             'eligibility' => 'required',
             'competency' => 'required',
             'assignment' => 'required',
-            'document'=>'max:2048|mimes:pdf',
+            'document'=>'max:8000|mimes:pdf',
         ]);
 
         $publication = $this->publication->findOrFail($id);

@@ -50,7 +50,7 @@ class VoluntaryWork extends Controller
     {
         $request->validate([
             'VWname'=>'required|min:1',
-            'document'=>'max:2048|mimes:pdf',
+            'document'=>'max:8000|mimes:pdf',
         ], [
             'VWname.required' =>'Voluntary Work is Empty',
             'document.max' =>'File is to big',
@@ -109,7 +109,7 @@ class VoluntaryWork extends Controller
     {
         $request->validate([
             'VWname'=>'required|min:1',
-            'document'=>'max:2048|mimes:pdf',
+            'document'=>'max:8000|mimes:pdf',
         ], [
             'VWname.required' =>'Voluntary Work is Empty',
             'document.max' =>'File is to big',

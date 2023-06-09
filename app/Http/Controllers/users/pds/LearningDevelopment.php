@@ -56,7 +56,7 @@ class LearningDevelopment extends Controller
             'LDnumhour'=>'required|min:1',
             'LDtype'=>'required|min:1',
             'LDconducted'=>'required|min:1',
-            'document'=>'max:2048|mimes:pdf',
+            'document'=>'max:8000|mimes:pdf',
         ], [
             'LDtitle.required' =>'Title is Empty',
             'LDidfrom.required' =>'From is Empty',
@@ -126,7 +126,7 @@ class LearningDevelopment extends Controller
             'LDnumhour'=>'required|min:1',
             'LDtype'=>'required|min:1',
             'LDconducted'=>'required|min:1',
-            'document'=>'max:2048|mimes:pdf',
+            'document'=>'max:8000|mimes:pdf',
         ], [
             'LDtitle.required' =>'Title is Empty',
             'LDidfrom.required' =>'From is Empty',

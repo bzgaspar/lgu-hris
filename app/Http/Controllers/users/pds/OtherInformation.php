@@ -52,7 +52,7 @@ class OtherInformation extends Controller
             'Ospecial'=>'required|min:1',
             'Ononacad'=>'required|min:1',
             'Omemship'=>'required|min:1',
-            'document'=>'max:2048|mimes:pdf',
+            'document'=>'max:8000|mimes:pdf',
         ], [
             'Ospecial.required' =>'Title is Empty',
             'Ononacad.required' =>'From is Empty',
@@ -114,7 +114,7 @@ class OtherInformation extends Controller
             'Ospecial'=>'required|min:1',
             'Ononacad'=>'required|min:1',
             'Omemship'=>'required|min:1',
-            'document'=>'max:2048|mimes:pdf',
+            'document'=>'max:8000|mimes:pdf',
         ], [
             'Ospecial.required' =>'Title is Empty',
             'Ononacad.required' =>'From is Empty',

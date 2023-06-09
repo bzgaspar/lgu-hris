@@ -104,7 +104,7 @@ class AccountController extends Controller
         }
         if ($request->avatar) {
             $request->validate([
-            'avatar'=>'mimes:jpeg,jpg,png,gif',
+            'avatar'=>['max:8000','mimes:jpeg,jpg,png,gif'],
             ]);
             if($user->avatar != 'avatar.png') {
                 $this->deleteFile($user->avatar);

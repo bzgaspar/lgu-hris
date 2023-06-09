@@ -64,7 +64,7 @@ class application extends Controller
             }
         }
         $request->validate([
-            'tor' => 'required|max:11000|mimes:pdf',
+            'tor' => 'required|max:8000|mimes:pdf',
         ]);
 
         $this->application->user_id = Auth::user()->id;
@@ -74,20 +74,20 @@ class application extends Controller
         if ($request->eligibility) {
             $request->validate([
 
-                'eligibility' => 'required|max:11000|mimes:pdf',
+                'eligibility' => 'required|max:8000|mimes:pdf',
             ]);
 
             $this->application->eligibility = $this->saveFile($request->eligibility);
         }
         if ($request->residency) {
             $request->validate([
-            'residency' => 'required|max:11000|mimes:pdf',
+            'residency' => 'required|max:8000|mimes:pdf',
             ]);
             $this->application->residency = $this->saveFile($request->residency);
         }
         if ($request->rating) {
             $request->validate([
-            'rating' => 'required|max:11000|mimes:pdf',
+            'rating' => 'required|max:8000|mimes:pdf',
             ]);
             $this->application->rating = $this->saveFile($request->rating);
         }

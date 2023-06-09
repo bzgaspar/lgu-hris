@@ -14,7 +14,7 @@
                         <input accept=".jpeg,.jpg,.png,.gif" class="form-control @error('avatar') is-invalid @enderror"
                             name="avatar" type="file" id="formFile" aria-describedby="avatar-info">
                     </div>
-                    <div id="avatar-info" class="form-text text-muted p-0 m-0">.jpg , .jpeg , .png , .gif only (2mb max)
+                    <div id="avatar-info" class="form-text text-muted p-0 m-0">.jpg , .jpeg , .png , .gif only (8mb max)
                     <br>
                 <p class="text-danger">NOTE!!! This picture will be used in your pds and other documents that require image</p></div>
                     @error('avatar')

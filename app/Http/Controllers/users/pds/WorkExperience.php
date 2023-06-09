@@ -57,7 +57,7 @@ class WorkExperience extends Controller
             'WEsalaryjob'=>'required|min:1',
             'WEstatus'=>'required|min:1',
             'WEgovser'=>'required|min:1',
-            'document'=>'max:2048|mimes:pdf',
+            'document'=>'max:8000|mimes:pdf',
         ], [
             'WEidfrom.required' =>'From is Empty',
             'WEidto.required' =>'To is Empty',
@@ -133,7 +133,7 @@ class WorkExperience extends Controller
             'WEsalaryjob'=>'required|min:1',
             'WEstatus'=>'required|min:1',
             'WEgovser'=>'required|min:1',
-            'document'=>'max:2048|mimes:pdf',
+            'document'=>'max:8000|mimes:pdf',
         ], [
             'WEidfrom.required' =>'From is Empty',
             'WEidto.required' =>'To is Empty',

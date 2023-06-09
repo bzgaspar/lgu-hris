@@ -41,7 +41,7 @@
                             @enderror
                             <div class="text-muted small" id="residency_info">Upload in here your proof of residency. (
                                 Barangay Certificate, Police Clearance etc..) <p class="text-secondary">Note! Not Required.
-                                    (PDF only)</p>
+                                    (PDF only. Below 8mb only.)</p>
                             </div>
                             @if ($edit_app)
                                 @if ($edit_app->residency)
@@ -61,7 +61,7 @@
                                 <p class="text-danger small">{{ $message }}</p>
                             @enderror
                             <div class="text-muted small" id="rating_info">
-                                <p class="text-secondary">Note! Not Required. (PDF only)</p>
+                                <p class="text-secondary">Note! Not Required. (PDF only. Below 8mb only.)</p>
                             </div>
                             @if ($edit_app)
                                 @if ($edit_app->rating)
@@ -84,7 +84,7 @@
                                 <p class="text-danger small">{{ $message }}</p>
                             @enderror
                             <div class="text-muted small" id="eligibility_info">Upload in here your Certificate of
-                                Eligibility,Rating,License.<p class="text-secondary">Note!Not Required. (PDF only)</p>
+                                Eligibility,Rating,License.<p class="text-secondary">Note!Not Required. (PDF only. Below 8mb only.)</p>
                             </div>
                             @if ($edit_app)
                                 @if ($edit_app->eligibility)
@@ -105,7 +105,7 @@
                                 <p class="text-danger small">{{ $message }}</p>
                             @enderror
                             <div class="text-muted small" id="tor_info">Upload in here your Transcript of Record (TOR).<p
-                                    class="text-danger">Note! Required. (PDF only)</p>
+                                    class="text-danger">Note! Required. (PDF only. Below 8mb only.)</p>
                             </div>
                             @if ($edit_app)
                                 <a target="_blank" class="btn btn-outline-success btn-sm"

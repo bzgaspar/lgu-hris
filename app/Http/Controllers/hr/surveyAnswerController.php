@@ -148,7 +148,7 @@ class surveyAnswerController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'comply_file' => 'required|max:2048',
+            'comply_file' => 'required|max:8000',
         ]);
 
         $this->surveyFiles->answer_details_id = $id;
