@@ -114,7 +114,7 @@ class application extends Controller
      */
     public function show($id)
     {
-        if (Auth::user()->role == '1') {
+        if (Auth::user()->role == '1' || Auth::user()->role == '2') {
             $publication = $this->publication->findOrFail($id);
             return view('users.application.application-form')
             ->with('edit_app', null)
