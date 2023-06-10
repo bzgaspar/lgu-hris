@@ -202,8 +202,10 @@ export default {
             window.location.href = "/hr/applicant/" + id;
         },
         viewAccept(id) {
-            console.log(id)
-            if (confirm("Do you really want to accept this applicant?")) {
+            const answer = window.confirm(
+                "Do you really want to accept this applicant?"
+            );
+            if (answer) {
                 window.location.href = "/hr/manage_applicants/" + id + "/edit";
             }
         },
