@@ -25,7 +25,7 @@ Vue.component("hr-publication",require("./views/hr/publication.vue").default);
 Vue.component("hr-department",require("./views/hr/department.vue").default);
 
 // R n R
-Vue.component("hr-loyalty_reward",require("./views/hr/RnR/loyalty.vue").default);
+Vue.component("hr-loyalty-reward",require("./views/hr/RnR/loyalty.vue").default);
 
 // rsp
 Vue.component("hr-applicant",require("./views/hr/rsp/applicant.vue").default);
