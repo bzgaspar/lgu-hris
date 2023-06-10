@@ -205,9 +205,7 @@ export default {
             const answer = window.confirm(
                 "Do you really want to accept this applicant?"
             );
-            if (answer) {
-                window.location.href = "/hr/manage_applicants/" + id + "/edit";
-            }
+
         },
         // filters
         genderFilter(value) {
