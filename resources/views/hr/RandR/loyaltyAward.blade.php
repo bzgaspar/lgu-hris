@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col">
                     {{-- table --}}
-                    <hr-loyalty></hr-loyalty>
+                    <hr-loyalty_reward />
                     {{-- <div class="table-responsive" id="no-more-tables">
                         <table class="table table-hover table-striped smnall table-sm text-center">
                             <thead>
