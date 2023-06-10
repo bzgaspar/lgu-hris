@@ -31,7 +31,8 @@
 @endsection
 @section('content')
     <div class="row justify-content-center">
-        <h4 class="h5">Applicant for <strong class="text-decoration-underline">{{ $application->publication->title }}</strong></h4>
+        <h4 class="h5">Applicant for <strong
+                class="text-decoration-underline">{{ $application->publication->title }}</strong></h4>
         <div class="row my-3">
             <div class="col-12 col-md-2 text-center">
                 <img src="{{ asset('/storage/user_avatar/' . $application->user->avatar) }}"
@@ -48,13 +49,20 @@
                         {{ $application->user->pdsPersonal->province }}
                     @endif
                 </p>
-                <p class="text-muted mb-0">
+                <hr>
+                <p class="text-dark mb-0">
                     @if ($application->user->EducGraduate)
                         {{ $application->user->EducGraduate->EDNameSchool }} <br>
                         {{ $application->user->EducGraduate->EDBEDC }}
                     @elseif ($application->user->EducCollege)
-                        {{ $application->user->EducCollege->EDNameSchool }} <br>
-                        {{ $application->user->EducCollege->EDBEDC }}
+                        @foreach ($application->user->EducCollege as $education)
+                            {{ $education->EDBEDC }}
+                            {{  $education->EDHLUE ?  " - ". $education->EDHLUE : '' }}
+                            {{  $education->EDsahr ?  " - ". $education->EDsahr : '' }}
+                            <br>
+                            {{ $education->EDNameSchool }}
+                            <hr>
+                        @endforeach
                     @endif
                 </p>
             </div>
@@ -74,8 +82,9 @@
                     </div>
                     <div class="row mb-2">
                         <div class="col">
-                            <a class="btn btn-outline-success w-100" href="/storage/Vcard/{{ $application->user->userCovid->photo }}"
-                                target="_blank"><i class="fa-solid fa-eye me-2"></i>View Vaccination Card</a>
+                            <a class="btn btn-outline-success w-100"
+                                href="/storage/Vcard/{{ $application->user->userCovid->photo }}" target="_blank"><i
+                                    class="fa-solid fa-eye me-2"></i>View Vaccination Card</a>
                         </div>
                     </div>
                 @endif

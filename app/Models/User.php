@@ -136,7 +136,7 @@ class User extends Authenticatable implements MustVerifyEmail
     // relation
     public function EducCollege()
     {
-        return $this->hasOne(educational::class, 'user_id')->where('EDlevel','College');
+        return $this->hasMany(educational::class, 'user_id')->where('EDlevel','College');
     }
     public function EducGraduate()
     {
