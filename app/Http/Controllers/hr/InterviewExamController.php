@@ -93,11 +93,10 @@ class InterviewExamController extends Controller
             ]);
             $interview = $this->interviewExam->findOrFail($id);
             $interview->written_exam_date = $request->written_exam_date;
-            $user = $this->user->findOrFail($interview->app_id);
+            $user = $this->user->findOrFail($interview->user_id);
             $publication = $this->publication->findOrFail($interview->pub_id);
             $date = Carbon::parse($request->written_exam_date)->toDayDateTimeString();
             if ($interview->save()) {
-
                 $details = [
                     'name' => $user->first_name,
                     'innerMessage' => 'Thankyou for your patience. You have been invited to take the written exam in LGU Delfin ALbano Municipal Hall in '.$date .'. Look for the HR Office. Thankyou and Goodluck.',
@@ -139,7 +138,7 @@ class InterviewExamController extends Controller
             $interview = $this->interviewExam->findOrFail($id);
             $interview->oral_exam_date = $request->oral_exam_date;
 
-            $user = $this->user->findOrFail($interview->app_id);
+            $user = $this->user->findOrFail($interview->user_id);
             $publication = $this->publication->findOrFail($interview->pub_id);
             $date = Carbon::parse($request->oral_exam_date)->toDayDateTimeString();
 
