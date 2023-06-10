@@ -34,7 +34,7 @@ class loyaltyAwardController extends Controller
     {
         $all_users = $this->user->EMP()
         ->where('first_name','like','%'.$request->search.'%')
-        ->where('last_name','like','%'.$request->search.'%')->paginate(20);
+        ->orwhere('last_name','like','%'.$request->search.'%')->paginate(20);
         $this->storeLoyaltyRecord($all_users);
         $department = $this->department->get();
 

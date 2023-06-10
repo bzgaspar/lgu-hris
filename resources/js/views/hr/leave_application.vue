@@ -112,13 +112,13 @@ export default {
                 {
                     text: "Department",
                     value: "users.emp_plantilla.department.name",
-                    
+
                     filter: this.departmentFilter,
                 },
                 {
                     text: "Gender",
                     value: "users.pds_personal.sex",
-                    
+
                     filter: this.genderFilter,
                 },
                 {

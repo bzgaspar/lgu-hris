@@ -100,7 +100,7 @@
                     {{ $user->pdsPersonal->middle_name }}
                 @endif {{ $user->last_name }}
             </strong>
-            has no pending Administrative Case fled against him in this office.
+            has no pending Administrative Case filed against him in this office.
             <br>
             <br>
             &nbsp;
@@ -111,7 +111,7 @@
             &nbsp;
             &nbsp;
             &nbsp;
-            Issued this {{ date(' jS \d\a\y \of F Y', strtotime(now())) }} at Delfin Albano, Isabela
+            Issued this {{ date(' jS \d\a\y \of F Y', strtotime(now())) }} at Delfin Albano, Isabela.
             <br><br>
             <div class="row mx-2 text-start mt-5">
                 <div class="col"></div>
