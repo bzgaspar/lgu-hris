@@ -23,6 +23,7 @@ Vue.component("hr-service_record",require("./views/hr/service_record.vue").defau
 Vue.component("hr-plantilla",require("./views/hr/plantilla.vue").default);
 Vue.component("hr-publication",require("./views/hr/publication.vue").default);
 Vue.component("hr-department",require("./views/hr/department.vue").default);
+Vue.component("hr-loyalty",require("./views/hr/RnR/loyalty.vue").default);
 
 // rsp
 Vue.component("hr-applicant",require("./views/hr/rsp/applicant.vue").default);

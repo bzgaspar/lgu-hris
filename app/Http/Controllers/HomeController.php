@@ -68,7 +68,7 @@ class HomeController extends Controller
     {
         $user = $this->user
         ->select('users.id', 'users.email', 'users.role', DB::raw("CONCAT(`users`.`first_name`,' ',`users`.`last_name`) as name"))
-        ->with('empPlantilla','empPlantilla.department','empPlantilla.designation')
+        ->with('empPlantilla', 'empPlantilla.department', 'empPlantilla.designation')
         ->with('pdsPersonal')
         ->EMP()
         ->latest()
@@ -79,7 +79,7 @@ class HomeController extends Controller
     {
         $user = $this->user
         ->select('users.id', 'users.email', 'users.role', DB::raw("CONCAT(`users`.`first_name`,' ',`users`.`last_name`) as name"))
-        ->with('empPlantilla','empPlantilla.department')
+        ->with('empPlantilla', 'empPlantilla.department')
         ->with('pdsPersonal')
         ->with('leaveCreditlatest')
         ->EMP()
@@ -88,18 +88,18 @@ class HomeController extends Controller
     }
     public function getUserLeave($user_id)
     {
-        $leave = LeaveCredit::where('user_id',$user_id)->orderByDesc('elc_period_to')->first();
+        $leave = LeaveCredit::where('user_id', $user_id)->orderByDesc('elc_period_to')->first();
         return response()->json($leave, Response::HTTP_OK);
     }
     public function getLeaveCredit($user_id)
     {
-        $leave = LeaveCredit::where('user_id',$user_id)->orderByDesc('elc_period_to')->get();
+        $leave = LeaveCredit::where('user_id', $user_id)->orderByDesc('elc_period_to')->get();
         return response()->json($leave, Response::HTTP_OK);
     }
     public function getLeaveApp()
     {
-        $leave_app = LeaveApplication::join('users', 'users.id', '=', 'leave_applications.user_id')
-        ->select('leave_applications.id','leave_applications.user_id', 'leave_applications.type', 'leave_applications.created_at', 'leave_applications.date_from', 'leave_applications.status','leave_applications.date_to', DB::raw("CONCAT(`users`.`first_name`,' ',`users`.`last_name`) as name"))
+        $leave_app = LeaveApplication::leftJoin('users', 'users.id', '=', 'leave_applications.user_id')
+        ->select('leave_applications.id', 'leave_applications.user_id', 'leave_applications.type', 'leave_applications.created_at', 'leave_applications.date_from', 'leave_applications.status', 'leave_applications.date_to', DB::raw("CONCAT(`users`.`first_name`,' ',`users`.`last_name`) as name"))
         ->with('users', 'users.empPlantilla.department', 'users.pdsPersonal')
         ->get();
         return response()->json($leave_app, Response::HTTP_OK);
@@ -107,7 +107,7 @@ class HomeController extends Controller
     public function getServiceRecord()
     {
         $service_record = User::select('users.id', 'users.email', 'users.role', DB::raw("CONCAT(`users`.`first_name`,' ',`users`.`last_name`) as name"))
-        ->with('empPlantilla', 'empPlantilla.designation','empPlantilla.department')
+        ->with('empPlantilla', 'empPlantilla.designation', 'empPlantilla.department')
         ->with('pdsPersonal')
         ->EMP()
         ->get();
@@ -117,8 +117,16 @@ class HomeController extends Controller
     public function getPlantilla()
     {
         $emp_plantilla = EmployeePlantilla::leftJoin('users', 'users.id', '=', 'employee_plantillas.user_id')->leftJoin('personals', 'users.id', '=', 'personals.user_id')
-        ->select('employee_plantillas.id', 'employee_plantillas.EPdesignation', 'employee_plantillas.status', 'employee_plantillas.dep_id', 'employee_plantillas.EPno', 'employee_plantillas.EPposition', 'employee_plantillas.user_id',
-        DB::raw("CONCAT(`personals`.`first_name`,' ',`personals`.`middle_name`,' ',`personals`.`last_name`) as name"))
+        ->select(
+            'employee_plantillas.id',
+            'employee_plantillas.EPdesignation',
+            'employee_plantillas.status',
+            'employee_plantillas.dep_id',
+            'employee_plantillas.EPno',
+            'employee_plantillas.EPposition',
+            'employee_plantillas.user_id',
+            DB::raw("CONCAT(`personals`.`first_name`,' ',`personals`.`middle_name`,' ',`personals`.`last_name`) as name")
+        )
         ->with('department')
         ->with('designation')
         ->with('user', 'user.pdsPersonal')
@@ -137,15 +145,15 @@ class HomeController extends Controller
     }
     public function getPublication()
     {
-        $publication = Publication::where('status','1')->orderBy('title')->get();
+        $publication = Publication::where('status', '1')->orderBy('title')->get();
         return response()->json($publication, Response::HTTP_OK);
     }
 
     public function getApplicants()
     {
         $publication = application::join('users', 'users.id', '=', 'applications.user_id')
-        ->select('applications.id', 'applications.user_id', 'applications.pub_id',  'applications.created_at',DB::raw("CONCAT(`users`.`first_name`,' ',`users`.`last_name`) as name"))
-        ->with('user','user.pdsPersonal')
+        ->select('applications.id', 'applications.user_id', 'applications.pub_id', 'applications.created_at', DB::raw("CONCAT(`users`.`first_name`,' ',`users`.`last_name`) as name"))
+        ->with('user', 'user.pdsPersonal')
         ->with('publication')
         ->orderBy('created_at')->get();
         return response()->json($publication, Response::HTTP_OK);
@@ -154,8 +162,8 @@ class HomeController extends Controller
     public function getEmployee()
     {
         $all_ipcr = Ipcr::join('users', 'users.id', '=', 'ipcrs.user_id')
-        ->select('ipcrs.id', 'ipcrs.user_id', 'ipcrs.from', 'ipcrs.to', 'ipcrs.rating',  'ipcrs.equivalent',DB::raw("CONCAT(`users`.`first_name`,' ',`users`.`last_name`) as name"))
-        ->with('user','user.pdsPersonal','user.empPlantilla')
+        ->select('ipcrs.id', 'ipcrs.user_id', 'ipcrs.from', 'ipcrs.to', 'ipcrs.rating', 'ipcrs.equivalent', DB::raw("CONCAT(`users`.`first_name`,' ',`users`.`last_name`) as name"))
+        ->with('user', 'user.pdsPersonal', 'user.empPlantilla')
         ->orderByDesc('rating')
         ->get();
 
@@ -164,20 +172,20 @@ class HomeController extends Controller
     public function getDepartmentHead()
     {
         $all_ipcr = Ipcr::join('users', 'users.id', '=', 'ipcrs.user_id')
-        ->select('users.id','ipcrs.id', 'ipcrs.user_id', 'ipcrs.from', 'ipcrs.to', 'ipcrs.rating',  'ipcrs.equivalent',DB::raw("CONCAT(`users`.`first_name`,' ',`users`.`last_name`) as name"))
-        ->whereHas('User', function($query){
+        ->select('users.id', 'ipcrs.id', 'ipcrs.user_id', 'ipcrs.from', 'ipcrs.to', 'ipcrs.rating', 'ipcrs.equivalent', DB::raw("CONCAT(`users`.`first_name`,' ',`users`.`last_name`) as name"))
+        ->whereHas('User', function ($query) {
             $query->DepartmentHead();
-      })
-        ->with('user','user.pdsPersonal','user.empPlantilla')
+        })
+        ->with('user', 'user.pdsPersonal', 'user.empPlantilla')
         ->orderByDesc('rating')
         ->get();
 
         return response()->json($all_ipcr, Response::HTTP_OK);
     }
 
-    public function getPreviousLeave($user_id,$leave_card_id)
+    public function getPreviousLeave($user_id, $leave_card_id)
     {
-        $prev_leave = LeaveCredit::where('user_id',$user_id)->where('id','<',$leave_card_id)->first();
+        $prev_leave = LeaveCredit::where('user_id', $user_id)->where('id', '<', $leave_card_id)->first();
 
         return response()->json($prev_leave, Response::HTTP_OK);
     }
@@ -209,5 +217,19 @@ class HomeController extends Controller
     {
         Artisan::call('storage:link');
         dd(Artisan::output());
+    }
+    public function getLoyalty()
+    {
+        $loyalty = User::
+        leftJoin('employee_plantillas', 'users.id', '=', 'employee_plantillas.user_id')
+        ->leftJoin('departments', 'departments.id', '=', 'employee_plantillas.dep_id')
+        ->leftJoin('loyalty_records', 'users.id', '=', 'loyalty_records.user_id')
+        ->leftJoin('personals', 'users.id', '=', 'personals.user_id')
+        ->select('users.id',DB::raw("CONCAT(`users`.`first_name`,' ',' ',`users`.`last_name`) as emp_name"),'departments.name','departments.name','departments.name','employee_plantillas.EPposition','loyalty_records.year_difference','loyalty_records.next_loyalty')
+        ->where('users.role','!=','1')
+        ->get();
+
+        return response()->json($loyalty, Response::HTTP_OK);
+
     }
 }

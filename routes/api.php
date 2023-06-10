@@ -48,4 +48,4 @@ Route::get('/getAccepted', [RangkingController::class, 'getAccepted'])->name('ge
 // pms
 Route::get('/getEmployee', [HomeController::class, 'getEmployee'])->name('getEmployee');
 Route::get('/getDepartmentHead', [HomeController::class, 'getDepartmentHead'])->name('getDepartmentHead');
-
+Route::get('/getLoyalty', [HomeController::class, 'getLoyalty'])->name('getLoyalty');
