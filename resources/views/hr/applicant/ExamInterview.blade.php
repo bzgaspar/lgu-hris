@@ -4,6 +4,81 @@
         <br>
         <p class="text-dark">NOTE: The rating range is between 1 and 10.</p>
     </h6>
+    <hr>
+    <div class="row justify-content-center">
+        {{-- written --}}
+        <div class="col-12 col-sm-6 col-md-4 mb-3">
+            <form action="{{ route('hr.interview.update',$interviewExam->user->AdditionalPoints->id) }}" method="POST">
+                @csrf
+                @method('PATCH')
+                <div class="input-group mb-3">
+                    <div class="form-floating">
+                        <input type="text" min="1" max="15" class="form-control" name="education"
+                            id="education" aria-describedby="education" placeholder="education"
+                            @if ($interviewExam->user->AdditionalPoints->education)
+                            value="{{ $interviewExam->user->AdditionalPoints->education }}"
+                            @endif
+                            >
+                        <label for="education">Education</label>
+                    </div>
+                    <button class="btn btn-outline-success " type="submit">Rate</button>
+                </div>
+                <small id="education" class="form-text text-muted">The rating range is only 1 to 15</small>
+                @error('education')
+                    <p class="text-danger small">{{ $message }}</p>
+                @enderror
+            </form>
+        </div>
+
+        {{-- oral --}}
+        <div class="col-12 col-sm-6 col-md-4 mb-3">
+            <form action="{{ route('hr.interview.update',$interviewExam->user->AdditionalPoints->id) }}" method="POST">
+                @csrf
+                @method('PATCH')
+                <div class="input-group mb-3">
+                    <div class="form-floating">
+                        <input type="text" min="1" max="10" class="form-control" name="eligibility"
+                            id="eligibility" aria-describedby="eligibility" placeholder="Psycho-social - Personal Traits"
+                            @if ($interviewExam->user->AdditionalPoints->eligibility)
+                            value="{{ $interviewExam->user->AdditionalPoints->eligibility }}"
+                            @endif
+                            >
+                        <label for="eligibility">Eligibility</label>
+                    </div>
+                    <button class="btn btn-outline-success " type="submit">Rate</button>
+                </div>
+                <small id="eligibility" class="form-text text-muted">The rating range is only 1 to 10</small>
+                @error('eligibility')
+                    <p class="text-danger small">{{ $message }}</p>
+                @enderror
+            </form>
+        </div>
+
+        {{-- written --}}
+        <div class="col-12 col-sm-6 col-md-4 mb-3">
+            <form action="{{ route('hr.interview.update',$interviewExam->user->AdditionalPoints->id) }}" method="POST">
+                @csrf
+                @method('PATCH')
+                <div class="input-group mb-3">
+                    <div class="form-floating">
+                        <input type="text" min="1" max="10" class="form-control" name="experience"
+                            id="experience" aria-describedby="experience" placeholder="experience"
+                            @if ($interviewExam->user->AdditionalPoints->experience)
+                            value="{{ $interviewExam->user->AdditionalPoints->experience }}"
+                            @endif
+                            >
+                        <label for="experience">Experience</label>
+                    </div>
+                    <button class="btn btn-outline-success " type="submit">Rate</button>
+                </div>
+                <small id="experience" class="form-text text-muted">The rating range is only 1 to 10</small>
+                @error('experience')
+                    <p class="text-danger small">{{ $message }}</p>
+                @enderror
+            </form>
+        </div>
+
+    </div>
     <div class="row justify-content-center">
         {{-- written --}}
         <div class="col-12 col-sm-6 col-md-4 mb-3">

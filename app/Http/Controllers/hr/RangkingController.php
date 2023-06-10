@@ -93,62 +93,62 @@ class RangkingController extends Controller
         foreach ($applicants as $app) {
             if ($app->publication->status == 1) {
                 // foreach ($app->user->pdsLearningDevelopment as $lnd) {
-            //     $total_lnd += $lnd->LDnumhour;
+                // $total_lnd += $lnd->LDnumhour;
                 // }
 
                 // work experience
-                if ($app->publication->experience) {
-                    $experience = preg_replace('/[^0-9]/', '', $app->publication->experience);
-                    if (!$experience == 0) {
-                        $xp = $experience * 365;
-                        foreach ($app->user->pdsWorkExperience as $WE) {
-                            $toDate = Carbon::parse($WE->WEidto);
-                            $fromDate = Carbon::parse($WE->WEidfrom);
+                // if ($app->publication->experience) {
+                //     $experience = preg_replace('/[^0-9]/', '', $app->publication->experience);
+                //     if (!$experience == 0) {
+                //         $xp = $experience * 365;
+                //         foreach ($app->user->pdsWorkExperience as $WE) {
+                //             $toDate = Carbon::parse($WE->WEidto);
+                //             $fromDate = Carbon::parse($WE->WEidfrom);
 
-                            $total_WE +=  $toDate->diffInDays($fromDate);
-                        }
+                //             $total_WE +=  $toDate->diffInDays($fromDate);
+                //         }
 
-                        $total_WE = round((($total_WE/$xp)*10), 2);
+                //         $total_WE = round((($total_WE/$xp)*10), 2);
 
-                        if ($total_WE > 0 && $total_WE <=10) {
-                            $total_WE = $total_WE;
-                        } elseif ($total_WE > 10) {
-                            $total_WE = 10;
-                        } elseif ($total_WE <0) {
-                            $total_WE = 0;
-                        }
-                    }
-                }
-                //  education
-                if ($app->publication->education) {
-                    $education = preg_replace('/[^0-9]/', '', $app->publication->education);
-                    if (!$education == null) {
-                        $educ_xp = $education * 365;
-                        foreach ($app->user->pdsEducational as $educ) {
-                            if ($educ->EDlevel == 'College') {
-                                $toDate = Carbon::parse($educ->EDpoaFROM);
-                                $fromDate = Carbon::parse($educ->EDpoaTO);
+                //         if ($total_WE > 0 && $total_WE <=10) {
+                //             $total_WE = $total_WE;
+                //         } elseif ($total_WE > 10) {
+                //             $total_WE = 10;
+                //         } elseif ($total_WE <0) {
+                //             $total_WE = 0;
+                //         }
+                //     }
+                // }
+                // //  education
+                // if ($app->publication->education) {
+                //     $education = preg_replace('/[^0-9]/', '', $app->publication->education);
+                //     if (!$education == null) {
+                //         $educ_xp = $education * 365;
+                //         foreach ($app->user->pdsEducational as $educ) {
+                //             if ($educ->EDlevel == 'College') {
+                //                 $toDate = Carbon::parse($educ->EDpoaFROM);
+                //                 $fromDate = Carbon::parse($educ->EDpoaTO);
 
-                                $total_educ +=  $toDate->diffInDays($fromDate);
+                //                 $total_educ +=  $toDate->diffInDays($fromDate);
 
-                                $total_educ = round((($total_educ/$educ_xp)*10), 2);
-                            }
-                        }
-                        if ($total_educ <= 10 && $total_educ > 0) {
-                            $percent +=$total_educ;
-                        }
-                    } else {
-                        $percent += 15;
-                    }
-                }
+                //                 $total_educ = round((($total_educ/$educ_xp)*10), 2);
+                //             }
+                //         }
+                //         if ($total_educ <= 10 && $total_educ > 0) {
+                //             $percent +=$total_educ;
+                //         }
+                //     } else {
+                //         $percent += 15;
+                //     }
+                // }
                 // eligibility
-                if (!$app->eligibility) {
-                    $percent += 15;
-                } else {
-                    if ($app->user->pdsCivilService) {
-                        $percent += 15;
-                    }
-                }
+                // if (!$app->eligibility) {
+                //     $percent += 15;
+                // } else {
+                //     if ($app->user->pdsCivilService) {
+                //         $percent += 15;
+                //     }
+                // }
                 // training
 
                 // if ($app->publication->trainig) {
@@ -166,7 +166,6 @@ class RangkingController extends Controller
                 //         $percent += 10;
                 //     }
                 // }
-
                 if ($app->InterviewExam) {
                     if ($app->InterviewExam->written_exam) {
                         $percent += $app->InterviewExam->written_exam;
@@ -187,9 +186,17 @@ class RangkingController extends Controller
                         $percent += $app->InterviewExam->potential;
                     }
                 }
-
-                $percent += $total_WE;
-
+                if ($app->AdditionalPoints) {
+                    if ($app->AdditionalPoints->education) {
+                        $percent += $app->AdditionalPoints->education;
+                    }
+                    if ($app->AdditionalPoints->eligibility) {
+                        $percent += $app->AdditionalPoints->eligibility;
+                    }
+                    if ($app->AdditionalPoints->experience) {
+                        $percent += $app->AdditionalPoints->experience;
+                    }
+                }
                 $total = ['total'=>$percent];
                 $app = $app->toArray();
                 $rank[$ctr] = array_merge($app, $total);

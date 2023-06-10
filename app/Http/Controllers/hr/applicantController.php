@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\hr;
 
 use App\Http\Controllers\Controller;
+use App\Models\hr\AdditionalPoints;
 use App\Models\hr\InterviewExam;
 use App\Models\pds\personal;
 use App\Models\users\application;
@@ -13,12 +14,14 @@ class applicantController extends Controller
     private $personal;
     private $application;
     private $interviewExam;
+    private $additionalPoints;
 
-    public function __construct(personal $personal,application $application,InterviewExam $interviewExam)
+    public function __construct(personal $personal,application $application,InterviewExam $interviewExam,AdditionalPoints $additionalPoints)
     {
         $this->personal = $personal;
         $this->interviewExam = $interviewExam;
         $this->application = $application;
+        $this->additionalPoints = $additionalPoints;
     }
 
 
@@ -63,8 +66,10 @@ class applicantController extends Controller
     {
         $app = $this->application->findOrFail($id);
         $interviewExam = $this->interviewExam->where('app_id',$app->id)->first();
+        $additionalPoints = $this->additionalPoints->where('app_id',$app->id)->first();
         return view('hr.applicant.applicantInfo')
         ->with('interviewExam',$interviewExam)
+        ->with('additionalPoints',$additionalPoints)
         ->with('application',$app)
         ;
     }

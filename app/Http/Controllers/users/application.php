@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\users;
 
 use App\Http\Controllers\Controller;
+use App\Models\hr\AdditionalPoints;
 use App\Models\hr\InterviewExam;
 use App\Models\hr\Publication;
 use App\Models\User;
@@ -20,12 +21,14 @@ class application extends Controller
     private $application;
     private $user;
     private $interviewExam;
-    public function __construct(Publication $publication, UsersApplication $application, User $user, InterviewExam $interviewExam)
+    private $additionalPoints;
+    public function __construct(Publication $publication, UsersApplication $application, User $user, InterviewExam $interviewExam, AdditionalPoints $additionalPoints)
     {
         $this->publication = $publication;
         $this->application = $application;
         $this->user = $user;
         $this->interviewExam = $interviewExam;
+        $this->additionalPoints = $additionalPoints;
     }
     /**
      * Display a listing of the resource.
@@ -57,7 +60,7 @@ class application extends Controller
     public function apply(Request $request, $id)
     {
         $app = $this->application->where('user_id', Auth::user()->id)->first();
-        if($app){
+        if($app) {
             if ($app->pub_id == $id) {
                 Session::flash('alert', 'danger|Application has already been Sent');
                 return back();
@@ -97,6 +100,10 @@ class application extends Controller
             $this->interviewExam->app_id = $this->application->id;
             $this->interviewExam->pub_id = $id;
             $this->interviewExam->save();
+            $this->additionalPoints->user_id = Auth::user()->id;
+            $this->additionalPoints->app_id = $this->application->id;
+            $this->additionalPoints->pub_id = $id;
+            $this->additionalPoints->save();
             Session::flash('alert', 'success|Application has been Sent');
             return redirect()->route('users.application.index');
         } else {
@@ -164,7 +171,7 @@ class application extends Controller
     public function destroy($id)
     {
         $app = $this->application->findOrFail($id);
-        if(Auth::user()->role == 0 || Auth::user()->role == 4){
+        if(Auth::user()->role == 0 || Auth::user()->role == 4) {
             $app->status = 2;
             if ($app->save()) {
                 Session::flash('alert', 'success|Application has been Rejected');
@@ -173,7 +180,7 @@ class application extends Controller
                 Session::flash('alert', 'danger|Application has not been Rejected');
                 return back();
             }
-        }else{
+        } else {
             if ($app->residency) {
                 $this->deleteFile($app->residency);
             }

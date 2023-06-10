@@ -15,4 +15,8 @@ class Publication extends Model
     {
         return $this->hasMany(InterviewExam::class, 'pub_id');
     }
+    public function AdditionalPoints()
+    {
+        return $this->hasMany(AdditionalPoints::class, 'pub_id');
+    }
 }

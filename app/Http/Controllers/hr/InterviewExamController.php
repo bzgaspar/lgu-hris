@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\hr;
 
 use App\Http\Controllers\Controller;
+use App\Models\hr\AdditionalPoints;
 use App\Models\hr\InterviewExam;
 use App\Models\hr\Publication;
 use App\Models\User;
@@ -17,12 +18,14 @@ class InterviewExamController extends Controller
     private $interviewExam;
     private $user;
     private $publication;
+    private $additionalPoints;
 
 
-    public function __construct(InterviewExam $interviewExam,User $user, Publication $publication)
+    public function __construct(InterviewExam $interviewExam,User $user, Publication $publication,AdditionalPoints $additionalPoints)
     {
         $this->interviewExam = $interviewExam;
         $this->user = $user;
+        $this->additionalPoints = $additionalPoints;
         $this->publication = $publication;
     }
     /**
@@ -235,6 +238,58 @@ class InterviewExamController extends Controller
                 return redirect()->back();
             } else {
                 Session::flash('alert', 'danger|Potential has not been Rated');
+                return redirect()->back();
+            }
+        }
+
+
+
+
+        if($request->education){
+            $request->validate([
+                'education' => 'required'
+            ]);
+            $interview = $this->additionalPoints->findOrFail($id);
+            $interview->education = $request->education;
+
+            if ($interview->save()) {
+
+                Session::flash('alert', 'success|Exam has been Rated');
+                return redirect()->back();
+            } else {
+                Session::flash('alert', 'danger|Exam has not been Rated');
+                return redirect()->back();
+            }
+        }
+        if($request->eligibility){
+            $request->validate([
+                'eligibility' => 'required'
+            ]);
+            $interview = $this->additionalPoints->findOrFail($id);
+            $interview->eligibility = $request->eligibility;
+
+            if ($interview->save()) {
+
+                Session::flash('alert', 'success|Exam has been Rated');
+                return redirect()->back();
+            } else {
+                Session::flash('alert', 'danger|Exam has not been Rated');
+                return redirect()->back();
+            }
+        }
+        if($request->experience){
+            $request->validate([
+                'experience' => 'required'
+            ]);
+            $interview = $this->additionalPoints->findOrFail($id);
+            $interview->experience = $request->experience;
+
+            if ($interview->save()) {
+
+                Session::flash('alert', 'success|Exam has been Rated');
+                return redirect()->back();
+            } else {
+                Session::flash('alert', 'danger|Exam has not been Rated');
                 return redirect()->back();
             }
         }

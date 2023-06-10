@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\admin\EmployeePlantilla;
+use App\Models\hr\AdditionalPoints;
 use App\Models\hr\InterviewExam;
 use App\Models\hr\LeaveCredit;
 use App\Models\hr\loyaltyRecord;
@@ -227,6 +228,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function InterviewExam()
     {
         return $this->hasOne(InterviewExam::class, 'user_id');
+    }
+    public function AdditionalPoints()
+    {
+        return $this->hasOne(AdditionalPoints::class, 'user_id');
     }
     public function app_ranking($id)
     {

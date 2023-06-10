@@ -2,12 +2,14 @@
 
 namespace App\Models\users;
 
+use App\Models\hr\AdditionalPoints;
 use App\Models\hr\InterviewExam;
 use App\Models\hr\Publication;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class application extends Model
 {
@@ -25,6 +27,10 @@ class application extends Model
     public function InterviewExam()
     {
         return $this->hasOne(InterviewExam::class, 'app_id');
+    }
+    public function AdditionalPoints()
+    {
+        return $this->hasOne(AdditionalPoints::class, 'app_id');
     }
 
     public function scopeApplication($query, $request)
