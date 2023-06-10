@@ -75,7 +75,7 @@
             </div>
         </div>
         <div class="col-11 col-lg m-1 bg-success bg-gradient text-white rounded">
-            <p class="h3 text-center mb-3 fw-bold">Leave Credit</p>
+            <p class="h3 text-center mb-3 fw-bold">Leave Credit as of {{ today()->format('j F, Y') }}</p>
             <div class="row justify-content-center">
                 <div class="col-11 col-md border border-1 rounded m-1">
                     <p class="text-center">Balance</p>
