@@ -94,8 +94,28 @@
                                             <span class="fw-bold">Training:</span> {{ $pub->trainig }}
                                         </p>
                                         <p class="card-text mb-0">
-                                            <span class="fw-bold">Experience:</span> Atleast {{ $pub->experience }} Year/s
-                                            Experience
+                                            <span class="fw-bold">Experience:</span>
+
+                                            @if ($pub->experience >= 0 && $pub->experience <= 5)
+                                                Atleast {{ $pub->experience }} Year/s
+                                                Experience
+                                            @else
+                                                Atleast
+
+                                                @if ($pub->experience == 6)
+                                                    1
+                                                @elseif ($pub->experience == 7)
+                                                    2
+                                                @elseif ($pub->experience == 8)
+                                                    3
+                                                @elseif ($pub->experience == 9)
+                                                    4
+                                                @elseif ($pub->experience == 10)
+                                                    5 or More
+                                                @endif
+
+                                                Year/s Practice in Profession
+                                            @endif
                                         </p>
                                         <p class="card-text mb-0">
                                             <span class="fw-bold">Eligibility:</span> {{ $pub->eligibility }}
@@ -109,7 +129,8 @@
                                         @if ($pub->document)
                                             <div class="row justify-content-center mt-2">
                                                 <div class="col-8">
-                                                    <a target="_blank" href="/storage/publicationFiles/{{ $pub->document }}"
+                                                    <a target="_blank"
+                                                        href="/storage/publicationFiles/{{ $pub->document }}"
                                                         class="btn btn-success w-100">
                                                         <i class="fa-solid fa-eye me-1"></i>View More!
                                                     </a>

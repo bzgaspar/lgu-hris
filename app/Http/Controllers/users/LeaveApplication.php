@@ -154,10 +154,10 @@ class LeaveApplication extends Controller
     {
         if ($this->leaveApplication->destroy($id)) {
             Session::flash('alert', 'success|Record has been Deleted');
-            return back();
+            return redirect()->back();
         } else {
             Session::flash('alert', 'danger|Record not Deleted');
-            return back();
+            return redirect()->back();
         }
     }
 }

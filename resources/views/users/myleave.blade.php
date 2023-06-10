@@ -152,15 +152,18 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <form action="{{ route('users.myleave.destroy', $item->id) }}">
 
-                                        <a target="_blank" href="{{ route('users.myleave.show', $item->id) }}"
-                                            class="btn btn-primary btn-sm" title="Print"><i class="fa-solid fa-print"></i></a>
+
+                                    <form onsubmit="return confirm('Do you really want to delete your leave?');" action="{{ route('users.myleave.destroy', $item->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <a target="_blank"
+                                            href="{{ route('users.myleave.show', $item->id) }}"
+                                            class="btn btn-primary btn-sm" title="Print"><i
+                                                class="fa-solid fa-print"></i></a>
                                         @if ($item->status == 1)
-                                            {{-- <a target="_blank" href="{{ route('users.myleave.edit', $item->id) }}"
-                                                class="btn btn-warning btn-sm  text-white" title="Edit"><i
-                                                    class="fa-solid fa-pen-to-square"></i></a> --}}
-                                            <button type="submit" class="btn btn-sm btn-outline-danger" title="Delete"><i class="fa-solid fa-trash"></i></button>
+                                            <button type="submit" class="btn btn-sm btn-outline-danger"
+                                                title="Delete"><i class="fa-solid fa-trash"></i></button>
                                         @endif
                                     </form>
                                 </td>

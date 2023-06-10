@@ -202,7 +202,9 @@ export default {
             window.location.href = "/hr/applicant/" + id;
         },
         viewAccept(id) {
-            window.location.href = "/hr/manage_applicants/" + id + "/edit";
+            if (confirm("Do you really want to accept this applicant?")) {
+                window.location.href = "/hr/manage_applicants/" + id + "/edit";
+            }
         },
         // filters
         genderFilter(value) {

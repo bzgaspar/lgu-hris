@@ -17,7 +17,8 @@
             <div class="row">
                 <div class="col-12 col-sm-6 col-md">
                     <div class="form-floating mb-1">
-                        <input type="text" class="form-control" name="title" id="title" placeholder="Position Title"
+                        <input type="text" class="form-control" name="title" id="title"
+                            placeholder="Position Title"
                             @if ($edit_pub) value="{{ $edit_pub->title }}"
                                 @else
                                 value="{{ old('title') }}" @endif>
@@ -136,6 +137,38 @@
                         {{ old('experience') == 5 ? 'selected' : '' }} @endif>
                                 5 years or more relevant
                                 experience</option>
+
+                            {{-- option 1a --}}
+                            <option value="6"
+                                @if ($edit_pub) {{ old('experience') == 6 || $edit_pub->experience == 6 ? 'selected' : '' }}
+                    @else
+                    {{ old('experience') == 6 ? 'selected' : '' }} @endif>
+                                1 year of practice in profession</option>
+
+                            {{-- option 2 --}}
+                            <option value="7"
+                                @if ($edit_pub) {{ old('experience') == 7 || $edit_pub->experience == 7 ? 'selected' : '' }}
+                    @else
+                    {{ old('experience') == 7 ? 'selected' : '' }} @endif>
+                                2 years of practice in profession</option>
+                            {{-- option 3 --}}
+                            <option value="8"
+                                @if ($edit_pub) {{ old('experience') == 8 || $edit_pub->experience == 8 ? 'selected' : '' }}
+                    @else
+                    {{ old('experience') == 8 ? 'selected' : '' }} @endif>
+                                3 years ofpractice in profession</option>
+                            {{-- option 4 --}}
+                            <option value="9"
+                                @if ($edit_pub) {{ old('experience') == 9 || $edit_pub->experience == 9 ? 'selected' : '' }}
+                    @else
+                    {{ old('experience') == 9 ? 'selected' : '' }} @endif>
+                                4 years of practice in profession</option>
+                            {{-- option 5 --}}
+                            <option value="10"
+                                @if ($edit_pub) {{ old('experience') == 10 || $edit_pub->experience == 10 ? 'selected' : '' }}
+                    @else
+                    {{ old('experience') == 10 ? 'selected' : '' }} @endif>
+                                5 years or more practice in profession</option>
                         </select>
                         <label for="experience">Work Experience</label>
                         @error('experience')
