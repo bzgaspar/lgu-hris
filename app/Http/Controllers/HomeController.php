@@ -70,7 +70,6 @@ class HomeController extends Controller
         ->select('users.id', 'users.email', 'users.role', DB::raw("CONCAT(`users`.`first_name`,' ',`users`.`last_name`) as name"))
         ->with('empPlantilla', 'empPlantilla.department', 'empPlantilla.designation')
         ->with('pdsPersonal')
-        ->EMP()
         ->latest()
         ->get();
         return response()->json($user, Response::HTTP_OK);
@@ -82,7 +81,6 @@ class HomeController extends Controller
         ->with('empPlantilla', 'empPlantilla.department')
         ->with('pdsPersonal')
         ->with('leaveCreditlatest')
-        ->EMP()
         ->get();
         return response()->json($user, Response::HTTP_OK);
     }
@@ -109,7 +107,6 @@ class HomeController extends Controller
         $service_record = User::select('users.id', 'users.email', 'users.role', DB::raw("CONCAT(`users`.`first_name`,' ',`users`.`last_name`) as name"))
         ->with('empPlantilla', 'empPlantilla.designation', 'empPlantilla.department')
         ->with('pdsPersonal')
-        ->EMP()
         ->get();
         return response()->json($service_record, Response::HTTP_OK);
     }
@@ -151,7 +148,7 @@ class HomeController extends Controller
 
     public function getApplicants()
     {
-        $publication = application::join('users', 'users.id', '=', 'applications.user_id')
+        $publication = application::LeftJoin('users', 'users.id', '=', 'applications.user_id')
         ->select('applications.id', 'applications.user_id', 'applications.pub_id', 'applications.created_at', DB::raw("CONCAT(`users`.`first_name`,' ',`users`.`last_name`) as name"))
         ->with('user', 'user.pdsPersonal')
         ->with('publication')
@@ -161,7 +158,7 @@ class HomeController extends Controller
 
     public function getEmployee()
     {
-        $all_ipcr = Ipcr::join('users', 'users.id', '=', 'ipcrs.user_id')
+        $all_ipcr = Ipcr::leftJoin('users', 'users.id', '=', 'ipcrs.user_id')
         ->select('ipcrs.id', 'ipcrs.user_id', 'ipcrs.from', 'ipcrs.to', 'ipcrs.rating', 'ipcrs.equivalent', DB::raw("CONCAT(`users`.`first_name`,' ',`users`.`last_name`) as name"))
         ->with('user', 'user.pdsPersonal', 'user.empPlantilla')
         ->orderByDesc('rating')
@@ -171,7 +168,7 @@ class HomeController extends Controller
     }
     public function getDepartmentHead()
     {
-        $all_ipcr = Ipcr::join('users', 'users.id', '=', 'ipcrs.user_id')
+        $all_ipcr = Ipcr::leftJoin('users', 'users.id', '=', 'ipcrs.user_id')
         ->select('users.id', 'ipcrs.id', 'ipcrs.user_id', 'ipcrs.from', 'ipcrs.to', 'ipcrs.rating', 'ipcrs.equivalent', DB::raw("CONCAT(`users`.`first_name`,' ',`users`.`last_name`) as name"))
         ->whereHas('User', function ($query) {
             $query->DepartmentHead();
