@@ -133,7 +133,7 @@
             <p class=" h3 text-center mb-3 fw-bold">Next Loyalty Award</p>
             <p class="text-center my-3">
                 @if ($user->hasloyaltyRecord())
-                    {{ date('M, d Y', strtotime($user->loyaltyRecord->next_loyalty)) }}
+                    {{ date('F d, Y', strtotime($user->loyaltyRecord->next_loyalty)) }}
                     | {{ \Carbon\Carbon::parse($user->loyaltyRecord->next_loyalty)->diffForHumans() }}
                 @else
                     -
