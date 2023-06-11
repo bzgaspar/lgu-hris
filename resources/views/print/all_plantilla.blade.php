@@ -20,7 +20,7 @@
 @endsection
 @section('content')
 
-    <page size="Legal" layout="landscape">
+    <page size="Legal">
 
         {{-- <center class="pt-3 m-3">
             <div class="row">
