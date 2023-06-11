@@ -111,9 +111,9 @@
             </div>
             <div class="col">
                 <?php
-                $TLB = App\Http\Controllers\HomeController::getTBL(Auth::user()->id, $total_sl + $total_vl);
+                $TLB = App\Http\Controllers\HomeController::getTBL($user->id, $total_sl + $total_vl);
 
-                $S = App\Http\Controllers\HomeController::getHighest_salary(Auth::user()->id); ?>
+                $S = App\Http\Controllers\HomeController::getHighest_salary($user->id); ?>
                 <p class="mb-0">TLB = S x D x CF</p>
                 <p class="mb-0">TLB =
                     <span class="fw-bold">{{ $S }}</span>
