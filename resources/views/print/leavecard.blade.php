@@ -28,7 +28,8 @@
                     REPUBLIC OF THE PHILIPPINES <br>
                     Province of Isabele <br>
                     <strong>MUNICIPALITY OF DELFIN ALBANO</strong> <br>
-                    <strong class="fw-bold text-uppercase">municipal human resourse Management Office</strong>
+                    <strong class="fw-bold text-uppercase">municipal human resourse Management Office</strong> <br>
+                    <strong class="h3 fw-bold text-uppercase">EMPLOYEE'S LEAVE CARD</strong>
                 </div>
             </div>
             <br>
@@ -102,6 +103,35 @@
             </table>
 
         </center>
+
+        <div class="row">
+            <div class="col-3 text-center">
+                <p class="float-start">
+                    Perpared By:
+                </p> <br><br><br><br>
+                <?php $user_info = App\Http\Controllers\HomeController::getFullName(Auth::user()->id); ?>
+                <p class="fw-bold mb-0" style="text-indent: 5px">
+                    {{ $user_info['full_name'] }}
+                </p>
+                <p class="fw-bold" style="text-indent: 5px">
+                    {{ $user_info['position'] }}
+                </p>
+            </div>
+            <div class="col-6">&nbsp;</div>
+            <div class="col-3 text-center">
+                <p class="float-start">
+                    Noted By:
+                </p> <br><br><br><br>
+                <?php $user_info = App\Http\Controllers\HomeController::getFullName(Auth::user()->id); ?>
+                <p class="fw-bold mb-0" style="text-indent: 5px">
+                    ERLIEGY A. BUTAY, MPA
+                </p>
+                <p class="fw-bold" style="text-indent: 5px">
+                    Mun. Gov't Head I (MHRMO)
+                </p>
+            </div>
+        </div>
+
     </page>
 
 @endsection

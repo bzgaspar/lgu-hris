@@ -261,32 +261,26 @@
                 &nbsp;
                 &nbsp;
                 &nbsp;
-                1. Resident of Delfin Albano, Isabela
-                <br>
-                &nbsp;
-                &nbsp;
-                &nbsp;
-                &nbsp;
-                2. Fully Accomplished Personal Data Sheet (PDS) with recent Passport-sized Picture(CS Form No. 212 Revised
+                1. Fully Accomplished Personal Data Sheet (PDS) with recent Passport-sized Picture(CS Form No. 212 Revised
                 2017) which can be downloaded in www.csc.gov.ph
                 <br>
                 &nbsp;
                 &nbsp;
                 &nbsp;
                 &nbsp;
-                3. Performance Rating in the present position for one(1) year (if applicable)
+                2. Performance Rating in the present position for one(1) year (if applicable)
                 <br>
                 &nbsp;
                 &nbsp;
                 &nbsp;
                 &nbsp;
-                4.Photocopy of certificate of eligibilty/rating/license, and
+                3.Photocopy of certificate of eligibilty/rating/license, and
                 <br>
                 &nbsp;
                 &nbsp;
                 &nbsp;
                 &nbsp;
-                5. Photocopy of Transcript of Records.
+                4. Photocopy of Transcript of Records.
                 <br>
                 <strong class="text-uppercase">qualified applicants</strong> are advised to hand over or send through
                 courier/email their application to <br>

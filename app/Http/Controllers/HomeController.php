@@ -220,16 +220,38 @@ class HomeController extends Controller
     }
     public function getLoyalty()
     {
-        $loyalty = User::
-        leftJoin('employee_plantillas', 'users.id', '=', 'employee_plantillas.user_id')
+        $loyalty = User::leftJoin('employee_plantillas', 'users.id', '=', 'employee_plantillas.user_id')
         ->leftJoin('departments', 'departments.id', '=', 'employee_plantillas.dep_id')
         ->leftJoin('loyalty_records', 'users.id', '=', 'loyalty_records.user_id')
         ->leftJoin('personals', 'users.id', '=', 'personals.user_id')
-        ->select('users.id',DB::raw("CONCAT(`users`.`first_name`,' ',' ',`users`.`last_name`) as emp_name"),'departments.name','departments.name','departments.name','employee_plantillas.EPposition','loyalty_records.year_difference','loyalty_records.next_loyalty')
-        ->where('users.role','!=','1')
+        ->select('users.id', DB::raw("CONCAT(`users`.`first_name`,' ',' ',`users`.`last_name`) as emp_name"), 'departments.name', 'departments.name', 'departments.name', 'employee_plantillas.EPposition', 'loyalty_records.year_difference', 'loyalty_records.next_loyalty')
+        ->where('users.role', '!=', '1')
         ->get();
 
         return response()->json($loyalty, Response::HTTP_OK);
+    }
+    public static function getTBL($id, $leave)
+    {
+        $monthly = ServiceRecord::where('user_id', $id)->orderByDesc('from')->first();
+        if($monthly) {
+            $tbl = $monthly->salary * $leave * 0.0481927;
+            return number_format($tbl, 2, ".", ",");
+        } else {
+            return 0;
+        }
+    }
+    public static function getFullName($id)
+    {
+        $users = User::LeftJoin('personals', 'users.id', '=', 'personals.user_id')
+            ->leftJoin('employee_plantillas', 'employee_plantillas.user_id', '=', 'users.id')
+            ->select('users.first_name', 'personals.middle_name', 'users.last_name', 'employee_plantillas.EPposition as position')
+            ->where('users.id', $id)->get();
+        $full_name = $users[0]->first_name . ' ' . substr($users[0]->middle_name, 0, 1) . '. ' . $users[0]->last_name;
+
+        return [
+            'full_name' => $full_name,
+            'position' => $users[0]->position,
+        ];
 
     }
 }

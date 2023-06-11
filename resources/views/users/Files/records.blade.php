@@ -86,9 +86,14 @@
                             </p>
                         </div>
                         <div class="col-4 text-end">
+                            <?php
+                                $vl_balance = 0;
+                                $sl_balance = 0;
+                            ?>
                             <strong>
                                 @if ($user->leaveCreditlatest)
-                                    {{ $user->leaveCreditlatest->elc_vl_balance }}
+                                    {{
+                                    $vl_balance = $user->leaveCreditlatest->elc_vl_balance }}
                                 @else
                                     -
                                 @endif
@@ -104,7 +109,7 @@
                         <div class="col-4 text-end">
                             <strong>
                                 @if ($user->leaveCreditlatest)
-                                    {{ $user->leaveCreditlatest->elc_sl_balance }}
+                                    {{ $sl_balance = $user->leaveCreditlatest->elc_sl_balance }}
                                 @else
                                     -
                                 @endif
@@ -113,6 +118,14 @@
                     </div>
                 </div>
             </div>
+            <p class="h4 text-center my-3 fw-bold">
+                Terminal Leave Balance
+            </p>
+            <p class="text-center h5 fw-bold">
+                @if ($sl_balance || $vl_balance)
+                    {{ App\Http\Controllers\HomeController::getTBL(Auth::user()->id, $vl_balance + $sl_balance) }}
+                @endif
+            </p>
         </div>
     </div>
     <div class="row justify-content-center">
@@ -135,8 +148,9 @@
             </div>
             <div class="row m-2">
                 <div class="col">
-                    <a target="_blank" href="{{ route('hr.service.edit',Auth::user()->id) }}" class="btn btn-outline-light w-100" title="Print Service Record"><i
-                        class="fa-solid fa-print"></i>Print Service Record</a>
+                    <a target="_blank" href="{{ route('hr.service.edit', Auth::user()->id) }}"
+                        class="btn btn-outline-light w-100" title="Print Service Record"><i
+                            class="fa-solid fa-print"></i>Print Service Record</a>
                 </div>
             </div>
         </div>
