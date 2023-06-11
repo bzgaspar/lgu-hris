@@ -110,25 +110,33 @@
                     Perpared By:
                 </p> <br><br><br><br>
                 <?php $user_info = App\Http\Controllers\HomeController::getFullName(Auth::user()->id); ?>
-                <p class="fw-bold mb-0" style="text-indent: 5px">
+                <p class="fw-bold mb-0 border-bottom" style="text-indent: 5px">
                     {{ $user_info['full_name'] }}
                 </p>
                 <p class="fw-bold" style="text-indent: 5px">
                     {{ $user_info['position'] }}
                 </p>
             </div>
-            <div class="col-6">&nbsp;</div>
-            <div class="col-3 text-center">
-                <p class="float-start">
-                    Noted By:
-                </p> <br><br><br><br>
-                <?php $user_info = App\Http\Controllers\HomeController::getFullName(Auth::user()->id); ?>
-                <p class="fw-bold mb-0" style="text-indent: 5px">
-                    ERLIEGY A. BUTAY, MPA
-                </p>
-                <p class="fw-bold" style="text-indent: 5px">
-                    Mun. Gov't Head I (MHRMO)
-                </p>
+            <div class="col-9 text-center">
+                <br>
+                <div class="row mx-2 text-start">
+                    <div class="col"></div>
+                    <div class="col text-end">Certified Correct:</div>
+                    <div class="col"></div>
+                </div>
+                <br>
+                <br>
+                <br>
+                <div class="row mx-2 text-start">
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col text-center text-uppercase border-bottom fw-bold">ERLIEGY a. butay, mpa</div>
+                </div>
+                <div class="row mx-2 text-start">
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col text-center">Mun. Gov't. Dept. HEAD I (MHRMO)</div>
+                </div>
             </div>
         </div>
 

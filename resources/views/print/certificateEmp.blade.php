@@ -62,7 +62,7 @@
             @endif
             of the Local Goverment Unit of Delfin Albano, Isabela is an employee of LGU from
             @if ($user->hasServiceRecord($user->id))
-                {{ date('M, d Y', strtotime($user->serviceRecord->first()->from)) }}
+                {{ date('F d, Y', strtotime($user->serviceRecord->first()->from)) }}
             @else
                 _________________________
             @endif
@@ -70,7 +70,7 @@
             @if ($user->hasServiceRecord($user->id))
                 @if ($user->serviceRecord->sortByDesc('id')->first()->cause == 'Retired' ||
                     $user->serviceRecord->sortByDesc('id')->first()->cause == 'retired')
-                    {{ date('M, d Y', strtotime($user->serviceRecord->sortByDesc('id')->first()->to)) }}
+                    {{ date('F d, Y', strtotime($user->serviceRecord->sortByDesc('id')->first()->to)) }}
                 @else
                     present
                 @endif
