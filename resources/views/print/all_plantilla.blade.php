@@ -55,7 +55,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($department->plantilla as $plantilla)
+                        @forelse ($department->plantilla->sortBy('EPno') as $plantilla)
                             <tr>
                                 <td class="ps-2">{{ $plantilla->EPno }}</td>
                                 <td class="ps-2">{{ $plantilla->EPposition }}</td>
