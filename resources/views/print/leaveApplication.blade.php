@@ -58,7 +58,11 @@
                                 <strong>{{ $leaveApplication->users->first_name }}</strong>
                             </div>
                             <div class="col">
-                                <strong>{{ $leaveApplication->users->pdsPersonal->middle_name }}</strong>
+                                <strong>
+                                    @if ($leaveApplication->users->pdsPersonal)
+                                        {{ $leaveApplication->users->pdsPersonal->middle_name }}
+                                    @endif
+                                </strong>
                             </div>
                         </div>
                     </td>
@@ -126,7 +130,8 @@
                                 @elseif ($loop->iteration == 7)
                                     Other purpose: <br>
                                 @endif
-                                <input type="checkbox" disabled checked><label for="">&nbsp; {{ $item }}</label>
+                                <input type="checkbox" disabled checked><label for="">&nbsp;
+                                    {{ $item }}</label>
                                 <span class="border-bottom border-dark">{{ $leaveApplication->details_other }}</span>
                                 <br>
                             @else

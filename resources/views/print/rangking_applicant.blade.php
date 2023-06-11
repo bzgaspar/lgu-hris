@@ -21,7 +21,7 @@
 @section('content')
 
     {{-- <page size="A4" layout="landscape"> --}}
-        <page size="A4" >
+    <page size="A4">
         <center class="pt-3 m-3">
             <div class="row">
                 <div class="col">
@@ -40,7 +40,6 @@
                         <tr class="table-light">
                             <th class="numeric" width="10%">Rank</th>
                             <th class="numeric">Applicant Name</th>
-                            <th class="numeric">Position</th>
                             <th class="numeric">Total Points</th>
                         </tr>
                     </thead>
@@ -50,10 +49,7 @@
                                 <tr @if ($loop->iteration == 1) class="table-danger text-white" @endif>
                                     <td data-title="Rank">{{ $loop->iteration }}</td>
                                     <td data-title="Applicant Name">
-                                        {{ $item['user']->first_name . ' ' . $item['user']->pdsPersonal->middle_name . ' ' . $item['user']->last_name }}
-                                    </td>
-                                    <td data-title="Position">
-                                        {{ $item['app']->publication->title }}
+                                        {{ $item['name'] }}
                                     </td>
                                     <td data-title="Total Points">
                                         {{ $item['total'] }}

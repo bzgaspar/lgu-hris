@@ -38,7 +38,10 @@
                         <tr>
                             <td>Name:</td>
                             <td width="70%" class="border-bottom border-dark">
-                                {{ $surveyAnswer->user->first_name }} {{ $surveyAnswer->user->pdsPersonal->middle_name }}
+                                {{ $surveyAnswer->user->first_name }}
+                                @if ($surveyAnswer->user->pdsPersonal)
+                                    {{ $surveyAnswer->user->pdsPersonal->middle_name }}
+                                @endif
                                 {{ $surveyAnswer->user->last_name }}
                             </td>
                         </tr>

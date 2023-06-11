@@ -222,7 +222,7 @@ class RangkingController extends Controller
         foreach ($applicants as $app) {
             if ($app->publication->status == 1) {
                 // foreach ($app->user->pdsLearningDevelopment as $lnd) {
-            //     $total_lnd += $lnd->LDnumhour;
+                //     $total_lnd += $lnd->LDnumhour;
                 // }
 
                 // work experience
@@ -375,10 +375,14 @@ class RangkingController extends Controller
     public function edit($id)
     {
         $all_applicants = $this->application
-        ->where('pub_id', $id)->get();
+        ->leftJoin('users', 'users.id', '=', 'applications.user_id')
+        ->select('applications.id', 'applications.user_id', 'applications.pub_id', 'applications.created_at', DB::raw("CONCAT(`users`.`first_name`,' ',`users`.`last_name`) as name"))
+        ->with('user', 'user.pdsPersonal')
+        ->with('user', 'user.pdsOther')
+        ->with('publication')
+        ->where('applications.pub_id', $id)->get();
 
-        $ranking = $this->app_ranking($all_applicants);
-
+        $ranking = $this->ranking($all_applicants);
         return view('print.rangking_applicant')->with('ranking', $ranking);
     }
 
