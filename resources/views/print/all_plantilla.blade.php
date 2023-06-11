@@ -48,24 +48,24 @@
                 <table class="table table-bordered table-sm ">
                     <thead>
                         <tr class="text-center">
-                            <th width="20%">Item No.</th>
-                            <th>Position Title</th>
-                            <th >Name of Incumbent</th>
+                            <th width="5%">Item No.</th>
+                            <th width="65%">Position Title</th>
+                            <th width="30%">Name of Incumbent</th>
                             {{-- <th width="20%">Designation</th> --}}
                         </tr>
                     </thead>
                     <tbody>
                         @forelse ($department->plantilla as $plantilla)
                             <tr>
-                                <td>{{ $plantilla->EPno }}</td>
-                                <td>{{ $plantilla->EPposition }}</td>
-                                <td>
+                                <td class="ps-2">{{ $plantilla->EPno }}</td>
+                                <td class="ps-2">{{ $plantilla->EPposition }}</td>
+                                <td class="ps-2">
                                     @if ($plantilla->user)
                                         {{ $plantilla->user->first_name }}
                                         @if ($plantilla->user->pdsPersonal)
                                             {{ $plantilla->user->pdsPersonal->middle_name }}
                                         @endif
-                                        {{ $plantilla->user->first_name }}
+                                        {{ $plantilla->user->last_name }}
                                     @endif
                                 </td>
                                 {{-- <td>{{ $plantilla->designation->name }}</td> --}}

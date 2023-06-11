@@ -14,7 +14,7 @@ class Department extends Controller
     private $plantilla;
     private $department;
     private $user;
-    public function __construct(EmployeePlantilla $plantilla,AdminDepartment $department, User $user)
+    public function __construct(EmployeePlantilla $plantilla, AdminDepartment $department, User $user)
     {
         $this->plantilla = $plantilla;
         $this->department = $department;
@@ -49,9 +49,11 @@ class Department extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'dep_id' => 'required|min:1|unique:departments,dep_id',
             'name' => 'required|min:1|unique:departments',
         ]);
         $this->department->name =  strtoupper($request->name);
+        $this->department->dep_id =  $request->dep_id;
 
         if ($this->department->save()) {
             Session::flash('alert', 'success|Record has been Saved');
@@ -81,7 +83,7 @@ class Department extends Controller
      */
     public function edit($id)
     {
-        $all_plantilla = $this->plantilla->orderBy('EPno','desc')->paginate(10);
+        $all_plantilla = $this->plantilla->orderBy('EPno', 'desc')->paginate(10);
         $all_department = $this->department->paginate(10);
         $deparment = $this->department->findOrFail($id);
         $plantilla = $this->plantilla->findOrFail($id);
@@ -107,10 +109,12 @@ class Department extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
+            'dep_id' => 'required|min:1|unique:departments,dep_id,'.$id,
             'name' => 'required|min:1|unique:departments,name,'.$id,
         ]);
         $department = $this->department->findOrFail($id);
         $department->name =  strtoupper($request->name);
+        $department->dep_id =  $request->dep_id;
 
         if ($department->save()) {
             Session::flash('alert', 'success|Record has been Saved');

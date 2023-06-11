@@ -137,7 +137,7 @@ class HomeController extends Controller
 
     public function getDepartment()
     {
-        $department = Department::orderBy('name')->get();
+        $department = Department::orderBy('dep_id')->get();
         return response()->json($department, Response::HTTP_OK);
     }
     public function getPublication()

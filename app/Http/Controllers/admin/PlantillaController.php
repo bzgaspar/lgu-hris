@@ -50,14 +50,9 @@ class PlantillaController extends Controller
      */
     public function create()
     {
-        // $user = $this->user->paginate(30);
-
-        // return response()->json($user);
-        $all_plantilla = $this->plantilla->groupBy('dep_id')->get();
-        $all_department = $this->department->get();
+        $all_department = $this->department->orderBy('dep_id')->get();
         return view('print.all_plantilla')
-        ->with('all_department', $all_department)
-        ->with('all_plantilla', $all_plantilla);
+        ->with('all_department', $all_department);
     }
 
     /**

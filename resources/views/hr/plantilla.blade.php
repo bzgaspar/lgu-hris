@@ -15,16 +15,35 @@
                             <form action="{{ route('hr.department.store') }}" method="POST">
                                 @csrf
                     @endif
-                    <div class="form-floating mb-1">
-                        <input type="text" class="form-control text-uppercase @error('name') is-invalid @enderror"
-                            name="name" id="formId1" placeholder="Department Name"
-                            @if ($edit_dep) value="{{ old('name', $edit_dep->name) }}"
-                        @else
-                        value="{{ old('name') }}" @endif>
-                        <label for="formId1">Department Name</label>
-                        @error('name')
-                            <p class="text-danger small">{{ $message }}</p>
-                        @enderror
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-floating mb-1">
+                                <input type="text"
+                                    class="form-control text-uppercase @error('dep_id') is-invalid @enderror" name="dep_id"
+                                    id="formId1" placeholder="Department ID"
+                                    @if ($edit_dep) value="{{ old('dep_id', $edit_dep->dep_id) }}"
+                                @else
+                                value="{{ old('dep_id') }}" @endif>
+                                <label for="formId1">Department ID</label>
+                                @error('dep_id')
+                                    <p class="text-danger small">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-floating mb-1">
+                                <input type="text"
+                                    class="form-control text-uppercase @error('name') is-invalid @enderror" name="name"
+                                    id="formId1" placeholder="Department Name"
+                                    @if ($edit_dep) value="{{ old('name', $edit_dep->name) }}"
+                                @else
+                                value="{{ old('name') }}" @endif>
+                                <label for="formId1">Department Name</label>
+                                @error('name')
+                                    <p class="text-danger small">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
                     </div>
                     <button class="btn btn-outline-success w-100 mb-3" type="submit">
                         @if ($edit_dep)
@@ -116,7 +135,8 @@
                             id="floatingSelect"name="department" aria-label="Floating label select example">
                             <option value="" hidden>Select Department</option>
                             @foreach ($all_department as $dep)
-                                <option @if ($edit_plan) @if ($edit_plan->dep_id === $dep->id) selected @endif
+                                <option
+                                    @if ($edit_plan) @if ($edit_plan->dep_id === $dep->id) selected @endif
                                     @endif value="{{ $dep->id }}">
                                     {{ $dep->name }}
                                 </option>
@@ -152,10 +172,10 @@
                                 @endif value="2">Co-terminus</option>
                             <option @if ($edit_plan) @if ($edit_plan->status == 3) selected @endif
                                 @endif value="3">Casual</option>
-                                <option @if ($edit_plan) @if ($edit_plan->status == 4) selected @endif
-                                    @endif value="4">Appointed</option>
-                                    <option @if ($edit_plan) @if ($edit_plan->status == 5) selected @endif
-                                        @endif value="5">Elective</option>
+                            <option @if ($edit_plan) @if ($edit_plan->status == 4) selected @endif
+                                @endif value="4">Appointed</option>
+                            <option @if ($edit_plan) @if ($edit_plan->status == 5) selected @endif
+                                @endif value="5">Elective</option>
                         </select>
                         <label for="status" class="form-label">Employment Status</label>
                     </div>

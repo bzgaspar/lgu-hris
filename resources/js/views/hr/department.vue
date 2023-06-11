@@ -60,6 +60,7 @@ export default {
                     value: "id",
                     align: " d-none",
                 },
+                { text: "Dep Id", align: "center", value: "dep_id" },
                 { text: "Name", align: "center", value: "name" },
                 { text: "Actions", align: "center", value: "actions" },
             ],
