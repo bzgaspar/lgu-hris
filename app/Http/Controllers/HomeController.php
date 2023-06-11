@@ -226,6 +226,8 @@ class HomeController extends Controller
         ->leftJoin('personals', 'users.id', '=', 'personals.user_id')
         ->select('users.id', DB::raw("CONCAT(`users`.`first_name`,' ',' ',`users`.`last_name`) as emp_name"), 'departments.name', 'departments.name', 'departments.name', 'employee_plantillas.EPposition', 'loyalty_records.year_difference', 'loyalty_records.next_loyalty')
         ->where('users.role', '!=', '1')
+        ->where('users.id', '!=', '1')
+        ->where('users.id', '!=', '2')
         ->get();
 
         return response()->json($loyalty, Response::HTTP_OK);
