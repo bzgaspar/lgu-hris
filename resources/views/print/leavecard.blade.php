@@ -35,7 +35,10 @@
             <br>
             <table class="table table-borderless text-center">
                 <tr>
-                    <td>Name: <strong>{{ $user->first_name }} {{ $user->pdsPersonal->middle_name }}
+                    <td>Name: <strong>{{ $user->first_name }}
+                        @if ($user->pdsPersonal)
+                        {{ $user->pdsPersonal->middle_name }}
+                        @endif
                             {{ $user->last_name }}</strong></td>
                     <td>Position: <strong>
                             @if ($user->empPlantilla)
@@ -82,6 +85,10 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php
+                        $total_vl =0;
+                        $total_sl =0;
+                        ?>
                     @forelse ($user->leaveCard as $item)
                         <tr>
                             <td>{{ $item->elc_period_from }}</td>
