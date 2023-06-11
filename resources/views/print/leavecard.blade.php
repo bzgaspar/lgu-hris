@@ -1,4 +1,4 @@
-@extends('layouts.print2')
+@extends('layouts.leave_card')
 
 @section('title', 'Service Record')
 @section('customCSS')
