@@ -89,11 +89,11 @@
                             <td>{{ $item->elc_particular }}</td>
                             <td>{{ $item->elc_vl_earned }}</td>
                             <td>{{ $item->elc_vl_auw_p }}</td>
-                            <td>{{ $item->elc_vl_balance }}</td>
+                            <td>{{ $total_vl = $item->elc_vl_balance }}</td>
                             <td>{{ $item->elc_vl_auwo_p }}</td>
                             <td>{{ $item->elc_sl_earned }}</td>
                             <td>{{ $item->elc_sl_auw_p }}</td>
-                            <td>{{ $item->elc_sl_balance }}</td>
+                            <td>{{ $total_sl = $item->elc_sl_balance }}</td>
                             <td>{{ $item->elc_sl_auwo_p }}</td>
                             <td>{{ $item->elc_remarks }}</td>
                         </tr>
@@ -103,13 +103,59 @@
             </table>
 
         </center>
+        <div class="row mx-5">
+            <div class="col">
+                <p class="mb-0">Total Vacation Leave: <span class="fw-bold">{{ $total_vl }}</span></p>
+                <p class="mb-0">Total Sick Leave: <span class="fw-bold">{{ $total_sl }}</span></p>
+                <p class="mb-0">Total Leave Credit: <span class="fw-bold">{{ $D = $total_sl + $total_vl }}</span></p>
+            </div>
+            <div class="col">
+                <?php
+                $TLB = App\Http\Controllers\HomeController::getTBL(Auth::user()->id, $total_sl + $total_vl);
+
+                $S = App\Http\Controllers\HomeController::getHighest_salary(Auth::user()->id); ?>
+                <p class="mb-0">TLB = S x D x CF</p>
+                <p class="mb-0">TLB =
+                    <span class="fw-bold">{{ $S }}</span>
+                    x
+                    <span class="fw-bold">{{ $D }}</span>
+                    x
+                    <span class="fw-bold">{{ 0.0481927 }}</span>
+                </p>
+                <p class="mb-0">TLB = <span class="fw-bold">₱ {{ $TLB }}</span></p>
+            </div>
+            <div class="col">
+                <table class="table table-bordered p-1">
+                    <tr>
+                        <td>TLB</td>
+                        <td>=</td>
+                        <td>Terminal Leave Benefits</td>
+                    </tr>
+                    <tr>
+                        <td>S</td>
+                        <td>=</td>
+                        <td>Highest Monthly Salary Received</td>
+                    </tr>
+                    <tr>
+                        <td>D</td>
+                        <td>=</td>
+                        <td>No. of accumulated vacation and sick leave credits</td>
+                    </tr>
+                    <tr>
+                        <td>CF</td>
+                        <td>=</td>
+                        <td>Constant Factor which is 0.0481927</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
 
         <div class="row">
-            <div class="col-3 text-center">
+            <div class="col-4 text-center">
                 <p class="float-start">
                     Perpared By:
                 </p> <br><br><br><br>
-                <?php $user_info = App\Http\Controllers\HomeController::getFullName(Auth::user()->id); ?>
+                <?php $user_info = App\Http\Controllers\HomeController::getFullName($user->id); ?>
                 <p class="fw-bold mb-0 border-bottom" style="text-indent: 5px">
                     {{ $user_info['full_name'] }}
                 </p>
@@ -117,7 +163,7 @@
                     {{ $user_info['position'] }}
                 </p>
             </div>
-            <div class="col-9 text-center">
+            <div class="col-8 text-center">
                 <br>
                 <div class="row mx-2 text-start">
                     <div class="col"></div>

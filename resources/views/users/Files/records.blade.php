@@ -119,7 +119,7 @@
                 </div>
             </div>
             <p class="h4 text-center my-3 fw-bold">
-                Terminal Leave Balance
+                Terminal Leave Benefits
             </p>
             <p class="text-center h5 fw-bold">
                 @if ($sl_balance || $vl_balance)

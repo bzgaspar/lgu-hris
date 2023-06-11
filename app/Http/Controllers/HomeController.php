@@ -240,6 +240,15 @@ class HomeController extends Controller
             return 0;
         }
     }
+    public static function getHighest_salary($id)
+    {
+        $monthly = ServiceRecord::where('user_id', $id)->orderByDesc('from')->first();
+        if($monthly) {
+            return $monthly->salary;
+        } else {
+            return 0;
+        }
+    }
     public static function getFullName($id)
     {
         $users = User::LeftJoin('personals', 'users.id', '=', 'personals.user_id')
