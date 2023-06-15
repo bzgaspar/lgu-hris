@@ -111,7 +111,6 @@ export default {
             setTimeout(() => {
                 axios.get("/api/getDepartmentHead").then((response) => {
                     this.users = response.data;
-                    console.log(this.users);
                     this.loading = false;
                 });
             }, 1000);

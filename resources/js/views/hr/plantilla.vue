@@ -204,7 +204,6 @@ export default {
             axios.get("/api/getPlantilla").then((response) => {
                 this.plantilla = response.data;
                 this.loading = false;
-                console.log(this.plantilla);
             });
         }, 1000);
         await axios.get("/api/getDepartment").then((response) => {
