@@ -100,7 +100,7 @@
                     {{ $user->pdsPersonal->middle_name }}
                 @endif {{ $user->last_name }}
             </strong>
-            has no pending Administrative Case filed against him in this office.
+            has no pending Administrative Case filed against him/her in this office.
             <br>
             <br>
             &nbsp;
