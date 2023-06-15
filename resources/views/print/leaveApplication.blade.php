@@ -257,8 +257,8 @@
                     <td colspan="4">
                         <br>
                         <br>
-                        <p class="text-center mb-0 fw-bold">ARNOLD EDWARD P. CO</p>
-                        <p class="text-center">Municipal Mayor</p>
+                        <p class="text-center mb-0 fw-bold" contenteditable="true">ARNOLD EDWARD P. CO</p>
+                        <p class="text-center" contenteditable="true">Municipal Mayor</p>
                     </td>
                 </tr>
             </table>
