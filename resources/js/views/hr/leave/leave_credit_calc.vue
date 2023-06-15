@@ -437,9 +437,26 @@ export default {
                         )
                             .add(1, "months")
                             .format("YYYY-MM-DD");
+
                         this.elc_period_to = moment(this.leave.elc_period_to)
                             .add(1, "months")
+                            .add(5, "days")
                             .format("YYYY-MM-DD");
+
+                        let monthsDifference = moment(
+                            this.elc_period_to
+                        ).diff(moment(this.elc_period_from), "months");
+                        console.log(monthsDifference);
+
+                        while (monthsDifference >= 1) {
+                            this.elc_period_to = moment(this.elc_period_to)
+                                .subtract(1, "day")
+                                .format("YYYY-MM-DD");
+                            monthsDifference = moment(this.elc_period_to).diff(
+                                moment(this.elc_period_from),
+                                "months"
+                            );
+                        }
                     }
                 });
         },
@@ -472,7 +489,7 @@ export default {
                     this.form.elc_sl_auw_p = 0;
                 }
                 await axios
-                    .put("/hr/leave/" + this.leave_card_id, this.form)
+                    .post("/hr/leave", this.form)
                     .then((response) => {
                         this.$emit("close");
 

@@ -185,7 +185,7 @@ class HomeController extends Controller
 
     public function getPreviousLeave($user_id, $leave_card_id)
     {
-        $prev_leave = LeaveCredit::where('user_id', $user_id)->where('id', '<', $leave_card_id)->first();
+        $prev_leave = LeaveCredit::where('user_id', $user_id)->where('id', '<', $leave_card_id)->orderByDesc('elc_period_from')->first();
 
         return response()->json($prev_leave, Response::HTTP_OK);
     }

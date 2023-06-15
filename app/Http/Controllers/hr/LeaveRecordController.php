@@ -73,7 +73,17 @@ class LeaveRecordController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $leave = $request->toArray();
+        $timestamps =
+        [
+            'created_at' =>  now(),
+            'updated_at' =>  now(),
+        ];
+
+        if($this->leavecredit->create(array_merge($leave, $timestamps))) {
+
+            return response()->json(null, Response::HTTP_OK);
+        }
     }
 
 
@@ -127,33 +137,22 @@ class LeaveRecordController extends Controller
     public function update(Request $request, $id)
     {
         $leave = $request->toArray();
-        if ($request->id) {
-            $check_leave = $this->leavecredit->findOrFail($request->id);
-            $timestamps =
-            [
-                'updated_at' =>  now(),
-            ];
-            $this->leavecredit->where('id', $request->id)->update(array_merge($leave, $timestamps));
-            $difference_vl = $request->elc_vl_balance - $check_leave->elc_vl_balance;
-            $difference_sl = $request->elc_sl_balance - $check_leave->elc_sl_balance;
-            $following_leave = $this->leavecredit->where('id','>', $request->id)->where('user_id',$request->user_id)->get();
-            if($following_leave)
-            {
-                foreach($following_leave as $leave_current)
-                {
-                    $update_follow_leave = $this->leavecredit->findOrFail($leave_current->id);
-                    $update_follow_leave->elc_vl_balance = $update_follow_leave->elc_vl_balance + $difference_vl;
-                    $update_follow_leave->elc_sl_balance = $update_follow_leave->elc_sl_balance + $difference_sl;
-                    $update_follow_leave->save();
-                }
+        $check_leave = $this->leavecredit->findOrFail($request->id);
+        $timestamps =
+        [
+            'updated_at' =>  now(),
+        ];
+        $this->leavecredit->where('id', $request->id)->update(array_merge($leave, $timestamps));
+        $difference_vl = $request->elc_vl_balance - $check_leave->elc_vl_balance;
+        $difference_sl = $request->elc_sl_balance - $check_leave->elc_sl_balance;
+        $following_leave = $this->leavecredit->where('id', '>', $request->id)->where('user_id', $request->user_id)->get();
+        if($following_leave) {
+            foreach($following_leave as $leave_current) {
+                $update_follow_leave = $this->leavecredit->findOrFail($leave_current->id);
+                $update_follow_leave->elc_vl_balance = $update_follow_leave->elc_vl_balance + $difference_vl;
+                $update_follow_leave->elc_sl_balance = $update_follow_leave->elc_sl_balance + $difference_sl;
+                $update_follow_leave->save();
             }
-        } else {
-            $timestamps =
-            [
-                'created_at' =>  now(),
-                'updated_at' =>  now(),
-            ];
-            $this->leavecredit->create(array_merge($leave, $timestamps));
         }
 
         return response()->json(null, Response::HTTP_OK);
