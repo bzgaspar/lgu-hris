@@ -81,6 +81,9 @@ class HomeController extends Controller
         ->with('empPlantilla', 'empPlantilla.department')
         ->with('pdsPersonal')
         ->with('leaveCreditlatest')
+        ->where('users.role', '!=', '1')
+        ->where('users.id', '!=', '1')
+        ->where('users.id', '!=', '2')
         ->get();
         return response()->json($user, Response::HTTP_OK);
     }
