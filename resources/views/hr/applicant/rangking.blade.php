@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Rangking')
+@section('title', 'Ranking')
 @section('customCSS')
 @endsection
 @section('content')
@@ -17,7 +17,7 @@
                             <option hidden>No Publication Yet</option>
                         @endforelse
                     </select>
-                    <button class="btn btn-outline-dark fw-bold">Get Rangking</button>
+                    <button class="btn btn-outline-dark fw-bold">Get Ranking</button>
                 </div>
             </form>
         </div>
