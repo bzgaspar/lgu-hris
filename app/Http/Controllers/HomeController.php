@@ -110,6 +110,9 @@ class HomeController extends Controller
         $service_record = User::select('users.id', 'users.email', 'users.role', DB::raw("CONCAT(`users`.`first_name`,' ',`users`.`last_name`) as name"))
         ->with('empPlantilla', 'empPlantilla.designation', 'empPlantilla.department')
         ->with('pdsPersonal')
+        ->where('users.role', '!=', '1')
+        ->where('users.id', '!=', '1')
+        ->where('users.id', '!=', '2')
         ->get();
         return response()->json($service_record, Response::HTTP_OK);
     }

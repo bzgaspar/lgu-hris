@@ -32,23 +32,17 @@ class loyaltyAwardController extends Controller
      */
     public function index(Request $request)
     {
-        $all_users = $this->user->EMP()
-        ->where('first_name','like','%'.$request->search.'%')
-        ->orwhere('last_name','like','%'.$request->search.'%')->paginate(20);
+        $all_users = $this->user->all();
         $this->storeLoyaltyRecord($all_users);
-        $department = $this->department->get();
 
-        // $all_users = $this->user->EMP()->paginate(20);
-        return view('hr.RandR.loyaltyAward')
-        ->with('department', $department)
-        ->with('all_users', $all_users);
+        return view('hr.RandR.loyaltyAward');
     }
 
     public function storeLoyaltyRecord($all_users)
     {
 
         foreach ($all_users as $user) {
-            $service_record = $this->service_record->where('user_id', $user->id)->first();
+            $service_record = $this->service_record->where('user_id', $user->id)->where('status', 'PERMANENT')->first();
             if ($service_record) {
                 $from_whole = Carbon::createFromFormat('Y-m-d', $service_record->from);
                 $now_whole = Carbon::createFromFormat('Y-m-d H:i:s', now());

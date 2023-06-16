@@ -193,7 +193,7 @@
 
                                         </td>
                                         <td>{{ $item->status }}</td>
-                                        <td>{{ $item->salary }}</td>
+                                        <td>{{ number_format($item->salary,2,'.',',') }}</td>
                                         <td>{{ $item->station }}</td>
                                         <td>{{ $item->date }}</td>
                                         <td>{{ $item->cause }}</td>

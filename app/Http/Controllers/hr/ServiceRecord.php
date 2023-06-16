@@ -105,7 +105,7 @@ class ServiceRecord extends Controller
     public function show($id)
     {
         $user = $this->users->findOrFail($id);
-        $service = $this->service->where('user_id', $id)->paginate(20);
+        $service = $this->service->where('user_id', $id)->latest()->paginate(20);
         $all_department = $this->department->get();
         return view('hr.showservice')
         ->with('service', $service)
