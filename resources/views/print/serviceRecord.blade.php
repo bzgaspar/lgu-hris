@@ -126,7 +126,7 @@
                                     @endif
                                 </td>
                                 <td>{{ $item->status }}</td>
-                                <td>{{ $item->salary }}</td>
+                                <td>{{ number_format($item->salary,2,'.',',') }}</td>
                                 <td colspan="2">{{ $item->station }}</td>
                                 <td>
                                     @if ($item->wo_pay)
