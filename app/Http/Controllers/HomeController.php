@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\admin\Department;
 use App\Models\admin\EmployeePlantilla;
+use App\Models\hr\hrmpsb;
 use App\Models\hr\LeaveCredit;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -71,6 +72,13 @@ class HomeController extends Controller
         ->with('empPlantilla', 'empPlantilla.department', 'empPlantilla.designation')
         ->with('pdsPersonal')
         ->latest()
+        ->get();
+        return response()->json($user, Response::HTTP_OK);
+    }
+    public function getHrmpsbUser()
+    {
+        $user = hrmpsb::leftJoin('users', 'users.id', 'hrmpsbs.user_id')
+        ->select('hrmpsbs.id', 'users.role', DB::raw("CONCAT(`users`.`first_name`,' ',`users`.`last_name`) as name"))
         ->get();
         return response()->json($user, Response::HTTP_OK);
     }

@@ -247,11 +247,9 @@ class LeaveRecordController extends Controller
     public function destroy($id)
     {
         if ($this->leavecredit->destroy($id)) {
-            Session::flash('alert', 'success|Record has been Deleted');
-            return redirect()->back();
+            return response()->json(null, Response::HTTP_OK);
         } else {
-            Session::flash('alert', 'danger|Record not deleted');
-            return redirect()->back();
+            return response()->json(null, Response::HTTP_OK);
         }
     }
 }

@@ -42,7 +42,7 @@ class RangkingController extends Controller
     {
         $all_applicants = $this->application->Application($request)->get();
 
-        $ranking = $this->app_ranking($all_applicants);
+        $ranking = $this->ranking($all_applicants);
         // with paginate
         // $ranking = $this->paginateArray($this->app_ranking($all_applicants));
         $publication = $this->publication->where('status', '1')->get();
@@ -85,9 +85,6 @@ class RangkingController extends Controller
     {
         // $total_lnd = 0;
         $percent = 0;
-        $total_WE = 0;
-        $total_educ = 0;
-        $eligibility = false;
         $rank = [];
         $ctr = 0;
         foreach ($applicants as $app) {
@@ -166,46 +163,57 @@ class RangkingController extends Controller
                 //         $percent += 10;
                 //     }
                 // }
-                if ($app->InterviewExam) {
-                    if ($app->InterviewExam->written_exam) {
-                        $percent += $app->InterviewExam->written_exam;
-                    }
-                    if ($app->InterviewExam->oral_exam) {
-                        $percent += $app->InterviewExam->oral_exam;
-                    }
-                    if ($app->InterviewExam->background) {
-                        $percent += $app->InterviewExam->background;
-                    }
-                    if ($app->InterviewExam->performance) {
-                        $percent += $app->InterviewExam->performance;
-                    }
-                    if ($app->InterviewExam->pspt) {
-                        $percent += $app->InterviewExam->pspt;
-                    }
-                    if ($app->InterviewExam->potential) {
-                        $percent += $app->InterviewExam->potential;
-                    }
-                }
-                if ($app->AdditionalPoints) {
-                    if ($app->AdditionalPoints->education) {
-                        $percent += $app->AdditionalPoints->education;
-                    }
-                    if ($app->AdditionalPoints->eligibility) {
-                        $percent += $app->AdditionalPoints->eligibility;
-                    }
-                    if ($app->AdditionalPoints->experience) {
-                        $percent += $app->AdditionalPoints->experience;
+                $initial_sum = 0;
+                if ($app->InterviewExamRaters) {
+
+                    foreach($app->InterviewExamRaters as $item) {
+                        if ($item->written_exam) {
+                            $initial_sum += ($item->written_exam *.10);
+                        }
+                        if ($item->oral_exam) {
+                            $initial_sum += ($item->oral_exam *.10);
+                        }
+                        if ($item->background) {
+                            $initial_sum += ($item->background *.10);
+                        }
+                        if ($item->performance) {
+                            $initial_sum += ($item->performance *.10);
+                        }
+                        if ($item->pspt) {
+                            $initial_sum += ($item->pspt *.10);
+                        }
+                        if ($item->potential) {
+                            $initial_sum += ($item->potential *.10);
+                        }
                     }
                 }
+                if($initial_sum <>0) {
+                    $percent += $initial_sum/count($app->InterviewExamRaters);
+                }
+                $initial_sum = 0;
+                if ($app->AdditionalPointsRaters) {
+                    foreach($app->AdditionalPointsRaters as $item) {
+                        if ($item->education) {
+                            $initial_sum += ($item->education *.15);
+                        }
+                        if ($item->eligibility) {
+                            $initial_sum += ($item->eligibility *.15);
+                        }
+                        if ($item->experience) {
+                            $initial_sum += ($item->experience *.10);
+                        }
+                    }
+                }
+                if($initial_sum <>0) {
+                    $percent += $initial_sum/count($app->AdditionalPointsRaters);
+                }
+                $percent = round($percent,2);
                 $total = ['total'=>$percent];
                 $app = $app->toArray();
                 $rank[$ctr] = array_merge($app, $total);
                 $ctr++;
 
                 $percent = 0;
-                $total_WE = 0;
-                $education_college = false;
-                $eligibility = false;
             }
         }
         return collect($rank)->sortByDesc('total');

@@ -8,6 +8,7 @@ use App\Models\hr\InterviewExam;
 use App\Models\pds\personal;
 use App\Models\users\application;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class applicantController extends Controller
 {
@@ -16,7 +17,7 @@ class applicantController extends Controller
     private $interviewExam;
     private $additionalPoints;
 
-    public function __construct(personal $personal,application $application,InterviewExam $interviewExam,AdditionalPoints $additionalPoints)
+    public function __construct(personal $personal, application $application, InterviewExam $interviewExam, AdditionalPoints $additionalPoints)
     {
         $this->personal = $personal;
         $this->interviewExam = $interviewExam;
@@ -65,12 +66,14 @@ class applicantController extends Controller
     public function show($id)
     {
         $app = $this->application->findOrFail($id);
-        $interviewExam = $this->interviewExam->where('app_id',$app->id)->first();
-        $additionalPoints = $this->additionalPoints->where('app_id',$app->id)->first();
+        $interviewExam = $this->interviewExam->where('app_id', $app->id)->first();
+        $additionalPoints = AdditionalPoints::where('app_id', $app->id)->where('rater_id', Auth::user()->id)->first();
+        $interviewExamRated = $this->interviewExam->where('app_id', $app->id)->where('rater_id', Auth::user()->id)->first();
         return view('hr.applicant.applicantInfo')
-        ->with('interviewExam',$interviewExam)
-        ->with('additionalPoints',$additionalPoints)
-        ->with('application',$app)
+        ->with('interviewExam', $interviewExam)
+        ->with('additionalPoints', $additionalPoints)
+        ->with('interviewExamRated', $interviewExamRated)
+        ->with('application', $app)
         ;
     }
 

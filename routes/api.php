@@ -24,9 +24,12 @@ Route::middleware('auth:sanctum')->get('/*', function (Request $request) {
 });
 
 
+Route::get('/getMyInfo', [HomeController::class, 'getMyInfo'])->name('getMyInfo');
+
 Route::resource('/user', UserController::class);
 Route::get('/getDepartment', [HomeController::class, 'getDepartment'])->name('getDepartment');
 Route::get('/getAllUser', [HomeController::class, 'getAllUser'])->name('getAllUser');
+Route::get('/getHrmpsbUser', [HomeController::class, 'getHrmpsbUser'])->name('getHrmpsbUser');
 Route::get('/getLeave', [HomeController::class, 'getLeave'])->name('getLeave');
 Route::get('/getLeaveApp', [HomeController::class, 'getLeaveApp'])->name('getLeaveApp');
 Route::get('/getServiceRecord', [HomeController::class, 'getServiceRecord'])->name('getServiceRecord');

@@ -16,6 +16,15 @@
                     >
                         <i class="fa-solid fa-pen me-1"></i> Edit
                     </v-btn>
+                    <v-btn
+                        color="error"
+                        small
+                        outlined
+                        title="Delete"
+                        @click="DeleteTardiness(item)"
+                    >
+                        <i class="fa-solid fa-pen me-1"></i> Delete
+                    </v-btn>
                 </template>
             </v-data-table>
         </v-card>
@@ -110,7 +119,19 @@ export default {
             }, 1000);
         },
         editTardiness(item) {
-            this.$emit("edit",item);
+            this.$emit("edit", item);
+        },
+        DeleteTardiness(item) {
+            axios.delete("/hr/leave/" + item.id).then((response) => {
+                if (this.$root.vtoast) {
+                    this.$root.vtoast.show({
+                        message: "Leave Credit Deleted!",
+                        color: "success",
+                        icon: "mdi-exclamation",
+                    });
+                }
+                this.loadTable();
+            });
         },
     },
     created() {

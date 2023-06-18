@@ -9,6 +9,7 @@ use App\Http\Controllers\hr\AssessmentController;
 use App\Http\Controllers\hr\certificatesController;
 use App\Http\Controllers\hr\dashboard;
 use App\Http\Controllers\hr\empPmsController;
+use App\Http\Controllers\hr\hrmpsbController;
 use App\Http\Controllers\hr\InterviewExamController;
 use App\Http\Controllers\hr\leaveApplicationController;
 use App\Http\Controllers\hr\LeaveRecordController;
@@ -129,6 +130,7 @@ Route::get('/getUser', [HomeController::class, 'getUser'])->name('getUser');
         Route::resource('/manage_applicants', ManageApplicantsController::class);
         Route::resource('/applicant', applicantController::class);
         Route::resource('/ranking', RangkingController::class);
+        Route::resource('/hrmpsb', hrmpsbController::class);
         // rsp
 
         // hr stuff

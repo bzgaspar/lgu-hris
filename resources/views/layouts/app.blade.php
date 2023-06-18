@@ -41,7 +41,8 @@
             background-color: rgba(46, 139, 86, 0.923) !important;
             border-radius: 0px
         }
-        .list-group-item-action:hover{
+
+        .list-group-item-action:hover {
             background-color: rgba(46, 139, 86, 0.3) !important;
             border-radius: 0px
         }
@@ -351,6 +352,11 @@
                                                 class="list-group-item list-group-item-action border-0{{ request()->is('users/account/*/edit') ? ' active ' : '' }}">
                                                 <i class="fa-solid fa-user-gear me-1"></i>Account Settings
                                             </a>
+                                            @if (Auth::user()->hrmpsb)
+                                                <a class="list-group-item list-group-item-action border-0{{ request()->is('hr/ranking') ? ' active ' : '' }}"
+                                                    href="{{ route('hr.ranking.index') }}"><i
+                                                        class="fa-solid fa-chart-simple me-2"></i>Ranking</a>
+                                            @endif
                                         </div>
                                         @canany(['isAdmin', 'isHR'])
                                             <hr class="text-dark">
@@ -363,9 +369,11 @@
                                                     <span class="float-end"><i class="fa-solid fa-caret-down"></i></span>
                                                 </a>
                                                 <div class="collapse ms-2" id="rsp">
-                                                    {{-- <a class="list-group-item list-group-item-action border-0"
-                                                        href="{{ route('hr.manage_applicants.index') }}"><i
-                                                            class="fa-solid fa-user-plus me-1"></i>Applicants</a> --}}
+                                                    @canany(['isAdmin'])
+                                                        <a class="list-group-item list-group-item-action border-0{{ request()->is('hr/hrmpsb') ? ' active ' : '' }}"
+                                                            href="{{ route('hr.hrmpsb.index') }}"><i
+                                                                class="fa-solid fa-user-plus me-2"></i>HRMPSB</a>
+                                                    @endcanany
                                                     <a class="list-group-item list-group-item-action border-0{{ request()->is('hr/ranking') ? ' active ' : '' }}"
                                                         href="{{ route('hr.ranking.index') }}"><i
                                                             class="fa-solid fa-chart-simple me-2"></i>Ranking</a>

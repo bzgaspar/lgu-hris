@@ -10,6 +10,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
@@ -21,7 +22,7 @@ class InterviewExamController extends Controller
     private $additionalPoints;
 
 
-    public function __construct(InterviewExam $interviewExam,User $user, Publication $publication,AdditionalPoints $additionalPoints)
+    public function __construct(InterviewExam $interviewExam, User $user, Publication $publication, AdditionalPoints $additionalPoints)
     {
         $this->interviewExam = $interviewExam;
         $this->user = $user;
@@ -56,7 +57,47 @@ class InterviewExamController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if($request->written_exam) {
+            $request->validate([
+                'written_exam' => 'required',
+                'potential' => 'required',
+                'pspt' => 'required',
+                'oral_exam' => 'required',
+                'background' => 'required',
+                'performance' => 'required',
+                'experience' => 'required',
+                'eligibility' => 'required',
+                'education' => 'required',
+            ]);
+            $interview = $this->interviewExam;
+            $interview->app_id = $request->app_id;
+            $interview->user_id = $request->user_id;
+            $interview->pub_id = $request->pub_id;
+            $interview->written_exam = $request->written_exam;
+            $interview->potential = $request->potential;
+            $interview->pspt = $request->pspt;
+            $interview->oral_exam = $request->oral_exam;
+            $interview->background = $request->background;
+            $interview->performance = $request->performance;
+            $interview->rater_id = Auth::user()->id;
+
+            $additionalPoints = $this->additionalPoints;
+            $additionalPoints->app_id = $request->app_id;
+            $additionalPoints->user_id = $request->user_id;
+            $additionalPoints->pub_id = $request->pub_id;
+            $additionalPoints->experience = $request->experience;
+            $additionalPoints->eligibility = $request->eligibility;
+            $additionalPoints->education = $request->education;
+            $additionalPoints->rater_id = Auth::user()->id;
+
+            if ($interview->save() && $additionalPoints->save()) {
+                Session::flash('alert', 'success|Exam has been rated');
+                return redirect()->back();
+            } else {
+                Session::flash('alert', 'danger|Exam has not been rated');
+                return redirect()->back();
+            }
+        }
     }
 
     /**
@@ -65,9 +106,8 @@ class InterviewExamController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        //
     }
 
     /**
@@ -90,7 +130,7 @@ class InterviewExamController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if($request->written_exam_date){
+        if($request->written_exam_date) {
             $request->validate([
                 'written_exam_date' => 'required'
             ]);
@@ -105,9 +145,9 @@ class InterviewExamController extends Controller
                     'innerMessage' => 'Thankyou for your patience. You have been invited to take the written exam in LGU Delfin ALbano Municipal Hall in '.$date .'. Look for the HR Office. Thankyou and Goodluck.',
                 ];
 
-                Mail::send('mail.mailling',$details,function($message)use ($user,$publication){
-                    $message->from(env('MAIL_FROM_ADDRESS'),config('app.name'))
-                    ->to($user->email,$user->first_name)
+                Mail::send('mail.mailling', $details, function ($message) use ($user, $publication) {
+                    $message->from(env('MAIL_FROM_ADDRESS'), config('app.name'))
+                    ->to($user->email, $user->first_name)
                     ->subject('Written Exam : '.$publication->title.".");
                 });
 
@@ -119,22 +159,7 @@ class InterviewExamController extends Controller
             }
         }
 
-        if($request->written_exam){
-            $request->validate([
-                'written_exam' => 'required'
-            ]);
-            $interview = $this->interviewExam->findOrFail($id);
-            $interview->written_exam = $request->written_exam;
-
-            if ($interview->save()) {
-                Session::flash('alert', 'success|Exam has been rated');
-                return redirect()->back();
-            } else {
-                Session::flash('alert', 'danger|Exam has not been rated');
-                return redirect()->back();
-            }
-        }
-        if($request->oral_exam_date){
+        if($request->oral_exam_date) {
             $request->validate([
                 'oral_exam_date' => 'required'
             ]);
@@ -152,9 +177,9 @@ class InterviewExamController extends Controller
                     'innerMessage' => 'Thankyou for your patience. You have been invited to take the Oral Interview in LGU Delfin ALbano Municipal Hall in '.$date .'. Look for the HR Office. Thankyou and Goodluck.',
                 ];
 
-                Mail::send('mail.mailling',$details,function($message)use ($user,$publication){
-                    $message->from(env('MAIL_FROM_ADDRESS'),config('app.name'))
-                    ->to($user->email,$user->first_name)
+                Mail::send('mail.mailling', $details, function ($message) use ($user, $publication) {
+                    $message->from(env('MAIL_FROM_ADDRESS'), config('app.name'))
+                    ->to($user->email, $user->first_name)
                     ->subject('Oral Interview : '.$publication->title.".");
                 });
 
@@ -165,131 +190,46 @@ class InterviewExamController extends Controller
                 return redirect()->back();
             }
         }
-        if($request->oral_exam){
-            $request->validate([
-                'oral_exam' => 'required'
-            ]);
-            $interview = $this->interviewExam->findOrFail($id);
-            $interview->oral_exam = $request->oral_exam;
 
-            if ($interview->save()) {
-
-                Session::flash('alert', 'success|Exam has been Rated');
-                return redirect()->back();
-            } else {
-                Session::flash('alert', 'danger|Exam has not been Rated');
-                return redirect()->back();
-            }
-        }
-        if($request->background){
+        if($request->written_exam) {
             $request->validate([
-                'background' => 'required'
+                'written_exam' => 'required',
+                'potential' => 'required',
+                'pspt' => 'required',
+                'oral_exam' => 'required',
+                'background' => 'required',
+                'performance' => 'required',
+                'experience' => 'required',
+                'eligibility' => 'required',
+                'education' => 'required',
             ]);
-            $interview = $this->interviewExam->findOrFail($id);
-            $interview->background = $request->background;
 
-            if ($interview->save()) {
-                Session::flash('alert', 'success|Background has been Rated');
-                return redirect()->back();
-            } else {
-                Session::flash('alert', 'danger|Background has not been Rated');
-                return redirect()->back();
-            }
-        }
-        if($request->performance){
-            $request->validate([
-                'performance' => 'required'
-            ]);
             $interview = $this->interviewExam->findOrFail($id);
-            $interview->performance = $request->performance;
-
-            if ($interview->save()) {
-                Session::flash('alert', 'success|performance has been Rated');
-                return redirect()->back();
-            } else {
-                Session::flash('alert', 'danger|performance has not been Rated');
-                return redirect()->back();
-            }
-        }
-        if($request->pspt){
-            $request->validate([
-                'pspt' => 'required'
-            ]);
-            $interview = $this->interviewExam->findOrFail($id);
-            $interview->pspt = $request->pspt;
-
-            if ($interview->save()) {
-                Session::flash('alert', 'success|Psycho-social has been Rated');
-                return redirect()->back();
-            } else {
-                Session::flash('alert', 'danger|Psycho-social has not been Rated');
-                return redirect()->back();
-            }
-        }
-        if($request->potential){
-            $request->validate([
-                'potential' => 'required'
-            ]);
-            $interview = $this->interviewExam->findOrFail($id);
+            $interview->app_id = $request->app_id;
+            $interview->user_id = $request->user_id;
+            $interview->pub_id = $request->pub_id;
             $interview->potential = $request->potential;
+            $interview->pspt = $request->pspt;
+            $interview->oral_exam = $request->oral_exam;
+            $interview->background = $request->background;
+            $interview->performance = $request->performance;
+            $interview->performance = $request->performance;
+            $interview->rater_id = Auth::user()->id;
 
-            if ($interview->save()) {
-                Session::flash('alert', 'success|Potential has been Rated');
+            $additionalPoints = $this->additionalPoints->findOrFail($request->additionalPoints_id);
+            $additionalPoints->app_id = $request->app_id;
+            $additionalPoints->user_id = $request->user_id;
+            $additionalPoints->pub_id = $request->pub_id;
+            $additionalPoints->experience = $request->experience;
+            $additionalPoints->eligibility = $request->eligibility;
+            $additionalPoints->education = $request->education;
+            $additionalPoints->rater_id = Auth::user()->id;
+
+            if ($interview->save() || $additionalPoints->save()) {
+                Session::flash('alert', 'success|Exam has been rated');
                 return redirect()->back();
             } else {
-                Session::flash('alert', 'danger|Potential has not been Rated');
-                return redirect()->back();
-            }
-        }
-
-
-
-
-        if($request->education){
-            $request->validate([
-                'education' => 'required'
-            ]);
-            $interview = $this->additionalPoints->findOrFail($id);
-            $interview->education = $request->education;
-
-            if ($interview->save()) {
-
-                Session::flash('alert', 'success|Exam has been Rated');
-                return redirect()->back();
-            } else {
-                Session::flash('alert', 'danger|Exam has not been Rated');
-                return redirect()->back();
-            }
-        }
-        if($request->eligibility){
-            $request->validate([
-                'eligibility' => 'required'
-            ]);
-            $interview = $this->additionalPoints->findOrFail($id);
-            $interview->eligibility = $request->eligibility;
-
-            if ($interview->save()) {
-
-                Session::flash('alert', 'success|Exam has been Rated');
-                return redirect()->back();
-            } else {
-                Session::flash('alert', 'danger|Exam has not been Rated');
-                return redirect()->back();
-            }
-        }
-        if($request->experience){
-            $request->validate([
-                'experience' => 'required'
-            ]);
-            $interview = $this->additionalPoints->findOrFail($id);
-            $interview->experience = $request->experience;
-
-            if ($interview->save()) {
-
-                Session::flash('alert', 'success|Exam has been Rated');
-                return redirect()->back();
-            } else {
-                Session::flash('alert', 'danger|Exam has not been Rated');
+                Session::flash('alert', 'danger|Exam has not been rated');
                 return redirect()->back();
             }
         }

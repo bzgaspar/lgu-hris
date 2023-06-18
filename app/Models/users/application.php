@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-
 class application extends Model
 {
     use HasFactory;
@@ -26,11 +25,19 @@ class application extends Model
     }
     public function InterviewExam()
     {
-        return $this->hasOne(InterviewExam::class, 'app_id');
+        return $this->hasMany(InterviewExam::class, 'app_id');
+    }
+    public function InterviewExamRaters()
+    {
+        return $this->hasMany(InterviewExam::class, 'app_id')->where('rater_id', '!=', 'null');
     }
     public function AdditionalPoints()
     {
-        return $this->hasOne(AdditionalPoints::class, 'app_id');
+        return $this->hasMany(AdditionalPoints::class, 'app_id');
+    }
+    public function AdditionalPointsRaters()
+    {
+        return $this->hasMany(AdditionalPoints::class, 'app_id')->where('rater_id', '!=', 'null');
     }
 
     public function scopeApplication($query, $request)
