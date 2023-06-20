@@ -45,17 +45,7 @@
                     </thead>
                     <tbody class="table-group-divider">
                         @forelse ($ranking as $item)
-                            @if ($loop->index < 10)
-                                <tr @if ($loop->iteration == 1) class="table-danger text-white" @endif>
-                                    <td data-title="Rank">{{ $loop->iteration }}</td>
-                                    <td data-title="Applicant Name">
-                                        {{ $item['name'] }}
-                                    </td>
-                                    <td data-title="Total Points">
-                                        {{ $item['total'] }}
-                                    </td>
-                                </tr>
-                            @endif
+                            {{ dd($item) }}
                         @empty
                             <td colspan="4">No Applicants</td>
                         @endforelse

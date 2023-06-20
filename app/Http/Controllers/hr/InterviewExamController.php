@@ -57,46 +57,33 @@ class InterviewExamController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->written_exam) {
-            $request->validate([
-                'written_exam' => 'required',
-                'potential' => 'required',
-                'pspt' => 'required',
-                'oral_exam' => 'required',
-                'background' => 'required',
-                'performance' => 'required',
-                'experience' => 'required',
-                'eligibility' => 'required',
-                'education' => 'required',
-            ]);
-            $interview = $this->interviewExam;
-            $interview->app_id = $request->app_id;
-            $interview->user_id = $request->user_id;
-            $interview->pub_id = $request->pub_id;
-            $interview->written_exam = $request->written_exam;
-            $interview->potential = $request->potential;
-            $interview->pspt = $request->pspt;
-            $interview->oral_exam = $request->oral_exam;
-            $interview->background = $request->background;
-            $interview->performance = $request->performance;
-            $interview->rater_id = Auth::user()->id;
+        $interview = $this->interviewExam;
+        $interview->app_id = $request->app_id;
+        $interview->user_id = $request->user_id;
+        $interview->pub_id = $request->pub_id;
+        $interview->written_exam = $request->written_exam;
+        $interview->potential = $request->potential;
+        $interview->pspt = $request->pspt;
+        $interview->oral_exam = $request->oral_exam;
+        $interview->background = $request->background;
+        $interview->performance = $request->performance;
+        $interview->rater_id = Auth::user()->id;
 
-            $additionalPoints = $this->additionalPoints;
-            $additionalPoints->app_id = $request->app_id;
-            $additionalPoints->user_id = $request->user_id;
-            $additionalPoints->pub_id = $request->pub_id;
-            $additionalPoints->experience = $request->experience;
-            $additionalPoints->eligibility = $request->eligibility;
-            $additionalPoints->education = $request->education;
-            $additionalPoints->rater_id = Auth::user()->id;
+        $additionalPoints = $this->additionalPoints;
+        $additionalPoints->app_id = $request->app_id;
+        $additionalPoints->user_id = $request->user_id;
+        $additionalPoints->pub_id = $request->pub_id;
+        $additionalPoints->experience = $request->experience;
+        $additionalPoints->eligibility = $request->eligibility;
+        $additionalPoints->education = $request->education;
+        $additionalPoints->rater_id = Auth::user()->id;
 
-            if ($interview->save() && $additionalPoints->save()) {
-                Session::flash('alert', 'success|Exam has been rated');
-                return redirect()->back();
-            } else {
-                Session::flash('alert', 'danger|Exam has not been rated');
-                return redirect()->back();
-            }
+        if ($interview->save() && $additionalPoints->save()) {
+            Session::flash('alert', 'success|Exam has been rated');
+            return redirect()->back();
+        } else {
+            Session::flash('alert', 'danger|Exam has not been rated');
+            return redirect()->back();
         }
     }
 
@@ -157,9 +144,7 @@ class InterviewExamController extends Controller
                 Session::flash('alert', 'danger|Exam has not been Set');
                 return redirect()->back();
             }
-        }
-
-        if($request->oral_exam_date) {
+        } elseif($request->oral_exam_date) {
             $request->validate([
                 'oral_exam_date' => 'required'
             ]);
@@ -189,27 +174,14 @@ class InterviewExamController extends Controller
                 Session::flash('alert', 'danger|Exam has not been Set');
                 return redirect()->back();
             }
-        }
-
-        if($request->written_exam) {
-            $request->validate([
-                'written_exam' => 'required',
-                'potential' => 'required',
-                'pspt' => 'required',
-                'oral_exam' => 'required',
-                'background' => 'required',
-                'performance' => 'required',
-                'experience' => 'required',
-                'eligibility' => 'required',
-                'education' => 'required',
-            ]);
-
+        } else {
             $interview = $this->interviewExam->findOrFail($id);
             $interview->app_id = $request->app_id;
             $interview->user_id = $request->user_id;
             $interview->pub_id = $request->pub_id;
             $interview->potential = $request->potential;
             $interview->pspt = $request->pspt;
+            $interview->written_exam = $request->written_exam;
             $interview->oral_exam = $request->oral_exam;
             $interview->background = $request->background;
             $interview->performance = $request->performance;
@@ -225,7 +197,7 @@ class InterviewExamController extends Controller
             $additionalPoints->education = $request->education;
             $additionalPoints->rater_id = Auth::user()->id;
 
-            if ($interview->save() || $additionalPoints->save()) {
+            if ($interview->save() && $additionalPoints->save()) {
                 Session::flash('alert', 'success|Exam has been rated');
                 return redirect()->back();
             } else {
@@ -233,6 +205,7 @@ class InterviewExamController extends Controller
                 return redirect()->back();
             }
         }
+
     }
 
     /**
