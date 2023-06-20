@@ -93,23 +93,22 @@
         @endforelse
 
         @for ($i = $itemno; $i < 7; $i++)
-
-        <tr height=36 style='mso-height-source:userset;height:24.0pt'>
-            <td colspan=5 height=36 class=xl10710301 width=258 style='height:24.0pt;
+            <tr height=36 style='mso-height-source:userset;height:24.0pt'>
+                <td colspan=5 height=36 class=xl10710301 width=258 style='height:24.0pt;
               width:194pt'>
-                &nbsp;</td>
-            <td class=xl7110301 width=90 style='border-top:none;border-left:none;
+                    &nbsp;</td>
+                <td class=xl7110301 width=90 style='border-top:none;border-left:none;
               width:68pt'>&nbsp;
-            </td>
-            <td colspan=2 class=xl13810301 width=96 style='border-left:none;width:72pt'>&nbsp;</td>
-            <td colspan=3 class=xl10610301 width=247 style='border-left:none;width:185pt'>&nbsp;</td>
-            <td class=xl7210301 width=78 style='border-top:none;border-left:none;
+                </td>
+                <td colspan=2 class=xl13810301 width=96 style='border-left:none;width:72pt'>&nbsp;</td>
+                <td colspan=3 class=xl10610301 width=247 style='border-left:none;width:185pt'>&nbsp;</td>
+                <td class=xl7210301 width=78 style='border-top:none;border-left:none;
               width:59pt'>&nbsp;
-            </td>
-            <td class=xl7310301 width=56 style='border-top:none;border-left:none;
+                </td>
+                <td class=xl7310301 width=56 style='border-top:none;border-left:none;
               width:42pt'>&nbsp;
-            </td>
-        </tr>
+                </td>
+            </tr>
         @endfor
         <tr class=xl6610301 height=16 style='mso-height-source:userset;height:12.0pt'>
             <td colspan=13 height=16 class=xl14610301
@@ -177,56 +176,62 @@
         <input type="hidden" value="{{ $itemno = 0 }}">
         @forelse ($user->pdsWorkExperience->sortByDesc('WEidfrom') as $work)
             <input type="hidden" value="{{ $itemno = $loop->iteration }}">
-            @if ($itemno < 28)
-
-            <tr height=32 style='mso-height-source:userset;height:22.5pt'>
-                <td colspan=2 height=32 class=xl9510301 width=67 style='height:22.5pt;
-                  width:50pt'>{{ date('m-d-Y', strtotime($work->WEidfrom)) }}
-                </td>
-                <td class=xl9510301 width=68 style='border-top:none;width:51pt'>{{ date('m-d-Y', strtotime($work->WEidto)) }}</td>
-                <td colspan=3 class=xl7210301 width=213 style='border-left:none;width:161pt;font-size:11px;'>{{ $work->WEpostit }}</td>
-                <td colspan=3 class=xl8310301 width=219 style='border-left:none;width:164pt'>{{ $work->WEdepagen }}</td>
-                <td class=xl9310301 width=59 style='border-top:none;border-left:none;
-                  width:44pt'>{{ $work->WEmonthsal }}
-                </td>
-                <td class=xl8310301 width=65 style='border-top:none;border-left:none;
-                  width:49pt'>{{ $work->WEsalaryjob }}
-                </td>
-                <td class=xl8310301 width=78 style='border-top:none;border-left:none;
-                  width:59pt'>{{ $work->WEstatus }}
-                </td>
-                <td class=xl8410301 width=56 style='border-top:none;border-left:none;
-                  width:42pt'>{{ $work->WEgovser }}
-                </td>
-            </tr>
-
+            @if ($itemno > 27)
+                <tr height=32 style='mso-height-source:userset;height:22.5pt'>
+                    <td colspan=2 height=32 class=xl9510301 width=67
+                        style='height:22.5pt;
+                  width:50pt'>
+                        {{ date('m-d-Y', strtotime($work->WEidfrom)) }}
+                    </td>
+                    <td class=xl9510301 width=68 style='border-top:none;width:51pt'>
+                        {{ date('m-d-Y', strtotime($work->WEidto)) }}</td>
+                    <td colspan=3 class=xl7210301 width=213 style='border-left:none;width:161pt;font-size:11px;'>
+                        {{ $work->WEpostit }}</td>
+                    <td colspan=3 class=xl8310301 width=219 style='border-left:none;width:164pt'>{{ $work->WEdepagen }}
+                    </td>
+                    <td class=xl9310301 width=59 style='border-top:none;border-left:none;
+                  width:44pt'>
+                        {{ $work->WEmonthsal }}
+                    </td>
+                    <td class=xl8310301 width=65 style='border-top:none;border-left:none;
+                  width:49pt'>
+                        {{ $work->WEsalaryjob }}
+                    </td>
+                    <td class=xl8310301 width=78 style='border-top:none;border-left:none;
+                  width:59pt'>
+                        {{ $work->WEstatus }}
+                    </td>
+                    <td class=xl8410301 width=56 style='border-top:none;border-left:none;
+                  width:42pt'>
+                        {{ $work->WEgovser }}
+                    </td>
+                </tr>
             @endif
         @empty
         @endforelse
 
         @for ($i = $itemno; $i < 28; $i++)
-
-        <tr height=32 style='mso-height-source:userset;height:22.5pt'>
-            <td colspan=2 height=32 class=xl9510301 width=67 style='height:22.5pt;
+            <tr height=32 style='mso-height-source:userset;height:22.5pt'>
+                <td colspan=2 height=32 class=xl9510301 width=67 style='height:22.5pt;
               width:50pt'>&nbsp;
-            </td>
-            <td class=xl9510301 width=68 style='border-top:none;width:51pt'>&nbsp;</td>
-            <td colspan=3 class=xl7210301 width=213 style='border-left:none;width:161pt'>&nbsp;</td>
-            <td colspan=3 class=xl8310301 width=219 style='border-left:none;width:164pt'>&nbsp;</td>
-            <td class=xl9310301 width=59 style='border-top:none;border-left:none;
+                </td>
+                <td class=xl9510301 width=68 style='border-top:none;width:51pt'>&nbsp;</td>
+                <td colspan=3 class=xl7210301 width=213 style='border-left:none;width:161pt'>&nbsp;</td>
+                <td colspan=3 class=xl8310301 width=219 style='border-left:none;width:164pt'>&nbsp;</td>
+                <td class=xl9310301 width=59 style='border-top:none;border-left:none;
               width:44pt'>&nbsp;
-            </td>
-            <td class=xl8310301 width=65 style='border-top:none;border-left:none;
+                </td>
+                <td class=xl8310301 width=65 style='border-top:none;border-left:none;
               width:49pt'>&nbsp;
-            </td>
-            <td class=xl8310301 width=78 style='border-top:none;border-left:none;
+                </td>
+                <td class=xl8310301 width=78 style='border-top:none;border-left:none;
               width:59pt'>&nbsp;
-            </td>
-            <td class=xl8410301 width=56 style='border-top:none;border-left:none;
+                </td>
+                <td class=xl8410301 width=56 style='border-top:none;border-left:none;
               width:42pt'>&nbsp;
-            </td>
-        </tr>
-    @endfor
+                </td>
+            </tr>
+        @endfor
 
         <tr height=13 style='mso-height-source:userset;height:9.75pt'>
             <td colspan=13 height=13 class=xl12310301

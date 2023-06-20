@@ -26,7 +26,7 @@ class WorkExperience extends Controller
      */
     public function index()
     {
-        $workexperience = $this->workexperience->where('user_id', Auth::user()->id)->paginate(10);
+        $workexperience = $this->workexperience->where('user_id', Auth::user()->id)->orderByDesc('WEidfrom')->paginate(10);
         return view('users.PDS.workexperience')->with('workexperience', $workexperience)->with('edit_work', null);
     }
 
@@ -176,8 +176,7 @@ class WorkExperience extends Controller
     public function destroy($id)
     {
         $we = $this->workexperience->findOrFail($id);
-        if($we->document)
-        {
+        if($we->document) {
             $this->deleteFile($we->document);
         }
         if ($this->workexperience->destroy($id)) {
@@ -195,7 +194,7 @@ class WorkExperience extends Controller
         $filenameWithExt = $file->getClientOriginalName();
 
         //Get just the file name
-        $filenameWithoutExy = pathinfo( $filenameWithExt, PATHINFO_FILENAME );
+        $filenameWithoutExy = pathinfo($filenameWithExt, PATHINFO_FILENAME);
 
         // creating new name
         $filename = $filenameWithoutExy."-".time()."-".Auth::user()->id.".". $file->extension();

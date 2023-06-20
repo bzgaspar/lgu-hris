@@ -26,7 +26,7 @@ class LearningDevelopment extends Controller
      */
     public function index()
     {
-        $learningdevelopment = $this->learningdevelopment->where('user_id', Auth::user()->id)->paginate(10);
+        $learningdevelopment = $this->learningdevelopment->where('user_id', Auth::user()->id)->orderByDesc('LDidfrom')->paginate(10);
         return view('users.PDS.learningdevelopment')->with('learningdevelopment', $learningdevelopment)->with('edit_lnd', null);
     }
 

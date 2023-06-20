@@ -12,13 +12,15 @@
     </nav>
     <div class="row">
         <div class="col text-start">
-            <a href="{{ route('users.pds.civilservice.index') }}" class="btn btn-outline-success ">Civil Service<i class="fa-solid fa-chevron-left ms-2"></i></a>
+            <a href="{{ route('users.pds.civilservice.index') }}" class="btn btn-outline-success ">Civil Service<i
+                    class="fa-solid fa-chevron-left ms-2"></i></a>
         </div>
         <div class="col text-center">
             <strong>Go to</strong>
         </div>
         <div class="col text-end">
-            <a href="{{ route('users.pds.voluntarywork.index') }}" class="btn btn-outline-success "><i class="fa-solid fa-chevron-right me-2"></i>Voluntary Work</a>
+            <a href="{{ route('users.pds.voluntarywork.index') }}" class="btn btn-outline-success "><i
+                    class="fa-solid fa-chevron-right me-2"></i>Voluntary Work</a>
         </div>
     </div>
     <hr>
@@ -49,16 +51,25 @@
                     </div>
                 </div>
                 <div class="col-12 col-md">
-                    <div class="form-floating mb-1">
-                        <input type="date" class="form-control text-uppercase" name="WEidto" id="WEidto"
-                            placeholder=""
-                            @if ($edit_work) value="{{ $edit_work->WEidto }}"
-                            @else
-                            value="{{ old('WEidto') }}" @endif>
-                        <label for="WEidto" class="form-label small">To</label>
-                        @error('WEidto')
-                            <p class="text-danger small">{{ $message }}</p>
-                        @enderror
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="form-floating mb-1">
+                                <input type="date" class="form-control text-uppercase" name="WEidto" id="WEidto"
+                                    placeholder=""
+                                    @if ($edit_work) value="{{ $edit_work->WEidto }}"
+                                    @else
+                                    value="{{ old('WEidto') }}" @endif>
+                                <label for="WEidto" class="form-label small">To</label>
+                                @error('WEidto')
+                                    <p class="text-danger small">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col">
+
+                            <input type="checkbox" value="PRESENT" class="form-check-input" name="WEidto" id="WEidtoCheck">
+                            <label for="WEidtoCheck">Present</label>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -211,7 +222,8 @@
                                         method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm text-white rounded-0 rounded-end"><i
+                                        <button type="submit"
+                                            class="btn btn-danger btn-sm text-white rounded-0 rounded-end"><i
                                                 class="fa-solid fa-trash-can me-1"></i> </button>
                                     </form>
                                 </div>

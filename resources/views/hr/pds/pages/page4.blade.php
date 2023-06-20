@@ -746,7 +746,7 @@
       width:73pt'>TEL.
                 NO.</td>
         </tr>
-        <tr height=32 style='mso-height-source:userset;height:22.0pt'>
+        <tr height=32 style='mso-height-source:userset;height:22.0pt;;'>
             <td colspan=5 height=32 class=xl20321260 width=302
                 style='border-right:.5pt solid black;
       height:22.0pt;width:227pt'>&nbsp;@if ($user->pdsOther)
@@ -754,7 +754,7 @@
                 @endif
             </td>
             <td class=xl15021260 width=189 style='border-top:none;border-left:none;
-      width:142pt'>&nbsp;
+      width:142pt;font-size:8px !important'>&nbsp;
                 @if ($user->pdsOther)
                     <strong>{{ $user->pdsOther->Radd1 }}</strong>
                 @endif
@@ -774,7 +774,7 @@
                 @endif
             </td>
             <td class=xl15021260 width=189 style='border-top:none;border-left:none;
-      width:142pt'>&nbsp;
+      width:142pt;font-size:8px !important'>&nbsp;
                 @if ($user->pdsOther)
                     <strong>{{ $user->pdsOther->Radd2 }}</strong>
                 @endif
@@ -794,7 +794,7 @@
                 @endif
             </td>
             <td class=xl15121260 width=189 style='border-top:none;border-left:none;
-      width:142pt'>&nbsp;
+      width:142pt;font-size:8px !important'>&nbsp;
                 @if ($user->pdsOther)
                     <strong>{{ $user->pdsOther->Radd3 }}</strong>
                 @endif

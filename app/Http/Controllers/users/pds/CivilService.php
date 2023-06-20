@@ -26,7 +26,7 @@ class CivilService extends Controller
      */
     public function index()
     {
-        $civilservice = $this->civilservice->where('user_id', Auth::user()->id)->paginate(10);
+        $civilservice = $this->civilservice->where('user_id', Auth::user()->id)->orderByDesc('CSDate')->paginate(10);
         return view('users.PDS.civilservice')->with('civilservice', $civilservice)->with('edit_civil', null);
     }
 

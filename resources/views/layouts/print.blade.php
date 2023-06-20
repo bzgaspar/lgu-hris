@@ -12,7 +12,6 @@
     <style>
         .page1 {
             page-break-after: always !important;
-            margin-top: 10px;
         }
 
         .page2 {
@@ -22,17 +21,12 @@
 
         .page3 {
             page-break-after: always !important;
-            /* margin-top: 10px; */
+            margin-top: 10px;
         }
 
         .page4 {
             page-break-after: always !important;
             /* margin-top: 10px; */
-        }
-
-        #page {
-            max-height: 36cm !important;
-            height: 36cm !important;
         }
 
 
@@ -41,8 +35,15 @@
                 margin: 0;
                 -webkit-print-color-adjust: exact;
             }
-            @page{
-                margin:15px;
+
+            @page {
+                margin: 15px;
+                page-break-after: always !important;
+            }
+
+            #page {
+                page-break-after: always !important;
+                max-height: 35cm !important;
             }
         }
     </style>
