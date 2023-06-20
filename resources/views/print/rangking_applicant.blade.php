@@ -12,8 +12,11 @@
 
         .table td,
         .table th {
-            font-size: 12px;
+            font-size: 10px;
             padding: 0;
+        }
+        .b{
+            font-size: 12px
         }
     </style>
 
@@ -31,18 +34,18 @@
                     <strong class="fw-bold text-uppercase">municipal human resourse Management Office</strong>
                 </div>
             </div>
-            <h3 class="mt-4 mb-0 fw-bold float-left">
-                {{ $publication->title }}</h3>
+            <h4 class="mt-2 mb-0 fw-bold float-left">
+                {{ $publication->title }}</h4>
 
 
         </center>
-        <div class="row justify-content-center">
-            <div class="col-11">
+        <div class="row g-0 gy-0 justify-content-center">
+            <div class="col-11 m-0 p-0">
                 <div class="container-fluid">
                     @forelse ($ranking as $item)
                         <?php $over_all = 0; ?>
                         <h5 class="mx-auto mt-3">{{ $item['name'] }}</h5>
-                        <table class="table table-bordered text-center">
+                        <table class="table table-bordered text-center small">
                             <tr>
                                 <th class="bg-secondary text-white">HRMPSB</th>
                                 <th>EXPERIENCE 15%</th>
@@ -138,7 +141,6 @@
                 </div>
             </div>
         </div>
-        <br>
         <br>
         <div class="row justify-content-center">
             <div class="col-11">
