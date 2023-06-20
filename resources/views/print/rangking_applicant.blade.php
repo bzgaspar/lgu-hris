@@ -30,7 +30,7 @@
                 <div class="col">
                     <img src="{{ asset('images/DA-logo.png') }}" alt="" width="60px" height="60px"><br>
                     REPUBLIC OF THE PHILIPPINES <br>
-                    Province of Isabele <br>
+                    Province of Isabela <br>
                     <strong>MUNICIPALITY OF DELFIN ALBANO</strong> <br>
                     <strong class="fw-bold text-uppercase">municipal human resourse Management Office</strong>
                 </div>
