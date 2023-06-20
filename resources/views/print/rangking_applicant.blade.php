@@ -150,12 +150,12 @@
                 <div class="container-fluid">
                     <div class="row mt-5 mx-5">
                         <div class="col text-center">
-                            <b class="border-bottom">ERLIGY A. BUTAY, MPA</b> <br>
+                            <b class="border-bottom">ERLIEGY A. BUTAY, MPA</b> <br>
                             MGDH I (MHRMO)
                         </div>
                         <div class="col text-center">
                             <b class="border-bottom">ROSALIE L. MARQUEZ, RSW</b> <br>
-                            GAD, FOCAL PERSON
+                            GAD, Focal Person
                         </div>
                         <div class="col text-center">
                             <b class="border-bottom">HON. ALEX M. MACARILAY</b> <br>
@@ -163,11 +163,11 @@
                         </div>
                         <div class="col text-center">
                             <b class="border-bottom">JOCELYN A. MANIBOG</b> <br>
-                            MUNICIAPL ADMINISTRATOR-DESIGNATE
+                            Municipal Administrator-Designate
                         </div>
                         <div class="col text-center">
                             <b class="border-bottom">RHOMEL G. SALVADOR</b> <br>
-                            ADMINISTRATIVE OFFICER IV (MHRMO II)
+                            Administrative Officer IV (MHRMO II)
                         </div>
                     </div>
                 </div>
