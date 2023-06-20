@@ -15,7 +15,8 @@
             font-size: 10px;
             padding: 0;
         }
-        .b{
+
+        .b {
             font-size: 12px
         }
     </style>
@@ -43,99 +44,101 @@
             <div class="col-11 m-0 p-0">
                 <div class="container-fluid">
                     @forelse ($ranking as $item)
-                        <?php $over_all = 0; ?>
-                        <h5 class="mx-auto mt-3">{{ $item['name'] }}</h5>
-                        <table class="table table-bordered text-center small">
-                            <tr>
-                                <th class="bg-secondary text-white">HRMPSB</th>
-                                <th>EXPERIENCE 15%</th>
-                                <th>EDUCATION 15%</th>
-                                <th>ELIGIBILITY 10%</th>
-                                <th>WRITTEN EXAM 10%</th>
-                                <th>ORAL EXAM 10%</th>
-                                <th>BACKGROUND 10%</th>
-                                <th>PEFORMANCE 10%</th>
-                                <th>PSPT 10%</th>
-                                <th>POTENTIAL 10%</th>
-                                <th>Total 100%</th>
-                            </tr>
-                            @for ($i = 0; $i < count($item['additional_points_raters']); $i++)
+                        @if ($loop->iteration < 10)
+                            <?php $over_all = 0; ?>
+                            <h5 class="mx-auto mt-3">{{ $item['name'] }}</h5>
+                            <table class="table table-bordered text-center small">
                                 <tr>
-                                    <?php $sum = 0; ?>
-                                    <td class="bg-secondary text-white fw-bold">{{ $i + 1 }}</td>
-                                    @if ($item['additional_points_raters'])
-                                        <td>
-                                            <?php $sum += round($item['additional_points_raters'][$i]['experience'] * 0.15, 2); ?>
-                                            {{ round($item['additional_points_raters'][$i]['experience'] * 0.15, 2) }}
-                                        </td>
-                                        <td>
-                                            <?php $sum += round($item['additional_points_raters'][$i]['education'] * 0.15, 2); ?>
-                                            {{ round($item['additional_points_raters'][$i]['education'] * 0.15, 2) }}
-                                        </td>
-                                        <td>
-                                            <?php $sum += round($item['additional_points_raters'][$i]['eligibility'] * 0.1, 2); ?>
-                                            {{ round($item['additional_points_raters'][$i]['eligibility'] * 0.1, 2) }}
-                                        </td>
-                                    @else
-                                        <td>0</td>
-                                        <td>0</td>
-                                        <td>0</td>
-                                    @endif
-                                    @if ($item['interview_exam_raters'])
-                                        <td>
-                                            <?php $sum += round($item['interview_exam_raters'][$i]['written_exam'] * 0.1, 2); ?>
-                                            {{ round($item['interview_exam_raters'][$i]['written_exam'] * 0.1, 2) }}
-                                        </td>
-                                        <td>
-                                            <?php $sum += round($item['interview_exam_raters'][$i]['oral_exam'] * 0.1, 2); ?>
-                                            {{ round($item['interview_exam_raters'][$i]['oral_exam'] * 0.1, 2) }}
-                                        </td>
-                                        <td>
-                                            <?php $sum += round($item['interview_exam_raters'][$i]['background'] * 0.1, 2); ?>
-                                            {{ round($item['interview_exam_raters'][$i]['background'] * 0.1, 2) }}
-                                        </td>
-                                        <td>
-                                            <?php $sum += round($item['interview_exam_raters'][$i]['performance'] * 0.1, 2); ?>
-                                            {{ round($item['interview_exam_raters'][$i]['performance'] * 0.1, 2) }}
-                                        </td>
-                                        <td>
-                                            <?php $sum += round($item['interview_exam_raters'][$i]['pspt'] * 0.1, 2); ?>
-                                            {{ round($item['interview_exam_raters'][$i]['pspt'] * 0.1, 2) }}
-                                        </td>
-                                        <td>
-                                            <?php $sum += round($item['interview_exam_raters'][$i]['potential'] * 0.1, 2); ?>
-                                            {{ round($item['interview_exam_raters'][$i]['potential'] * 0.1, 2) }}
-                                        </td>
-                                        <td>{{ round($sum, 2) }}</td>
-                                    @else
-                                        <td>0</td>
-                                        <td>0</td>
-                                        <td>0</td>
-                                        <td>0</td>
-                                        <td>0</td>
-                                        <td>0</td>
-                                    @endif
+                                    <th class="bg-secondary text-white">HRMPSB</th>
+                                    <th>EXPERIENCE 15%</th>
+                                    <th>EDUCATION 15%</th>
+                                    <th>ELIGIBILITY 10%</th>
+                                    <th>WRITTEN EXAM 10%</th>
+                                    <th>ORAL EXAM 10%</th>
+                                    <th>BACKGROUND 10%</th>
+                                    <th>PEFORMANCE 10%</th>
+                                    <th>PSPT 10%</th>
+                                    <th>POTENTIAL 10%</th>
+                                    <th>Total 100%</th>
                                 </tr>
-                                <?php
-                                $over_all += $sum;
-                                ?>
-                            @endfor
-                            <tr>
-                                <td colspan="10" class="bg-secondary text-white fw-bold text-end">Total</td>
-                                <td class="bg-secondary text-white fw-bold">
-                                    @if ($over_all > 0)
-                                        {{ round($over_all / count($item['additional_points_raters']), 2) }}
-                                    @else
-                                        0
-                                    @endif
-                                </td>
-                            </tr>
+                                @for ($i = 0; $i < count($item['additional_points_raters']); $i++)
+                                    <tr>
+                                        <?php $sum = 0; ?>
+                                        <td class="bg-secondary text-white fw-bold">{{ $i + 1 }}</td>
+                                        @if ($item['additional_points_raters'])
+                                            <td>
+                                                <?php $sum += round($item['additional_points_raters'][$i]['experience'] * 0.15, 2); ?>
+                                                {{ round($item['additional_points_raters'][$i]['experience'] * 0.15, 2) }}
+                                            </td>
+                                            <td>
+                                                <?php $sum += round($item['additional_points_raters'][$i]['education'] * 0.15, 2); ?>
+                                                {{ round($item['additional_points_raters'][$i]['education'] * 0.15, 2) }}
+                                            </td>
+                                            <td>
+                                                <?php $sum += round($item['additional_points_raters'][$i]['eligibility'] * 0.1, 2); ?>
+                                                {{ round($item['additional_points_raters'][$i]['eligibility'] * 0.1, 2) }}
+                                            </td>
+                                        @else
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                        @endif
+                                        @if ($item['interview_exam_raters'])
+                                            <td>
+                                                <?php $sum += round($item['interview_exam_raters'][$i]['written_exam'] * 0.1, 2); ?>
+                                                {{ round($item['interview_exam_raters'][$i]['written_exam'] * 0.1, 2) }}
+                                            </td>
+                                            <td>
+                                                <?php $sum += round($item['interview_exam_raters'][$i]['oral_exam'] * 0.1, 2); ?>
+                                                {{ round($item['interview_exam_raters'][$i]['oral_exam'] * 0.1, 2) }}
+                                            </td>
+                                            <td>
+                                                <?php $sum += round($item['interview_exam_raters'][$i]['background'] * 0.1, 2); ?>
+                                                {{ round($item['interview_exam_raters'][$i]['background'] * 0.1, 2) }}
+                                            </td>
+                                            <td>
+                                                <?php $sum += round($item['interview_exam_raters'][$i]['performance'] * 0.1, 2); ?>
+                                                {{ round($item['interview_exam_raters'][$i]['performance'] * 0.1, 2) }}
+                                            </td>
+                                            <td>
+                                                <?php $sum += round($item['interview_exam_raters'][$i]['pspt'] * 0.1, 2); ?>
+                                                {{ round($item['interview_exam_raters'][$i]['pspt'] * 0.1, 2) }}
+                                            </td>
+                                            <td>
+                                                <?php $sum += round($item['interview_exam_raters'][$i]['potential'] * 0.1, 2); ?>
+                                                {{ round($item['interview_exam_raters'][$i]['potential'] * 0.1, 2) }}
+                                            </td>
+                                            <td>{{ round($sum, 2) }}</td>
+                                        @else
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                        @endif
+                                    </tr>
+                                    <?php
+                                    $over_all += $sum;
+                                    ?>
+                                @endfor
+                                <tr>
+                                    <td colspan="10" class="bg-secondary text-white fw-bold text-end">Total</td>
+                                    <td class="bg-secondary text-white fw-bold">
+                                        @if ($over_all > 0)
+                                            {{ round($over_all / count($item['additional_points_raters']), 2) }}
+                                        @else
+                                            0
+                                        @endif
+                                    </td>
+                                </tr>
 
-                        </table>
+                            </table>
 
-                        <?php
-                        $i++;
-                        ?>
+                            <?php
+                            $i++;
+                            ?>
+                        @endif
                     @empty
                     @endforelse
                 </div>
