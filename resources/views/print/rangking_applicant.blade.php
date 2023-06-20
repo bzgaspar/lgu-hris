@@ -167,7 +167,7 @@
                         </div>
                         <div class="col text-center">
                             <b class="border-bottom">RHOMEL G. SALVADOR</b> <br>
-                            Administrative Officer IV (MHRMO II)
+                            Administrative Officer IV (HRMO II)
                         </div>
                     </div>
                 </div>
