@@ -1,4 +1,4 @@
-@extends('layouts.print2')
+@extends('layouts.leave_card')
 
 @section('title', 'Service Record')
 @section('customCSS')
@@ -20,8 +20,7 @@
 @endsection
 @section('content')
 
-    {{-- <page size="A4" layout="landscape"> --}}
-    <page size="A4">
+    <page size="A4" layout="landscape">
         <center class="pt-3 m-3">
             <div class="row">
                 <div class="col">
@@ -32,30 +31,143 @@
                     <strong class="fw-bold text-uppercase">municipal human resourse Management Office</strong>
                 </div>
             </div>
-            <br>
+            <h3 class="mt-4 mb-0 fw-bold float-left">
+                {{ $publication->title }}</h3>
 
-            <div class="table-responsive" id="no-more-tables">
-                <table class="table table-hover table-striped smnall table-sm text-center">
-                    <thead>
-                        <tr class="table-light">
-                            <th class="numeric" width="10%">Rank</th>
-                            <th class="numeric">Applicant Name</th>
-                            <th class="numeric">Total Points</th>
-                        </tr>
-                    </thead>
-                    <tbody class="table-group-divider">
-                        @forelse ($ranking as $item)
-                            {{ dd($item) }}
-                        @empty
-                            <td colspan="4">No Applicants</td>
-                        @endforelse
-                    </tbody>
-                </table>
-                <div class="d-flex justify-content-center">
-                </div>
-            </div>
 
         </center>
+        <div class="row justify-content-center">
+            <div class="col-11">
+                <div class="container-fluid">
+                    @forelse ($ranking as $item)
+                        <?php $over_all = 0; ?>
+                        <h5 class="mx-auto mt-3">{{ $item['name'] }}</h5>
+                        <table class="table table-bordered text-center">
+                            <tr>
+                                <th class="bg-secondary text-white">HRMPSB</th>
+                                <th>EXPERIENCE 15%</th>
+                                <th>EDUCATION 15%</th>
+                                <th>ELIGIBILITY 10%</th>
+                                <th>WRITTEN EXAM 10%</th>
+                                <th>ORAL EXAM 10%</th>
+                                <th>BACKGROUND 10%</th>
+                                <th>PEFORMANCE 10%</th>
+                                <th>PSPT 10%</th>
+                                <th>POTENTIAL 10%</th>
+                                <th>Total 100%</th>
+                            </tr>
+                            @for ($i = 0; $i < count($item['additional_points_raters']); $i++)
+                                <tr>
+                                    <?php $sum = 0; ?>
+                                    <td class="bg-secondary text-white fw-bold">{{ $i + 1 }}</td>
+                                    @if ($item['additional_points_raters'])
+                                        <td>
+                                            <?php $sum += round($item['additional_points_raters'][$i]['experience'] * 0.15, 2); ?>
+                                            {{ round($item['additional_points_raters'][$i]['experience'] * 0.15, 2) }}
+                                        </td>
+                                        <td>
+                                            <?php $sum += round($item['additional_points_raters'][$i]['education'] * 0.15, 2); ?>
+                                            {{ round($item['additional_points_raters'][$i]['education'] * 0.15, 2) }}
+                                        </td>
+                                        <td>
+                                            <?php $sum += round($item['additional_points_raters'][$i]['eligibility'] * 0.1, 2); ?>
+                                            {{ round($item['additional_points_raters'][$i]['eligibility'] * 0.1, 2) }}
+                                        </td>
+                                    @else
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                    @endif
+                                    @if ($item['interview_exam_raters'])
+                                        <td>
+                                            <?php $sum += round($item['interview_exam_raters'][$i]['written_exam'] * 0.1, 2); ?>
+                                            {{ round($item['interview_exam_raters'][$i]['written_exam'] * 0.1, 2) }}
+                                        </td>
+                                        <td>
+                                            <?php $sum += round($item['interview_exam_raters'][$i]['oral_exam'] * 0.1, 2); ?>
+                                            {{ round($item['interview_exam_raters'][$i]['oral_exam'] * 0.1, 2) }}
+                                        </td>
+                                        <td>
+                                            <?php $sum += round($item['interview_exam_raters'][$i]['background'] * 0.1, 2); ?>
+                                            {{ round($item['interview_exam_raters'][$i]['background'] * 0.1, 2) }}
+                                        </td>
+                                        <td>
+                                            <?php $sum += round($item['interview_exam_raters'][$i]['performance'] * 0.1, 2); ?>
+                                            {{ round($item['interview_exam_raters'][$i]['performance'] * 0.1, 2) }}
+                                        </td>
+                                        <td>
+                                            <?php $sum += round($item['interview_exam_raters'][$i]['pspt'] * 0.1, 2); ?>
+                                            {{ round($item['interview_exam_raters'][$i]['pspt'] * 0.1, 2) }}
+                                        </td>
+                                        <td>
+                                            <?php $sum += round($item['interview_exam_raters'][$i]['potential'] * 0.1, 2); ?>
+                                            {{ round($item['interview_exam_raters'][$i]['potential'] * 0.1, 2) }}
+                                        </td>
+                                        <td>{{ round($sum, 2) }}</td>
+                                    @else
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                    @endif
+                                </tr>
+                                <?php
+                                $over_all += $sum;
+                                ?>
+                            @endfor
+                            <tr>
+                                <td colspan="10" class="bg-secondary text-white fw-bold text-end">Total</td>
+                                <td class="bg-secondary text-white fw-bold">
+                                    @if ($over_all > 0)
+                                        {{ round($over_all / count($item['additional_points_raters']), 2) }}
+                                    @else
+                                        0
+                                    @endif
+                                </td>
+                            </tr>
+
+                        </table>
+
+                        <?php
+                        $i++;
+                        ?>
+                    @empty
+                    @endforelse
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="row justify-content-center">
+            <div class="col-11">
+                <div class="container-fluid">
+                    <div class="row mt-5 mx-5">
+                        <div class="col text-center">
+                            <b class="border-bottom">ERLIGY A. BUTAY, MPA</b> <br>
+                            MGDH I (MHRMO)
+                        </div>
+                        <div class="col text-center">
+                            <b class="border-bottom">ROSALIE L. MARQUEZ, RSW</b> <br>
+                            GAD, FOCAL PERSON
+                        </div>
+                        <div class="col text-center">
+                            <b class="border-bottom">HON. ALEX M. MACARILAY</b> <br>
+                            Chair, Good Gov't, Public Ethics & Accountability
+                        </div>
+                        <div class="col text-center">
+                            <b class="border-bottom">JOCELYN A. MANIBOG</b> <br>
+                            MUNICIAPL ADMINISTRATOR-DESIGNATE
+                        </div>
+                        <div class="col text-center">
+                            <b class="border-bottom">RHOMEL G. SALVADOR</b> <br>
+                            ADMINISTRATIVE OFFICER IV (MHRMO II)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </page>
 
 @endsection

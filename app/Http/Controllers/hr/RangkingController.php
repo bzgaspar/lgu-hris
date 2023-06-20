@@ -207,7 +207,7 @@ class RangkingController extends Controller
                 if($initial_sum <>0) {
                     $percent += $initial_sum/count($app->AdditionalPointsRaters);
                 }
-                $percent = round($percent,2);
+                $percent = round($percent, 2);
                 $total = ['total'=>$percent];
                 $app = $app->toArray();
                 $rank[$ctr] = array_merge($app, $total);
@@ -384,14 +384,15 @@ class RangkingController extends Controller
     {
         $all_applicants = $this->application
         ->leftJoin('users', 'users.id', '=', 'applications.user_id')
-        ->select('applications.id', 'applications.user_id', 'applications.pub_id', 'applications.created_at', DB::raw("CONCAT(`users`.`first_name`,' ',`users`.`last_name`) as name"))
-        ->with('user', 'user.pdsPersonal')
-        ->with('user', 'user.pdsOther')
+        ->select('applications.id', 'applications.user_id', 'applications.pub_id', 'applications.created_at', DB::raw("CONCAT(`users`.`first_name`,' ',`users`.`last_name`) as name", 'publication.title as position'))
         ->with('publication')
         ->where('applications.pub_id', $id)->get();
 
+        $publication = $this->publication->findOrFail($id);
         $ranking = $this->ranking($all_applicants);
-        return view('print.rangking_applicant')->with('ranking', $ranking);
+        return view('print.rangking_applicant')
+        ->with('ranking', $ranking)
+        ->with('publication', $publication);
     }
 
     /**
