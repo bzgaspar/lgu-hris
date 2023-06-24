@@ -22,10 +22,7 @@ class top5Controller extends Controller
      */
     public function index(Request $request)
     {
-        $all_ipcr = Ipcr::with('User')
-        ->whereHas('User', function($query){
-            $query->DepartmentHead();
-      })->Semester($request)->orderByDesc('rating')->paginate(20);
+        $all_ipcr = Ipcr::with('User')->Semester($request)->orderByDesc('rating')->paginate(20);
         return view('hr.RandR.top5')
         ->with('all_ipcr',$all_ipcr);
     }

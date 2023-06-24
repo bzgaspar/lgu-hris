@@ -193,6 +193,21 @@ class HomeController extends Controller
 
         return response()->json($all_ipcr, Response::HTTP_OK);
     }
+    public function getTop5()
+    {
+        $all_ipcr = Ipcr::join('users', 'users.id', '=', 'ipcrs.user_id')
+        ->join('employee_plantillas', 'employee_plantillas.user_id', 'users.id')
+        ->join('departments', 'employee_plantillas.dep_id', 'departments.id')
+        ->select('users.id', 'ipcrs.id', 'ipcrs.user_id', 'ipcrs.from', 'ipcrs.to', 'ipcrs.rating', 'ipcrs.equivalent', 'departments.name')
+        ->whereHas('User', function ($query) {
+            $query->DepartmentHead();
+        })
+        ->with('user', 'user.pdsPersonal', 'user.empPlantilla')
+        ->orderByDesc('rating')
+        ->get();
+
+        return response()->json($all_ipcr, Response::HTTP_OK);
+    }
 
     public function getPreviousLeave($user_id, $leave_card_id)
     {

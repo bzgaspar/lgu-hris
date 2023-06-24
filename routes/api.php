@@ -50,5 +50,6 @@ Route::get('/getAccepted', [RangkingController::class, 'getAccepted'])->name('ge
 
 // pms
 Route::get('/getEmployee', [HomeController::class, 'getEmployee'])->name('getEmployee');
+Route::get('/getTop5', [HomeController::class, 'getTop5'])->name('getTop5');
 Route::get('/getDepartmentHead', [HomeController::class, 'getDepartmentHead'])->name('getDepartmentHead');
 Route::get('/getLoyalty', [HomeController::class, 'getLoyalty'])->name('getLoyalty');

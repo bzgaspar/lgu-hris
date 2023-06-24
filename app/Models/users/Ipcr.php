@@ -20,7 +20,7 @@ class Ipcr extends Model
         if ($request->from && $request->to) {
             return $query
             ->where('from', 'like', '%'.$request->from.'%')
-            ->Where('to', 'like', '%'.$request->to.'%');
+            ->where('to', 'like', '%'.$request->to.'%');
         } else {
             return $query;
         }

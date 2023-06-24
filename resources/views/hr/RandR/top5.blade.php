@@ -2,13 +2,14 @@
 
 @section('title', 'Top 5 Offices')
 @section('content')
-    <div class="row justify-content-center">
+    <hr-pms-top></hr-pms-top>
+    {{-- <div class="row justify-content-center">
         <h3>Top 5 Offices</h3>
         <div class="col-12 col-md-10 mt-3">
 
             <div class="row justify-content-end">
                 <div class="col-12 col-md text-end">
-                    <form action="{{ route('hr.pmsEmployee.create') }}" method="get">
+                    <form action="{{ route('hr.top5.index') }}" method="get">
                         @csrf
                         <div class="input-group mb-3">
                             <input type="month" class="form-control" name="from" placeholder="From">
@@ -70,7 +71,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
 
 @endsection
