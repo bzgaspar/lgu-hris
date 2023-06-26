@@ -57,6 +57,7 @@ class RangkingController extends Controller
         $all_applicants = $this->application
         ->leftJoin('users', 'users.id', '=', 'applications.user_id')
         ->select('applications.id', 'applications.user_id', 'applications.pub_id', 'applications.created_at', DB::raw("CONCAT(`users`.`first_name`,' ',`users`.`last_name`) as name"))
+        ->where('applications.status', '!=', '2')
         ->with('user', 'user.pdsPersonal')
         ->with('user', 'user.pdsOther')
         ->with('publication')->get();

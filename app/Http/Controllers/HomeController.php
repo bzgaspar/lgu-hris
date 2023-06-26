@@ -289,6 +289,5 @@ class HomeController extends Controller
             'full_name' => $full_name,
             'position' => $users[0]->position,
         ];
-
     }
 }

@@ -162,7 +162,7 @@
                 <p class="float-start">
                     Perpared By:
                 </p> <br><br><br><br>
-                <?php $user_info = App\Http\Controllers\HomeController::getFullName($user->id); ?>
+                <?php $user_info = App\Http\Controllers\HomeController::getFullName(Auth::user()->id); ?>
                 <p class="fw-bold mb-0 border-bottom" style="text-indent: 5px">
                     {{ $user_info['full_name'] }}
                 </p>

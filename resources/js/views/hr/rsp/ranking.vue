@@ -105,6 +105,15 @@
                     >
                         <i class="fa-solid fa-check me-1"></i>Accept
                     </v-btn>
+                    <v-btn
+                        color="error"
+                        small
+                        outlined
+                        title="Reject"
+                        @click="viewReject(item.id)"
+                    >
+                        <i class="fa-solid fa-check me-1"></i>Reject
+                    </v-btn>
                 </template>
             </v-data-table>
         </v-card>
@@ -209,6 +218,23 @@ export default {
                 window.location.href = "/hr/manage_applicants/" + id + "/edit";
             }
         },
+        viewReject(id) {
+            const answer = window.confirm(
+                "Do you really want to Reject this applicant?"
+            );
+            if (answer) {
+                axios.delete("/hr/manage_applicants/" + id).then((response) => {
+                    this.fetchApplication();
+                    if (this.$root.vtoast) {
+                        this.$root.vtoast.show({
+                            message: "Applicant has been rejected!",
+                            color: "success",
+                            icon: "mdi-exclamation",
+                        });
+                    }
+                });
+            }
+        },
         // filters
         genderFilter(value) {
             if (!this.genderFilterValue || this.genderFilterValue == "All") {
@@ -255,26 +281,31 @@ export default {
                 return value === null;
             }
         },
+        async fetchApplication() {
+            this.loading = true;
+            await axios.get("/api/getPublication").then((response) => {
+                let Items = [];
+                Items.push("All");
+                response.data.map(function (value, key) {
+                    Items.push(value.title);
+                });
+                this.publicationItems = Items;
+            });
+            await setTimeout(() => {
+                axios.get("/api/getRanking").then((response) => {
+                    let listOfObjects = Object.keys(response.data).map(
+                        (key) => {
+                            return response.data[key];
+                        }
+                    );
+                    this.application = listOfObjects;
+                    this.loading = false;
+                });
+            }, 1000);
+        },
     },
     async created() {
-        this.loading = true;
-        await setTimeout(() => {
-            axios.get("/api/getRanking").then((response) => {
-                let listOfObjects = Object.keys(response.data).map((key) => {
-                    return response.data[key];
-                });
-                this.application = listOfObjects;
-                this.loading = false;
-            });
-        }, 1000);
-        await axios.get("/api/getPublication").then((response) => {
-            let Items = [];
-            Items.push("All");
-            response.data.map(function (value, key) {
-                Items.push(value.title);
-            });
-            this.publicationItems = Items;
-        });
+        this.fetchApplication();
     },
 };
 </script>

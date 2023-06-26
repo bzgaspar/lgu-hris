@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\users\application;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
@@ -110,7 +111,7 @@ class ManageApplicantsController extends Controller
      */
     public function create(Request $request)
     {
-        $all_applicants = $this->application->where('status','0')->paginate(20);
+        $all_applicants = $this->application->where('status', '0')->paginate(20);
 
         $publication = $this->publication->where('status', '0')->get();
 
@@ -150,7 +151,7 @@ class ManageApplicantsController extends Controller
     public function edit($id)
     {
         $application = $this->application->findOrFail($id);
-        $reject_app = $this->application->where('pub_id',$application->pub_id)->update(['status'=>'2']);
+        $reject_app = $this->application->where('pub_id', $application->pub_id)->update(['status'=>'2']);
         $application->status = 0;
         $application->save();
 
@@ -161,7 +162,7 @@ class ManageApplicantsController extends Controller
         $publication = $this->publication->findOrFail($application->pub_id);
         $publication->status = 0;
 
-        if ( $publication->save()) {
+        if ($publication->save()) {
             Session::flash('alert', 'success|Applicant has been Accepted');
             return redirect()->route('hr.ranking.index');
         } else {
@@ -201,13 +202,7 @@ class ManageApplicantsController extends Controller
     {
         $app = $this->application->findOrFail($id);
         $app->status = 2;
-
-        if ($app->save()) {
-            Session::flash('alert', 'success|Applicant has been Rejected');
-            return redirect()->route('hr.manage_applicants.index');
-        } else {
-            Session::flash('alert', 'danger|Applicant has not been Rejected');
-            return back();
-        }
+        $app->save();
+        return response()->json(null, Response::HTTP_OK);
     }
 }
