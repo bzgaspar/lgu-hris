@@ -188,7 +188,7 @@
                 <div class="row mx-2 text-start">
                     <div class="col"></div>
                     <div class="col"></div>
-                    <div class="col text-center">Mun. Gov't. Dept. HEAD I (MHRMO)</div>
+                    <div class="col text-center">Mun. Gov't. Dept. Head I (MHRMO)</div>
                 </div>
             </div>
         </div>
