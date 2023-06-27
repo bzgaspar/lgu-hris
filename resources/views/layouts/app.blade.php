@@ -73,9 +73,6 @@
                         <li class="nav-item">
                             <a href="/" class="nav-link">Publication</a>
                         </li>
-                        {{-- <li class="nav-item">
-                            <a href="#" class="nav-link">How to?</a>
-                        </li> --}}
                         @if (Auth::user())
                             <hr class=" d-block d-md-none">
                             <li class="nav-item d-block d-md-none">
@@ -86,7 +83,6 @@
                                     <a href="{{ route('users.application.index') }}" class="nav-link">My Applications</a>
                                 @else
                                     <a href="{{ route('users.surveyAnswer.index') }}" class="nav-link">Self Assesment</a>
-                                    {{-- <a href="{{ route('users.surveyAnswer.index') }}" class="nav-link">Self Assesment Compliance</a> --}}
                                     <a href="{{ route('users.files.index') }}" class="nav-link">My Record</a>
                                     <a href="{{ route('users.files.create') }}" class="nav-link">My Files</a>
                                     <a href="{{ route('users.myleave.index') }}" class="nav-link">My Leave</a>
@@ -96,6 +92,7 @@
                             <li class="nav-item d-block d-md-none">
                                 <a href="{{ route('users.account.edit', Auth::user()->id) }}" class="nav-link">Account
                                     Settings</a>
+                                <a href="{{ route('users.eSignature.index') }}" class="nav-link">E-Signature</a>
                             </li>
                         @endif
                         <hr class=" d-block d-md-none">
@@ -103,6 +100,7 @@
                     <ul class="navbar-nav me-auto d-flex d-lg-none">
                         @if (Auth::user())
                             @canany(['isAdmin', 'isHR'])
+                                <h3 class="mx-3">PRIME - HRM</h3>
                                 <li class="nav-item">
                                     RSP
                                     <ul class="list-group">
@@ -133,6 +131,10 @@
                                         <li class="list-group-item border-0 m-0 p-0">
                                             <a class="list-group-item list-group-item-action border-0 text-muted"
                                                 href="{{ route('hr.pmsEmployee.create') }}">Department Head</a>
+                                        </li>
+                                        <li class="list-group-item border-0 m-0 p-0">
+                                            <a class="list-group-item list-group-item-action border-0 text-muted"
+                                                href="{{ route('hr.yearlyIPCR.index') }}">Yearly IPCR</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -172,9 +174,14 @@
                                             <a class="list-group-item list-group-item-action border-0 text-muted"
                                                 href="{{ route('hr.top5.index') }}">Top 5 Offices</a>
                                         </li>
+                                        <li class="list-group-item border-0 m-0 p-0">
+                                            <a class="list-group-item list-group-item-action border-0 text-muted"
+                                                href="{{ route('hr.yearlyIPCR.create') }}">Top 5 Offices Yearly</a>
+                                        </li>
                                     </ul>
                                 </li>
                                 <hr class=" d-block d-md-none">
+                                <h4 class="mx-3 fw-bold">DATA MANAGEMENT AND PROCESSING</h4>
                                 <li class="nav-item">
                                     <a href="{{ route('hr.dashboard.index') }}" class="nav-link">Employees</a>
                                 </li>
@@ -566,7 +573,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
         integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="{{ asset('storage/js/modal.js') }}"></script>
+    <script src="{{ asset('storage/js/modal.js') }}"></script>
     @yield('customJS')
 </body>
 
