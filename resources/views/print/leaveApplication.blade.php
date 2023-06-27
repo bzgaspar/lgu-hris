@@ -170,8 +170,11 @@
                                 <p class="border-top mb-0 border-dark">Employee Number</p>
                             </div>
                             <div class="col text-center">
-                                &nbsp;
-                                <p class="border-top mb-0 border-dark">(Signature of Applicant)</p>
+                                @if ($leaveApplication->users->Esignature)
+                                    <img src="{{ $leaveApplication->users->Esignature->signature }}" alt="signature"
+                                        height="60px" width="60px" style="position:static;margin-top: -70px">
+                                @endif
+                                <p class="border-top mb-0 border-dark" style="margin-top: -19px">(Signature of Applicant)</p>
                             </div>
                         </div>
                     </td>

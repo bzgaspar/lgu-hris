@@ -23,6 +23,7 @@ use App\Models\users\application;
 use App\Models\users\Covid;
 use App\Models\users\Ipcr;
 use App\Models\users\others;
+use App\Models\users\Signature;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -253,6 +254,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function hrmpsb()
     {
         return $this->hasOne(hrmpsb::class, 'user_id');
+    }
+    public function Esignature()
+    {
+        return $this->hasOne(Signature::class, 'user_id');
     }
 
 

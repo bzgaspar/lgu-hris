@@ -42,6 +42,7 @@ use App\Http\Controllers\users\pds\OtherInformation;
 use App\Http\Controllers\users\pds\Personal;
 use App\Http\Controllers\users\pds\VoluntaryWork;
 use App\Http\Controllers\users\pds\WorkExperience;
+use App\Http\Controllers\users\SignatureController;
 use App\Http\Controllers\users\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -63,8 +64,8 @@ Auth::routes(['verify' => true]);
 
 Route::group(['middleware'=>'auth','middleware'=>'role:0,1,2,3,4,5','middleware'=>'verified'], function () {
 
-Route::get('/getUserPds', [HomeController::class, 'getUserPds'])->name('getUserPds');
-Route::get('/getUser', [HomeController::class, 'getUser'])->name('getUser');
+    Route::get('/getUserPds', [HomeController::class, 'getUserPds'])->name('getUserPds');
+    Route::get('/getUser', [HomeController::class, 'getUser'])->name('getUser');
 
 
     Route::group(['prefix'=> '/users','as'=>'users.'], function () {
@@ -84,6 +85,9 @@ Route::get('/getUser', [HomeController::class, 'getUser'])->name('getUser');
             Route::get('/{user_id}/print', [application::class, 'print'])->name('print');
         });
         // pds
+        // esignature
+        Route::resource('/eSignature', SignatureController::class);
+        // esignature
 
         // user stuff
         Route::resource('/account', AccountController::class);
@@ -146,7 +150,7 @@ Route::get('/getUser', [HomeController::class, 'getUser'])->name('getUser');
         Route::resource('/leaveApplication', leaveApplicationController::class);
         Route::resource('/yearlyIPCR', YearlyIPCRController::class);
 
-        Route::get('/leavecard/{id}',[LeaveRecordController::class,'print'])->name('leavecard');
+        Route::get('/leavecard/{id}', [LeaveRecordController::class,'print'])->name('leavecard');
         // hr stuff
 
     });

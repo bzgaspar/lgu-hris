@@ -13,7 +13,7 @@ class LeaveApplication extends Controller
 {
     private $leaveApplication;
     private $serviceRecord;
-    public function __construct(ModelsLeaveApplication $leaveApplication,ServiceRecord $serviceRecord)
+    public function __construct(ModelsLeaveApplication $leaveApplication, ServiceRecord $serviceRecord)
     {
         $this->leaveApplication = $leaveApplication;
         $this->serviceRecord = $serviceRecord;
@@ -25,8 +25,8 @@ class LeaveApplication extends Controller
      */
     public function index()
     {
-        $all_leave = $this->leaveApplication->where('user_id',Auth::user()->id)->paginate(10);
-        return view('users.myleave')->with('all_leave',$all_leave);
+        $all_leave = $this->leaveApplication->where('user_id', Auth::user()->id)->paginate(10);
+        return view('users.myleave')->with('all_leave', $all_leave);
     }
 
     /**
@@ -53,7 +53,7 @@ class LeaveApplication extends Controller
             'num_days' => 'required',
             'date_to' => 'required',
             'date_from' => 'required',
-        ],[
+        ], [
             'type.required' => 'The Type of Leave is Required',
             'details_leave.required' => 'The Details of Leave is Required',
             'num_days.required' => 'The Number of Days of Leave is Required',
@@ -87,7 +87,7 @@ class LeaveApplication extends Controller
     public function show($id)
     {
         $leaveApplication = $this->leaveApplication->findOrFail($id);
-        $salary = $this->serviceRecord->where('user_id',$leaveApplication->user_id)->latest()->first();
+        $salary = $this->serviceRecord->where('user_id', $leaveApplication->user_id)->latest()->first();
         $type = [
             'Vacation Leave' =>' (Sec. 51, Rule XVI, Omnibus Rules Implementing E.O. No. 292)',
             'Mandatory/Forced' =>' Leave(Sec. 25, Rule XVI, Omnibus Rules Implementing E.O. No. 292)',
@@ -114,11 +114,12 @@ class LeaveApplication extends Controller
             'Monetization of Leave Credits',
             'Terminal Leave',
         ];
+        $remaining =[];
         return view('print.leaveApplication')
-        ->with('details',$details)
-        ->with('type',$type)
-        ->with('salary',$salary)
-        ->with('leaveApplication',$leaveApplication);
+        ->with('details', $details)
+        ->with('type', $type)
+        ->with('salary', $salary)
+        ->with('leaveApplication', $leaveApplication);
     }
 
     /**

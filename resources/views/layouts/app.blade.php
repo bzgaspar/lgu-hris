@@ -350,6 +350,10 @@
                                                 class="list-group-item list-group-item-action border-0{{ request()->is('users/account/*/edit') ? ' active ' : '' }}">
                                                 <i class="fa-solid fa-user-gear me-1"></i>Account Settings
                                             </a>
+                                            <a href="{{ route('users.eSignature.index') }}"
+                                                class="list-group-item list-group-item-action border-0{{ request()->is('users/eSignature') ? ' active ' : '' }}">
+                                                <i class="fa-solid fa-pen me-1"></i>E-Signature
+                                            </a>
                                             @if (Auth::user()->hrmpsb)
                                                 <a class="list-group-item list-group-item-action border-0{{ request()->is('hr/ranking') ? ' active ' : '' }}"
                                                     href="{{ route('hr.ranking.index') }}"><i
@@ -562,8 +566,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
         integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="{{ asset('storage/js/modal.js') }}"></script>
     @yield('customJS')
-    <script src="{{ asset('storage/js/modal.js') }}"></script>
 </body>
 
 </html>

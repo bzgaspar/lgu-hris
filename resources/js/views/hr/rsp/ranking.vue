@@ -166,19 +166,19 @@ export default {
                     sortable: false,
                 },
                 {
-                    text: "Indigenous213",
+                    text: "IndigenousFilter",
                     value: "user.pds_other.Q40a",
                     align: " d-none",
                     filter: this.indigenousFilter,
                 },
                 {
-                    text: "Indigenous213",
+                    text: "PWDFilter",
                     value: "user.pds_other.Q40b",
                     align: " d-none",
                     filter: this.pwdFilter,
                 },
                 {
-                    text: "Indigenous213",
+                    text: "SinglePFilter",
                     value: "user.pds_other.Q40c",
                     align: " d-none",
                     filter: this.singleFilter,
