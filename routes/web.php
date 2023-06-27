@@ -25,6 +25,7 @@ use App\Http\Controllers\hr\surveyQuestionController;
 use App\Http\Controllers\hr\surveyResultController;
 use App\Http\Controllers\hr\top5Controller;
 use App\Http\Controllers\hr\TrainingNeedsController;
+use App\Http\Controllers\hr\YearlyIPCRController;
 use App\Http\Controllers\ipcrController;
 use App\Http\Controllers\users\AccountController;
 use App\Http\Controllers\users\application;
@@ -143,6 +144,7 @@ Route::get('/getUser', [HomeController::class, 'getUser'])->name('getUser');
         Route::resource('/dashboard', dashboard::class);
         Route::resource('/printing', printingController::class);
         Route::resource('/leaveApplication', leaveApplicationController::class);
+        Route::resource('/yearlyIPCR', YearlyIPCRController::class);
 
         Route::get('/leavecard/{id}',[LeaveRecordController::class,'print'])->name('leavecard');
         // hr stuff

@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use App\Models\hr\Publication;
 use App\Models\hr\ServiceRecord;
+use App\Models\hr\YearlyIPCR;
 use App\Models\LeaveApplication;
 use App\Models\pds\civilservice;
 use App\Models\reference\earned;
@@ -18,6 +19,7 @@ use App\Models\reference\hours;
 use App\Models\reference\minutes;
 use App\Models\users\application;
 use App\Models\users\Ipcr;
+use Carbon\Carbon;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
@@ -154,10 +156,54 @@ class HomeController extends Controller
         $department = Department::orderBy('dep_id')->get();
         return response()->json($department, Response::HTTP_OK);
     }
+    public function getDepartmentIPCR($year)
+    {
+        $department = Department::select('id', 'name')->orderBy('dep_id')->get();
+        $deps = [];
+        foreach($department as $item) {
+            if(!YearlyIPCR::where('year', $year)->where('dep_id', $item->id)->exists()) {
+                array_push($deps, $item);
+            }
+        }
+        return response()->json($department, Response::HTTP_OK);
+    }
     public function getPublication()
     {
         $publication = Publication::where('status', '1')->orderBy('title')->get();
         return response()->json($publication, Response::HTTP_OK);
+    }
+    public function getAverage($dep_id)
+    {
+
+        $average = 0;
+        $ratings = Ipcr::join('users', 'users.id', 'ipcrs.user_id')
+        ->join('employee_plantillas', 'users.id', 'employee_plantillas.user_id')
+        ->join('departments', 'departments.id', 'employee_plantillas.dep_id')
+        ->select('departments.id', 'ipcrs.from', 'ipcrs.to', 'ipcrs.rating')
+        ->where('departments.id', $dep_id)
+        ->where('users.role', '3')
+        ->get();
+        foreach($ratings as $rating) {
+            $average += $rating->rating;
+        }
+        return response()->json(round($average/2, 2), Response::HTTP_OK);
+    }
+    public function getYearlyRating()
+    {
+
+        $ratings = YearlyIPCR::leftJoin('departments', 'departments.id', 'yearly_i_p_c_r_s.dep_id')
+        ->select('departments.name as dep_name', 'yearly_i_p_c_r_s.year as year', 'yearly_i_p_c_r_s.total as rating', 'yearly_i_p_c_r_s.id as id')
+        ->orderByDesc('yearly_i_p_c_r_s.total')
+        ->get();
+        return response()->json($ratings, Response::HTTP_OK);
+    }
+    public function getYearlyTopRating()
+    {
+
+        $ratings = YearlyIPCR::join('departments', 'departments.id', 'yearly_i_p_c_r_s.dep_id')
+        ->select('departments.name as dep_name', 'yearly_i_p_c_r_s.year as year', 'yearly_i_p_c_r_s.total as rating')
+        ->get();
+        return response()->json($ratings, Response::HTTP_OK);
     }
 
     public function getApplicants()
@@ -174,7 +220,7 @@ class HomeController extends Controller
     {
         $all_ipcr = Ipcr::leftJoin('users', 'users.id', '=', 'ipcrs.user_id')
         ->select('ipcrs.id', 'ipcrs.user_id', 'ipcrs.from', 'ipcrs.to', 'ipcrs.rating', 'ipcrs.equivalent', DB::raw("CONCAT(`users`.`first_name`,' ',`users`.`last_name`) as name"))
-        ->with('user', 'user.pdsPersonal', 'user.empPlantilla')
+        ->with('user', 'user.pdsPersonal', 'user.empPlantilla.department')
         ->orderByDesc('rating')
         ->get();
 
@@ -187,7 +233,7 @@ class HomeController extends Controller
         ->whereHas('User', function ($query) {
             $query->DepartmentHead();
         })
-        ->with('user', 'user.pdsPersonal', 'user.empPlantilla')
+        ->with('user', 'user.pdsPersonal', 'user.empPlantilla.department')
         ->orderByDesc('rating')
         ->get();
 
@@ -207,6 +253,34 @@ class HomeController extends Controller
         ->get();
 
         return response()->json($all_ipcr, Response::HTTP_OK);
+    }
+    public function getYearsIPCR()
+    {
+        $old_year = "2022";
+        $year = [];
+        $all_ipcr = Ipcr::latest()->get();
+        foreach($all_ipcr as $item) {
+            $current_year = Carbon::createFromFormat('m/d/Y', $item->from)->format('Y');
+            if(!in_array($current_year, $year)) {
+                if(!YearlyIPCR::where('year', $current_year)->exists()) {
+                    array_push($year, $current_year);
+                }
+            }
+        }
+        return response()->json($year, Response::HTTP_OK);
+    }
+    public function getYearsIPCR2()
+    {
+        $old_year = "2022";
+        $year = [];
+        $all_ipcr = Ipcr::latest()->get();
+        foreach($all_ipcr as $item) {
+            $current_year = Carbon::createFromFormat('m/d/Y', $item->from)->format('Y');
+            if(!in_array($current_year, $year)) {
+                array_push($year, $current_year);
+            }
+        }
+        return response()->json($year, Response::HTTP_OK);
     }
 
     public function getPreviousLeave($user_id, $leave_card_id)

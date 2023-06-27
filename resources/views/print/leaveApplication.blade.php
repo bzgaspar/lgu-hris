@@ -219,7 +219,7 @@
                         <p class="mb-0 text-center f-6">
                             ERLIEGY A. BUTAY, MPA
                         </p>
-                        <p class="border-top border-dark text-center fw-light">Municipal government Department Head I
+                        <p class="border-top border-dark text-center fw-light">Municipal Government Department Head I
                             (MHRMO)</p>
                     </td>
                     <td colspan="2" class="ps-3 pt-2 pe-1">
@@ -233,9 +233,7 @@
                         <p class="border-bottom mb-0 border-dark">&nbsp;</p>
                         <br>
                         <br>
-                        <p class="text-center f-6 mb-2">
-                            &nbsp;
-                        </p>
+                        <p class="text-center f-6 mb-2 fw-bold" contenteditable="true"></p>
                         <p class="border-top border-dark text-center">Authorized Official</p>
                     </td>
                 </tr>

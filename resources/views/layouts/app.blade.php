@@ -106,10 +106,12 @@
                                 <li class="nav-item">
                                     RSP
                                     <ul class="list-group">
+
                                         <li class="list-group-item border-0 m-0 p-0">
                                             <a class="list-group-item list-group-item-action border-0 text-muted"
-                                                href="{{ route('hr.manage_applicants.index') }}">Applicants</a>
+                                                href="{{ route('hr.hrmpsb.index') }}">HRMPSB</a>
                                         </li>
+
                                         <li class="list-group-item border-0 m-0 p-0">
                                             <a class="list-group-item list-group-item-action border-0 text-muted"
                                                 href="{{ route('hr.ranking.index') }}">Ranking</a>
@@ -130,11 +132,7 @@
                                         </li>
                                         <li class="list-group-item border-0 m-0 p-0">
                                             <a class="list-group-item list-group-item-action border-0 text-muted"
-                                                href="{{ route('hr.pmsEmployee.index') }}">Employee</a>
-                                        </li>
-                                        <li class="list-group-item border-0 m-0 p-0">
-                                            <a class="list-group-item list-group-item-action border-0 text-muted"
-                                                href="{{ route('hr.pmsEmployee.create') }}">Department</a>
+                                                href="{{ route('hr.pmsEmployee.create') }}">Department Head</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -360,6 +358,7 @@
                                         </div>
                                         @canany(['isAdmin', 'isHR'])
                                             <hr class="text-dark">
+                                            <h3 class="mx-3">PRIME - HRM</h3>
                                             <div class="list-group border-0 text-start">
                                                 {{-- RSP --}}
                                                 <a href="#rsp"
@@ -369,11 +368,9 @@
                                                     <span class="float-end"><i class="fa-solid fa-caret-down"></i></span>
                                                 </a>
                                                 <div class="collapse ms-2" id="rsp">
-                                                    @canany(['isAdmin'])
-                                                        <a class="list-group-item list-group-item-action border-0{{ request()->is('hr/hrmpsb') ? ' active ' : '' }}"
-                                                            href="{{ route('hr.hrmpsb.index') }}"><i
-                                                                class="fa-solid fa-user-plus me-2"></i>HRMPSB</a>
-                                                    @endcanany
+                                                    <a class="list-group-item list-group-item-action border-0{{ request()->is('hr/hrmpsb') ? ' active ' : '' }}"
+                                                        href="{{ route('hr.hrmpsb.index') }}"><i
+                                                            class="fa-solid fa-user-plus me-2"></i>HRMPSB</a>
                                                     <a class="list-group-item list-group-item-action border-0{{ request()->is('hr/ranking') ? ' active ' : '' }}"
                                                         href="{{ route('hr.ranking.index') }}"><i
                                                             class="fa-solid fa-chart-simple me-2"></i>Ranking</a>
@@ -393,12 +390,12 @@
                                                     <a class="list-group-item list-group-item-action border-0{{ request()->is('hr/pms') ? ' active ' : '' }}"
                                                         href="{{ route('hr.pms.index') }}"><i
                                                             class="fa-solid fa-plus me-2"></i>Add PMS</a>
-                                                    {{-- <a class="list-group-item list-group-item-action border-0"
-                                                        href="{{ route('hr.pmsEmployee.index') }}"><i
-                                                            class="fa-solid fa-signal me-2"></i>Employee</a> --}}
                                                     <a class="list-group-item list-group-item-action border-0 {{ request()->is('hr/pmsEmployee/create') ? ' active ' : '' }}"
                                                         href="{{ route('hr.pmsEmployee.create') }}"><i
-                                                            class="fa-solid fa-chart-simple me-2"></i>Department</a>
+                                                            class="fa-solid fa-chart-simple me-2"></i>Department Head</a>
+                                                    <a class="list-group-item list-group-item-action border-0 {{ request()->is('hr/yearlyIPCR') ? ' active ' : '' }}"
+                                                        href="{{ route('hr.yearlyIPCR.index') }}"><i
+                                                            class="fa-solid fa-calendar me-2"></i>Yearly IPCR</a>
                                                 </div>
                                                 {{-- lnd --}}
                                                 <a href="#lnd"
@@ -420,13 +417,6 @@
                                                         href="{{ route('hr.surveyForm.index') }}"><i
                                                             class="fa-solid fa-person-dots-from-line me-2"></i>Training Need
                                                         Analysis</a>
-                                                    {{-- <a class="list-group-item list-group-item-action border-0"
-                                                        href=""><i
-                                                            class="fa-solid fa-clipboard-question me-2"></i>Self Assesment Result</a> --}}
-                                                    {{-- <a class="list-group-item list-group-item-action border-0"
-                                                        href="{{ route('hr.trainingneeds.index') }}"><i
-                                                        class="fa-solid fa-check-double me-2"></i>Training Need
-                                                        Analysis Compliance</a> --}}
                                                 </div>
                                                 {{-- R n R --}}
                                                 <a href="#rr"
@@ -436,9 +426,7 @@
                                                     <span class="float-end"><i class="fa-solid fa-caret-down"></i></span>
                                                 </a>
                                                 <div class="collapse ms-2" id="rr">
-                                                    {{-- <a class="list-group-item list-group-item-action border-0"
-                                                        href=""><i
-                                                            class="fa-solid fa-square-poll-vertical me-2"></i>Self Assesment</a> --}}
+
                                                     <a class="list-group-item list-group-item-action border-0{{ request()->is('hr/certificates') ? ' active ' : '' }}"
                                                         href="{{ route('hr.certificates.index') }}"><i
                                                             class="fa-solid fa-certificate me-2"></i>Certificate</a>
@@ -449,9 +437,13 @@
                                                     <a class="list-group-item list-group-item-action border-0{{ request()->is('hr/top5') ? ' active ' : '' }}"
                                                         href="{{ route('hr.top5.index') }}"><i
                                                             class="fa-solid fa-envelopes-bulk me-2"></i>Top 5 Offices</a>
+                                                    <a class="list-group-item list-group-item-action border-0 {{ request()->is('hr/yearlyIPCR/create') ? ' active ' : '' }}"
+                                                        href="{{ route('hr.yearlyIPCR.create') }}"><i
+                                                            class="fa-solid fa-calendar me-2"></i>Top 5 Offices Yearly</a>
                                                 </div>
                                             </div>
                                             <hr class="text-dark">
+                                            <h4 class="mx-3 fw-bold">DATA MANAGEMENT AND PROCESSING</h4>
                                             <div class="list-group border-0 text-start">
                                                 <a href="{{ route('hr.dashboard.index') }}"
                                                     class="list-group-item list-group-item-action border-0{{ request()->is('hr/dashboard') ? ' active ' : '' }}">

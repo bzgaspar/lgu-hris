@@ -131,7 +131,6 @@ export default {
                 let from = moment(this.from_filter_value, "YYYY-MM-DD").format(
                     "MM-YYYY"
                 );
-                console.log(val, from);
                 return val === from;
             }
         },
@@ -144,7 +143,6 @@ export default {
                 let to = moment(this.to_filter_value, "YYYY-MM-DD").format(
                     "MM-YYYY"
                 );
-                console.log(val, to);
                 return val === to;
             }
         },

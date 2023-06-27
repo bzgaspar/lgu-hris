@@ -5,6 +5,8 @@ use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\hr\empPmsController;
 use App\Http\Controllers\hr\RangkingController;
+use App\Http\Controllers\hr\YearlyIPCRController;
+use App\Models\hr\YearlyIPCR;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +30,7 @@ Route::get('/getMyInfo', [HomeController::class, 'getMyInfo'])->name('getMyInfo'
 
 Route::resource('/user', UserController::class);
 Route::get('/getDepartment', [HomeController::class, 'getDepartment'])->name('getDepartment');
+Route::get('/getDepartmentIPCR/{year}', [HomeController::class, 'getDepartmentIPCR'])->name('getDepartmentIPCR');
 Route::get('/getAllUser', [HomeController::class, 'getAllUser'])->name('getAllUser');
 Route::get('/getHrmpsbUser', [HomeController::class, 'getHrmpsbUser'])->name('getHrmpsbUser');
 Route::get('/getLeave', [HomeController::class, 'getLeave'])->name('getLeave');
@@ -53,3 +56,8 @@ Route::get('/getEmployee', [HomeController::class, 'getEmployee'])->name('getEmp
 Route::get('/getTop5', [HomeController::class, 'getTop5'])->name('getTop5');
 Route::get('/getDepartmentHead', [HomeController::class, 'getDepartmentHead'])->name('getDepartmentHead');
 Route::get('/getLoyalty', [HomeController::class, 'getLoyalty'])->name('getLoyalty');
+Route::get('/getYearsIPCR', [HomeController::class, 'getYearsIPCR'])->name('getYearsIPCR');
+Route::get('/getYearsIPCR2', [HomeController::class, 'getYearsIPCR2'])->name('getYearsIPCR2');
+Route::get('/getAverage/{dep_id}', [HomeController::class, 'getAverage'])->name('getAverage');
+Route::get('/getYearlyRating', [HomeController::class, 'getYearlyRating'])->name('getYearlyRating');
+Route::get('/getYearlyTopRating', [HomeController::class, 'getYearlyTopRating'])->name('getYearlyTopRating');

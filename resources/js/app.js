@@ -51,6 +51,8 @@ Vue.component("hr-rating", require("./views/hr/rsp/rating.vue").default);
 Vue.component("hr-pms-emp", require("./views/hr/pms/employees.vue").default);
 Vue.component("hr-pms-dep", require("./views/hr/pms/department.vue").default);
 Vue.component("hr-pms-top", require("./views/hr/pms/Top5.vue").default);
+Vue.component("hr-pms-yearly", require("./views/hr/pms/yearly.vue").default);
+Vue.component("hr-pms-yearly-top", require("./views/hr/pms/yearlyTop.vue").default);
 
 // print
 Vue.component("hr-print-index", require("./views/hr/print/index.vue").default);

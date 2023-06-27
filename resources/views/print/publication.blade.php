@@ -165,7 +165,7 @@
                 </div>
                 <div class="row">
                     <div class="col-3 border-bottom text-center border-dark">
-                        delfinalbano_ge@yahoo.com
+                        delfinalbano_gc@yahoo.com
                     </div>
                 </div>
             </div>
