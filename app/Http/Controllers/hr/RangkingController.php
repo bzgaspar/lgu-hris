@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\hr;
 
 use App\Http\Controllers\Controller;
+use App\Models\hr\hrmpsb;
 use Illuminate\Http\Request;
 use App\Models\hr\InterviewExam;
 use App\Models\hr\Publication;
@@ -389,10 +390,13 @@ class RangkingController extends Controller
         ->with('publication')
         ->where('applications.pub_id', $id)->get();
 
+        $hrmpsb = hrmpsb::all();
+
         $publication = $this->publication->findOrFail($id);
         $ranking = $this->ranking($all_applicants);
         return view('print.rangking_applicant')
         ->with('ranking', $ranking)
+        ->with('hrmpsb', $hrmpsb)
         ->with('publication', $publication);
     }
 

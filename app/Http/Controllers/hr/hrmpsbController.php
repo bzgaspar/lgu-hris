@@ -48,10 +48,8 @@ class hrmpsbController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'id' => 'required'
-        ]);
-        $this->hrmpsb->user_id = $request->id;
+        $this->hrmpsb->user_id = $request->user_id['id'];
+        $this->hrmpsb->position = $request->position;
         $this->hrmpsb->save();
 
         return response()->json(null, Response::HTTP_OK);

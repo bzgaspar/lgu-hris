@@ -149,11 +149,18 @@
             <div class="col-11">
                 <div class="container-fluid">
                     <div class="row mt-5 mx-5">
-                        <div class="col text-center">
-                            <b class="border-bottom">ERLIEGY A. BUTAY, MPA</b> <br>
-                            MGDH I (MHRMO)
-                        </div>
-                        <div class="col text-center">
+
+                        @foreach ($hrmpsb as $item)
+                            <div class="col text-center">
+                                <b class="border-bottom">
+                                    <?php $name = App\Http\Controllers\HomeController::getFullName($item->user_id); ?>
+                                    {{ $name['full_name'] }}
+                                </b>
+                                <br>
+                                {{ $item->position }}
+                            </div>
+                        @endforeach
+                        {{-- <div class="col text-center">
                             <b class="border-bottom">ROSALIE L. MARQUEZ, RSW</b> <br>
                             GAD, Focal Person
                         </div>
@@ -168,7 +175,7 @@
                         <div class="col text-center">
                             <b class="border-bottom">RHOMEL G. SALVADOR</b> <br>
                             Administrative Officer IV (HRMO II)
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

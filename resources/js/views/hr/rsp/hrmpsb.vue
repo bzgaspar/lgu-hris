@@ -2,7 +2,7 @@
     <v-app>
         <v-form @submit.prevent="addUserHRMPSB()">
             <v-row class="w-75 mx-auto">
-                <v-col cols="12" md="8">
+                <v-col cols="12" md="5">
                     <v-combobox
                         clearable
                         :items="users"
@@ -10,14 +10,26 @@
                         item-value="id"
                         outlined
                         color="success"
-                        v-model="user_selected"
+                        v-model="form.user_id"
                         prepend-inner-icon="mdi-account"
                         label="HRMPSB Member"
                         dense
                     >
                     </v-combobox>
                 </v-col>
-                <v-col cols="12" md="4">
+                <v-col cols="12" md="5">
+                    <v-text-field
+                        clearable
+                        outlined
+                        color="success"
+                        v-model="form.position"
+                        prepend-inner-icon="mdi-account"
+                        label="Position"
+                        dense
+                    >
+                    </v-text-field>
+                </v-col>
+                <v-col cols="12" md="2">
                     <v-btn
                         :loading="loading_btn"
                         :disabled="loading_btn"
@@ -70,7 +82,7 @@ export default {
     data() {
         return {
             search: "",
-            user_selected: "",
+            form: {},
             loading: false,
             loading_btn: false,
             loading_btn_dlt: false,
@@ -82,6 +94,7 @@ export default {
                     value: "id",
                 },
                 { text: "Name", value: "name" },
+                { text: "Position", value: "position" },
                 { text: "Action", value: "actions" },
             ],
             users: [],
@@ -101,7 +114,7 @@ export default {
         },
         addUserHRMPSB() {
             this.loading_btn = true;
-            axios.post("/hr/hrmpsb", this.user_selected).then((response) => {
+            axios.post("/hr/hrmpsb", this.form).then((response) => {
                 if (this.$root.vtoast) {
                     this.$root.vtoast.show({
                         message: "HRMPSB Added!",
@@ -110,7 +123,8 @@ export default {
                     });
                 }
                 this.getHRMPSB();
-                this.user_selected = "";
+                this.form.user_id = "";
+                this.form.position = "";
             });
         },
         getHRMPSB() {

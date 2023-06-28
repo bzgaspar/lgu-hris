@@ -80,7 +80,7 @@ class HomeController extends Controller
     public function getHrmpsbUser()
     {
         $user = hrmpsb::leftJoin('users', 'users.id', 'hrmpsbs.user_id')
-        ->select('hrmpsbs.id', 'users.role', DB::raw("CONCAT(`users`.`first_name`,' ',`users`.`last_name`) as name"))
+        ->select('hrmpsbs.id as id', 'hrmpsbs.position as position', 'users.role', DB::raw("CONCAT(`users`.`first_name`,' ',`users`.`last_name`) as name"))
         ->get();
         return response()->json($user, Response::HTTP_OK);
     }
