@@ -62,7 +62,7 @@ Route::get('/setStorage', [HomeController::class, 'setStorage']);
 Route::get('/', [HomeController::class, 'index'])->name('publication');
 Auth::routes(['verify' => true]);
 
-Route::group(['middleware'=>'auth','middleware'=>'role:0,1,2,3,4,5','middleware'=>'verified'], function () {
+Route::group(['middleware'=>'auth','middleware'=>'role:0,1,2,3,4,5,7','middleware'=>'verified'], function () {
 
     Route::get('/getUserPds', [HomeController::class, 'getUserPds'])->name('getUserPds');
     Route::get('/getUser', [HomeController::class, 'getUser'])->name('getUser');
@@ -109,7 +109,7 @@ Route::group(['middleware'=>'auth','middleware'=>'role:0,1,2,3,4,5','middleware'
 
     });
     #hr
-    Route::group(['prefix'=> 'hr','as'=>'hr.','middleware'=>'role:0,4'], function () {
+    Route::group(['prefix'=> 'hr','as'=>'hr.','middleware'=>'role:0,4,7'], function () {
         // lnd
         Route::resource('/lnd', LearningDevelopment::class);
         Route::resource('/trainingneeds', TrainingNeedsController::class); // compliance

@@ -17,7 +17,6 @@
         body {
             background: rgb(204, 204, 204);
             /* transform: scale(1.04); */
-            s
         }
 
         page {
@@ -57,6 +56,8 @@
                 margin: 0;
                 box-shadow: 0;
                 -webkit-print-color-adjust: exact;
+                page-break-after: always;
+                page-break-before: always;
             }
         }
 

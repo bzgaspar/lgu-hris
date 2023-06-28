@@ -99,7 +99,7 @@
                     </ul>
                     <ul class="navbar-nav me-auto d-flex d-lg-none">
                         @if (Auth::user())
-                            @canany(['isAdmin', 'isHR'])
+                            @canany(['isAdmin', 'isHR', 'isHRHead'])
                                 <h3 class="mx-3">PRIME - HRM</h3>
                                 <li class="nav-item">
                                     RSP
@@ -367,7 +367,7 @@
                                                         class="fa-solid fa-chart-simple me-2"></i>Ranking</a>
                                             @endif
                                         </div>
-                                        @canany(['isAdmin', 'isHR'])
+                                        @canany(['isAdmin', 'isHR', 'isHRHead'])
                                             <hr class="text-dark">
                                             <h3 class="mx-3">PRIME - HRM</h3>
                                             <div class="list-group border-0 text-start">

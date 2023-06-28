@@ -9,7 +9,7 @@
             padding: 0px 0px 0px 2px;
         }
     </style>
-    <page size="Legal">
+    <page size="A4">
         <div class="row p-2">
             <div class="col-4 ms-2">
                 CS Form No.9 <br class="mb-0">
@@ -161,7 +161,8 @@
                         6.D COMMUNICATION <br>
                         &nbsp;&nbsp;<input type="checkbox"><label for="">&nbsp; Not Requested</label><br>
 
-                        &nbsp;&nbsp;<input type="checkbox"><label for="">&nbsp;Requested</label><br><br>
+                        &nbsp;&nbsp;<input type="checkbox" checked disabled><label
+                            for="">&nbsp;Requested</label><br><br>
                         <div class="row justify-conent-center">
                             <div class="col text-center">
                                 @if ($leaveApplication->users->empPlantilla)
@@ -174,7 +175,10 @@
                                     <img src="{{ $leaveApplication->users->Esignature->signature }}" alt="signature"
                                         height="60px" width="60px" style="position:static;margin-top: -70px">
                                 @endif
-                                <p class="border-top mb-0 border-dark" style="margin-top: -19px">(Signature of Applicant)</p>
+                                <p class="border-top mb-0 border-dark"
+                                    @if ($leaveApplication->users->Esignature) style="margin-top: -19px" @endif>(Signature of
+                                    Applicant)
+                                </p>
                             </div>
                         </div>
                     </td>
@@ -193,8 +197,9 @@
                 </tr>
                 <tr>
                     <td colspan="2" width="50%" class="fw-bold pt-2 ps-3 pe-1">
-                        As of ______________________________________
+                        As of <span class="fw-bold">{{ date('F d, Y', strtotime(today())) }}</span>
                         <table class="table table-bordered table-sm me-1 border-dark" style="padding: 0px">
+                            <?php $leave_prev_pres = App\Http\Controllers\hr\leaveApplicationController::getLeaves($leaveApplication->users->id); ?>
                             <tr class="text-center">
                                 <td>
                                     &nbsp;
@@ -204,54 +209,79 @@
                             </tr>
                             <tr>
                                 <td>Total Earned</td>
-                                <td></td>
-                                <td></td>
+                                <td>{{ $leave_prev_pres[1]->elc_vl_balance }}</td>
+                                <td>{{ $leave_prev_pres[1]->elc_sl_balance }}</td>
                             </tr>
                             <tr>
                                 <td>Less this Application</td>
-                                <td></td>
-                                <td></td>
+                                <td>
+                                    @if ($leaveApplication->type != 'Sick Leave')
+                                        {{ $leaveApplication->num_days }}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if ($leaveApplication->type == 'Sick Leave')
+                                        {{ $leaveApplication->num_days }}
+                                    @endif
+                                </td>
                             </tr>
                             <tr>
                                 <td>Balance</td>
-                                <td></td>
-                                <td></td>
+                                <td>{{ $leave_prev_pres[0]->elc_vl_balance }}</td>
+                                <td>{{ $leave_prev_pres[0]->elc_sl_balance }}</td>
                             </tr>
                         </table>
                         <br>
                         <p class="mb-0 text-center f-6">
                             ERLIEGY A. BUTAY, MPA
+                            @if ($leaveApplication->status == 2)
+                                <?php $hr_sig = App\Http\Controllers\HomeController::getHRHeadSignature(); ?>
+                                @if ($hr_sig)
+                                    <img height="60px" width="60px"
+                                        style="position:absolute;margin-top: -30px;margin-left: -95px"
+                                        src="{{ $hr_sig }}" alt="HR Head Signature">
+                                @endif
+                            @endif
                         </p>
+
                         <p class="border-top border-dark text-center fw-light">Municipal Government Department Head I
                             (MHRMO)</p>
                     </td>
                     <td colspan="2" class="ps-3 pt-2 pe-1">
 
-                        <input type="checkbox"><label for="">&nbsp; For Approval</label><br>
+                        <input type="checkbox"checked disabled><label for="">&nbsp; For Approval</label><br>
 
                         <input type="checkbox"><label for="">&nbsp;For Disapproval due to</label>
-                        &nbsp;___________________________________ <br>
+
+                        &nbsp; <span contenteditable="true"> </span> <br>
                         <p></p>
-                        <p class="border-bottom mb-0 border-dark">&nbsp;</p>
-                        <p class="border-bottom mb-0 border-dark">&nbsp;</p>
+                        <p contenteditable="true" class="border-bottom mb-0 border-dark">&nbsp;</p>
                         <br>
                         <br>
-                        <p class="text-center f-6 mb-2 fw-bold" contenteditable="true"></p>
-                        <p class="border-top border-dark text-center">Authorized Official</p>
+                        <?php $dep_head = App\Http\Controllers\HomeController::getDepartmentHeadLeave($leaveApplication->user_id); ?></p>
+                        @if ($leaveApplication->status == 2)
+                            <img height="60px" width="60px"
+                                style="position:absolute;margin-top: -30px;margin-left: 160px"
+                                src="{{ $dep_head['signature'] }}" alt="HR Head Signature">
+                        @endif
+                        <p class="text-center f-6 fw-bold mb-0 p-0" contenteditable="true">{{ $dep_head['full_name'] }}</p>
+                        <p class="border-top border-dark text-center mb-0 p-0">Authorized Official</p>
                     </td>
                 </tr>
                 <tr class="fw-bold">
                     <td colspan="2" class="ps-3">
                         7.C APPROVED FOR: <br>
-                        <p class="mb-0">________&nbsp;days with pay</p>
-                        <p class="mb-0">________&nbsp;days without pay</p>
-                        <p class="mb-1">________&nbsp;others(Specify)</p>
+                        <p class="mb-0">___<span class="text-decoration-underline"
+                                contenteditable="true">{{ $leaveApplication->num_days }}</span> __&nbsp;days
+                            with pay</p>
+                        <p class="mb-0" contenteditable="true">________&nbsp;days without pay</p>
+                        <p class="mb-1" contenteditable="true">________&nbsp;others(Specify)</p>
                     </td>
                     <td colspan="2" class="ps-3">
                         7.C DISAPPROVED DUE TO:
-                        <p class="border-bottom mb-0 border-dark">&nbsp;</p>
-                        <p class="border-bottom mb-0 border-dark">&nbsp;</p>
-                        <p class="border-bottom mb-1 border-dark">&nbsp;</p>
+                        <p class="border-bottom mb-0 border-dark" contenteditable="true">&nbsp;</p>
+                        <p class="border-bottom mb-0 border-dark" contenteditable="true">&nbsp;</p>
+                        <p class="border-bottom mb-1 border-dark" contenteditable="true">&nbsp;</p>
                     </td>
                 </tr>
                 <tr>
@@ -265,7 +295,7 @@
             </table>
         </center>
     </page>
-    <page size="Legal" style="font-size: 11.2px">
+    <page size="Legal" style="font-size: 10px">
         {{-- <center class="pt-3 m-3"> --}}
         <br>
         <div class="row justify-content-center border border-dark mx-3 mt-1">

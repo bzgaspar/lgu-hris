@@ -139,6 +139,9 @@
                                         <option @if ($user->role === '4') selected hidden @endif value="4">
                                             HR
                                         </option>
+                                        <option @if ($user->role === '7') selected hidden @endif value="7">
+                                            HR Head
+                                        </option>
                                         <option @if ($user->role === '5') selected hidden @endif value="5">
                                             Mayor
                                         </option>
@@ -174,10 +177,10 @@
                                         @csrf
                                         @method('DELETE')
                                         <button data-bs-toggle="modal" data-bs-target="#delete-notif-modal"
-                                        data-confirm="Are you sure to Delete this User??"
-                                        data-target="{{ route('admin.user.delete', $user->id) }}"
-                                        class="btn btn-dark btn-sm text-white delete"
-                                        value="{{ $user->id }}">Delete</button>
+                                            data-confirm="Are you sure to Delete this User??"
+                                            data-target="{{ route('admin.user.delete', $user->id) }}"
+                                            class="btn btn-dark btn-sm text-white delete"
+                                            value="{{ $user->id }}">Delete</button>
 
                                     </form>
                                     <a href="{{ route('admin.user.reset', $user->id) }}"

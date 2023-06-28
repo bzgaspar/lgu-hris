@@ -99,12 +99,12 @@ class HomeController extends Controller
     }
     public function getUserLeave($user_id)
     {
-        $leave = LeaveCredit::where('user_id', $user_id)->orderByDesc('elc_period_to')->first();
+        $leave = LeaveCredit::where('user_id', $user_id)->orderByDesc('elc_period_from')->first();
         return response()->json($leave, Response::HTTP_OK);
     }
     public function getLeaveCredit($user_id)
     {
-        $leave = LeaveCredit::where('user_id', $user_id)->orderByDesc('elc_period_to')->get();
+        $leave = LeaveCredit::where('user_id', $user_id)->orderByDesc('elc_period_from')->get();
         return response()->json($leave, Response::HTTP_OK);
     }
     public function getLeaveApp()
@@ -363,5 +363,37 @@ class HomeController extends Controller
             'full_name' => $full_name,
             'position' => $users[0]->position,
         ];
+    }
+    public static function getHRHeadSignature()
+    {
+        $user = User::where('role', 7)->first();
+        if($user->Esignature) {
+            return $user->Esignature->signature;
+        } else {
+            return null;
+        }
+    }
+    public static function getDepartmentHeadLeave($id)
+    {
+        $user = User::findOrFail($id);
+        if($user) {
+            $user_dep = $user->empPlantilla->department->id;
+
+            $dep_head = User::leftJoin('personals', 'users.id', '=', 'personals.user_id')
+            ->join('employee_plantillas', 'employee_plantillas.user_id', 'users.id')
+            ->join('signatures', 'signatures.user_id', 'users.id')
+            ->select('users.first_name', 'personals.middle_name', 'users.last_name', 'signatures.signature as signature')
+            ->where('employee_plantillas.dep_id', $user_dep)
+            ->where('users.role', 3)->orWhere('users.role', 7)->first();
+
+            $full_name = $dep_head->first_name . ' ' . substr($dep_head->middle_name, 0, 1) . '. ' . $dep_head->last_name;
+            $details = [
+                'full_name' => $full_name,
+                'signature' => $dep_head->signature,
+            ];
+            return $details;
+        } else {
+            return null;
+        }
     }
 }

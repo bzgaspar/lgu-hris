@@ -438,15 +438,25 @@ export default {
                             .add(1, "months")
                             .format("YYYY-MM-DD");
 
-                        this.elc_period_to = moment(this.leave.elc_period_to)
-                            .add(1, "months")
-                            .add(5, "days")
-                            .format("YYYY-MM-DD");
+                        let first_day = moment(
+                            this.leave.elc_period_from
+                        ).format("D");
 
-                        let monthsDifference = moment(
-                            this.elc_period_to
-                        ).diff(moment(this.elc_period_from), "months");
-                        console.log(monthsDifference);
+                        while (first_day > 1) {
+                            this.elc_period_from = moment(this.elc_period_from)
+                                .subtract(1, "day")
+                                .format("YYYY-MM-DD");
+                            first_day--;
+                        }
+
+                        this.elc_period_to = moment(this.leave.elc_period_to)
+                            .add(2, "months")
+                            .format("YYYY-MM-DD");
+                        console.log(this.elc_period_to);
+                        let monthsDifference = moment(this.elc_period_to).diff(
+                            moment(this.elc_period_from),
+                            "months"
+                        )
 
                         while (monthsDifference >= 1) {
                             this.elc_period_to = moment(this.elc_period_to)

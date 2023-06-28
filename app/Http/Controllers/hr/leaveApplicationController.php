@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\hr;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\users\LeaveApplication;
+use App\Models\hr\LeaveCredit;
 use Illuminate\Http\Request;
 use App\Models\LeaveApplication as ModelsLeaveApplication;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
 
 class leaveApplicationController extends Controller
@@ -22,7 +25,7 @@ class leaveApplicationController extends Controller
     public function index()
     {
         $all_leave = $this->leaveApplication->paginate(10);
-        return view('hr.empLeave')->with('all_leave',$all_leave);
+        return view('hr.empLeave')->with('all_leave', $all_leave);
     }
 
     /**
@@ -55,6 +58,30 @@ class leaveApplicationController extends Controller
     public function show($id)
     {
         $leaveApplication = $this->leaveApplication->findOrFail($id);
+
+        $prev_credit = LeaveCredit::where('user_id', $leaveApplication->users->id)->orderByDesc('elc_period_from')->first();
+
+        $new_date = date('Y-m-d', strtotime($prev_credit->elc_period_from . ' +1 day'));
+
+        $new_balance_sl = floatval($prev_credit->elc_sl_balance);
+        $new_balance_vl = floatval($prev_credit->elc_vl_balance);
+        if($leaveApplication->type == 'Sick Leave') {
+            $new_balance_sl -= floatval($leaveApplication->num_days);
+        } else {
+            $new_balance_vl -= floatval($leaveApplication->num_days);
+        }
+
+        $leave_credit = new LeaveCredit();
+        $leave_credit->user_id = $leaveApplication->user_id;
+        $leave_credit->elc_period_from = $new_date;
+        $leave_credit->elc_period_to = $new_date;
+        $leave_credit->elc_vl_earned = 0;
+        $leave_credit->elc_sl_earned = 0;
+        $leave_credit->elc_vl_balance = $new_balance_vl;
+        $leave_credit->elc_sl_balance = $new_balance_sl;
+        $leave_credit->elc_remarks = 'Leave'.$leaveApplication->date_from . ' to ' .$leaveApplication->date_to;
+        $leave_credit->save();
+
         $leaveApplication->status = 2;
         if ($leaveApplication->save()) {
             Session::flash('alert', 'success|Service Record has been Accepted!');
@@ -103,5 +130,13 @@ class leaveApplicationController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public static function getLeaves($id)
+    {
+
+        $prev_credit = LeaveCredit::where('user_id', $id)->orderByDesc('elc_period_from')->get();
+
+        return $prev_credit;
     }
 }
