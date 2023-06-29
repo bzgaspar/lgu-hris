@@ -52,7 +52,6 @@
                         @else
                         value="{{ old('first_name', Auth::user()->first_name) }}" @endif>
                     <label for="first_name" class="form-label text-muted">First Name</label>
-
                 </div>
                 <div class="form-floating mb-1">
                     <input type="text" class="form-control text-uppercase" name="last_name" id="last_name" placeholder=""
@@ -62,26 +61,43 @@
                     <label for="last_name" class="form-label text-muted">Last Name</label>
 
                 </div>
-                <div class="row">
-                    <div class="col-9">
-                        <div class="form-floating mb-1">
-                            <input type="text" class="form-control text-uppercase" name="middle_name" id="middle_name"
-                                placeholder=""
-                                @if ($personal) value="{{ old('middle_name', $personal->middle_name) }}"
-                                    @else
-                                    value="{{ old('middle_name') }}" @endif>
-                            <label for="middle_name" class="form-label text-muted">Middle Name</label>
-
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="form-floating mb-1">
+                <div class="form-floating mb-1">
+                    <input type="text" class="form-control text-uppercase" name="middle_name" id="middle_name"
+                        placeholder=""
+                        @if ($personal) value="{{ old('middle_name', $personal->middle_name) }}"
+                                @else
+                                value="{{ old('middle_name') }}" @endif>
+                    <label for="middle_name" class="form-label text-muted">Middle Name</label>
+                </div>
+                <div class="row my-2">
+                    <div class="col-12 col-md-4 py-1">
+                        <div class="form-floating">
                             <input type="text" class="form-control text-uppercase" name="ext_name" id="ext_name"
                                 placeholder=""
                                 @if ($personal) value="{{ old('ext_name', $personal->ext_name) }}"
                                 @else
                                 value="{{ old('ext_name') }}" @endif>
                             <label for="ext_name" class="form-label text-muted">Ext.</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 py-0">
+                        <div class="form-floating">
+                            <input type="text" class="form-control text-uppercase" name="salutation_before"
+                                id="salutation_before" placeholder=""
+                                @if ($personal) value="{{ old('salutation_before', $personal->salutation_before) }}"
+                                @else
+                                value="{{ old('salutation_before') }}" @endif>
+                            <label for="salutation_before" class="form-label text-muted">Salutation Before</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 py-1">
+                        <div class="form-floating">
+                            <input type="text" class="form-control text-uppercase" name="salutation_after"
+                                id="salutation_after" placeholder=""
+                                @if ($personal) value="{{ old('salutation_after', $personal->salutation_after) }}"
+                                @else
+                                value="{{ old('salutation_after') }}" @endif>
+                            <label for="salutation_after" class="form-label text-muted">Salutation After</label>
                         </div>
                     </div>
                 </div>

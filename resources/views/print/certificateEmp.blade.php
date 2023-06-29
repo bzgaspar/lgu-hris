@@ -68,8 +68,9 @@
             @endif
             to
             @if ($user->hasServiceRecord($user->id))
-                @if ($user->serviceRecord->sortByDesc('id')->first()->cause == 'Retired' ||
-                    $user->serviceRecord->sortByDesc('id')->first()->cause == 'retired')
+                @if (
+                    $user->serviceRecord->sortByDesc('id')->first()->cause == 'Retired' ||
+                        $user->serviceRecord->sortByDesc('id')->first()->cause == 'retired')
                     {{ date('F d, Y', strtotime($user->serviceRecord->sortByDesc('id')->first()->to)) }}
                 @else
                     present
@@ -116,7 +117,8 @@
             <div class="row mx-2 text-start mt-5">
                 <div class="col"></div>
                 <div class="col"></div>
-                <div class="col text-center text-uppercase border-bottom fw-bold">ERLIEGY a. butay mpa</div>
+                <div class="col text-center text-uppercase border-bottom fw-bold"><?php $name = App\Http\Controllers\HomeController::getHRHead(); ?>
+                    {{ $name['full_name'] }}</div>
             </div>
             <div class="row mx-2 text-start">
                 <div class="col"></div>

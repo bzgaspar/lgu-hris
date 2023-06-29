@@ -25,8 +25,8 @@ class Personal extends Controller
      */
     public function index()
     {
-        $personal = $this->personal->where('user_id',Auth::user()->id)->first();
-        return view('users.PDS.personal')->with('personal',$personal);
+        $personal = $this->personal->where('user_id', Auth::user()->id)->first();
+        return view('users.PDS.personal')->with('personal', $personal);
     }
 
     /**
@@ -52,6 +52,8 @@ class Personal extends Controller
         $this->personal->last_name = strtoupper($request->last_name);
         $this->personal->middle_name = strtoupper($request->middle_name);
         $this->personal->ext_name = strtoupper($request->ext_name);
+        $this->personal->salutation_before =$request->salutation_before;
+        $this->personal->salutation_after =', ' . $request->salutation_after;
         $this->personal->date_birth = $request->date_birth;
         $this->personal->place_birth = strtoupper($request->place_birth);
         $this->personal->sex = $request->sex;
@@ -130,6 +132,8 @@ class Personal extends Controller
         $personal->last_name = $request->last_name;
         $personal->middle_name = $request->middle_name;
         $personal->ext_name = $request->ext_name;
+        $personal->salutation_before = $request->salutation_before;
+        $personal->salutation_after = ', ' . $request->salutation_after;
         $personal->date_birth = $request->date_birth;
         $personal->place_birth = $request->place_birth;
         $personal->sex = $request->sex;
