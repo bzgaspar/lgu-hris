@@ -206,6 +206,11 @@
                                         Publication
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('hr.printing.index') }}" class="nav-link">
+                                        Printing
+                                    </a>
+                                </li>
                                 @can('isAdmin')
                                     <li class="nav-item">
                                         <a href="{{ route('admin.user.index') }}" class="nav-link">User Management</a>
