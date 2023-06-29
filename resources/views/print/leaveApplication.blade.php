@@ -264,7 +264,11 @@
                                 style="position:absolute;margin-top: -30px;margin-left: 160px"
                                 src="{{ $dep_head['signature'] }}" alt="HR Head Signature">
                         @endif
-                        <p class="text-center f-6 fw-bold mb-0 p-0" contenteditable="true">{{ $dep_head['full_name'] }}</p>
+                        <p class="text-center f-6 fw-bold mb-0 p-0" contenteditable="true">
+                            @if ($dep_head)
+                                {{ $dep_head['full_name'] }}
+                            @endif
+                        </p>
                         <p class="border-top border-dark text-center mb-0 p-0">Authorized Official</p>
                     </td>
                 </tr>
