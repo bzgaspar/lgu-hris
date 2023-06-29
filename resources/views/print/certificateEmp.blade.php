@@ -53,9 +53,14 @@
                         MR.
                     @endif
                 @endif
-                {{ $user->first_name }} @if ($user->pdsPersonal)
+                {{ $user->first_name }}
+                @if ($user->pdsPersonal)
                     {{ $user->pdsPersonal->middle_name }}
-                @endif {{ $user->last_name }}
+                @endif
+                {{ $user->last_name }}
+                @if ($user->pdsPersonal)
+                    {{ $user->pdsPersonal->ext_name }}
+                @endif
             </strong>,
             @if ($user->empPlantilla)
                 {{ $user->empPlantilla->EPposition }}
@@ -97,9 +102,14 @@
                         MR.
                     @endif
                 @endif
-                {{ $user->first_name }} @if ($user->pdsPersonal)
+                {{ $user->first_name }}
+                @if ($user->pdsPersonal)
                     {{ $user->pdsPersonal->middle_name }}
-                @endif {{ $user->last_name }}
+                @endif
+                {{ $user->last_name }}
+                @if ($user->pdsPersonal)
+                    {{ $user->pdsPersonal->ext_name }}
+                @endif
             </strong>
             has no pending Administrative Case filed against him/her in this office.
             <br>

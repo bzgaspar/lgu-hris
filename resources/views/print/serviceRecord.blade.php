@@ -41,11 +41,14 @@
                             <div class="col-2">Name: </div>
                             <div class="col border-bottom">{{ $user->last_name }}</div>
                             <div class="col border-bottom">{{ $user->first_name }}</div>
-                            <div class="col border-bottom">
-                                @if ($user->pdsPersonal)
+                            @if ($user->pdsPersonal)
+                                <div class="col border-bottom">
+                                    {{ $user->pdsPersonal->ext_name }}
+                                </div>
+                                <div class="col border-bottom">
                                     {{ $user->pdsPersonal->middle_name }}
-                                @endif
-                            </div>
+                                </div>
+                            @endif
                         </div>
                     </div>
                     <div class="col">
@@ -126,7 +129,7 @@
                                     @endif
                                 </td>
                                 <td>{{ $item->status }}</td>
-                                <td>{{ number_format($item->salary,2,'.',',') }}</td>
+                                <td>{{ number_format($item->salary, 2, '.', ',') }}</td>
                                 <td colspan="2">{{ $item->station }}</td>
                                 <td>
                                     @if ($item->wo_pay)

@@ -64,8 +64,12 @@
                                         {{ $plantilla->user->first_name }}
                                         @if ($plantilla->user->pdsPersonal)
                                             {{ $plantilla->user->pdsPersonal->middle_name }}
+                                            {{ $plantilla->user->pdsPersonal->ext_name }}
                                         @endif
                                         {{ $plantilla->user->last_name }}
+                                        @if ($plantilla->user->pdsPersonal)
+                                            {{ $plantilla->user->pdsPersonal->ext_name }}
+                                        @endif
                                     @endif
                                 </td>
                                 {{-- <td>{{ $plantilla->designation->name }}</td> --}}

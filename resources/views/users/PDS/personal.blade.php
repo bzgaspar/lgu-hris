@@ -87,7 +87,7 @@
                                 @if ($personal) value="{{ old('salutation_before', $personal->salutation_before) }}"
                                 @else
                                 value="{{ old('salutation_before') }}" @endif>
-                            <label for="salutation_before" class="form-label text-muted">Salutation Before</label>
+                            <label for="salutation_before" class="form-label text-muted">Salutation Before Name</label>
                         </div>
                     </div>
                     <div class="col-12 col-md-4 py-1">
@@ -97,7 +97,7 @@
                                 @if ($personal) value="{{ old('salutation_after', $personal->salutation_after) }}"
                                 @else
                                 value="{{ old('salutation_after') }}" @endif>
-                            <label for="salutation_after" class="form-label text-muted">Salutation After</label>
+                            <label for="salutation_after" class="form-label text-muted">Salutation After Name</label>
                         </div>
                     </div>
                 </div>

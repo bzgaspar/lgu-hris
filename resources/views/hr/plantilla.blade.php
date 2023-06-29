@@ -190,88 +190,10 @@
             </button>
             <hr>
             </form>
-            {{-- <div class="row justify-content-end">
-                <div class="col-12 col-md-4 text-end">
-                    <form action="{{ route('hr.plantilla.index') }}" method="get">
-                        @csrf
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" name="search" placeholder="Search Position"
-                                aria-label="Recipient's username" aria-describedby="button-addon2"
-                                value="{{ old('search') }}">
-                            <button class="btn btn-outline-warning fw-bold"><i
-                                    class="fa-solid fa-magnifying-glass me-1"></i>Search</button>
-                        </div>
-                    </form>
-                </div>
-            </div> --}}
         </div>
         <hr-plantilla></hr-plantilla>
         <div class="col-12 col-md-10 mt-3">
 
-            {{-- <div class="table-responsive" id="no-more-tables">
-
-                <div class="d-md-none d-flex justify-content-center">
-                    {{ $all_plantilla->links('pagination.custom') }}
-                </div>
-                <table class="table table-hover table-striped smnall table-sm">
-                    <thead>
-                        <tr class="table-light">
-                            <th class="numeric" width="5%">No.</th>
-                            <th class="numeric">Position title</th>
-                            <th class="numeric">Incumbent</th>
-                            <th class="numeric">Department</th>
-                            <th class="numeric">Designation</th>
-                            <th class="numeric" width="5%"></th>
-                        </tr>
-                    </thead>
-                    <tbody class="table-group-divider">
-                        @forelse ($all_plantilla as $plantilla)
-                            <tr>
-                                <td data-title="No">{{ $plantilla->EPno }}</td>
-                                <td data-title="Position">{{ $plantilla->EPposition }}</td>
-                                <td data-title="Incumbent">
-                                    @if ($plantilla->user_id)
-                                        {{ $plantilla->user->first_name . ' ' . $plantilla->user->last_name }}
-                                    @else
-                                        -
-                                    @endif
-                                </td>
-                                <td data-title="Department">
-                                    {{ $plantilla->department->name }}
-                                </td>
-                                <td data-title="Designation">
-                                    @if ($plantilla->EPdesignation)
-                                        {{ $plantilla->designation->name }}
-                                    @else
-                                        -
-                                    @endif
-                                </td>
-                                <td>
-                                    <div class="btn-group" role="group" aria-label="Basic example">
-                                        <a href="{{ route('hr.plantilla.edit', $plantilla->id) }}"
-                                            class="btn btn-warning btn-sm  text-white"><i class="fa fa-pencil text-white"
-                                                aria-hidden="true"></i></a>
-                                        <form action="{{ route('hr.plantilla.destroy', $plantilla->id) }}"
-                                            method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm text-white rounded-0 rounded-end" onclick="return confirm('Are you sure?')" ><i
-                                                    class="fa-solid fa-trash-can me-1"></i> </button>
-                                        </form>
-                                    </div>
-                                </td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="9" class="text-center">No Records</td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
-                <div class="d-flex justify-content-center">
-                    {{ $all_plantilla->links('pagination.custom') }}
-                </div>
-            </div> --}}
         </div>
     </div>
 

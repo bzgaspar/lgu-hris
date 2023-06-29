@@ -355,7 +355,7 @@ class HomeController extends Controller
     {
         $users = User::LeftJoin('personals', 'users.id', '=', 'personals.user_id')
             ->leftJoin('employee_plantillas', 'employee_plantillas.user_id', '=', 'users.id')
-            ->select('users.first_name', 'personals.salutation_before', 'personals.salutation_after', 'personals.middle_name', 'users.last_name', 'employee_plantillas.EPposition as position')
+            ->select('users.first_name', 'personals.salutation_before', 'personals.salutation_after', 'personals.ext_name', 'personals.middle_name', 'users.last_name', 'employee_plantillas.EPposition as position')
             ->where('users.id', $id)->first();
 
         if($users->salutation_before  && $users->salutation_after) {
@@ -363,25 +363,29 @@ class HomeController extends Controller
             $users->salutation_before .
             $users->first_name . ' ' .
             substr($users->middle_name, 0, 1) . '. ' .
-            $users->last_name .
+            $users->last_name . ' ' .
+            $users->ext_name .
             $users->salutation_after;
         } elseif($users->salutation_before) {
             $full_name =
             $users->salutation_before .
             $users->first_name . ' ' .
             substr($users->middle_name, 0, 1) . '. ' .
-            $users->last_name;
+            $users->last_name . ' ' .
+            $users->ext_name;
         } elseif($users->salutation_after) {
             $full_name =
             $users->first_name . ' ' .
             substr($users->middle_name, 0, 1) . '. ' .
-            $users->last_name .
+            $users->last_name . ' ' .
+            $users->ext_name .
             $users->salutation_after;
         } else {
             $full_name =
             $users->first_name . ' ' .
             substr($users->middle_name, 0, 1) . '. ' .
-            $users->last_name;
+            $users->last_name . ' ' .
+            $users->ext_name;
         }
 
         return [
@@ -419,25 +423,29 @@ class HomeController extends Controller
                     $dep_head->salutation_before .
                     $dep_head->first_name . ' ' .
                     substr($dep_head->middle_name, 0, 1) . '. ' .
-                    $dep_head->last_name .
+                    $dep_head->last_name . ' ' .
+                    $dep_head->ext_name .
                     $dep_head->salutation_after;
                 } elseif($dep_head->salutation_before) {
                     $full_name =
                     $dep_head->salutation_before .
                     $dep_head->first_name . ' ' .
                     substr($dep_head->middle_name, 0, 1) . '. ' .
-                    $dep_head->last_name;
+                    $dep_head->last_name. ' ' .
+                    $dep_head->ext_name;
                 } elseif($dep_head->salutation_after) {
                     $full_name =
                     $dep_head->first_name . ' ' .
                     substr($dep_head->middle_name, 0, 1) . '. ' .
-                    $dep_head->last_name .
+                    $dep_head->last_name. ' ' .
+                    $dep_head->ext_name .
                     $dep_head->salutation_after;
                 } else {
                     $full_name =
                     $dep_head->first_name . ' ' .
                     substr($dep_head->middle_name, 0, 1) . '. ' .
-                    $dep_head->last_name;
+                    $dep_head->last_name. ' ' .
+                    $dep_head->ext_name;
                 }
 
                 $details = [
@@ -475,25 +483,29 @@ class HomeController extends Controller
                     $dep_head->salutation_before .
                     $dep_head->first_name . ' ' .
                     substr($dep_head->middle_name, 0, 1) . '. ' .
-                    $dep_head->last_name .
+                    $dep_head->last_name. ' ' .
+                    $dep_head->ext_name .
                     $dep_head->salutation_after;
                 } elseif($dep_head->salutation_before) {
                     $full_name =
                     $dep_head->salutation_before .
                     $dep_head->first_name . ' ' .
                     substr($dep_head->middle_name, 0, 1) . '. ' .
-                    $dep_head->last_name;
+                    $dep_head->last_name. ' ' .
+                    $dep_head->ext_name;
                 } elseif($dep_head->salutation_after) {
                     $full_name =
                     $dep_head->first_name . ' ' .
                     substr($dep_head->middle_name, 0, 1) . '. ' .
-                    $dep_head->last_name .
+                    $dep_head->last_name . ' ' .
+                    $dep_head->ext_name.
                     $dep_head->salutation_after;
                 } else {
                     $full_name =
                     $dep_head->first_name . ' ' .
                     substr($dep_head->middle_name, 0, 1) . '. ' .
-                    $dep_head->last_name;
+                    $dep_head->last_name. ' ' .
+                    $dep_head->ext_name;
                 }
 
 
