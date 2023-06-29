@@ -386,12 +386,19 @@ class HomeController extends Controller
             ->where('employee_plantillas.dep_id', $user_dep)
             ->where('users.role', 3)->orWhere('users.role', 7)->first();
 
-            $full_name = $dep_head->first_name . ' ' . substr($dep_head->middle_name, 0, 1) . '. ' . $dep_head->last_name;
-            $details = [
-                'full_name' => $full_name,
-                'signature' => $dep_head->signature,
-            ];
-            return $details;
+
+            if($dep_head) {
+
+                $full_name = $dep_head->first_name . ' ' . substr($dep_head->middle_name, 0, 1) . '. ' . $dep_head->last_name;
+
+                $details = [
+                    'full_name' => $full_name,
+                    'signature' => $dep_head->signature,
+                ];
+                return $details;
+            }else{
+                return null;
+            }
         } else {
             return null;
         }
