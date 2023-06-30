@@ -201,7 +201,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function leaveCreditlatest()
     {
-        return $this->hasOne(LeaveCredit::class, 'user_id')->orderBy('elc_period_to', 'desc');
+        return $this->hasOne(LeaveCredit::class, 'user_id')->orderBy('elc_period_from', 'desc');
     }
     public function leaveCard()
     {

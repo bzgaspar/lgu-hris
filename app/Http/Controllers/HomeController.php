@@ -91,6 +91,7 @@ class HomeController extends Controller
         ->with('empPlantilla', 'empPlantilla.department')
         ->with('pdsPersonal')
         ->with('leaveCreditlatest')
+        ->orderByDesc('leaveCreditlatest.elc_period_from')
         ->where('users.role', '!=', '1')
         ->where('users.id', '!=', '1')
         ->where('users.id', '!=', '2')
