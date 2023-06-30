@@ -396,7 +396,7 @@ class HomeController extends Controller
     public static function getHRHeadSignature()
     {
         $user = User::where('role', 7)->first();
-        if($user->Esignature) {
+        if($user->HasEsig) {
             return $user->Esignature->signature;
         } else {
             return null;

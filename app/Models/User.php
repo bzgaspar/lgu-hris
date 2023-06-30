@@ -259,6 +259,10 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne(Signature::class, 'user_id');
     }
+    public function HasEsig()
+    {
+        return $this->Esignature()->exists();
+    }
 
 
 
