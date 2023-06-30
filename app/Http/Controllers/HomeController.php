@@ -112,6 +112,7 @@ class HomeController extends Controller
         $leave_app = LeaveApplication::leftJoin('users', 'users.id', '=', 'leave_applications.user_id')
         ->select('leave_applications.id', 'leave_applications.user_id', 'leave_applications.type', 'leave_applications.created_at', 'leave_applications.date_from', 'leave_applications.status', 'leave_applications.date_to', DB::raw("CONCAT(`users`.`first_name`,' ',`users`.`last_name`) as name"))
         ->with('users', 'users.empPlantilla.department', 'users.pdsPersonal')
+        ->latest()
         ->get();
         return response()->json($leave_app, Response::HTTP_OK);
     }
