@@ -79,7 +79,7 @@ class leaveApplicationController extends Controller
         $leave_credit->elc_sl_earned = 0;
         $leave_credit->elc_vl_balance = $new_balance_vl;
         $leave_credit->elc_sl_balance = $new_balance_sl;
-        $leave_credit->elc_remarks = 'Leave'.$leaveApplication->date_from . ' to ' .$leaveApplication->date_to;
+        $leave_credit->elc_remarks = 'Filed Leave in '.$leaveApplication->date_from . ' to ' .$leaveApplication->date_to;
         $leave_credit->save();
 
         $leaveApplication->status = 2;

@@ -114,7 +114,6 @@ class LeaveApplication extends Controller
             'Monetization of Leave Credits',
             'Terminal Leave',
         ];
-        $remaining =[];
         return view('print.leaveApplication')
         ->with('details', $details)
         ->with('type', $type)
