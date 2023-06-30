@@ -87,11 +87,12 @@ class HomeController extends Controller
     public function getLeave()
     {
         $user = $this->user
+        ->join('leave_credits', 'leave_credits.user_id', 'users.id')
+        ->orderByDesc('leave_credits.elc_period_from')
         ->select('users.id', 'users.email', 'users.role', DB::raw("CONCAT(`users`.`first_name`,' ',`users`.`last_name`) as name"))
         ->with('empPlantilla', 'empPlantilla.department')
         ->with('pdsPersonal')
         ->with('leaveCreditlatest')
-        ->orderByDesc('leaveCreditlatest.elc_period_from')
         ->where('users.role', '!=', '1')
         ->where('users.id', '!=', '1')
         ->where('users.id', '!=', '2')
