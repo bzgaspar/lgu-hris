@@ -53,8 +53,8 @@
                         <div class="row justify-content-center">
                             <div class="col">
                                 <strong>{{ $leaveApplication->users->last_name }}
-                                    @if ($user->pdsPersonal)
-                                        {{ $user->pdsPersonal->ext_name }}
+                                    @if ($leaveApplication->users->pdsPersonal)
+                                        {{ $leaveApplication->users->pdsPersonal->ext_name }}
                                     @endif
                                 </strong>
                             </div>

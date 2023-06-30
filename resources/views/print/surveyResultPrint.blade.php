@@ -43,8 +43,8 @@
                                     {{ $surveyAnswer->user->pdsPersonal->middle_name }}
                                 @endif
                                 {{ $surveyAnswer->user->last_name }}
-                                @if ($user->pdsPersonal)
-                                    {{ $user->pdsPersonal->ext_name }}
+                                @if ($surveyAnswer->user->pdsPersonal)
+                                    {{ $surveyAnswer->user->pdsPersonal->ext_name }}
                                 @endif
                             </td>
                         </tr>
