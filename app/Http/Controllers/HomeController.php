@@ -416,8 +416,7 @@ class HomeController extends Controller
                 $full_name =
                 $dep_head->first_name . ' ' .
                 substr($dep_head->middle_name, 0, 1) . '. ' .
-                $dep_head->last_name. ' ' .
-                $dep_head->ext_name;
+                $dep_head->last_name;
                 if($dep_head->salutation_before  && $dep_head->salutation_after) {
                     if(strtolower($dep_head->ext_name) != 'n/a') {
                         $full_name = $dep_head->salutation_before. ' ' . $full_name .' ' .$dep_head->ext_name. $dep_head->salutation_after;
@@ -469,8 +468,7 @@ class HomeController extends Controller
                 $full_name =
                 $dep_head->first_name . ' ' .
                 substr($dep_head->middle_name, 0, 1) . '. ' .
-                $dep_head->last_name. ' ' .
-                $dep_head->ext_name;
+                $dep_head->last_name;
                 if($dep_head->salutation_before  && $dep_head->salutation_after) {
                     if(strtolower($dep_head->ext_name) != 'n/a') {
                         $full_name = $dep_head->salutation_before. ' ' . $full_name .' ' .$dep_head->ext_name. $dep_head->salutation_after;
@@ -486,6 +484,8 @@ class HomeController extends Controller
                 } else {
                     if(strtolower($dep_head->ext_name) != 'n/a') {
                         $full_name = $full_name .' ' .$dep_head->ext_name;
+                    } else {
+
                     }
                 }
 
