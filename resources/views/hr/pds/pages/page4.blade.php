@@ -753,7 +753,8 @@
                     <strong>{{ $user->pdsOther->Rname1 }}</strong>
                 @endif
             </td>
-            <td class=xl15021260 width=189 style='border-top:none;border-left:none;
+            <td class=xl15021260 width=189
+                style='border-top:none;border-left:none;
       width:142pt;font-size:8px !important'>&nbsp;
                 @if ($user->pdsOther)
                     <strong>{{ $user->pdsOther->Radd1 }}</strong>
@@ -773,7 +774,8 @@
                     <strong>{{ $user->pdsOther->Rname2 }}</strong>
                 @endif
             </td>
-            <td class=xl15021260 width=189 style='border-top:none;border-left:none;
+            <td class=xl15021260 width=189
+                style='border-top:none;border-left:none;
       width:142pt;font-size:8px !important'>&nbsp;
                 @if ($user->pdsOther)
                     <strong>{{ $user->pdsOther->Radd2 }}</strong>
@@ -793,7 +795,8 @@
                     <strong>{{ $user->pdsOther->Rname3 }}</strong>
                 @endif
             </td>
-            <td class=xl15121260 width=189 style='border-top:none;border-left:none;
+            <td class=xl15121260 width=189
+                style='border-top:none;border-left:none;
       width:142pt;font-size:8px !important'>&nbsp;
                 @if ($user->pdsOther)
                     <strong>{{ $user->pdsOther->Radd3 }}</strong>
@@ -887,11 +890,9 @@
             <td class=xl16521260 style=";font-size: 10px;">
                 @if ($user->pdsOther)
                     <strong>
-                       {{ $user->pdsOther->IDa1 }}
+                        {{ $user->pdsOther->IDa1 }}
                     </strong>
-                    @endif | @if ($user->pdsOther)
-                        <strong>{{ $user->pdsOther->IDa2 }}</strong>
-                    @endif
+                @endif
             </td>
             <td class=xl6521260></td>
             <td class=xl6521260></td>
@@ -905,12 +906,10 @@
                 style='border-bottom:.5pt solid black;
       border-top:none;font-size: 10px;'>
                 @if ($user->pdsOther)
-                <strong>
-                    {{ $user->pdsOther->IDb1 }}
-                </strong>
-                    @endif | @if ($user->pdsOther)
-                        <strong>{{ $user->pdsOther->IDb2 }}</strong>
-                    @endif
+                    <strong>
+                        {{ $user->pdsOther->IDa2 }}
+                    </strong>
+                @endif
             </td>
             <td class=xl6521260></td>
             <td class=xl6521260></td>
@@ -931,14 +930,12 @@
                 of Issuance:</td>
             <td rowspan=2 class=xl25021260
                 style='border-bottom:1.0pt solid black;
-      border-top:none;font-size: 10px;'>
+      border-top:none;font-size: 8px;'>
                 @if ($user->pdsOther)
-                <strong>
-                    {{ $user->pdsOther->IDc1 }}
-                </strong>
-                    @endif | @if ($user->pdsOther)
-                        <strong>{{ $user->pdsOther->IDc2 }}</strong>
-                    @endif
+                    <strong>
+                        {{ $user->pdsOther->IDb1 }}
+                    </strong>
+                @endif
             </td>
             <td class=xl6521260></td>
             <td class=xl16621260>&nbsp;</td>

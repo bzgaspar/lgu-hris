@@ -12,7 +12,8 @@
     </nav>
     <div class="row">
         <div class="col text-start">
-            <a href="{{ route('users.pds.otherinformation.index') }}" class="btn btn-outline-success ">Other Information<i class="fa-solid fa-chevron-left ms-2"></i></a>
+            <a href="{{ route('users.pds.otherinformation.index') }}" class="btn btn-outline-success ">Other Information<i
+                    class="fa-solid fa-chevron-left ms-2"></i></a>
         </div>
         <div class="col text-center">
             <strong>Go to</strong>
@@ -132,7 +133,8 @@
                     <div class="row">
                         <div class="col-4">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="Q36a" value="true" name="Q36a"
+                                <input class="form-check-input" type="checkbox" id="Q36a" value="true"
+                                    name="Q36a"
                                     @if ($edit_other) @if ($edit_other->Q36a) checked @endif
                                     @endif
                                 >
@@ -393,27 +395,27 @@
             <hr>
             <p>Government Issued ID (i.e.Passport, GSIS, SSS, PRC, Driver's License, etc.) <br> <span
                     class="text-danger">PLEASE INDICATE ID Number and Date of Issuance</span></p>
-            <div class="row">
+            <div class="row mb-2">
                 <div class="col-12 col-md">
-                    <input type="text" class="form-control" name="IDa1" placeholder="ID No."
+                    <input type="text" class="form-control" name="IDa1" placeholder="Government ID"
                         @if ($edit_other) value="{{ old('IDa1', $edit_other->IDa1) }}"
                    @else
                    value="{{ old('IDa1') }}" @endif>
                 </div>
                 <div class="col-12 col-md">
-                    <input type="date" class="form-control" name="IDa2" placeholder="Date"
+                    <input type="text" class="form-control" name="IDa2" placeholder="ID No."
                         @if ($edit_other) value="{{ old('IDa2', $edit_other->IDa2) }}"
                    @else
                    value="{{ old('IDa2') }}" @endif>
                 </div>
-            </div>
-            <div class="row">
                 <div class="col-12 col-md">
-                    <input type="text" class="form-control" name="IDb1" placeholder="ID No."
+                    <input type="text" class="form-control" name="IDb1" placeholder="Date/Place of Issuance"
                         @if ($edit_other) value="{{ old('IDb1', $edit_other->IDb1) }}"
                    @else
                    value="{{ old('IDb1') }}" @endif>
                 </div>
+            </div>
+            {{-- <div class="row">
                 <div class="col-12 col-md">
                     <input type="date" class="form-control" name="IDb2" placeholder="Date"
                         @if ($edit_other) value="{{ old('IDb2', $edit_other->IDb2) }}"
@@ -434,7 +436,7 @@
                    @else
                    value="{{ old('IDc2') }}" @endif>
                 </div>
-            </div>
+            </div> --}}
             <button type="submit" class="w-100 btn btn-outline-success"><i class="fa-solid fa-plus me-1"></i>
                 @if ($edit_other)
                     Update
