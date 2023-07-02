@@ -135,8 +135,10 @@ class Personal extends Controller
         $personal->middle_name = $request->middle_name;
         $personal->ext_name = $request->ext_name;
         $personal->salutation_before = $request->salutation_before;
-        if($request->salutation_after) {
+        if($request->salutation_after != $personal->salutation_after) {
             $personal->salutation_after =', ' . $request->salutation_after;
+        } elseif($personal->salutation_after == '') {
+            $personal->salutation_after ='' ;
         }
         $personal->date_birth = $request->date_birth;
         $personal->place_birth = $request->place_birth;
