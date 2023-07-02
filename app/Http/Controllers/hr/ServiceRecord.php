@@ -70,7 +70,6 @@ class ServiceRecord extends Controller
     {
         $request->validate([
             'from' => 'required|date',
-            'to' => 'required|date',
             'status' => 'required',
             'station' => 'required',
             'salary' => 'required',
@@ -148,7 +147,6 @@ class ServiceRecord extends Controller
     {
         $request->validate([
             'from' => 'required|date',
-            'to' => 'required|date',
             'status' => 'required',
             'station' => 'required',
             'salary' => 'required',

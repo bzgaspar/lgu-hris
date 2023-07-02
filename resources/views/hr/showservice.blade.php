@@ -35,7 +35,7 @@
                 @csrf
                 <input type="text" value="{{ $user->id }}" name="user_id" hidden>
                 <div class="row">
-                    <div class="col-12 col-md mb-3">
+                    <div class="col-12 col-md-6">
                         <div class="form-floating mb-1">
                             <input type="date" class="form-control text-uppercase" name="from" id="from"
                                 @if ($edit_service) value="{{ old('from', $edit_service->from) }}"
@@ -47,18 +47,29 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="col-12 col-md mb-3">
-                        <div class="form-floating mb-1">
-                            <input type="date" class="form-control text-uppercase" name="to" id="to"
-                                @if ($edit_service) value="{{ old('to', $edit_service->to) }}"
+                    <div class="col-12 col-md-6">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-1">
+                                    <input type="date" class="form-control text-uppercase" name="to" id="to"
+                                        @if ($edit_service) value="{{ old('to', $edit_service->to) }}"
                             @else
                             value="{{ old('to') }}" @endif>
-                            <label for="to" class="form-label small">To</label>
-                            @error('to')
-                                <p class="text-danger small">{{ $message }}</p>
-                            @enderror
+                                    <label for="to" class="form-label small">To</label>
+                                    @error('to')
+                                        <p class="text-danger small">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="col">
+                                    <input type="checkbox" value="PRESENT" class="form-check-input" name="to"
+                                        id="WEidtoCheck">
+                                    <label for="WEidtoCheck">Present</label>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col-12 col-md mb-3">
                         <div class="form-floating">
                             <input class="form-control @error('designation') is-invalid @enderror" name="designation"
@@ -90,7 +101,8 @@
                     <div class="col-12 col-md mb-3">
                         <div class="form-floating mb-1">
                             <input type="number" class="form-control text-uppercase" name="salary" id="salary"
-                                placeholder="Salary" step="any" @if ($edit_service) value="{{ old('salary', $edit_service->salary) }}"
+                                placeholder="Salary" step="any"
+                                @if ($edit_service) value="{{ old('salary', $edit_service->salary) }}"
                                 @else
                                 value="{{ old('salary') }}" @endif>
                             <label for="salary" class="form-label small">Salary</label>
@@ -102,7 +114,8 @@
                     <div class="col-12 col-md mb-3">
                         <div class="form-floating mb-1">
                             <input type="text" class="form-control text-uppercase" name="station" id="station"
-                                placeholder="Station/Place/Branch" @if ($edit_service) value="{{ old('station', $edit_service->station) }}"
+                                placeholder="Station/Place/Branch"
+                                @if ($edit_service) value="{{ old('station', $edit_service->station) }}"
                                 @else
                                 value="{{ old('station') }}" @endif>
                             <label for="station" class="form-label small">Station/Place/Branch</label>
@@ -116,7 +129,8 @@
                     <div class="col-12 col-md mb-3">
                         <div class="form-floating mb-1">
                             <input type="text" class="form-control text-uppercase" name="wo_pay" id="wo_pay"
-                                placeholder="L/V ABS W/O PAy" @if ($edit_service) value="{{ old('wo_pay', $edit_service->wo_pay) }}"
+                                placeholder="L/V ABS W/O PAy"
+                                @if ($edit_service) value="{{ old('wo_pay', $edit_service->wo_pay) }}"
                                 @else
                                 value="{{ old('wo_pay') }}" @endif>
                             <label for="wo_pay" class="form-label small">L/V ABS W/O PAy</label>
@@ -128,7 +142,8 @@
                     <div class="col-12 col-md mb-3">
                         <div class="form-floating mb-1">
                             <input type="date" class="form-control text-uppercase" name="date" id="date"
-                                placeholder="Date" @if ($edit_service) value="{{ old('date', $edit_service->date) }}"
+                                placeholder="Date"
+                                @if ($edit_service) value="{{ old('date', $edit_service->date) }}"
                                 @else
                                 value="{{ old('date') }}" @endif>
                             <label for="date" class="form-label small">Date</label>
@@ -140,7 +155,8 @@
                     <div class="col-12 col-md mb-3">
                         <div class="form-floating mb-1">
                             <input type="text" class="form-control text-uppercase" name="cause" id="cause"
-                                placeholder="Cause" @if ($edit_service) value="{{ old('cause', $edit_service->cause) }}"
+                                placeholder="Cause"
+                                @if ($edit_service) value="{{ old('cause', $edit_service->cause) }}"
                                 @else
                                 value="{{ old('cause') }}" @endif>
                             <label for="cause" class="form-label small">Cause</label>
@@ -193,7 +209,7 @@
 
                                         </td>
                                         <td>{{ $item->status }}</td>
-                                        <td>{{ number_format($item->salary,2,'.',',') }}</td>
+                                        <td>{{ number_format($item->salary, 2, '.', ',') }}</td>
                                         <td>{{ $item->station }}</td>
                                         <td>{{ $item->date }}</td>
                                         <td>{{ $item->cause }}</td>

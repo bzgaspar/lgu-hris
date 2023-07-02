@@ -11,6 +11,10 @@ class LeaveApplication extends Model
 
     public function users()
     {
-        return $this->belongsTo(User::class,'user_id');
+        return $this->belongsTo(User::class, 'user_id');
+    }
+    public function LeaveApplicationPoints()
+    {
+        return $this->hasOne(LeaveApplicationPoints::class, 'leave_app_id');
     }
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\users\LeaveApplication;
 use App\Models\hr\LeaveCredit;
 use Illuminate\Http\Request;
 use App\Models\LeaveApplication as ModelsLeaveApplication;
+use App\Models\LeaveApplicationPoints;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
 
@@ -65,11 +66,24 @@ class leaveApplicationController extends Controller
 
         $new_balance_sl = floatval($prev_credit->elc_sl_balance);
         $new_balance_vl = floatval($prev_credit->elc_vl_balance);
+
+
+
+        $leaveAppPoints = new LeaveApplicationPoints();
+        $leaveAppPoints->leave_app_id = $leaveApplication->id;
+        $leaveAppPoints->vl_earned = $prev_credit->elc_vl_balance;
+        $leaveAppPoints->sl_earned = $prev_credit->elc_sl_balance;
+
         if($leaveApplication->type == 'Sick Leave') {
             $new_balance_sl -= floatval($leaveApplication->num_days);
+            $leaveAppPoints->sl_leave = $leaveApplication->num_days;
         } else {
             $new_balance_vl -= floatval($leaveApplication->num_days);
+            $leaveAppPoints->vl_leave = $leaveApplication->num_days;
         }
+        $leaveAppPoints->sl_new_balance = $new_balance_sl;
+        $leaveAppPoints->vl_new_balance = $new_balance_vl;
+        $leaveAppPoints->save();
 
         $leave_credit = new LeaveCredit();
         $leave_credit->user_id = $leaveApplication->user_id;

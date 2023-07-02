@@ -53,9 +53,9 @@
                         <div class="row justify-content-center">
                             <div class="col">
                                 <strong>{{ $leaveApplication->users->last_name }}
-                                    @if ($leaveApplication->users->pdsPersonal)
+                                    {{-- @if ($leaveApplication->users->pdsPersonal)
                                         {{ $leaveApplication->users->pdsPersonal->ext_name }}
-                                    @endif
+                                    @endif --}}
                                 </strong>
                             </div>
                             <div class="col">
@@ -203,7 +203,7 @@
                     <td colspan="2" width="50%" class="fw-bold pt-2 ps-3 pe-1">
                         As of <span class="fw-bold">{{ date('F d, Y', strtotime(today())) }}</span>
                         <table class="table table-bordered table-sm me-1 border-dark" style="padding: 0px">
-                            <?php $leave_prev_pres = App\Http\Controllers\hr\leaveApplicationController::getLeaves($leaveApplication->users->id); ?>
+
                             <tr class="text-center">
                                 <td>
                                     &nbsp;
@@ -213,26 +213,42 @@
                             </tr>
                             <tr>
                                 <td>Total Earned</td>
-                                <td>{{ $leave_prev_pres[1]->elc_vl_balance }}</td>
-                                <td>{{ $leave_prev_pres[1]->elc_sl_balance }}</td>
+                                <td>
+                                    @if ($leaveApplication->LeaveApplicationPoints)
+                                        {{ $leaveApplication->LeaveApplicationPoints->vl_earned }}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if ($leaveApplication->LeaveApplicationPoints)
+                                        {{ $leaveApplication->LeaveApplicationPoints->sl_earned }}
+                                    @endif
+                                </td>
                             </tr>
                             <tr>
                                 <td>Less this Application</td>
                                 <td>
-                                    @if ($leaveApplication->type != 'Sick Leave')
-                                        {{ $leaveApplication->num_days }}
+                                    @if ($leaveApplication->LeaveApplicationPoints)
+                                        {{ $leaveApplication->LeaveApplicationPoints->vl_leave }}
                                     @endif
                                 </td>
                                 <td>
-                                    @if ($leaveApplication->type == 'Sick Leave')
-                                        {{ $leaveApplication->num_days }}
+                                    @if ($leaveApplication->LeaveApplicationPoints)
+                                        {{ $leaveApplication->LeaveApplicationPoints->sl_leave }}
                                     @endif
                                 </td>
                             </tr>
                             <tr>
                                 <td>Balance</td>
-                                <td>{{ $leave_prev_pres[0]->elc_vl_balance }}</td>
-                                <td>{{ $leave_prev_pres[0]->elc_sl_balance }}</td>
+                                <td>
+                                    @if ($leaveApplication->LeaveApplicationPoints)
+                                        {{ $leaveApplication->LeaveApplicationPoints->vl_new_balance }}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if ($leaveApplication->LeaveApplicationPoints)
+                                        {{ $leaveApplication->LeaveApplicationPoints->sl_new_balance }}
+                                    @endif
+                                </td>
                             </tr>
                         </table>
                         <br>
@@ -275,7 +291,7 @@
                                 {{ $dep_head['full_name'] }}
                             @endif
                         </p>
-                        <p class="border-top border-dark text-center mb-0 p-0">Authorized Official</p>
+                        <p  contenteditable="true" class="border-top border-dark text-center mb-0 p-0">Authorized Official</p>
                     </td>
                 </tr>
                 <tr class="fw-bold">
