@@ -365,7 +365,7 @@ class HomeController extends Controller
         $users->last_name;
         if($users->salutation_before  && $users->salutation_after) {
             if(strtolower($users->ext_name) != 'n/a') {
-                $full_name =$users->salutation_before . ' ' . $full_name .' ' .$users->ext_name .  $users->salutation_after;
+                $full_name =$users->salutation_before . ' ' . $full_name .' ' .$users->ext_name . ', '.  $users->salutation_after;
             }
         } elseif($users->salutation_before) {
             if(strtolower($users->ext_name) != 'n/a') {
@@ -373,7 +373,7 @@ class HomeController extends Controller
             }
         } elseif($users->salutation_after) {
             if(strtolower($users->ext_name) != 'n/a') {
-                $full_name = $full_name .' ' .$users->ext_name .  $users->salutation_after;
+                $full_name = $full_name .' ' .$users->ext_name. ', '.  $users->salutation_after;
             }
         } else {
             if(strtolower($users->ext_name) != 'n/a') {
@@ -407,7 +407,7 @@ class HomeController extends Controller
             $dep_head = User::leftJoin('personals', 'users.id', '=', 'personals.user_id')
             ->join('employee_plantillas', 'employee_plantillas.user_id', 'users.id')
             ->join('signatures', 'signatures.user_id', 'users.id')
-            ->select('users.first_name', 'personals.salutation_before', 'personals.salutation_after', 'personals.middle_name', 'users.last_name', 'signatures.signature as signature')
+            ->select('personals.first_name', 'personals.salutation_before', 'personals.salutation_after', 'personals.middle_name', 'personals.last_name', 'signatures.signature as signature')
             ->where('employee_plantillas.dep_id', $user_dep)
             ->where('users.role', 3)->orWhere('users.role', 7)->first();
 
@@ -419,7 +419,7 @@ class HomeController extends Controller
                 $dep_head->last_name;
                 if($dep_head->salutation_before  && $dep_head->salutation_after) {
                     if(strtolower($dep_head->ext_name) != 'n/a') {
-                        $full_name = $dep_head->salutation_before. ' ' . $full_name .' ' .$dep_head->ext_name. $dep_head->salutation_after;
+                        $full_name = $dep_head->salutation_before. ' ' . $full_name .' ' .$dep_head->ext_name. ', '.$dep_head->salutation_after;
                     }
                 } elseif($dep_head->salutation_before) {
                     if(strtolower($dep_head->ext_name) != 'n/a') {
@@ -427,7 +427,7 @@ class HomeController extends Controller
                     }
                 } elseif($dep_head->salutation_after) {
                     if(strtolower($dep_head->ext_name) != 'n/a') {
-                        $full_name = $full_name .' ' .$dep_head->ext_name . $dep_head->salutation_after;
+                        $full_name = $full_name .' ' .$dep_head->ext_name . ', '. $dep_head->salutation_after;
                     }
                 } else {
                     if(strtolower($dep_head->ext_name) != 'n/a') {
@@ -459,7 +459,7 @@ class HomeController extends Controller
             $dep_head = User::leftJoin('personals', 'users.id', '=', 'personals.user_id')
             ->join('employee_plantillas', 'employee_plantillas.user_id', 'users.id')
             ->join('signatures', 'signatures.user_id', 'users.id')
-            ->select('users.first_name', 'personals.salutation_before', 'personals.salutation_after', 'personals.middle_name', 'users.last_name', 'signatures.signature as signature')
+            ->select('personals.first_name', 'personals.salutation_before', 'personals.salutation_after', 'personals.middle_name', 'personals.last_name', 'signatures.signature as signature')
             ->where('employee_plantillas.dep_id', $user_dep)
             ->where('users.role', 3)->orWhere('users.role', 7)->first();
 
@@ -471,7 +471,7 @@ class HomeController extends Controller
                 $dep_head->last_name;
                 if($dep_head->salutation_before  && $dep_head->salutation_after) {
                     if(strtolower($dep_head->ext_name) != 'n/a') {
-                        $full_name = $dep_head->salutation_before. ' ' . $full_name .' ' .$dep_head->ext_name. $dep_head->salutation_after;
+                        $full_name = $dep_head->salutation_before. ' ' . $full_name .' ' .$dep_head->ext_name. ', '. $dep_head->salutation_after;
                     }
                 } elseif($dep_head->salutation_before) {
                     if(strtolower($dep_head->ext_name) != 'n/a') {
@@ -479,7 +479,7 @@ class HomeController extends Controller
                     }
                 } elseif($dep_head->salutation_after) {
                     if(strtolower($dep_head->ext_name) != 'n/a') {
-                        $full_name = $full_name .' ' .$dep_head->ext_name . $dep_head->salutation_after;
+                        $full_name = $full_name .' ' .$dep_head->ext_name . ', '. $dep_head->salutation_after;
                     }
                 } else {
                     if(strtolower($dep_head->ext_name) != 'n/a') {
