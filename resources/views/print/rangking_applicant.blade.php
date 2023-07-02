@@ -151,8 +151,8 @@
                     <div class="row mt-5 mx-5">
 
                         @foreach ($hrmpsb as $item)
-                            <div class="col text-center">
-                                <b class="border-bottom">
+                            <div class="col text-center" contenteditable="true">
+                                <b class="border-bottom" contenteditable="true">
                                     <?php $name = App\Http\Controllers\HomeController::getFullName($item->user_id); ?>
                                     {{ $name['full_name'] }}
                                 </b>
