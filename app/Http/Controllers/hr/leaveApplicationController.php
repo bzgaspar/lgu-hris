@@ -81,21 +81,20 @@ class leaveApplicationController extends Controller
                 $new_balance_vl -= floatval($leaveApplication->num_days);
                 $leaveAppPoints->vl_leave = $leaveApplication->num_days;
             }
+            $leave_credit = new LeaveCredit();
+            $leave_credit->user_id = $leaveApplication->user_id;
+            $leave_credit->elc_period_from = $new_date;
+            $leave_credit->elc_period_to = $new_date;
+            $leave_credit->elc_vl_earned = 0;
+            $leave_credit->elc_sl_earned = 0;
+            $leave_credit->elc_vl_balance = $new_balance_vl;
+            $leave_credit->elc_sl_balance = $new_balance_sl;
+            $leave_credit->elc_remarks = 'Filed Leave in ' . $leaveApplication->type.' ' .$leaveApplication->date_from . ' to ' .$leaveApplication->date_to;
+            $leave_credit->save();
         }
         $leaveAppPoints->sl_new_balance = $new_balance_sl;
         $leaveAppPoints->vl_new_balance = $new_balance_vl;
         $leaveAppPoints->save();
-
-        $leave_credit = new LeaveCredit();
-        $leave_credit->user_id = $leaveApplication->user_id;
-        $leave_credit->elc_period_from = $new_date;
-        $leave_credit->elc_period_to = $new_date;
-        $leave_credit->elc_vl_earned = 0;
-        $leave_credit->elc_sl_earned = 0;
-        $leave_credit->elc_vl_balance = $new_balance_vl;
-        $leave_credit->elc_sl_balance = $new_balance_sl;
-        $leave_credit->elc_remarks = 'Filed Leave in '.$leaveApplication->date_from . ' to ' .$leaveApplication->date_to;
-        $leave_credit->save();
 
         $leaveApplication->status = 2;
         if ($leaveApplication->save()) {
