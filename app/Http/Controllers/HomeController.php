@@ -363,23 +363,21 @@ class HomeController extends Controller
         $users->first_name . ' ' .
         substr($users->middle_name, 0, 1) . '. ' .
         $users->last_name;
-        if($users->salutation_before  && $users->salutation_after) {
-            if(strtolower($users->ext_name) != 'n/a') {
-                $full_name =$users->salutation_before . ' ' . $full_name .' ' .$users->ext_name . ', '.  $users->salutation_after;
-            }
-        } elseif($users->salutation_before) {
-            if(strtolower($users->ext_name) != 'n/a') {
-                $full_name =  $users->salutation_before . ' ' . $full_name .' ' .$users->ext_name;
-            }
-        } elseif($users->salutation_after) {
-            if(strtolower($users->ext_name) != 'n/a') {
-                $full_name = $full_name .' ' .$users->ext_name. ', '.  $users->salutation_after;
-            }
-        } else {
-            if(strtolower($users->ext_name) != 'n/a') {
-                $full_name = $full_name .' ' .$users->ext_name;
-            }
+        $salutation_before = '';
+        $ext_name = '';
+        $salutation_after = '';
+
+        if($users->salutation_before && strtolower($users->salutation_before) != 'n/a') {
+            $salutation_before = $users->salutation_before;
         }
+        if($users->salutation_after && strtolower($users->salutation_after) != 'n/a') {
+            $salutation_after = $users->salutation_after;
+        }
+        if(strtolower($users->ext_name) != 'n/a') {
+            $full_name = $full_name .' ' .$users->ext_name;
+        }
+
+        $full_name =$salutation_before . ' ' . $full_name .' ' .$ext_name . ', '.  $salutation_after;
 
         return [
             'full_name' => $full_name,
@@ -417,23 +415,23 @@ class HomeController extends Controller
                 $dep_head->first_name . ' ' .
                 substr($dep_head->middle_name, 0, 1) . '. ' .
                 $dep_head->last_name;
-                if($dep_head->salutation_before  && $dep_head->salutation_after) {
-                    if(strtolower($dep_head->ext_name) != 'n/a') {
-                        $full_name = $dep_head->salutation_before. ' ' . $full_name .' ' .$dep_head->ext_name. ', '.$dep_head->salutation_after;
-                    }
-                } elseif($dep_head->salutation_before) {
-                    if(strtolower($dep_head->ext_name) != 'n/a') {
-                        $full_name = $dep_head->salutation_before. ' ' . $full_name .' ' .$dep_head->ext_name;
-                    }
-                } elseif($dep_head->salutation_after) {
-                    if(strtolower($dep_head->ext_name) != 'n/a') {
-                        $full_name = $full_name .' ' .$dep_head->ext_name . ', '. $dep_head->salutation_after;
-                    }
-                } else {
-                    if(strtolower($dep_head->ext_name) != 'n/a') {
-                        $full_name = $full_name .' ' .$dep_head->ext_name;
-                    }
+
+                $salutation_before = '';
+                $ext_name = '';
+                $salutation_after = '';
+
+                if($dep_head->salutation_before && strtolower($dep_head->salutation_before) != 'n/a') {
+                    $salutation_before = $dep_head->salutation_before;
                 }
+                if($dep_head->salutation_after && strtolower($dep_head->salutation_after) != 'n/a') {
+                    $salutation_after = $dep_head->salutation_after;
+                }
+                if(strtolower($dep_head->ext_name) != 'n/a') {
+                    $full_name = $full_name .' ' .$dep_head->ext_name;
+                }
+
+                $full_name =$salutation_before . ' ' . $full_name .' ' .$ext_name . ', '.  $salutation_after;
+
 
                 $details = [
                     'full_name' => $full_name,
@@ -469,25 +467,22 @@ class HomeController extends Controller
                 $dep_head->first_name . ' ' .
                 substr($dep_head->middle_name, 0, 1) . '. ' .
                 $dep_head->last_name;
-                if($dep_head->salutation_before  && $dep_head->salutation_after) {
-                    if(strtolower($dep_head->ext_name) != 'n/a') {
-                        $full_name = $dep_head->salutation_before. ' ' . $full_name .' ' .$dep_head->ext_name. ', '. $dep_head->salutation_after;
-                    }
-                } elseif($dep_head->salutation_before) {
-                    if(strtolower($dep_head->ext_name) != 'n/a') {
-                        $full_name = $dep_head->salutation_before. ' ' . $full_name .' ' .$dep_head->ext_name;
-                    }
-                } elseif($dep_head->salutation_after) {
-                    if(strtolower($dep_head->ext_name) != 'n/a') {
-                        $full_name = $full_name .' ' .$dep_head->ext_name . ', '. $dep_head->salutation_after;
-                    }
-                } else {
-                    if(strtolower($dep_head->ext_name) != 'n/a') {
-                        $full_name = $full_name .' ' .$dep_head->ext_name;
-                    } else {
 
-                    }
+                $salutation_before = '';
+                $ext_name = '';
+                $salutation_after = '';
+
+                if($dep_head->salutation_before && strtolower($dep_head->salutation_before) != 'n/a') {
+                    $salutation_before = $dep_head->salutation_before;
                 }
+                if($dep_head->salutation_after && strtolower($dep_head->salutation_after) != 'n/a') {
+                    $salutation_after = $dep_head->salutation_after;
+                }
+                if(strtolower($dep_head->ext_name) != 'n/a') {
+                    $full_name = $full_name .' ' .$dep_head->ext_name;
+                }
+
+                $full_name =$salutation_before . ' ' . $full_name .' ' .$ext_name . ', '.  $salutation_after;
 
 
                 $details = [
