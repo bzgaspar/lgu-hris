@@ -110,7 +110,7 @@
                 <tr style="font-size: 10.3px">
                     <td colspan="3" class="ps-3" style="word-break: break-all;">
                         @forelse ($type as $key=>$item)
-                            @if ($leaveApplication->type == $key)
+                            @if ($leaveApplication->type === $key)
                                 <input type="checkbox" disabled checked><label for="">&nbsp;
                                     {{ $key }}&nbsp;{{ $item }}</label>
                                 <br>
