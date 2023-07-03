@@ -15,6 +15,6 @@ class LeaveApplication extends Model
     }
     public function LeaveApplicationPoints()
     {
-        return $this->hasOne(LeaveApplicationPoints::class, 'leave_app_id');
+        return $this->hasOne(LeaveApplicationPoints::class, 'leave_app_id')->latest();
     }
 }
