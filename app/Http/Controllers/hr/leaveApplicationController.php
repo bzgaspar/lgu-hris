@@ -74,12 +74,14 @@ class leaveApplicationController extends Controller
         $leaveAppPoints->vl_earned = $prev_credit->elc_vl_balance;
         $leaveAppPoints->sl_earned = $prev_credit->elc_sl_balance;
 
-        if($leaveApplication->type == 'Sick Leave') {
-            $new_balance_sl -= floatval($leaveApplication->num_days);
-            $leaveAppPoints->sl_leave = $leaveApplication->num_days;
-        } else {
-            $new_balance_vl -= floatval($leaveApplication->num_days);
-            $leaveAppPoints->vl_leave = $leaveApplication->num_days;
+        if(strtolower($leaveApplication->type_other) != 'CDO') {
+            if($leaveApplication->type == 'Sick Leave') {
+                $new_balance_sl -= floatval($leaveApplication->num_days);
+                $leaveAppPoints->sl_leave = $leaveApplication->num_days;
+            } else {
+                $new_balance_vl -= floatval($leaveApplication->num_days);
+                $leaveAppPoints->vl_leave = $leaveApplication->num_days;
+            }
         }
         $leaveAppPoints->sl_new_balance = $new_balance_sl;
         $leaveAppPoints->vl_new_balance = $new_balance_vl;
