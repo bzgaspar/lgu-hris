@@ -400,7 +400,7 @@ class HomeController extends Controller
     {
         $user = User::findOrFail($id);
         if($user) {
-            $user_dep = $user->empPlantilla->department->id;
+            $user_dep = $user->empPlantilla->designation->id;
 
             $dep_head = User::leftJoin('personals', 'users.id', '=', 'personals.user_id')
             ->join('employee_plantillas', 'employee_plantillas.user_id', 'users.id')
