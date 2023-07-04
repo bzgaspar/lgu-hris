@@ -238,7 +238,7 @@ class HomeController extends Controller
         ->whereHas('User', function ($query) {
             $query->DepartmentHead();
         })
-        ->orWhere('users.role',7)
+        ->orWhere('users.role', 7)
         ->with('user', 'user.pdsPersonal', 'user.empPlantilla.department')
         ->orderByDesc('rating')
         ->get();
@@ -522,8 +522,8 @@ class HomeController extends Controller
         $male = personal::join('employee_plantillas', 'employee_plantillas.user_id', 'personals.user_id')->where('sex', 'Male')->count();
         $female = Personal::join('employee_plantillas', 'employee_plantillas.user_id', 'personals.user_id')->where('sex', '!=', 'Male')->count();
 
-        $religion = others::join('employee_plantillas', 'employee_plantillas.user_id', 'others.user_id')->select('IDc1', DB::raw('COUNT(*) as count'))
-        ->groupBy('IDc1')
+        $religion = others::join('employee_plantillas', 'employee_plantillas.user_id', 'others.user_id')->select('others.IDc1', DB::raw('COUNT(*) as count'))
+        ->groupBy('others.IDc1')
         ->get();
 
         $rel_count = array_reduce($religion->toArray(), function ($carry, $item) {
@@ -545,6 +545,7 @@ class HomeController extends Controller
             'Indigenous' => $Indigenous,
             'PWD' => $PWD,
             'Single Parent' => $Single_Parent,
+            'N/A' => $total- ($Indigenous+$PWD+$Single_Parent),
         ];
         $data[3]= [
 
