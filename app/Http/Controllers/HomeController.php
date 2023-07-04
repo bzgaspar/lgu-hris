@@ -19,6 +19,7 @@ use App\Models\reference\hours;
 use App\Models\reference\minutes;
 use App\Models\users\application;
 use App\Models\users\Ipcr;
+use App\Models\users\Signature;
 use Carbon\Carbon;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Artisan;
@@ -402,14 +403,21 @@ class HomeController extends Controller
         if($user) {
             $user_dep = $user->empPlantilla->designation->id;
 
-            $dep_head = User::leftJoin('personals', 'users.id', '=', 'personals.user_id')
-            ->join('employee_plantillas', 'employee_plantillas.user_id', 'users.id')
-            ->join('signatures', 'signatures.user_id', 'users.id')
-            ->select('personals.first_name', 'personals.salutation_before', 'personals.salutation_after', 'personals.middle_name', 'personals.last_name', 'signatures.signature as signature')
-            ->where('employee_plantillas.dep_id', $user_dep)
-            ->where('users.role', 3)->orWhere('users.role', 7)->first();
 
+            if($user_dep != 15) {
+                $dep_head = EmployeePlantilla::leftJoin('users', 'employee_plantillas.user_id', 'users.id')
+                ->leftJoin('personals', 'users.id', '=', 'personals.user_id')
+                ->select('users.id as id', 'personals.first_name', 'personals.salutation_before', 'personals.salutation_after', 'personals.middle_name', 'personals.last_name')
+            ->where('employee_plantillas.dep_id', $user_dep)->where('users.role', 3)->first();
+            } else {
 
+                $dep_head = EmployeePlantilla::leftJoin('users', 'employee_plantillas.user_id', 'users.id')
+                ->leftJoin('personals', 'users.id', '=', 'personals.user_id')
+                ->select('users.id as id', 'personals.first_name', 'personals.salutation_before', 'personals.salutation_after', 'personals.middle_name', 'personals.last_name')
+            ->where('employee_plantillas.dep_id', $user_dep)->where('users.role', 7)->first();
+            }
+
+            $signature = Signature::where('user_id', $dep_head->id)->first();
             if($dep_head) {
                 $full_name =
                 $dep_head->first_name . ' ' .
@@ -435,7 +443,7 @@ class HomeController extends Controller
 
                 $details = [
                     'full_name' => $full_name,
-                    'signature' => $dep_head->signature,
+                    'signature' => $signature->signature,
                 ];
                 return $details;
             } else {
@@ -449,18 +457,13 @@ class HomeController extends Controller
     {
 
         $hr_head = User::where('role', 7)->first();
-
         $user = User::findOrFail($hr_head->id);
         if($user) {
-            $user_dep = $user->empPlantilla->department->id;
 
             $dep_head = User::leftJoin('personals', 'users.id', '=', 'personals.user_id')
-            ->join('employee_plantillas', 'employee_plantillas.user_id', 'users.id')
-            ->join('signatures', 'signatures.user_id', 'users.id')
+            ->leftJoin('signatures', 'signatures.user_id', 'users.id')
             ->select('personals.first_name', 'personals.salutation_before', 'personals.salutation_after', 'personals.middle_name', 'personals.last_name', 'signatures.signature as signature')
-            ->where('employee_plantillas.dep_id', $user_dep)
-            ->where('users.role', 3)->orWhere('users.role', 7)->first();
-
+            ->Where('users.role', 7)->first();
 
             if($dep_head) {
                 $full_name =

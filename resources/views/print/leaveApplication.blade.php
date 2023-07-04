@@ -278,7 +278,8 @@
                         <p contenteditable="true" class="border-bottom mb-0 border-dark">&nbsp;</p>
                         <br>
                         <br>
-                        <?php $dep_head = App\Http\Controllers\HomeController::getDepartmentHeadLeave($leaveApplication->user_id); ?></p>
+                        <?php $dep_head = App\Http\Controllers\HomeController::getDepartmentHeadLeave($leaveApplication->user_id);
+                        ?></p>
                         @if ($leaveApplication->status == 2)
                             @if ($dep_head)
                                 <img height="60px" width="60px"
