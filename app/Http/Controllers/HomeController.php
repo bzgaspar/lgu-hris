@@ -265,7 +265,7 @@ class HomeController extends Controller
         $year = [];
         $all_ipcr = Ipcr::latest()->get();
         foreach($all_ipcr as $item) {
-            $current_year = Carbon::createFromFormat('m/d/Y', $item->from)->format('Y');
+            $current_year = date('Y', strtotime($item->from));
             if(!in_array($current_year, $year)) {
                 if(!YearlyIPCR::where('year', $current_year)->exists()) {
                     array_push($year, $current_year);
@@ -276,11 +276,10 @@ class HomeController extends Controller
     }
     public function getYearsIPCR2()
     {
-        $old_year = "2022";
         $year = [];
         $all_ipcr = Ipcr::latest()->get();
         foreach($all_ipcr as $item) {
-            $current_year = Carbon::createFromFormat('m/d/Y', $item->from)->format('Y');
+            $current_year = date('Y', strtotime($item->from));
             if(!in_array($current_year, $year)) {
                 array_push($year, $current_year);
             }
