@@ -522,12 +522,12 @@ class HomeController extends Controller
         $male = personal::join('employee_plantillas', 'employee_plantillas.user_id', 'personals.user_id')->where('sex', 'Male')->count();
         $female = Personal::join('employee_plantillas', 'employee_plantillas.user_id', 'personals.user_id')->where('sex', '!=', 'Male')->count();
 
-        $religion = others::join('employee_plantillas', 'employee_plantillas.user_id', 'others.user_id')->select('IDc2', DB::raw('COUNT(*) as count'))
-        ->groupBy('IDc2')
+        $religion = others::join('employee_plantillas', 'employee_plantillas.user_id', 'others.user_id')->select('IDc1', DB::raw('COUNT(*) as count'))
+        ->groupBy('IDc1')
         ->get();
 
         $rel_count = array_reduce($religion->toArray(), function ($carry, $item) {
-            $index = $item['IDc2'];
+            $index = $item['IDc1'];
             $carry[$index] = $item['count'];
             return $carry;
         }, []);
@@ -536,7 +536,7 @@ class HomeController extends Controller
         $data[1] = [
             'Permanent' => $permanent,
             'Coterminous' => $terminos,
-            'COS' => $cos,
+            'Casual' => $cos,
             'Appointed' => $appointed,
             'Elective' => $elective,
         ];
