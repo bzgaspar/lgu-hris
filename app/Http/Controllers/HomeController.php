@@ -238,6 +238,7 @@ class HomeController extends Controller
         ->whereHas('User', function ($query) {
             $query->DepartmentHead();
         })
+        ->orWhere('users.role',7)
         ->with('user', 'user.pdsPersonal', 'user.empPlantilla.department')
         ->orderByDesc('rating')
         ->get();
