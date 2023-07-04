@@ -4,7 +4,10 @@ window.Vue = require("vue").default;
 import PortalVue from "portal-vue";
 
 import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
+// import VueChartkick from "vue-chartkick";
+// import "chartkick/chart.js";
 
+// Vue.use(VueChartkick);
 Vue.use(PortalVue);
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
@@ -52,7 +55,10 @@ Vue.component("hr-pms-emp", require("./views/hr/pms/employees.vue").default);
 Vue.component("hr-pms-dep", require("./views/hr/pms/department.vue").default);
 Vue.component("hr-pms-top", require("./views/hr/pms/Top5.vue").default);
 Vue.component("hr-pms-yearly", require("./views/hr/pms/yearly.vue").default);
-Vue.component("hr-pms-yearly-top", require("./views/hr/pms/yearlyTop.vue").default);
+Vue.component(
+    "hr-pms-yearly-top",
+    require("./views/hr/pms/yearlyTop.vue").default
+);
 
 // print
 Vue.component("hr-print-index", require("./views/hr/print/index.vue").default);

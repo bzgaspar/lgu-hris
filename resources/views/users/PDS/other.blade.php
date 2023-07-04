@@ -328,6 +328,31 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-12 col-md">
+                    <p class="text-center">d. Religion
+                    </p>
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-3">
+                                <select name="IDc1" id="IDc1" class="form-select form-select-sm">
+                                    <option hidden>Select Religion</option>
+                                    @foreach ($religion as $item)
+                                        @if ($edit_other)
+                                            @if ($edit_other->IDc1 == $item)
+                                                <option selected value="{{ $item }}">{{ $item }}</option>
+                                            @else
+                                                <option value="{{ $item }}">{{ $item }}</option>
+                                            @endif
+                                        @else
+                                            <option value="{{ $item }}">{{ $item }}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
             <hr>
             <p>REFERENCES (<span class="text-danger">Person not related by consanguinity or affinity to applicant

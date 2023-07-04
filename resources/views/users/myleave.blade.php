@@ -47,9 +47,9 @@
                                         name="details_leave" id="details_leave">
                                         <option value="">Select Details</option>
                                         <option value="Within Philippines">Within Philippines</option>
-                                        <option value="Abroad">Abroad</option>
-                                        <option value="In Hospital">In Hospital</option>
-                                        <option value="Out Patient">Out Patient</option>
+                                        <option value="Abroad (Specify)">Abroad</option>
+                                        <option value="In Hospital (Specify Illness)">In Hospital</option>
+                                        <option value="Out Patient (Specify Illness)">Out Patient</option>
                                         <option value="Complication">Complication</option>
                                         <option value="BAR/Board Examination Review">BAR/Board Examination Review</option>
                                         <option value="Monetization of Leave Credits">Monetization of Leave Credits</option>

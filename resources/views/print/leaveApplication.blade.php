@@ -165,7 +165,7 @@
                         6.D COMMUNICATION <br>
                         &nbsp;&nbsp;<input type="checkbox"><label for="">&nbsp; Not Requested</label><br>
 
-                        &nbsp;&nbsp;<input type="checkbox" checked disabled><label
+                        &nbsp;&nbsp;<input type="checkbox"  disabled><label
                             for="">&nbsp;Requested</label><br><br>
                         <div class="row justify-conent-center">
                             <div class="col text-center">
@@ -269,7 +269,7 @@
                     </td>
                     <td colspan="2" class="ps-3 pt-2 pe-1">
 
-                        <input type="checkbox"checked disabled><label for="">&nbsp; For Approval</label><br>
+                        <input type="checkbox" disabled><label for="">&nbsp; For Approval</label><br>
 
                         <input type="checkbox"><label for="">&nbsp;For Disapproval due to</label>
 

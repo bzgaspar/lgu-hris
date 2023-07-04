@@ -452,7 +452,6 @@ export default {
                         this.elc_period_to = moment(this.leave.elc_period_to)
                             .add(2, "months")
                             .format("YYYY-MM-DD");
-                        console.log(this.elc_period_to);
                         let monthsDifference = moment(this.elc_period_to).diff(
                             moment(this.elc_period_from),
                             "months"

@@ -14,11 +14,13 @@ use App\Models\hr\ServiceRecord;
 use App\Models\hr\YearlyIPCR;
 use App\Models\LeaveApplication;
 use App\Models\pds\civilservice;
+use App\Models\pds\personal;
 use App\Models\reference\earned;
 use App\Models\reference\hours;
 use App\Models\reference\minutes;
 use App\Models\users\application;
 use App\Models\users\Ipcr;
+use App\Models\users\others;
 use App\Models\users\Signature;
 use Carbon\Carbon;
 use Illuminate\Http\Response;
@@ -499,5 +501,57 @@ class HomeController extends Controller
         } else {
             return null;
         }
+    }
+
+
+    public function getChartEMP()
+    {
+
+
+        $permanent = EmployeePlantilla::where('status', 1)->count();
+        $terminos = EmployeePlantilla::where('status', 2)->count();
+        $cos = EmployeePlantilla::where('status', 3)->count();
+        $appointed = EmployeePlantilla::where('status', 4)->count();
+        $elective = EmployeePlantilla::where('status', 5)->count();
+        $total = $permanent + $cos +$terminos+$appointed+$elective;
+
+        $Indigenous = others::join('employee_plantillas', 'employee_plantillas.user_id', 'others.user_id')->where('Q40a1', '!=', null)->count();
+        $PWD = others::join('employee_plantillas', 'employee_plantillas.user_id', 'others.user_id')->where('Q40b1', '!=', null)->count();
+        $Single_Parent = others::join('employee_plantillas', 'employee_plantillas.user_id', 'others.user_id')->where('Q40c1', '!=', null)->count();
+
+        $male = personal::join('employee_plantillas', 'employee_plantillas.user_id', 'personals.user_id')->where('sex', 'Male')->count();
+        $female = Personal::join('employee_plantillas', 'employee_plantillas.user_id', 'personals.user_id')->where('sex', '!=', 'Male')->count();
+
+        $religion = others::join('employee_plantillas', 'employee_plantillas.user_id', 'others.user_id')->select('IDc2', DB::raw('COUNT(*) as count'))
+        ->groupBy('IDc2')
+        ->get();
+
+        $rel_count = array_reduce($religion->toArray(), function ($carry, $item) {
+            $index = $item['IDc2'];
+            $carry[$index] = $item['count'];
+            return $carry;
+        }, []);
+
+        $data[0] = $rel_count;
+        $data[1] = [
+            'Permanent' => $permanent,
+            'Coterminous' => $terminos,
+            'COS' => $cos,
+            'Appointed' => $appointed,
+            'Elective' => $elective,
+        ];
+        $data[2]= [
+
+            'Indigenous' => $Indigenous,
+            'PWD' => $PWD,
+            'Single Parent' => $Single_Parent,
+        ];
+        $data[3]= [
+
+            'Male' => $male,
+            'Female' => $female,
+        ];
+
+        return response()->json($data, Response::HTTP_OK);
     }
 }

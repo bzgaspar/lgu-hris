@@ -1,6 +1,26 @@
 <template>
     <v-app style="min-height: 0px !important">
-        <v-card>
+        <v-row height="50px">
+            <v-col cols="12" md="6" class="border border-black rounded">
+                Employee Plantilla
+                <pie-chart :data="chartData[1]"></pie-chart>
+            </v-col>
+            <v-col cols="12" md="6" class="border border-black rounded">
+                PWD , Indigenous and Single Parent
+                <pie-chart :data="chartData[2]"></pie-chart>
+            </v-col>
+        </v-row>
+        <v-row>
+            <v-col cols="12" md="6" class="border border-black rounded">
+                Gender
+                <pie-chart :data="chartData[3]"></pie-chart>
+            </v-col>
+            <v-col cols="12" md="6" class="border border-black rounded">
+                Religion
+                <pie-chart :data="chartData[0]"></pie-chart>
+            </v-col>
+        </v-row>
+        <v-card class="mt-5">
             <v-card-title>
                 <v-row justify-center>
                     <v-col xs="12" class="text-center">
@@ -75,6 +95,7 @@ export default {
             departmentFilterValue: "",
             genderItems: ["All", "Male", "Female"],
             departmentItems: [],
+            chartData: [],
             selected: [],
             loading: false,
             headers: [
@@ -119,6 +140,11 @@ export default {
                 });
             }, 1000);
         },
+        getChartEMP() {
+            axios.get("/api/getChartEMP").then((response) => {
+                this.chartData = response.data;
+            });
+        },
         async getDep() {
             await axios.get("/api/getDepartment").then((response) => {
                 let Items = [];
@@ -160,6 +186,7 @@ export default {
     created() {
         this.getData();
         this.getDep();
+        this.getChartEMP();
     },
 };
 </script>

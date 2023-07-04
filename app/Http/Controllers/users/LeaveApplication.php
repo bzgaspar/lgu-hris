@@ -100,7 +100,7 @@ class LeaveApplication extends Controller
             '10-Day VAWC Leave' =>' (RA No. 9262 / CSC MC No. 15, s. 2005)',
             'Rehabilitation Privilege' =>' (Sec. 55, Rule XVI, Omnibus Rules Implementing E.O. No. 292)',
             'Special Leave Benefits for Women' =>' (RA No. 9710 / CSC MC No. 25, s. 2010)',
-            'Special Emergency (Calamity) Leave ' =>'(CSC MC No. 2, s. 2012, as amended)',
+            'Special Emergency (Calamity) Leave' =>'(CSC MC No. 2, s. 2012, as amended)',
             'Adoption Leave' =>' (R.A. No. 8552)',
             'OTHERS' =>'',
         ];
