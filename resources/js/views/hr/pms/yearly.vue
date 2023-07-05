@@ -51,7 +51,7 @@
                         dense
                         placeholder="Behavior 0-5"
                         color="success"
-                        label="Behavior 0-5"
+                        label="Attitude 0-5"
                         clearable
                         type="number"
                         hide-details="auto"
@@ -113,7 +113,7 @@ export default {
             FieldRequired: [(v) => !!v || "This field is required"],
             NumberField: [
                 (v) => !!v || "This field is required",
-                (v) => (v >= 0 && v <= 5) || "0 to 100 is valid",
+                (v) => (v >= 0 && v <= 5) || "0 to 5 is valid",
             ],
             headers: [
                 { text: "Department", value: "dep_name" },
