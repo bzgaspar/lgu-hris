@@ -51,7 +51,7 @@
                         v-model="form.add_points"
                         filled
                         dense
-                        placeholder="Behavior 0-5"
+                        placeholder="Attitude 0-5"
                         color="success"
                         label="Attitude 0-5"
                         clearable
