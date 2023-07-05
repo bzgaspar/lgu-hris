@@ -181,13 +181,24 @@ class HomeController extends Controller
     {
 
         $average = 0;
-        $ratings = Ipcr::join('users', 'users.id', 'ipcrs.user_id')
-        ->join('employee_plantillas', 'users.id', 'employee_plantillas.user_id')
-        ->join('departments', 'departments.id', 'employee_plantillas.dep_id')
-        ->select('departments.id', 'ipcrs.from', 'ipcrs.to', 'ipcrs.rating')
-        ->where('departments.id', $dep_id)
-        ->where('users.role', '3')
-        ->get();
+        if($dep_id ==15 )
+        {
+            $ratings = Ipcr::join('users', 'users.id', 'ipcrs.user_id')
+            ->join('employee_plantillas', 'users.id', 'employee_plantillas.user_id')
+            ->join('departments', 'departments.id', 'employee_plantillas.dep_id')
+            ->select('departments.id', 'ipcrs.from', 'ipcrs.to', 'ipcrs.rating')
+            ->where('departments.id', $dep_id)
+            ->where('users.role', 7)
+            ->get();
+        }else{
+            $ratings = Ipcr::join('users', 'users.id', 'ipcrs.user_id')
+            ->join('employee_plantillas', 'users.id', 'employee_plantillas.user_id')
+            ->join('departments', 'departments.id', 'employee_plantillas.dep_id')
+            ->select('departments.id', 'ipcrs.from', 'ipcrs.to', 'ipcrs.rating')
+            ->where('departments.id', $dep_id)
+            ->where('users.role', '3')
+            ->get();
+        }
         foreach($ratings as $rating) {
             $average += $rating->rating;
         }
