@@ -23,7 +23,9 @@
                 </v-col>
                 <v-col cols="12" md="">
                     <v-row>
-                        <v-col cols="1"> {{ form.average }} </v-col>
+                        <v-col cols="2"
+                            >Initial Rating: <br> {{ form.average }}
+                        </v-col>
                         <v-col>
                             <v-combobox
                                 :items="departmentItems"
