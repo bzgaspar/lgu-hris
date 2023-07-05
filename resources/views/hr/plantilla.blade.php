@@ -6,7 +6,7 @@
         <div class="col-12 col-md-10">
             <h2>Department</h2>
             <div class="row justify-content-center">
-                <div class="col-12 col-md-4">
+                <div class="col-12">
                     @if ($edit_dep)
                         <form action="{{ route('hr.department.update', $edit_dep->id) }}" method="POST">
                             @csrf
@@ -54,6 +54,8 @@
                     </button>
                     </form>
                 </div>
+            </div>
+            <div class="row justify-content-center">
                 <div class="col-12 col-md">
                     <hr-department></hr-department>
                 </div>

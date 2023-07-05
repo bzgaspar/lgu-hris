@@ -181,8 +181,7 @@ class HomeController extends Controller
     {
 
         $average = 0;
-        if($dep_id ==15 )
-        {
+        if($dep_id ==15) {
             $ratings = Ipcr::join('users', 'users.id', 'ipcrs.user_id')
             ->join('employee_plantillas', 'users.id', 'employee_plantillas.user_id')
             ->join('departments', 'departments.id', 'employee_plantillas.dep_id')
@@ -190,7 +189,15 @@ class HomeController extends Controller
             ->where('departments.id', $dep_id)
             ->where('users.role', 7)
             ->get();
-        }else{
+        } elseif($dep_id == 1) {
+            $ratings = Ipcr::join('users', 'users.id', 'ipcrs.user_id')
+            ->join('employee_plantillas', 'users.id', 'employee_plantillas.user_id')
+            ->join('departments', 'departments.id', 'employee_plantillas.dep_id')
+            ->select('departments.id', 'ipcrs.from', 'ipcrs.to', 'ipcrs.rating')
+            ->where('departments.id', $dep_id)
+            ->where('users.role', 5)
+            ->get();
+        } else {
             $ratings = Ipcr::join('users', 'users.id', 'ipcrs.user_id')
             ->join('employee_plantillas', 'users.id', 'employee_plantillas.user_id')
             ->join('departments', 'departments.id', 'employee_plantillas.dep_id')
@@ -422,6 +429,11 @@ class HomeController extends Controller
                 ->leftJoin('personals', 'users.id', '=', 'personals.user_id')
                 ->select('users.id as id', 'personals.first_name', 'personals.salutation_before', 'personals.salutation_after', 'personals.middle_name', 'personals.last_name')
             ->where('employee_plantillas.dep_id', $user_dep)->where('users.role', 3)->first();
+            } elseif($user_dep == 1) {
+                $dep_head = EmployeePlantilla::leftJoin('users', 'employee_plantillas.user_id', 'users.id')
+                ->leftJoin('personals', 'users.id', '=', 'personals.user_id')
+                ->select('users.id as id', 'personals.first_name', 'personals.salutation_before', 'personals.salutation_after', 'personals.middle_name', 'personals.last_name')
+            ->where('employee_plantillas.dep_id', $user_dep)->where('users.role', 5)->first();
             } else {
 
                 $dep_head = EmployeePlantilla::leftJoin('users', 'employee_plantillas.user_id', 'users.id')
