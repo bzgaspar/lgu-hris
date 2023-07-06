@@ -57,11 +57,14 @@ class RangkingController extends Controller
     {
         $all_applicants = $this->application
         ->leftJoin('users', 'users.id', '=', 'applications.user_id')
-        ->select('applications.id', 'applications.user_id', 'applications.pub_id', 'applications.created_at', DB::raw("CONCAT(`users`.`first_name`,' ',`users`.`last_name`) as name"))
+        ->select('applications.id', 'applications.user_id', 'applications.pub_id', 'applications.created_at', DB::raw("CONCAT(`users`.`first_name`,' ',`users`.`last_name`) as name"), 'others.Q40a', 'others.Q40b', 'others.Q40c', 'personals.sex')
         ->where('applications.status', '!=', '2')
-        ->with('user', 'user.pdsPersonal')
-        ->with('user', 'user.pdsOther')
-        ->with('publication')->get();
+        ->leftJoin('personals', 'personals.user_id', 'users.id')
+        ->leftJoin('others', 'others.user_id', 'users.id')
+        // ->with('user', 'user.pdsPersonal')
+        // ->with('user', 'user.pdsOther')
+        // ->with('publication')
+        ->get();
         $ranking = $this->ranking($all_applicants);
 
         return response()->json($ranking, Response::HTTP_OK);

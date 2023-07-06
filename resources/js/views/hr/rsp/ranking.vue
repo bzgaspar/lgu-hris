@@ -75,16 +75,16 @@
                     {{ index + 1 }}
                 </template>
                 <template v-slot:item.indigenous="{ item, index }">
-                    <span v-if="item.user.pds_other.Q40a"> No </span>
-                    <span v-else>{{ item.user.pds_other.Q40a1 }}</span>
+                    <span v-if="item.Q40a"> No </span>
+                    <span v-else>{{ item.Q40a1 }}</span>
                 </template>
                 <template v-slot:item.pwd="{ item, index }">
-                    <span v-if="item.user.pds_other.Q40b"> No </span>
-                    <span v-else>{{ item.user.pds_other.Q40b1 }}</span>
+                    <span v-if="item.Q40b"> No </span>
+                    <span v-else>{{ item.Q40b1 }}</span>
                 </template>
                 <template v-slot:item.single="{ item, index }">
-                    <span v-if="item.user.pds_other.Q40c"> No </span>
-                    <span v-else>{{ item.user.pds_other.Q40c1 }}</span>
+                    <span v-if="item.Q40c"> No </span>
+                    <span v-else>{{ item.Q40c1 }}</span>
                 </template>
                 <template v-slot:item.actions="{ item }">
                     <v-btn
@@ -155,7 +155,7 @@ export default {
                 },
                 {
                     text: "Gender",
-                    value: "user.pds_personal.sex",
+                    value: "sex",
                     align: "center",
                     filter: this.genderFilter,
                 },
@@ -167,19 +167,19 @@ export default {
                 },
                 {
                     text: "IndigenousFilter",
-                    value: "user.pds_other.Q40a",
+                    value: "Q40a",
                     align: " d-none",
                     filter: this.indigenousFilter,
                 },
                 {
                     text: "PWDFilter",
-                    value: "user.pds_other.Q40b",
+                    value: "Q40b",
                     align: " d-none",
                     filter: this.pwdFilter,
                 },
                 {
                     text: "SinglePFilter",
-                    value: "user.pds_other.Q40c",
+                    value: "Q40c",
                     align: " d-none",
                     filter: this.singleFilter,
                 },
