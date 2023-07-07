@@ -281,7 +281,7 @@
                         <?php $dep_head = App\Http\Controllers\HomeController::getDepartmentHeadLeave($leaveApplication->user_id);
                         ?></p>
                         @if ($leaveApplication->status == 2)
-                            @if ($dep_head)
+                            @if ($dep_head && $dep_head['signature'])
                                 <img height="60px" width="60px"
                                     style="position:absolute;margin-top: -30px;margin-left: 160px"
                                     src="{{ $dep_head['signature'] }}" alt="HR Head Signature">

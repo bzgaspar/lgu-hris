@@ -464,9 +464,15 @@ class HomeController extends Controller
                 $full_name =$salutation_before . ' ' . $full_name .' ' .$ext_name . ', '.  $salutation_after;
 
 
+
+                if($signature) {
+                    $sig = $signature->signature;
+                } else {
+                    $sig = null;
+                }
                 $details = [
                     'full_name' => $full_name,
-                    'signature' => $signature->signature,
+                    'signature' => $sig,
                 ];
                 return $details;
             } else {
