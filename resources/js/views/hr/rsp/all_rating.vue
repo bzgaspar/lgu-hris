@@ -47,57 +47,56 @@ export default {
                 {
                     text: "App Name",
                     value: "app_name",
-                    sortable: false,
+
                     align: "center",
                 },
                 {
                     text: "Written",
                     value: "written_exam",
-                    sortable: false,
+
                     align: "center",
                 },
                 {
                     text: "Oral",
                     value: "oral_exam",
-                    sortable: false,
+
                     align: "center",
                 },
                 {
                     text: "Background",
                     value: "background",
-                    sortable: false,
+
                     align: "center",
                 },
                 {
                     text: "Performance",
                     value: "performance",
-                    sortable: false,
+
                     align: "center",
                 },
                 {
                     text: "PSPT",
                     value: "pspt",
-                    sortable: false,
+
                     align: "center",
                 },
                 {
                     text: "Potential",
                     value: "potential",
-                    sortable: false,
+
                     align: "center",
                 },
 
                 {
                     text: "Rater Name",
                     value: "rater_name",
-                    sortable: false,
+
                     align: "center",
                 },
                 {
                     text: "Action",
                     value: "actions",
                     align: "center",
-                    sortable: false,
                 },
             ],
             application: [],

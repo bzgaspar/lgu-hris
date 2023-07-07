@@ -67,16 +67,17 @@
                                         <td class="bg-secondary text-white fw-bold">{{ $i + 1 }}</td>
                                         @if ($item['additional_points_raters'])
                                             <td>
-                                                <?php $sum += round($item['additional_points_raters'][$i]['experience'] * 0.15, 2); ?>
-                                                {{ round($item['additional_points_raters'][$i]['experience'] * 0.15, 2) }}
+                                                {{ $score = round($item['additional_points_raters'][$i]['experience'] * 0.15, 2) }}
+
+                                                <?php $sum += $score; ?>
                                             </td>
                                             <td>
-                                                <?php $sum += round($item['additional_points_raters'][$i]['education'] * 0.15, 2); ?>
-                                                {{ round($item['additional_points_raters'][$i]['education'] * 0.15, 2) }}
+                                                {{ $score = round($item['additional_points_raters'][$i]['education'] * 0.15, 2) }}
+                                                <?php $sum += $score; ?>
                                             </td>
                                             <td>
-                                                <?php $sum += round($item['additional_points_raters'][$i]['eligibility'] * 0.1, 2); ?>
-                                                {{ round($item['additional_points_raters'][$i]['eligibility'] * 0.1, 2) }}
+                                                {{ $score = round($item['additional_points_raters'][$i]['eligibility'] * 0.1, 2) }}
+                                                <?php $sum += $score; ?>
                                             </td>
                                         @else
                                             <td>0</td>
@@ -85,30 +86,30 @@
                                         @endif
                                         @if ($item['interview_exam_raters'])
                                             <td>
-                                                <?php $sum += round($item['interview_exam_raters'][$i]['written_exam'] * 0.1, 2); ?>
-                                                {{ round($item['interview_exam_raters'][$i]['written_exam'] * 0.1, 2) }}
+                                                {{ $score = round($item['interview_exam_raters'][$i]['written_exam'] * 0.1, 2) }}
+                                                <?php $sum += $score; ?>
                                             </td>
                                             <td>
-                                                <?php $sum += round($item['interview_exam_raters'][$i]['oral_exam'] * 0.1, 2); ?>
-                                                {{ round($item['interview_exam_raters'][$i]['oral_exam'] * 0.1, 2) }}
+                                                {{ $score = round($item['interview_exam_raters'][$i]['oral_exam'] * 0.1, 2) }}
+                                                <?php $sum += $score; ?>
                                             </td>
                                             <td>
-                                                <?php $sum += round($item['interview_exam_raters'][$i]['background'] * 0.1, 2); ?>
-                                                {{ round($item['interview_exam_raters'][$i]['background'] * 0.1, 2) }}
+                                                {{ $score = round($item['interview_exam_raters'][$i]['background'] * 0.1, 2) }}
+                                                <?php $sum += $score; ?>
                                             </td>
                                             <td>
-                                                <?php $sum += round($item['interview_exam_raters'][$i]['performance'] * 0.1, 2); ?>
-                                                {{ round($item['interview_exam_raters'][$i]['performance'] * 0.1, 2) }}
+                                                {{ $score = round($item['interview_exam_raters'][$i]['performance'] * 0.1, 2) }}
+                                                <?php $sum += $score; ?>
                                             </td>
                                             <td>
-                                                <?php $sum += round($item['interview_exam_raters'][$i]['pspt'] * 0.1, 2); ?>
-                                                {{ round($item['interview_exam_raters'][$i]['pspt'] * 0.1, 2) }}
+                                                {{ $score = round($item['interview_exam_raters'][$i]['pspt'] * 0.1, 2) }}
+                                                <?php $sum += $score; ?>
                                             </td>
                                             <td>
-                                                <?php $sum += round($item['interview_exam_raters'][$i]['potential'] * 0.1, 2); ?>
-                                                {{ round($item['interview_exam_raters'][$i]['potential'] * 0.1, 2) }}
+                                                {{ $score = round($item['interview_exam_raters'][$i]['potential'] * 0.1, 2) }}
+                                                <?php $sum += $score; ?>
                                             </td>
-                                            <td>{{ round($sum, 2) }}</td>
+                                            <td>{{ $sum }}</td>
                                         @else
                                             <td>0</td>
                                             <td>0</td>

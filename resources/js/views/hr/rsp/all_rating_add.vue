@@ -47,38 +47,37 @@ export default {
                 {
                     text: "App Name",
                     value: "app_name",
-                    sortable: false,
-                    align: "center",
-                },
-                {
-                    text: "Education",
-                    value: "education",
-                    sortable: false,
-                    align: "center",
-                },
-                {
-                    text: "Eligibility",
-                    value: "eligibility",
-                    sortable: false,
+
                     align: "center",
                 },
                 {
                     text: "EXP",
                     value: "experience",
-                    sortable: false,
+
+                    align: "center",
+                },
+                {
+                    text: "Education",
+                    value: "education",
+
+                    align: "center",
+                },
+                {
+                    text: "Eligibility",
+                    value: "eligibility",
+
                     align: "center",
                 },
                 {
                     text: "Rater Name",
                     value: "rater_name",
-                    sortable: false,
+
                     align: "center",
                 },
                 {
                     text: "Action",
                     value: "actions",
                     align: "center",
-                    sortable: false,
                 },
             ],
             application: [],

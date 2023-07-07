@@ -55,17 +55,22 @@ class RangkingController extends Controller
 
     public function getRanking()
     {
+        // $all_applicants = $this->application
+        // ->leftJoin('users', 'users.id', '=', 'applications.user_id')
+        // ->select('applications.id', 'applications.user_id', 'applications.pub_id', 'applications.created_at', DB::raw("CONCAT(`users`.`first_name`,' ',`users`.`last_name`) as name"), 'others.Q40a', 'others.Q40b', 'others.Q40c', 'personals.sex')
+        // ->where('applications.status', '!=', '2')
+        // ->groupBy('applications.id')
+        // ->leftJoin('personals', 'personals.user_id', 'users.id')
+        // ->leftJoin('others', 'others.user_id', 'users.id')
+        // // ->with('user', 'user.pdsPersonal')
+        // // ->with('user', 'user.pdsOther')
+        // // ->with('publication')
+        // ->get();
         $all_applicants = $this->application
         ->leftJoin('users', 'users.id', '=', 'applications.user_id')
-        ->select('applications.id', 'applications.user_id', 'applications.pub_id', 'applications.created_at', DB::raw("CONCAT(`users`.`first_name`,' ',`users`.`last_name`) as name"), 'others.Q40a', 'others.Q40b', 'others.Q40c', 'personals.sex')
+        ->select('applications.id', 'applications.user_id', 'applications.pub_id', 'applications.created_at', DB::raw("CONCAT(`users`.`first_name`,' ',`users`.`last_name`) as name", 'publication.title as position'))
         ->where('applications.status', '!=', '2')
-        ->groupBy('applications.id')
-        ->leftJoin('personals', 'personals.user_id', 'users.id')
-        ->leftJoin('others', 'others.user_id', 'users.id')
-        // ->with('user', 'user.pdsPersonal')
-        // ->with('user', 'user.pdsOther')
-        // ->with('publication')
-        ->get();
+        ->with('publication')->get();
 
         $ranking = $this->ranking($all_applicants);
 
@@ -96,126 +101,47 @@ class RangkingController extends Controller
         $ctr = 0;
         foreach ($applicants as $app) {
             if ($app->publication->status == 1) {
-                // foreach ($app->user->pdsLearningDevelopment as $lnd) {
-                // $total_lnd += $lnd->LDnumhour;
-                // }
-
-                // work experience
-                // if ($app->publication->experience) {
-                //     $experience = preg_replace('/[^0-9]/', '', $app->publication->experience);
-                //     if (!$experience == 0) {
-                //         $xp = $experience * 365;
-                //         foreach ($app->user->pdsWorkExperience as $WE) {
-                //             $toDate = Carbon::parse($WE->WEidto);
-                //             $fromDate = Carbon::parse($WE->WEidfrom);
-
-                //             $total_WE +=  $toDate->diffInDays($fromDate);
-                //         }
-
-                //         $total_WE = round((($total_WE/$xp)*10), 2);
-
-                //         if ($total_WE > 0 && $total_WE <=10) {
-                //             $total_WE = $total_WE;
-                //         } elseif ($total_WE > 10) {
-                //             $total_WE = 10;
-                //         } elseif ($total_WE <0) {
-                //             $total_WE = 0;
-                //         }
-                //     }
-                // }
-                // //  education
-                // if ($app->publication->education) {
-                //     $education = preg_replace('/[^0-9]/', '', $app->publication->education);
-                //     if (!$education == null) {
-                //         $educ_xp = $education * 365;
-                //         foreach ($app->user->pdsEducational as $educ) {
-                //             if ($educ->EDlevel == 'College') {
-                //                 $toDate = Carbon::parse($educ->EDpoaFROM);
-                //                 $fromDate = Carbon::parse($educ->EDpoaTO);
-
-                //                 $total_educ +=  $toDate->diffInDays($fromDate);
-
-                //                 $total_educ = round((($total_educ/$educ_xp)*10), 2);
-                //             }
-                //         }
-                //         if ($total_educ <= 10 && $total_educ > 0) {
-                //             $percent +=$total_educ;
-                //         }
-                //     } else {
-                //         $percent += 15;
-                //     }
-                // }
-                // eligibility
-                // if (!$app->eligibility) {
-                //     $percent += 15;
-                // } else {
-                //     if ($app->user->pdsCivilService) {
-                //         $percent += 15;
-                //     }
-                // }
-                // training
-
-                // if ($app->publication->trainig) {
-                //     $trainig = preg_replace('/[^0-9]/', '', $app->publication->trainig);
-                //     if (!$trainig == 0) {
-                //         foreach ($app->user->pdsLearningDevelopment as $lnd) {
-                //             $total_trainig =  $lnd->LDnumhour;
-                //             $total_trainig = round((($total_trainig/$trainig)*10), 2);
-
-                //             if ($total_trainig > 0 && $total_trainig <= 10) {
-                //                 $percent +=$total_trainig;
-                //             }
-                //         }
-                //     } else {
-                //         $percent += 10;
-                //     }
-                // }
-                $initial_sum = 0;
-                if ($app->InterviewExamRaters) {
-
-                    foreach($app->InterviewExamRaters as $item) {
-                        if ($item->written_exam) {
-                            $initial_sum += ($item->written_exam *.10);
+                $over_all = 0;
+                for ($i = 0; $i < count($app->InterviewExamRaters); $i++) {
+                    $sum = 0;
+                    if($app->AdditionalPointsRaters) {
+                        if($app->AdditionalPointsRaters[$i]->experience) {
+                            $sum += round($app->AdditionalPointsRaters[$i]->experience *.15, 2);
                         }
-                        if ($item->oral_exam) {
-                            $initial_sum += ($item->oral_exam *.10);
+                        if($app->AdditionalPointsRaters[$i]->education) {
+                            $sum += $app->AdditionalPointsRaters[$i]->education *.15;
                         }
-                        if ($item->background) {
-                            $initial_sum += ($item->background *.10);
-                        }
-                        if ($item->performance) {
-                            $initial_sum += ($item->performance *.10);
-                        }
-                        if ($item->pspt) {
-                            $initial_sum += ($item->pspt *.10);
-                        }
-                        if ($item->potential) {
-                            $initial_sum += ($item->potential *.10);
+                        if($app->AdditionalPointsRaters[$i]->eligibility) {
+                            $sum += round($app->AdditionalPointsRaters[$i]->eligibility *.10, 2);
                         }
                     }
-                }
-                if($initial_sum <>0) {
-                    $percent += $initial_sum/count($app->InterviewExamRaters);
-                }
-                $initial_sum = 0;
-                if ($app->AdditionalPointsRaters) {
-                    foreach($app->AdditionalPointsRaters as $item) {
-                        if ($item->education) {
-                            $initial_sum += ($item->education *.15);
+                    if($app->InterviewExamRaters) {
+                        if($app->InterviewExamRaters[$i]->written_exam) {
+                            $sum += round($app->InterviewExamRaters[$i]->written_exam *.1, 2);
                         }
-                        if ($item->eligibility) {
-                            $initial_sum += ($item->eligibility *.15);
+                        if($app->InterviewExamRaters[$i]->oral_exam) {
+                            $sum += round($app->InterviewExamRaters[$i]->oral_exam *.1, 2);
                         }
-                        if ($item->experience) {
-                            $initial_sum += ($item->experience *.10);
+                        if($app->InterviewExamRaters[$i]->background) {
+                            $sum += round($app->InterviewExamRaters[$i]->background *.1, 2);
+                        }
+                        if($app->InterviewExamRaters[$i]->performance) {
+                            $sum += round($app->InterviewExamRaters[$i]->performance *.1, 2);
+                        }
+                        if($app->InterviewExamRaters[$i]->pspt) {
+                            $sum += round($app->InterviewExamRaters[$i]->pspt *.1, 2);
+                        }
+                        if($app->InterviewExamRaters[$i]->potential) {
+                            $sum += round($app->InterviewExamRaters[$i]->potential *.1, 2);
                         }
                     }
+                    $over_all += round($sum, 2);
                 }
-                if($initial_sum <>0) {
-                    $percent += $initial_sum/count($app->AdditionalPointsRaters);
+                if($over_all > 0) {
+                    $over_all = round($over_all/count($app->InterviewExamRaters), 2);
                 }
-                $percent = round($percent, 2);
-                $total = ['total'=>$percent];
+                // $percent = $over_all;
+                $total = ['total'=>$over_all];
                 $app = $app->toArray();
                 $rank[$ctr] = array_merge($app, $total);
                 $ctr++;
