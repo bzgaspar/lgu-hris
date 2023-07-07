@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\LeaveApplication as ModelsLeaveApplication;
 use App\Models\LeaveApplicationPoints;
 use Carbon\Carbon;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Session;
 
 class leaveApplicationController extends Controller
@@ -143,7 +144,8 @@ class leaveApplicationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->leaveApplication->destroy($id);
+        return response()->json(null, Response::HTTP_OK);
     }
 
     public static function getLeaves($id)

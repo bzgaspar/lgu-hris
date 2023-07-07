@@ -145,6 +145,8 @@ Route::group(['middleware'=>'auth','middleware'=>'role:0,1,2,3,4,5,7','middlewar
         Route::resource('/publication', PublicationController::class);
         Route::resource('/service', ServiceRecord::class);
         Route::get('/service/{id}/edit_record', [ServiceRecord::class, 'edit_record'])->name('service.edit_record');
+        Route::delete('/deleteRating/{id}', [applicantController::class, 'deleteRating']);
+        Route::delete('/deleteRatingAdd/{id}', [applicantController::class, 'deleteRatingAdd']);
         Route::resource('/dashboard', dashboard::class);
         Route::resource('/printing', printingController::class);
         Route::resource('/leaveApplication', leaveApplicationController::class);

@@ -8,6 +8,7 @@ use App\Models\hr\InterviewExam;
 use App\Models\pds\personal;
 use App\Models\users\application;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 class applicantController extends Controller
@@ -109,5 +110,17 @@ class applicantController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function deleteRating($id)
+    {
+        $rating= InterviewExam::findOrFail($id)->delete();
+
+        return response()->json(null, Response::HTTP_OK);
+    }
+    public function deleteRatingAdd($id)
+    {
+        $rating= AdditionalPoints::findOrFail($id)->delete();
+
+        return response()->json(null, Response::HTTP_OK);
     }
 }

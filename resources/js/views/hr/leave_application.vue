@@ -84,6 +84,15 @@
                     >
                         <i class="fa-solid fa-print"></i>
                     </v-btn>
+                    <v-btn
+                        color="orange"
+                        small
+                        outlined
+                        title="Dlete"
+                        @click="deleteLeaveCard(item.id)"
+                    >
+                        <i class="fa-solid fa-trash"></i>
+                    </v-btn>
                 </template>
             </v-data-table>
         </v-card>
@@ -171,6 +180,20 @@ export default {
                 });
                 this.departmentItems = Items;
             });
+        },
+        deleteLeaveCard(id) {
+            if (confirm("Are you sure?")) {
+                axios.delete("/hr/leaveApplication/" + id).then((response) => {
+                    if (this.$root.vtoast) {
+                        this.$root.vtoast.show({
+                            message: "Leave Credit Deleted!",
+                            color: "success",
+                            icon: "mdi-exclamation",
+                        });
+                    }
+                    this.loadTable();
+                });
+            }
         },
 
         // filters

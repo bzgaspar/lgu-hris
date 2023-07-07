@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\admin\Department;
 use App\Models\admin\EmployeePlantilla;
 use App\Models\hr\hrmpsb;
+use App\Models\hr\InterviewExam;
 use App\Models\hr\LeaveCredit;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -589,5 +590,43 @@ class HomeController extends Controller
         ];
 
         return response()->json($data, Response::HTTP_OK);
+    }
+
+    public function fetchRatings()
+    {
+        $all_rating = application::join('interview_exams', 'interview_exams.app_id', 'applications.id')
+        ->leftJoin('users as rater', 'rater.id', 'interview_exams.rater_id')
+        ->join('users', 'users.id', 'interview_exams.user_id')
+        ->select(
+            'interview_exams.id',
+            'interview_exams.written_exam',
+            'interview_exams.oral_exam',
+            'interview_exams.background',
+            'interview_exams.performance',
+            'interview_exams.pspt',
+            'interview_exams.potential',
+            DB::raw("CONCAT(`users`.`first_name`,' ',' ',`users`.`last_name`) as app_name"),
+            DB::raw("CONCAT(`rater`.`first_name`,' ',' ',`rater`.`last_name`) as rater_name")
+        )
+        ->groupBy('interview_exams.id')
+        ->get();
+        return response()->json($all_rating, Response::HTTP_OK);
+    }
+    public function fetchRatingsAdd()
+    {
+        $all_rating = application::join('additional_points', 'additional_points.app_id', 'applications.id')
+        ->leftJoin('users as rater', 'rater.id', 'additional_points.rater_id')
+        ->join('users', 'users.id', 'additional_points.user_id')
+        ->select(
+            'additional_points.id',
+            'additional_points.education',
+            'additional_points.eligibility',
+            'additional_points.experience',
+            DB::raw("CONCAT(`users`.`first_name`,' ',' ',`users`.`last_name`) as app_name"),
+            DB::raw("CONCAT(`rater`.`first_name`,' ',' ',`rater`.`last_name`) as rater_name")
+        )
+        ->groupBy('additional_points.id')
+        ->get();
+        return response()->json($all_rating, Response::HTTP_OK);
     }
 }

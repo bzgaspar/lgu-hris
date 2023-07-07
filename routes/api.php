@@ -50,6 +50,8 @@ Route::get('/getLeaveCredit/{user_id}', [HomeController::class, 'getLeaveCredit'
 Route::get('/getApplicants', [HomeController::class, 'getApplicants'])->name('getApplicants');
 Route::get('/getRanking', [RangkingController::class, 'getRanking'])->name('getRanking');
 Route::get('/getAccepted', [RangkingController::class, 'getAccepted'])->name('getAccepted');
+Route::get('/fetchRatings', [HomeController::class, 'fetchRatings'])->name('fetchRatings');
+Route::get('/fetchRatingsAdd', [HomeController::class, 'fetchRatingsAdd'])->name('fetchRatingsAdd');
 
 // pms
 Route::get('/getEmployee', [HomeController::class, 'getEmployee'])->name('getEmployee');

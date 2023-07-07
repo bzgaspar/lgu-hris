@@ -66,6 +66,7 @@ class RangkingController extends Controller
         // ->with('user', 'user.pdsOther')
         // ->with('publication')
         ->get();
+
         $ranking = $this->ranking($all_applicants);
 
         return response()->json($ranking, Response::HTTP_OK);
@@ -396,7 +397,6 @@ class RangkingController extends Controller
         ->where('applications.pub_id', $id)->get();
 
         $hrmpsb = hrmpsb::all();
-
         $publication = $this->publication->findOrFail($id);
         $ranking = $this->ranking($all_applicants);
         return view('print.rangking_applicant')

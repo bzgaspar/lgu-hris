@@ -45,6 +45,8 @@ Vue.component(
 // rsp
 Vue.component("hr-applicant", require("./views/hr/rsp/applicant.vue").default);
 Vue.component("hr-ranking", require("./views/hr/rsp/ranking.vue").default);
+Vue.component("hr-all_rating", require("./views/hr/rsp/all_rating.vue").default);
+Vue.component("hr-all_rating-add", require("./views/hr/rsp/all_rating_add.vue").default);
 Vue.component("hr-accepted", require("./views/hr/rsp/accepted.vue").default);
 Vue.component("hr-hrmpsb", require("./views/hr/rsp/hrmpsb.vue").default);
 Vue.component("hr-rating", require("./views/hr/rsp/rating.vue").default);
