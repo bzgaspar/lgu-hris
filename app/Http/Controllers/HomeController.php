@@ -421,7 +421,8 @@ class HomeController extends Controller
     {
         $user = User::findOrFail($id);
         if($user) {
-            $user_dep = $user->empPlantilla->designation->id;
+            $user_designation = $user->empPlantilla->designation->id;
+            $user_dep = $user->empPlantilla->dep_id;
 
 
             if($user_dep != 15) {
@@ -440,6 +441,13 @@ class HomeController extends Controller
                 ->select('users.id as id', 'personals.first_name', 'personals.salutation_before', 'personals.salutation_after', 'personals.middle_name', 'personals.last_name')
             ->where('employee_plantillas.dep_id', $user_dep)->where('users.role', 7)->first();
             }
+            if(!$dep_head) {
+                $dep_head = EmployeePlantilla::leftJoin('users', 'employee_plantillas.user_id', 'users.id')
+                ->leftJoin('personals', 'users.id', '=', 'personals.user_id')
+                ->select('users.id as id', 'personals.first_name', 'personals.salutation_before', 'personals.salutation_after', 'personals.middle_name', 'personals.last_name')
+                ->where('employee_plantillas.dep_id', $user_designation)->where('users.role', 7)->first();
+            }
+
             if($dep_head) {
                 $signature = Signature::where('user_id', $dep_head->id)->first();
                 $full_name =
