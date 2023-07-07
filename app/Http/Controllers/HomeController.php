@@ -435,15 +435,13 @@ class HomeController extends Controller
                 ->select('users.id as id', 'personals.first_name', 'personals.salutation_before', 'personals.salutation_after', 'personals.middle_name', 'personals.last_name')
             ->where('employee_plantillas.dep_id', $user_dep)->where('users.role', 5)->first();
             } else {
-
                 $dep_head = EmployeePlantilla::leftJoin('users', 'employee_plantillas.user_id', 'users.id')
                 ->leftJoin('personals', 'users.id', '=', 'personals.user_id')
                 ->select('users.id as id', 'personals.first_name', 'personals.salutation_before', 'personals.salutation_after', 'personals.middle_name', 'personals.last_name')
             ->where('employee_plantillas.dep_id', $user_dep)->where('users.role', 7)->first();
             }
-
-            $signature = Signature::where('user_id', $dep_head->id)->first();
             if($dep_head) {
+                $signature = Signature::where('user_id', $dep_head->id)->first();
                 $full_name =
                 $dep_head->first_name . ' ' .
                 substr($dep_head->middle_name, 0, 1) . '. ' .
