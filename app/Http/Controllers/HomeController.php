@@ -499,11 +499,13 @@ class HomeController extends Controller
         if($user) {
 
             $dep_head = User::leftJoin('personals', 'users.id', '=', 'personals.user_id')
-            ->leftJoin('signatures', 'signatures.user_id', 'users.id')
-            ->select('personals.first_name', 'personals.salutation_before', 'personals.salutation_after', 'personals.middle_name', 'personals.last_name', 'signatures.signature as signature')
+            ->select('users.id as id', 'personals.first_name', 'personals.salutation_before', 'personals.salutation_after', 'personals.middle_name', 'personals.last_name')
             ->Where('users.role', 7)->first();
 
             if($dep_head) {
+
+
+                $signature = Signature::where('user_id', $dep_head->id)->first();
                 $full_name =
                 $dep_head->first_name . ' ' .
                 substr($dep_head->middle_name, 0, 1) . '. ' .
@@ -525,10 +527,15 @@ class HomeController extends Controller
 
                 $full_name =$salutation_before . ' ' . $full_name .' ' .$ext_name . ', '.  $salutation_after;
 
+                if($signature) {
+                    $sig = $signature->signature;
+                } else {
+                    $sig = null;
+                }
 
                 $details = [
                     'full_name' => $full_name,
-                    'signature' => $dep_head->signature,
+                    'signature' => $sig,
                 ];
                 return $details;
             } else {
