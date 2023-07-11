@@ -504,7 +504,7 @@ class HomeController extends Controller
 
             if($dep_head) {
 
-
+                // search of signature
                 $signature = Signature::where('user_id', $dep_head->id)->first();
                 $full_name =
                 $dep_head->first_name . ' ' .
