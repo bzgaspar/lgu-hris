@@ -15,6 +15,7 @@ use App\Models\pds\workexperience;
 use App\Models\User as ModelsUser;
 use App\Models\users\others;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -107,13 +108,35 @@ class User extends Controller
         return redirect()->back();
     }
 
-    function delete($id)
+    public function delete($id)
     {
-        if ($this->user->where('id',$id)->forceDelete()) {
+        if ($this->user->where('id', $id)->forceDelete()) {
             Session::flash('alert', 'success|User has been Delete!');
         } else {
             Session::flash('alert', 'danger|User has not Delete!');
         }
         return redirect()->back();
+    }
+
+    public function backUp()
+    {
+        Artisan::call('backup:run --disable-notifications');
+        dd(Artisan::output());
+        $path = storage_path('app\myBackup\*');
+        $latest_ctime = 0;
+        $latest_filename = '';
+        $files = glob($path);
+        foreach ($files as $file) {
+            if (is_file($file) && filectime($file) > $latest_ctime) {
+                $latest_ctime = filectime($file);
+                $latest_filename = $file;
+            }
+        }
+        return response()->download($latest_filename);
+    }
+    public function backUpClean()
+    {
+        Artisan::call('backup:clean');
+        dd(Artisan::output());
     }
 }

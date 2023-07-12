@@ -69,6 +69,17 @@
         </div>
     </div>
     <hr>
+    @if (Auth::user()->id === 1 || Auth::user()->id === 2)
+        <div class="my-3">
+            <div class="row">
+                <div class="col">
+                    <a href="{{ route('admin.backUp') }}" class="btn btn-success">Backup</a>
+                    <a href="{{ route('admin.backUpClean') }}" class="btn btn-success">Clean Backup</a>
+                </div>
+            </div>
+        </div>
+    @endif
+
     <form action="{{ route('admin.user.store') }}" method="POST">
         @csrf
         <div class="row mt-4 align-items-center">
@@ -122,7 +133,8 @@
                             <td data-title="Name">{{ $user->first_name . ' ' . $user->last_name }}</td>
                             <td data-title="Email">{{ $user->email }}</td>
                             <td data-title="Role">
-                                <form action="{{ route('admin.user.update', $user->id) }}" method="POST" id="role_id">
+                                <form action="{{ route('admin.user.update', $user->id) }}" method="POST"
+                                    id="role_id">
                                     @csrf
                                     @method('PATCH')
                                     <select @if ($user->id === '1') disabled @endif

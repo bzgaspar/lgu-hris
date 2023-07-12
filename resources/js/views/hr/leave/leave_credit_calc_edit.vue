@@ -259,7 +259,7 @@
                     <v-row>
                         <v-col class="pa-2" cols="12" sm="12" md="6">
                             <v-text-field
-                                v-model="edit_form.particulars"
+                                v-model="edit_form.elc_particular"
                                 dense
                                 color="success"
                                 label="Particulars"
@@ -268,7 +268,7 @@
                         </v-col>
                         <v-col class="pa-2" cols="12" sm="12" md="6">
                             <v-text-field
-                                v-model="edit_form.remarks"
+                                v-model="edit_form.elc_remarks"
                                 dense
                                 color="success"
                                 label="Remarks"
@@ -371,8 +371,8 @@ export default {
         sl_minutes: null,
         sl_hour: null,
         sl_day: null,
-        particulars: null,
-        remarks: null,
+        elc_particular: null,
+        elc_remarks: null,
         dateMessage: null,
         vl_select: "0",
         sl_select: "0",
