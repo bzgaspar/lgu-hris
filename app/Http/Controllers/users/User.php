@@ -15,6 +15,7 @@ use App\Models\pds\workexperience;
 use App\Models\User as ModelsUser;
 use App\Models\users\others;
 use Illuminate\Http\Request;
+use Illuminate\Support\Composer;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -121,7 +122,6 @@ class User extends Controller
     public function backUp()
     {
         Artisan::call('backup:run --disable-notifications');
-        dd(Artisan::output());
         $path = storage_path('app\myBackup\*');
         $latest_ctime = 0;
         $latest_filename = '';
