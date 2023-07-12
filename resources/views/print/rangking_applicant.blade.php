@@ -10,14 +10,18 @@
             padding: 0 !important;
         }
 
+        .table {
+            page-break-before: auto;
+        }
+
         .table td,
         .table th {
-            font-size: 10px;
+            font-size: 14px;
             padding: 0;
         }
 
         .b {
-            font-size: 12px
+            font-size: 14px
         }
     </style>
 
@@ -36,7 +40,7 @@
                 </div>
             </div>
             <h4 class="mt-2 mb-0 fw-bold float-left">
-                {{ $publication->title }}</h4>
+                Ranking Scores for {{ $publication->title }}</h4>
 
 
         </center>
@@ -46,7 +50,7 @@
                     @forelse ($ranking as $item)
                         @if ($loop->iteration < 10)
                             <?php $over_all = 0; ?>
-                            <h5 class="mx-auto mt-3">{{ $item['name'] }}</h5>
+                            <h5 class="mx-auto mt-4">{{ $loop->iteration }}. {{ $item['name'] }}</h5>
                             <table class="table table-bordered text-center small">
                                 <tr>
                                     <th class="bg-secondary text-white">HRMPSB</th>

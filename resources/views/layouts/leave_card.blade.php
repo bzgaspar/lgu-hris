@@ -30,7 +30,8 @@
         }
 
         @page {
-            margin: 0;
+            margin: 0 0 0 0;
+            page-break-after: always !important;
             padding: 0;
         }
     </style>
