@@ -62,7 +62,7 @@ return [
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
             'dump' => [
-                'dump_binary_path' => '/usr/bin/mysql/', // only the path, so without `mysqldump` or `pg_dump`
+                'dump_binary_path' => '/usr/bin/', // only the path, so without `mysqldump` or `pg_dump`
                 'use_single_transaction',
                 'timeout' => 60 * 15, // 5 minute timeout
              ],
