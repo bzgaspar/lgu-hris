@@ -122,7 +122,8 @@ class User extends Controller
 
     public function backUp()
     {
-        // Artisan::call('backup:run');
+        Artisan::call('backup:run');
+        dd(Artisan::output());
         $path = storage_path('app\HRIS---LGU-Delfin-Albano\*');
         $latest_ctime = 0;
         $latest_filename = '';
@@ -137,7 +138,7 @@ class User extends Controller
     }
     public function backUpClean()
     {
-        // Artisan::call('backup:clean');
+        Artisan::call('backup:clean');
         if (File::deleteDirectory(storage_path('app/HRIS---LGU-Delfin-Albano'))) {
             Session::flash('alert', 'success|Record has been Saved');
             return redirect()->back();
