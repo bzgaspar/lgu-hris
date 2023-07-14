@@ -15,11 +15,12 @@ use App\Models\pds\workexperience;
 use App\Models\User as ModelsUser;
 use App\Models\users\others;
 use Illuminate\Http\Request;
-use Illuminate\Support\Composer;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Controller
 {
@@ -121,8 +122,8 @@ class User extends Controller
 
     public function backUp()
     {
-        Artisan::call('backup:run --disable-notifications');
-        $path = storage_path('app\myBackup\*');
+        Artisan::call('backup:run');
+        $path = storage_path('app\HRIS---LGU-Delfin-Albano\*');
         $latest_ctime = 0;
         $latest_filename = '';
         $files = glob($path);
@@ -137,6 +138,12 @@ class User extends Controller
     public function backUpClean()
     {
         Artisan::call('backup:clean');
-        dd(Artisan::output());
+        if (File::deleteDirectory(storage_path('app/HRIS---LGU-Delfin-Albano'))) {
+            Session::flash('alert', 'success|Record has been Saved');
+            return redirect()->back();
+        } else {
+            Session::flash('alert', 'danger|Record not Saved');
+            return redirect()->back();
+        }
     }
 }

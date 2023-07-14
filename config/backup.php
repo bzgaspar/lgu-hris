@@ -29,6 +29,15 @@ return [
                 'exclude' => [
                     base_path('vendor'),
                     base_path('node_modules'),
+                    base_path('app'),
+                    base_path('bootstrap'),
+                    base_path('config'),
+                    base_path('database'),
+                    base_path('public'),
+                    base_path('resources'),
+                    base_path('routes'),
+                    base_path('tests'),
+                    base_path('.git'),
                 ],
 
                 /*
@@ -103,27 +112,28 @@ return [
          * If not specified, the file extension will be .archive for MongoDB and .sql for all other databases
          * The file extension should be specified without a leading .
          */
-        'database_dump_file_extension' => '.sql',
+        'database_dump_file_extension' => 'sql',
 
         'destination' => [
 
             /*
              * The filename prefix used for the backup zip file.
              */
-            'filename_prefix' => env('APP_NAME', 'backup'),
+            'filename_prefix' => '',
 
             /*
              * The disk names on which the backups will be stored.
              */
             'disks' => [
                 'local',
+                'google',
             ],
         ],
 
         /*
          * The directory where the temporary files will be stored.
          */
-        'temporary_directory' => storage_path('app/myBackup'),
+        'temporary_directory' => storage_path('app/backup-temp'),
 
         /*
          * The password to be used for archive encryption.
@@ -191,9 +201,15 @@ return [
         'discord' => [
             'webhook_url' => '',
 
-            'username' => null,
+            /*
+             * If this is an empty string, the name field on the webhook will be used.
+             */
+            'username' => '',
 
-            'avatar_url' => null,
+            /*
+             * If this is an empty string, the avatar on the webhook will be used.
+             */
+            'avatar_url' => '',
         ],
     ],
 

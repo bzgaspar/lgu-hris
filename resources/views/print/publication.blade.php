@@ -31,8 +31,8 @@
     {{-- @forelse ($all_publication as $item) --}}
     <page size="Legal" layout="landscape">
         {{-- <center class="pt-3 m-3"> --}}
-        <div class="row">
-            <div class="col-4 ms-2">
+        <div class="row pt-4">
+            <div class="col-3 ms-2">
                 CS Form No.9 <br class="mb-0">
                 Series of 2017
             </div>
@@ -42,7 +42,8 @@
                 <strong>MGO DELFIN ALBANO (MAGSAYSAY), ISABELA</strong> <br>
                 <strong class="fw-bold">Request for Publication of Vacant Position</strong>
             </div>
-            <div class="col-4">
+            <div class="col-3 me-3 ps-5">
+                Electronic copy to be submitted to the CSC FO must be in MS Excel format
             </div>
         </div>
         <br>
@@ -60,6 +61,12 @@
             the CSC Website.
         </p>
         <br>
+        <div class="row justify-content-end">
+            <div class="col-4 text-center">
+                <p class="mb-0 text-decoration-underline" style="font-weight: bold;">HON. ARNOLD EDWARD P. CO</p>
+                Municipal Mayor
+            </div>
+        </div>
         <div class="row justify-content-end">
             <div class="col-4 text-center">
                 Date: {{ date('F d, Y', strtotime(now())) }}

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta name="google-signin-client_id" content="529355960856-uaff5e8o0s4m7t1vcp68522glnnk4ad5.apps.googleusercontent.com">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -582,7 +582,7 @@
 
     <script src="https://unpkg.com/chart.js@2.8.0/dist/Chart.bundle.js"></script>
     <script src="https://unpkg.com/vue-chartkick@0.6.1"></script>
-
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 
     @yield('customJS')
 </body>

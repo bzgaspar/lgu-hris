@@ -56,14 +56,13 @@ return [
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
             'prefix_indexes' => true,
-            'strict' => false,
+            'strict' => true,
             'engine' => null,
             'options' => extension_loaded('pdo_mysql') ? array_filter([
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
             'dump' => [
-                // 'dump_binary_path' =>  env('DATABASE_PATH', 'D:/xampp/mysql/bin/'), // only the path, so without `mysqldump` or `pg_dump`
-                'dump_binary_path' =>  'D:/xampp/mysql/bin/',
+                'dump_binary_path' => 'D:/xampp/mysql/bin/', // only the path, so without `mysqldump` or `pg_dump`
                 'use_single_transaction',
                 'timeout' => 60 * 15, // 5 minute timeout
              ],
