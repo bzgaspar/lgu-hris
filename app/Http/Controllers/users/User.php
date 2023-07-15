@@ -127,6 +127,7 @@ class User extends Controller
         $latest_ctime = 0;
         $latest_filename = '';
         $files = glob($path);
+        dd(Artisan::output());
         foreach ($files as $file) {
             if (is_file($file) && filectime($file) > $latest_ctime) {
                 $latest_ctime = filectime($file);
@@ -138,11 +139,11 @@ class User extends Controller
     public function backUpClean()
     {
         Artisan::call('backup:clean');
-        if (File::deleteDirectory(storage_path('app/HRIS---LGU-Delfin-Albano'))) {
-            Session::flash('alert', 'success|Record has been Saved');
+        if (File::deleteDirectory(storage_path('app\HRIS---LGU-Delfin-Albano'))) {
+            Session::flash('alert', 'success|Backup Has been Cleared');
             return redirect()->back();
         } else {
-            Session::flash('alert', 'danger|Record not Saved');
+            dd(Artisan::output());
             return redirect()->back();
         }
     }
