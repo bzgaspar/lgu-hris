@@ -123,8 +123,7 @@ class User extends Controller
     public function backUp()
     {
         Artisan::call('backup:run --only-db');
-        $path = storage_path('app\HRIS---LGU-Delfin-Albano\*');
-        dd($path);
+        $path = storage_path('app/HRIS---LGU-Delfin-Albano/*');
         $latest_ctime = 0;
         $latest_filename = '';
         $files = glob($path);
