@@ -122,18 +122,19 @@ class User extends Controller
 
     public function backUp()
     {
-        Artisan::call('backup:run --only-db');
-        $path = storage_path('app/HRIS---LGU-Delfin-Albano/*');
-        $latest_ctime = 0;
-        $latest_filename = '';
-        $files = glob($path);
-        foreach ($files as $file) {
-            if (is_file($file) && filectime($file) > $latest_ctime) {
-                $latest_ctime = filectime($file);
-                $latest_filename = $file;
-            }
-        }
-        return response()->download($latest_filename);
+        Artisan::call('backup:run');
+        dd(Artisan::output());
+        // $path = storage_path('app/HRIS---LGU-Delfin-Albano/*');
+        // $latest_ctime = 0;
+        // $latest_filename = '';
+        // $files = glob($path);
+        // foreach ($files as $file) {
+        //     if (is_file($file) && filectime($file) > $latest_ctime) {
+        //         $latest_ctime = filectime($file);
+        //         $latest_filename = $file;
+        //     }
+        // }
+        // return response()->download($latest_filename);
     }
     public function backUpClean()
     {
