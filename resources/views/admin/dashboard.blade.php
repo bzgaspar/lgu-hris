@@ -160,6 +160,9 @@
                                         <option @if ($user->role === '6') selected hidden @endif value="6">
                                             Retired
                                         </option>
+                                        <option @if ($user->role === '7') selected hidden @endif value="7">
+                                            Resigned
+                                        </option>
                                     </select>
                                 </form>
                             </td>
