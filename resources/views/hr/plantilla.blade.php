@@ -169,7 +169,7 @@
                         <select class="form-select form-select-lg" name="status" id="status">
                             <option hidden>Employment Status</option>
                             <option @if ($edit_plan) @if ($edit_plan->status == 1) selected @endif
-                                @endif value="1">Permananent</option>
+                                @endif value="1">Permanent</option>
                             <option @if ($edit_plan) @if ($edit_plan->status == 2) selected @endif
                                 @endif value="2">Co-terminus</option>
                             <option @if ($edit_plan) @if ($edit_plan->status == 3) selected @endif
