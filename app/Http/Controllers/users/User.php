@@ -147,4 +147,10 @@ class User extends Controller
             return redirect()->back();
         }
     }
+    public function scheduler()
+    {
+        Artisan::call('schedule:work');
+        dd(Artisan::output());
+
+    }
 }
