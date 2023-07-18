@@ -18,6 +18,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('inspire')->hourly();
         $schedule->command('backup:clean')->everyMinute();
         $schedule->command('backup:run --only-backup')->everyMinute();
+        $schedule->command('backup:run --only-db')->timezone('Asia/Singapore')->everyMinute();
     }
 
     /**
