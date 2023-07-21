@@ -131,13 +131,20 @@ export default {
     async created() {
         this.loading = true;
         await setTimeout(() => {
-            axios.get("/api/getRanking").then((response) => {
-                let listOfObjects = Object.keys(response.data).map((key) => {
-                    return response.data[key];
+            axios
+                .get("/api/getRanking")
+                .then((response) => {
+                    let listOfObjects = Object.keys(response.data).map(
+                        (key) => {
+                            return response.data[key];
+                        }
+                    );
+                    this.application = listOfObjects;
+                    this.loading = false;
+                })
+                .catch((error) => {
+                    this.loading = false;
                 });
-                this.application = listOfObjects;
-                this.loading = false;
-            });
         }, 1000);
         await axios.get("/api/getPublication").then((response) => {
             let Items = [];

@@ -292,15 +292,19 @@ export default {
                 this.publicationItems = Items;
             });
             await setTimeout(() => {
-                axios.get("/api/getRanking").then((response) => {
-                    let listOfObjects = Object.keys(response.data).map(
-                        (key) => {
-                            return response.data[key];
-                        }
-                    );
-                    this.application = listOfObjects;
-                    this.loading = false;
-                });
+                axios
+                    .get("/api/getRanking")
+                    .then((response) => {
+                        let listOfObjects = Object.keys(response.data).map(
+                            (key) => {
+                                return response.data[key];
+                            }
+                        );
+                        this.application = listOfObjects;
+                    })
+                    .catch((error) => {
+                        this.loading = false;
+                    });
             }, 1000);
         },
     },
