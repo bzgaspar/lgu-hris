@@ -301,10 +301,9 @@ export default {
                             }
                         );
                         this.application = listOfObjects;
-                    })
-                    .catch((error) => {
                         this.loading = false;
-                    });
+                    })
+                    .catch((error) => {});
             }, 1000);
         },
     },

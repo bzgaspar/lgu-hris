@@ -615,7 +615,6 @@ class HomeController extends Controller
             DB::raw("CONCAT(`users`.`first_name`,' ',' ',`users`.`last_name`) as app_name"),
             DB::raw("CONCAT(`rater`.`first_name`,' ',' ',`rater`.`last_name`) as rater_name")
         )
-        ->groupBy('interview_exams.id')
         ->get();
         return response()->json($all_rating, Response::HTTP_OK);
     }
@@ -632,7 +631,6 @@ class HomeController extends Controller
             DB::raw("CONCAT(`users`.`first_name`,' ',' ',`users`.`last_name`) as app_name"),
             DB::raw("CONCAT(`rater`.`first_name`,' ',' ',`rater`.`last_name`) as rater_name")
         )
-        ->groupBy('additional_points.id')
         ->get();
         return response()->json($all_rating, Response::HTTP_OK);
     }
