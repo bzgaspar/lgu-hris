@@ -620,6 +620,7 @@ class HomeController extends Controller
     }
     public function fetchRatingsAdd()
     {
+        // edited
         $all_rating = application::join('additional_points', 'additional_points.app_id', 'applications.id')
         ->leftJoin('users as rater', 'rater.id', 'additional_points.rater_id')
         ->join('users', 'users.id', 'additional_points.user_id')
