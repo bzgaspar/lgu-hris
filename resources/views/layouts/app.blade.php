@@ -196,6 +196,11 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
+                                    <a href="{{ route('hr.user.covid') }}" class="nav-link">
+                                        Employee Covid 19 Response
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="{{ route('hr.service.index') }}" class="nav-link">Service Record</a>
                                 </li>
                                 <li class="nav-item">
@@ -474,6 +479,10 @@
                                                     class="list-group-item list-group-item-action border-0{{ request()->is('hr/leaveApplication') ? ' active ' : '' }}">
                                                     <i class="fa-solid fa-money-check me-1"></i>Employee Leave
                                                     Application
+                                                </a>
+                                                <a href="{{ route('hr.user.covid') }}"
+                                                    class="list-group-item list-group-item-action border-0{{ request()->is('hr/user/covid') ? ' active ' : '' }}">
+                                                    <i class="fa-solid fa-virus-covid me-1"></i>Employee Covid 19 Response
                                                 </a>
                                                 <a href="{{ route('hr.service.index') }}"
                                                     class="list-group-item list-group-item-action border-0{{ request()->is('hr/service') ? ' active ' : '' }}">

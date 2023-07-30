@@ -39,6 +39,10 @@ class User extends Controller
             return view('users.PDS.index')->with('user', $user)->with('progress', $progress);
         }
     }
+    public function covid()
+    {
+       return view('admin.covid');
+    }
 
     public function pdsProgress()
     {

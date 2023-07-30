@@ -67,3 +67,4 @@ Route::get('/getYearlyTopRating', [HomeController::class, 'getYearlyTopRating'])
 
 //
 Route::get('/getChartEMP', [HomeController::class, 'getChartEMP'])->name('getChartEMP');
+Route::get('/fetchCovidResponse', [HomeController::class, 'fetchCovidResponse'])->name('fetchCovidResponse');

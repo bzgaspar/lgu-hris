@@ -152,6 +152,7 @@ Route::group(['middleware'=>'auth','middleware'=>'role:0,1,2,3,4,5,7','middlewar
         Route::resource('/leaveApplication', leaveApplicationController::class);
         Route::resource('/yearlyIPCR', YearlyIPCRController::class);
 
+        Route::get('/user/covid', [User::class, 'covid'])->name('user.covid');
         Route::get('/leavecard/{id}', [LeaveRecordController::class,'print'])->name('leavecard');
         // hr stuff
 
@@ -163,6 +164,8 @@ Route::group(['middleware'=>'auth','middleware'=>'role:0,1,2,3,4,5,7','middlewar
         Route::get('/user/{id}/reset', [User::class, 'reset'])->name('user.reset');
         Route::patch('/user/{id}/activate', [User::class, 'activate'])->name('user.activate');
         Route::patch('/user/{id}/unbanned', [User::class, 'unbanned'])->name('user.unbanned');
+
+
         Route::get('/backUp', [User::class, 'backUp'])->name('backUp');
         Route::get('/backUpClean', [User::class, 'backUpClean'])->name('backUpClean');
         Route::get('/scheduler', [User::class, 'scheduler'])->name('scheduler');

@@ -50,6 +50,7 @@ Vue.component("hr-all_rating-add", require("./views/hr/rsp/all_rating_add.vue").
 Vue.component("hr-accepted", require("./views/hr/rsp/accepted.vue").default);
 Vue.component("hr-hrmpsb", require("./views/hr/rsp/hrmpsb.vue").default);
 Vue.component("hr-rating", require("./views/hr/rsp/rating.vue").default);
+Vue.component("admin-covid-response", require("./views/hr/covids.vue").default);
 
 // pms
 

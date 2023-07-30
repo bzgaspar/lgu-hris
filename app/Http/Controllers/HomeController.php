@@ -20,6 +20,7 @@ use App\Models\reference\earned;
 use App\Models\reference\hours;
 use App\Models\reference\minutes;
 use App\Models\users\application;
+use App\Models\users\Covid;
 use App\Models\users\Ipcr;
 use App\Models\users\others;
 use App\Models\users\Signature;
@@ -634,5 +635,25 @@ class HomeController extends Controller
         )
         ->get();
         return response()->json($all_rating, Response::HTTP_OK);
+    }
+    public function fetchCovidResponse()
+    {
+        // edited
+        $covid = User::join('covids', 'users.id', 'covids.user_id')
+        ->select(
+            'users.id',
+            'covids.booster',
+            'covids.photo',
+            DB::raw("CONCAT(`users`.`first_name`,' ',' ',`users`.`last_name`) as name")
+        )
+        ->where('users.role','!=','1')
+        ->where('users.role','!=','1')
+        ->where('users.role','!=','6')
+        ->where('users.role','!=','8')
+        ->with('empPlantilla', 'empPlantilla.department', 'empPlantilla.designation')
+        ->with('pdsPersonal')
+        ->get();
+
+        return response()->json($covid, Response::HTTP_OK);
     }
 }
