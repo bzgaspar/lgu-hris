@@ -143,7 +143,7 @@
                         <option @if ($personal) @if ($personal->civil_service === 'Married')selected @endif
                             @endif value="Married">Married</option>
                         <option @if ($personal) @if ($personal->civil_service === 'Wifdow/Widower')selected @endif
-                            @endif value="Wifdow/Widower">Wifdow/Widower</option>
+                            @endif value="Wifdow/Widower">Widow/Widower</option>
                         <option @if ($personal) @if ($personal->civil_service === 'Divorce')selected @endif
                             @endif value="Divorce">Divorce</option>
                         <option @if ($personal) @if ($personal->civil_service === 'Other/s')selected @endif
