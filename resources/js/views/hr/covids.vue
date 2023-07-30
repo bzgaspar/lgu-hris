@@ -78,6 +78,7 @@
                 </template>
                 <template v-slot:item.actions="{ item }">
                     <v-btn
+                        v-if="item.photo"
                         color="orange"
                         small
                         outlined
