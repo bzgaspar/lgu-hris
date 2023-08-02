@@ -57,7 +57,7 @@
                     <v-chip
                         v-if="item.booster === '2'"
                         class="ma-2"
-                        color="success"
+                        color="error"
                         small
                         >2nd Dose</v-chip
                     >
@@ -71,7 +71,7 @@
                     <v-chip
                         v-if="item.booster === '4'"
                         class="ma-2"
-                        color="error"
+                        color="success"
                         small
                         >2nd Booster</v-chip
                     >
