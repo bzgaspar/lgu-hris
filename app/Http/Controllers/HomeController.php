@@ -423,8 +423,8 @@ class HomeController extends Controller
     {
         $user = User::findOrFail($id);
         if($user) {
-            $user_designation = $user->empPlantilla->designation->id;
-            $user_dep = $user->empPlantilla->dep_id;
+            $user_dep = $user->empPlantilla->designation->id;
+            // $user_dep = $user->empPlantilla->dep_id;
 
 
             if($user_dep != 15) {
@@ -432,6 +432,7 @@ class HomeController extends Controller
                 ->leftJoin('personals', 'users.id', '=', 'personals.user_id')
                 ->select('users.id as id', 'personals.first_name', 'personals.salutation_before', 'personals.salutation_after', 'personals.middle_name', 'personals.last_name')
             ->where('employee_plantillas.dep_id', $user_dep)->where('users.role', 3)->first();
+
             } elseif($user_dep == 1) {
                 $dep_head = EmployeePlantilla::leftJoin('users', 'employee_plantillas.user_id', 'users.id')
                 ->leftJoin('personals', 'users.id', '=', 'personals.user_id')
@@ -447,7 +448,7 @@ class HomeController extends Controller
                 $dep_head = EmployeePlantilla::leftJoin('users', 'employee_plantillas.user_id', 'users.id')
                 ->leftJoin('personals', 'users.id', '=', 'personals.user_id')
                 ->select('users.id as id', 'personals.first_name', 'personals.salutation_before', 'personals.salutation_after', 'personals.middle_name', 'personals.last_name')
-                ->where('employee_plantillas.dep_id', $user_designation)->where('users.role', 7)->first();
+                ->where('employee_plantillas.dep_id', $user_dep)->where('users.role', 7)->first();
             }
 
             if($dep_head) {
@@ -646,10 +647,10 @@ class HomeController extends Controller
             'covids.photo',
             DB::raw("CONCAT(`users`.`first_name`,' ',' ',`users`.`last_name`) as name")
         )
-        ->where('users.role','!=','1')
-        ->where('users.role','!=','1')
-        ->where('users.role','!=','6')
-        ->where('users.role','!=','8')
+        ->where('users.role', '!=', '1')
+        ->where('users.role', '!=', '1')
+        ->where('users.role', '!=', '6')
+        ->where('users.role', '!=', '8')
         ->with('empPlantilla', 'empPlantilla.department', 'empPlantilla.designation')
         ->with('pdsPersonal')
         ->get();
