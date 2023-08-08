@@ -282,7 +282,7 @@
                         ?></p>
                         @if ($leaveApplication->status == 2)
                             @if ($dep_head && $dep_head['signature'])
-                                <img height="60px" width="60px"
+                                <img height="60px" width="60px" contenteditable="true"
                                     style="position:absolute;margin-top: -30px;margin-left: 160px"
                                     src="{{ $dep_head['signature'] }}" alt="HR Head Signature">
                             @endif
