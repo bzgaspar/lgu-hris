@@ -23,7 +23,7 @@ class surveyQuestionController extends Controller
     {
         $all_question = $this->question
         ->where('type','like','%'.$request->type.'%')
-        ->paginate(20);
+        ->paginate(10);
         return view('hr.lnd.survey')
         ->with('edit_question', null)
         ->with('all_question', $all_question);
@@ -83,7 +83,7 @@ class surveyQuestionController extends Controller
      */
     public function edit($id)
     {
-        $all_question = $this->question->all();
+        $all_question = $this->question->paginate(10)();
         $edit_question = $this->question->findOrFail($id);
         return view('hr.lnd.survey')
         ->with('edit_question', $edit_question)
