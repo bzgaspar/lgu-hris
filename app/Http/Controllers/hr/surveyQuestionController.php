@@ -83,7 +83,7 @@ class surveyQuestionController extends Controller
      */
     public function edit($id)
     {
-        $all_question = $this->question->paginate(10)();
+        $all_question = $this->question->paginate(10);
         $edit_question = $this->question->findOrFail($id);
         return view('hr.lnd.survey')
         ->with('edit_question', $edit_question)
