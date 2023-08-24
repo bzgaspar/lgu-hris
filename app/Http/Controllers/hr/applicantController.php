@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\hr\AdditionalPoints;
 use App\Models\hr\InterviewExam;
 use App\Models\pds\personal;
+use App\Models\User;
 use App\Models\users\application;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -68,8 +69,12 @@ class applicantController extends Controller
     {
         $app = $this->application->findOrFail($id);
         $interviewExam = $this->interviewExam->where('app_id', $app->id)->first();
-        $additionalPoints = AdditionalPoints::where('app_id', $app->id)->where('rater_id', Auth::user()->id)->first();
-        $interviewExamRated = $this->interviewExam->where('app_id', $app->id)->where('rater_id', Auth::user()->id)->first();
+        $additionalPoints = null;
+        $interviewExamRated = null;
+        if(Auth::user()->hrmpsb) {
+            $additionalPoints = AdditionalPoints::where('app_id', $app->id)->where('rater_id', Auth::user()->id)->first();
+            $interviewExamRated = $this->interviewExam->where('app_id', $app->id)->where('rater_id', Auth::user()->id)->first();
+        }
         return view('hr.applicant.applicantInfo')
         ->with('interviewExam', $interviewExam)
         ->with('additionalPoints', $additionalPoints)
@@ -84,9 +89,18 @@ class applicantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($users)
     {
-        //
+        $users = explode(',', $users);
+        $all_users = User::findOrFail($users)
+        // ->with('EducGraduate')
+        // ->with('pdsOther')
+        // ->with('pdsPersonal')
+        // ->with('pdsWorkExperience')
+        // ->with('pdsCivilService')
+        // ->with('pdsLearningDevelopment')
+        ;
+        return view('print.all_applicants')->with('all_users', $all_users);
     }
 
     /**
@@ -113,13 +127,13 @@ class applicantController extends Controller
     }
     public function deleteRating($id)
     {
-        $rating= InterviewExam::findOrFail($id)->delete();
+        $rating = InterviewExam::findOrFail($id)->delete();
 
         return response()->json(null, Response::HTTP_OK);
     }
     public function deleteRatingAdd($id)
     {
-        $rating= AdditionalPoints::findOrFail($id)->delete();
+        $rating = AdditionalPoints::findOrFail($id)->delete();
 
         return response()->json(null, Response::HTTP_OK);
     }

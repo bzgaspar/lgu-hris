@@ -23,6 +23,10 @@ class application extends Model
     {
         return $this->belongsTo(Publication::class, 'pub_id');
     }
+    // public function publication()
+    // {
+    //     return $this->belongsTo(Publication::class, 'pub_id');
+    // }
     public function InterviewExam()
     {
         return $this->hasMany(InterviewExam::class, 'app_id');

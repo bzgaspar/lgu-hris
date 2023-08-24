@@ -1,8 +1,8 @@
 <template>
     <v-app>
         <v-card>
-            <v-card-title
-                ><v-row>
+            <v-card-title>
+                <v-row>
                     <v-col cols="auto">
                         <v-checkbox
                             v-model="indigenous"
@@ -61,6 +61,11 @@
                             dense
                         ></v-text-field>
                     </v-col>
+                    <v-col xs="12" class="text-center">
+                        <v-btn class="w-100" @click="printAllApplicants"
+                            >Print</v-btn
+                        >
+                    </v-col>
                 </v-row>
             </v-card-title>
             <v-data-table
@@ -70,6 +75,8 @@
                 :loading="loading"
                 :sort-by.sync="sortBy"
                 :sort-desc.sync="sortDesc"
+                v-model="selectedItems"
+                show-select
             >
                 <template v-slot:item.index="{ item, index }">
                     {{ index + 1 }}
@@ -130,6 +137,7 @@ export default {
             publicationFilterValue: "",
             genderItems: ["All", "Male", "Female"],
             publicationItems: [],
+            selectedItems: [],
             indigenous: null,
             pwd: null,
             single: null,
@@ -280,6 +288,13 @@ export default {
             } else {
                 return value === null;
             }
+        },
+        printAllApplicants() {
+            let selected = [];
+            this.selectedItems.map(function (value, key) {
+                selected.push(value.user_id);
+            });
+            window.location.href = "/hr/applicant/" + selected + "/edit";
         },
         async fetchApplication() {
             this.loading = true;
