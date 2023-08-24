@@ -73,7 +73,7 @@
                         <li class="nav-item">
                             <a href="/" class="nav-link">Publication</a>
                         </li>
-                        @if (Auth::user())
+                        @auth
                             <hr class=" d-block d-md-none">
                             <li class="nav-item d-block d-md-none">
                                 <a href="{{ route('users.pds.index') }}" class="nav-link">Personal Data Sheet</a>
@@ -94,7 +94,7 @@
                                     Settings</a>
                                 <a href="{{ route('users.eSignature.index') }}" class="nav-link">E-Signature</a>
                             </li>
-                        @endif
+                        @endauth
                         <hr class=" d-block d-md-none">
                     </ul>
                     <ul class="navbar-nav me-auto d-flex d-lg-none">
