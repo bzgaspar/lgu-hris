@@ -166,7 +166,7 @@
                 <br>
                 <br>
                 <div class="row mx-2 text-start">
-                    <div class="col">Date</div>
+                    <div class="col"><span contenteditable="true"> Date: </span></div>
                 </div>
                 <div class="row mx-2 text-start">
                     <div class="col"></div>
