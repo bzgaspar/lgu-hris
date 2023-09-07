@@ -166,7 +166,7 @@
         <div class="row">
             <div class="col-4 text-center">
                 <p class="float-start">
-                    Prepared By:
+                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Prepared By:
                 </p> <br><br><br><br>
                 <?php $user_info = App\Http\Controllers\HomeController::getFullName(Auth::user()->id); ?>
                 <p class="fw-bold mb-0 border-bottom" style="text-indent: 5px">
