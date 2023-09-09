@@ -2,6 +2,210 @@
 
 @section('title', 'Application for Leave')
 @section('customCSS')
+
+    <style type="text/css">
+        h3 {
+            color: black;
+            font-family: Arial, sans-serif;
+            font-style: italic;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 8pt;
+        }
+
+        .h1 {
+            color: black;
+            font-family: Arial, sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 14pt;
+        }
+
+        h2 {
+            color: black;
+            font-family: Arial, sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 11pt;
+        }
+
+        p {
+            color: black;
+            font-family: Arial, sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 10pt;
+            margin: 0pt;
+        }
+
+        .s1 {
+            color: black;
+            font-family: Arial, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 8pt;
+        }
+
+        .s2 {
+            color: black;
+            font-family: Arial, sans-serif;
+            font-style: italic;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 8pt;
+        }
+
+        .s4 {
+            color: black;
+            font-family: Arial, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 11pt;
+        }
+
+        li {
+            display: block;
+        }
+
+        #l1 {
+            padding-left: 0pt;
+            counter-reset: c1 1;
+        }
+
+        #l1>li>*:first-child:before {
+            counter-increment: c1;
+            content: counter(c1, upper-roman) ". ";
+            color: black;
+            font-family: Arial, sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        #l1>li:first-child>*:first-child:before {
+            counter-increment: c1 0;
+        }
+
+        #l2 {
+            padding-left: 0pt;
+        }
+
+        #l2>li>*:first-child:before {
+            content: "☐ ";
+            color: black;
+            font-family: "MS Gothic", monospace;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 7pt;
+        }
+
+        #l3 {
+            padding-left: 0pt;
+        }
+
+        #l3>li>*:first-child:before {
+            content: "☐ ";
+            color: black;
+            font-family: "MS Gothic", monospace;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 7pt;
+        }
+
+        #l4 {
+            padding-left: 0pt;
+        }
+
+        #l4>li>*:first-child:before {
+            content: "☐ ";
+            color: black;
+            font-family: "MS Gothic", monospace;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 8pt;
+        }
+
+        #l5 {
+            padding-left: 0pt;
+        }
+
+        #l5>li>*:first-child:before {
+            content: "☐ ";
+            color: black;
+            font-family: "MS Gothic", monospace;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 8pt;
+        }
+
+        #l6 {
+            padding-left: 0pt;
+        }
+
+        #l6>li>*:first-child:before {
+            content: "☐ ";
+            color: black;
+            font-family: "MS Gothic", monospace;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 8pt;
+        }
+
+        #l7 {
+            padding-left: 0pt;
+        }
+
+        #l7>li>*:first-child:before {
+            content: "☐ ";
+            color: black;
+            font-family: "MS Gothic", monospace;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 7pt;
+        }
+
+        li {
+            display: block;
+        }
+
+        #l8 {
+            padding-left: 0pt;
+            counter-reset: i1 1;
+        }
+
+        #l8>li>*:first-child:before {
+            counter-increment: i1;
+            content: counter(i1, decimal) ". ";
+            color: black;
+            font-family: Arial, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 11pt;
+        }
+
+        #l8>li:first-child>*:first-child:before {
+            counter-increment: i1 0;
+        }
+
+        table,
+        tbody {
+            vertical-align: top;
+            overflow: visible;
+        }
+    </style>
 @endsection
 @section('content')
     <style>
@@ -165,8 +369,7 @@
                         6.D COMMUNICATION <br>
                         &nbsp;&nbsp;<input type="checkbox"><label for="">&nbsp; Not Requested</label><br>
 
-                        &nbsp;&nbsp;<input type="checkbox"  disabled><label
-                            for="">&nbsp;Requested</label><br><br>
+                        &nbsp;&nbsp;<input type="checkbox" disabled><label for="">&nbsp;Requested</label><br><br>
                         <div class="row justify-conent-center">
                             <div class="col text-center">
                                 @if ($leaveApplication->users->empPlantilla)
@@ -292,7 +495,8 @@
                                 {{ $dep_head['full_name'] }}
                             @endif
                         </p>
-                        <p  contenteditable="true" class="border-top border-dark text-center mb-0 p-0">Authorized Official</p>
+                        <p contenteditable="true" class="border-top border-dark text-center mb-0 p-0">Authorized Official
+                        </p>
                     </td>
                 </tr>
                 <tr class="fw-bold">
@@ -548,5 +752,12 @@
         </div>
         {{-- </center> --}}
     </page>
-
+    @if ($leaveApplication->type === 'Maternity Leave')
+        <page size="A4" style="padding-left: 15px">
+            @include('print.cs-form-6a')
+        </page>
+        <page size="A4" style="padding-top: 25px;padding-left: 15px">
+            @include('print.cs-form-6a2')
+        </page>
+    @endif
 @endsection
