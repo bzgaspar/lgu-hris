@@ -18,7 +18,7 @@ class loyaltyAwardController extends Controller
     private $loyaltyRecord;
     private $department;
 
-    public function __construct(User $user, ServiceRecord $service_record,loyaltyRecord $loyaltyRecord,Department $department)
+    public function __construct(User $user, ServiceRecord $service_record, loyaltyRecord $loyaltyRecord, Department $department)
     {
         $this->user = $user;
         $this->service_record = $service_record;
@@ -42,7 +42,14 @@ class loyaltyAwardController extends Controller
     {
 
         foreach ($all_users as $user) {
-            $service_record = $this->service_record->where('user_id', $user->id)->where('status', 'PERMANENT')->first();
+            $service_record = $this->service_record->where('user_id', $user->id)
+            ->where(function ($query) {
+                $query->where('status', 'PERMANENT')
+                      ->orWhere('status', 'COTERMINUOS')
+                      ->orWhere('status', 'TEMPORARY');
+            })
+            ->where('status', '!=', 'ELECTIVE')
+            ->first();
             if ($service_record) {
                 $from_whole = Carbon::createFromFormat('Y-m-d', $service_record->from);
                 $now_whole = Carbon::createFromFormat('Y-m-d H:i:s', now());
@@ -50,37 +57,51 @@ class loyaltyAwardController extends Controller
                 $now = $now_whole->year;
 
                 $difference = $now - $from;
-                if($difference >= 10)
-                {
+                if($difference >= 10) {
                     $times = 1;
                     $new_diff = $difference - 10;
-                    while($new_diff >=5){
-                        $times +=1;
-                        $new_diff -=5;
+                    while($new_diff >= 5) {
+                        $times += 1;
+                        $new_diff -= 5;
                     }
-                }else{
+                } else {
                     $times = 0;
                 }
-                if($times>0)
-                {
-                    $next_time = 10 + (5 *($times));
-                }else{
+                if($times > 0) {
+                    $next_time = 10 + (5 * ($times));
+                } else {
                     $next_time = 10;
                 }
                 $next_loyalty = $from_whole->addYears($next_time);
-                if($user->hasloyaltyRecord()){
-                    $LR = $this->loyaltyRecord->where('user_id',$user->id)->first();
+                if($user->hasloyaltyRecord()) {
+                    $LR = $this->loyaltyRecord->where('user_id', $user->id)->first();
                     $LR->from = $service_record->from;
                     $LR->year_difference = $difference;
                     $LR->next_loyalty = $next_loyalty;
                     $LR->times = $times;
                     $LR->save();
-                }else{
+                } else {
                     $this->loyaltyRecord->user_id = $user->id;
                     $this->loyaltyRecord->from = $service_record->from;
                     $this->loyaltyRecord->year_difference = $difference;
                     $this->loyaltyRecord->next_loyalty = $next_loyalty;
                     $this->loyaltyRecord->times = $times;
+                    $this->loyaltyRecord->save();
+                }
+            } else {
+                if($user->hasloyaltyRecord()) {
+                    $LR = $this->loyaltyRecord->where('user_id', $user->id)->first();
+                    $LR->from = 0;
+                    $LR->year_difference = 0;
+                    $LR->next_loyalty = 0;
+                    $LR->times = 0;
+                    $LR->save();
+                } else {
+                    $this->loyaltyRecord->user_id = $user->id;
+                    $this->loyaltyRecord->from = 0;
+                    $this->loyaltyRecord->year_difference = 0;
+                    $this->loyaltyRecord->next_loyalty = 0;
+                    $this->loyaltyRecord->times = 0;
                     $this->loyaltyRecord->save();
                 }
             }
