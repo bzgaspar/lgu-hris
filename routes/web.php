@@ -62,15 +62,15 @@ Route::get('/setStorage', [HomeController::class, 'setStorage']);
 Route::get('/', [HomeController::class, 'index'])->name('publication');
 Auth::routes(['verify' => true]);
 
-Route::group(['middleware'=>'auth','middleware'=>'role:0,1,2,3,4,5,7','middleware'=>'verified'], function () {
+Route::group(['middleware' => 'auth','middleware' => 'role:0,1,2,3,4,5,7','middleware' => 'verified'], function () {
 
     Route::get('/getUserPds', [HomeController::class, 'getUserPds'])->name('getUserPds');
     Route::get('/getUser', [HomeController::class, 'getUser'])->name('getUser');
 
 
-    Route::group(['prefix'=> '/users','as'=>'users.'], function () {
+    Route::group(['prefix' => '/users','as' => 'users.'], function () {
         // pds
-        Route::group(['prefix'=> '/pds','as'=>'pds.'], function () {
+        Route::group(['prefix' => '/pds','as' => 'pds.'], function () {
             Route::get('/', [User::class, 'index'])->name('index');
             Route::resource('/personal', Personal::class);
             Route::resource('/family', Family::class);
@@ -109,7 +109,7 @@ Route::group(['middleware'=>'auth','middleware'=>'role:0,1,2,3,4,5,7','middlewar
 
     });
     #hr
-    Route::group(['prefix'=> 'hr','as'=>'hr.','middleware'=>'role:0,4,7'], function () {
+    Route::group(['prefix' => 'hr','as' => 'hr.','middleware' => 'role:0,4,7'], function () {
         // lnd
         Route::resource('/lnd', LearningDevelopment::class);
         Route::resource('/trainingneeds', TrainingNeedsController::class); // compliance
@@ -158,7 +158,7 @@ Route::group(['middleware'=>'auth','middleware'=>'role:0,1,2,3,4,5,7','middlewar
 
     });
     #admin
-    Route::group(['prefix'=> 'admin','as'=>'admin.','middleware'=>'role:0'], function () {
+    Route::group(['prefix' => 'admin','as' => 'admin.'], function () {
         Route::resource('/user', UserController::class);
         Route::delete('/user/{id}/delete', [User::class, 'delete'])->name('user.delete');
         Route::get('/user/{id}/reset', [User::class, 'reset'])->name('user.reset');
