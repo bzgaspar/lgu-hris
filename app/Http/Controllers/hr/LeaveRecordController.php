@@ -40,8 +40,8 @@ class LeaveRecordController extends Controller
     {
         if ($request->search) {
             $users = $this->users
-            ->where('first_name', 'like', '%'.$request->search.'%')
-            ->orwhere('last_name', 'like', '%'.$request->search.'%')
+            ->where('first_name', 'like', '%' . $request->search . '%')
+            ->orwhere('last_name', 'like', '%' . $request->search . '%')
             ->EMP()
             ->latest()
             ->paginate(30);
@@ -61,9 +61,7 @@ class LeaveRecordController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-    }
+    public function create() {}
 
     /**
      * Store a newly created resource in storage.
@@ -246,10 +244,7 @@ class LeaveRecordController extends Controller
      */
     public function destroy($id)
     {
-        if ($this->leavecredit->destroy($id)) {
-            return response()->json(null, Response::HTTP_OK);
-        } else {
-            return response()->json(null, Response::HTTP_OK);
-        }
+        $this->leavecredit->destroy($id);
+        return response()->json(null, Response::HTTP_OK);
     }
 }
