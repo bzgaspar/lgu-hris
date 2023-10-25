@@ -535,7 +535,7 @@ export default {
                     this.edit_form.elc_sl_auw_p = 0;
                 }
                 await axios
-                    .put("/hr/leave/" + this.leave_card_id, this.edit_form)
+                    .put("/HumanResource/leave/" + this.leave_card_id, this.edit_form)
                     .then((response) => {
                         this.$emit("close");
 

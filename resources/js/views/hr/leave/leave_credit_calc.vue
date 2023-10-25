@@ -498,7 +498,7 @@ export default {
                     this.form.elc_sl_auw_p = 0;
                 }
                 await axios
-                    .post("/hr/leave", this.form)
+                    .post("/HumanResource/leave", this.form)
                     .then((response) => {
                         this.$emit("close");
 

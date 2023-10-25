@@ -111,7 +111,7 @@ export default {
     },
     methods: {
         viewApplicant(id) {
-            window.location.href = "/hr/applicant/" + id;
+            window.location.href = "/HumanResource/applicant/" + id;
         },
         positionFilter(value) {
             if (

@@ -108,7 +108,7 @@ export default {
                 "Do you really want to Reject this Rating?"
             );
             if (answer) {
-                axios.delete("/hr/deleteRating/" + id).then((response) => {
+                axios.delete("/HumanResource/deleteRating/" + id).then((response) => {
                     this.fetchRatings();
                     if (this.$root.vtoast) {
                         this.$root.vtoast.show({

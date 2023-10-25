@@ -143,7 +143,7 @@ export default {
         deletePlantilla(id) {
             if (confirm("Are you sure?")) {
                 axios
-                    .delete("/hr/plantilla/" + id)
+                    .delete("/HumanResource/plantilla/" + id)
                     .then((resp) => {
                         window.location.reload();
                     })
@@ -159,7 +159,7 @@ export default {
 
                 if (confirm("Are you sure?")) {
                     axios
-                        .delete("/hr/plantilla/" + id)
+                        .delete("/HumanResource/plantilla/" + id)
                         .then((resp) => {
                             window.location.reload();
                         })
@@ -168,7 +168,7 @@ export default {
             }
         },
         editPlantilla(id) {
-            (window.location.href = "/hr/plantilla/" + id + "/edit"),
+            (window.location.href = "/HumanResource/plantilla/" + id + "/edit"),
                 "_blank",
                 "noreferrer";
         },

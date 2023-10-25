@@ -122,7 +122,7 @@ export default {
             this.$emit("edit", item);
         },
         DeleteTardiness(item) {
-            axios.delete("/hr/leave/" + item.id).then((response) => {
+            axios.delete("/HumanResource/leave/" + item.id).then((response) => {
                 if (this.$root.vtoast) {
                     this.$root.vtoast.show({
                         message: "Leave Credit Deleted!",

@@ -134,12 +134,12 @@ export default {
             }, 1000);
         },
         editPublication(id) {
-            window.location.href = "/hr/publication/" + id + "/edit";
+            window.location.href = "/HumanResource/publication/" + id + "/edit";
         },
         deletePublication(id) {
             if (confirm("Are you sure?")) {
                 axios
-                    .delete("/hr/publication/" + id)
+                    .delete("/HumanResource/publication/" + id)
                     .then((resp) => {
                         window.location.reload();
                     })

@@ -166,7 +166,7 @@ export default {
                 } else if (a_r == 2) {
                     uri = "/" + id + "/edit";
                 }
-                axios.get("/hr/leaveApplication" + uri).then((response) => {
+                axios.get("/HumanResource/leaveApplication" + uri).then((response) => {
                     this.loadTable();
                 });
             }
@@ -183,7 +183,7 @@ export default {
         },
         deleteLeaveCard(id) {
             if (confirm("Are you sure?")) {
-                axios.delete("/hr/leaveApplication/" + id).then((response) => {
+                axios.delete("/HumanResource/leaveApplication/" + id).then((response) => {
                     if (this.$root.vtoast) {
                         this.$root.vtoast.show({
                             message: "Leave Credit Deleted!",

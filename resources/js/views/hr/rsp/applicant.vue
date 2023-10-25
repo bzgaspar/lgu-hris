@@ -90,8 +90,8 @@ export default {
     },
     methods: {
         viewApplicant(id){
-            window.location.href="/hr/applicant/" +id
-        },  
+            window.location.href="/HumanResource/applicant/" +id
+        },
         // filters
         genderFilter(value) {
             if (!this.genderFilterValue || this.genderFilterValue == "All") {

@@ -154,7 +154,7 @@ export default {
                 });
         },
         async addYearlyRating() {
-            await axios.post("/hr/yearlyIPCR", this.form).then((response) => {
+            await axios.post("/HumanResource/yearlyIPCR", this.form).then((response) => {
                 this.form.dep_id = null;
                 this.form.year = null;
                 this.form.add_points = null;
@@ -175,7 +175,7 @@ export default {
                 "Do you really want to Delete this Rating?"
             );
             if (answer) {
-                await axios.delete("/hr/yearlyIPCR/" + id).then((response) => {
+                await axios.delete("/HumanResource/yearlyIPCR/" + id).then((response) => {
                     this.getYearlyRating();
                     if (this.$root.vtoast) {
                         this.$root.vtoast.show({

@@ -87,12 +87,12 @@ export default {
         },
         editDepartment(id) {
             window.location.href =
-                "/hr/department/" + id + "/edit";
+                "/HumanResource/department/" + id + "/edit";
         },
         deleteDepartment(id) {
             if (confirm("Are you sure?")) {
                 axios
-                    .delete("/hr/department/" + id)
+                    .delete("/HumanResource/department/" + id)
                     .then((resp) => {
                         window.location.reload();
                     })

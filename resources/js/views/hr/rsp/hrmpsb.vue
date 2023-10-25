@@ -114,7 +114,7 @@ export default {
         },
         addUserHRMPSB() {
             this.loading_btn = true;
-            axios.post("/hr/hrmpsb", this.form).then((response) => {
+            axios.post("/HumanResource/hrmpsb", this.form).then((response) => {
                 if (this.$root.vtoast) {
                     this.$root.vtoast.show({
                         message: "HRMPSB Added!",
@@ -141,7 +141,7 @@ export default {
         deleteRecord(id) {
             if (confirm("Are you sure you want to delete this record?")) {
                 this.loading_btn_dlt = true;
-                axios.delete("/hr/hrmpsb/" + id).then((response) => {
+                axios.delete("/HumanResource/hrmpsb/" + id).then((response) => {
                     this.getHRMPSB();
                     if (this.$root.vtoast) {
                         this.$root.vtoast.show({

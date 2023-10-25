@@ -165,16 +165,16 @@ export default {
             });
         },
         viewServiceRecord() {
-            window.open('/hr/service/'+this.service_record.id+'/edit', '_blank');
+            window.open('/HumanResource/service/'+this.service_record.id+'/edit', '_blank');
         },
         viewCOE() {
-            window.open('/hr/dashboard/'+this.coe.id, '_blank');
+            window.open('/HumanResource/dashboard/'+this.coe.id, '_blank');
         },
         viewPDS() {
             window.open('/users/pds/'+this.pds.id+'/print', '_blank');
         },
         viewLeaveCard() {
-            window.open('/hr/leavecard/'+this.leave_card.id, '_blank');
+            window.open('/HumanResource/leavecard/'+this.leave_card.id, '_blank');
         },
     },
 

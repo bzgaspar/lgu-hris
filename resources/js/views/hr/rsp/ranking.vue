@@ -216,14 +216,14 @@ export default {
     },
     methods: {
         viewApplicant(id) {
-            window.location.href = "/hr/applicant/" + id;
+            window.location.href = "/HumanResource/applicant/" + id;
         },
         viewAccept(id) {
             const answer = window.confirm(
                 "Do you really want to accept this applicant?"
             );
             if (answer) {
-                window.location.href = "/hr/manage_applicants/" + id + "/edit";
+                window.location.href = "/HumanResource/manage_applicants/" + id + "/edit";
             }
         },
         viewReject(id) {
@@ -231,7 +231,7 @@ export default {
                 "Do you really want to Reject this applicant?"
             );
             if (answer) {
-                axios.delete("/hr/manage_applicants/" + id).then((response) => {
+                axios.delete("/HumanResource/manage_applicants/" + id).then((response) => {
                     this.fetchApplication();
                     if (this.$root.vtoast) {
                         this.$root.vtoast.show({
@@ -294,7 +294,7 @@ export default {
             this.selectedItems.map(function (value, key) {
                 selected.push(value.user_id);
             });
-            window.location.href = "/hr/applicant/" + selected + "/edit";
+            window.location.href = "/HumanResource/applicant/" + selected + "/edit";
         },
         async fetchApplication() {
             this.loading = true;

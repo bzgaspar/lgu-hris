@@ -94,7 +94,7 @@ export default {
         async deletePMS(id) {
             if (confirm("Are you sure?")) {
                 axios
-                    .delete("/hr/pms/" + id)
+                    .delete("/HumanResource/pms/" + id)
                     .then((resp) => {
                         window.location.reload();
                     })

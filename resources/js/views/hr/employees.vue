@@ -126,7 +126,7 @@ export default {
     },
     methods: {
         openCOE(id) {
-            window.open("/hr/dashboard/" + id, "_blank", "noreferrer");
+            window.open("/HumanResource/dashboard/" + id, "_blank", "noreferrer");
         },
         openPDS(id) {
             window.open("/users/pds/" + id + "/print", "_blank", "noreferrer");

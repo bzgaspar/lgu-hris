@@ -132,10 +132,10 @@ export default {
             });
         },
         viewServiceRecord(id) {
-            window.open("/hr/service/" + id+'/edit', "_blank", "noreferrer");
+            window.open("/HumanResource/service/" + id+'/edit', "_blank", "noreferrer");
         },
         editServiceRecord(id) {
-            window.location.href = "/hr/service/"+ id;
+            window.location.href = "/HumanResource/service/"+ id;
         },
         // filters
         genderFilter(value) {
