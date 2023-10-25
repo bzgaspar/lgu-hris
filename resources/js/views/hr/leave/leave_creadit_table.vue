@@ -122,16 +122,20 @@ export default {
             this.$emit("edit", item);
         },
         DeleteTardiness(item) {
-            axios.delete("/HumanResource/leave/" + item.id).then((response) => {
-                if (this.$root.vtoast) {
-                    this.$root.vtoast.show({
-                        message: "Leave Credit Deleted!",
-                        color: "success",
-                        icon: "mdi-exclamation",
-                    });
-                }
-                this.loadTable();
-            });
+            axios
+                .post("/HumanResource/leave/" + item.id, {
+                    _method: "DELETE",
+                })
+                .then((response) => {
+                    if (this.$root.vtoast) {
+                        this.$root.vtoast.show({
+                            message: "Leave Credit Deleted!",
+                            color: "success",
+                            icon: "mdi-exclamation",
+                        });
+                    }
+                    this.loadTable();
+                });
         },
     },
     created() {
