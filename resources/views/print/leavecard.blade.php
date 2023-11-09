@@ -1,6 +1,6 @@
 @extends('layouts.leave_card')
 
-@section('title', 'Service Record')
+@section('title', 'Leave Card')
 @section('customCSS')
 
     <style>

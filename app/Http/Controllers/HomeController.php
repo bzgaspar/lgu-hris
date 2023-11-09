@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Cache;
 use App\Models\hr\Publication;
 use App\Models\hr\ServiceRecord;
 use App\Models\hr\YearlyIPCR;
+use App\Models\ipcr_mfo;
 use App\Models\LeaveApplication;
 use App\Models\pds\civilservice;
 use App\Models\pds\personal;
@@ -22,6 +23,8 @@ use App\Models\reference\minutes;
 use App\Models\users\application;
 use App\Models\users\Covid;
 use App\Models\users\Ipcr;
+use App\Models\users\ipcr_forms;
+use App\Models\users\ipcr_Questions;
 use App\Models\users\others;
 use App\Models\users\Signature;
 use Carbon\Carbon;
@@ -183,7 +186,7 @@ class HomeController extends Controller
     {
 
         $average = 0;
-        if($dep_id ==15) {
+        if($dep_id == 15) {
             $ratings = Ipcr::join('users', 'users.id', 'ipcrs.user_id')
             ->join('employee_plantillas', 'users.id', 'employee_plantillas.user_id')
             ->join('departments', 'departments.id', 'employee_plantillas.dep_id')
@@ -211,7 +214,7 @@ class HomeController extends Controller
         foreach($ratings as $rating) {
             $average += $rating->rating;
         }
-        return response()->json(round($average/2, 2), Response::HTTP_OK);
+        return response()->json(round($average / 2, 2), Response::HTTP_OK);
     }
     public function getYearlyRating()
     {
@@ -397,10 +400,10 @@ class HomeController extends Controller
             $salutation_after = $users->salutation_after;
         }
         if(strtolower($users->ext_name) != 'n/a') {
-            $full_name = $full_name .' ' .$users->ext_name;
+            $full_name = $full_name . ' ' . $users->ext_name;
         }
 
-        $full_name =$salutation_before . ' ' . $full_name .' ' .$ext_name . ', '.  $salutation_after;
+        $full_name = $salutation_before . ' ' . $full_name . ' ' . $ext_name . ', ' . $salutation_after;
 
         return [
             'full_name' => $full_name,
@@ -469,10 +472,10 @@ class HomeController extends Controller
                     $salutation_after = $dep_head->salutation_after;
                 }
                 if(strtolower($dep_head->ext_name) != 'n/a') {
-                    $full_name = $full_name .' ' .$dep_head->ext_name;
+                    $full_name = $full_name . ' ' . $dep_head->ext_name;
                 }
 
-                $full_name =$salutation_before . ' ' . $full_name .' ' .$ext_name . ', '.  $salutation_after;
+                $full_name = $salutation_before . ' ' . $full_name . ' ' . $ext_name . ', ' . $salutation_after;
 
 
 
@@ -524,10 +527,10 @@ class HomeController extends Controller
                     $salutation_after = $dep_head->salutation_after;
                 }
                 if(strtolower($dep_head->ext_name) != 'n/a') {
-                    $full_name = $full_name .' ' .$dep_head->ext_name;
+                    $full_name = $full_name . ' ' . $dep_head->ext_name;
                 }
 
-                $full_name =$salutation_before . ' ' . $full_name .' ' .$ext_name . ', '.  $salutation_after;
+                $full_name = $salutation_before . ' ' . $full_name . ' ' . $ext_name . ', ' . $salutation_after;
 
                 if($signature) {
                     $sig = $signature->signature;
@@ -558,7 +561,7 @@ class HomeController extends Controller
         $cos = EmployeePlantilla::where('status', 3)->count();
         $appointed = EmployeePlantilla::where('status', 4)->count();
         $elective = EmployeePlantilla::where('status', 5)->count();
-        $total = $permanent + $cos +$terminos+$appointed+$elective;
+        $total = $permanent + $cos + $terminos + $appointed + $elective;
 
         $Indigenous = others::join('employee_plantillas', 'employee_plantillas.user_id', 'others.user_id')->where('Q40a1', '!=', null)->count();
         $PWD = others::join('employee_plantillas', 'employee_plantillas.user_id', 'others.user_id')->where('Q40b1', '!=', null)->count();
@@ -585,14 +588,14 @@ class HomeController extends Controller
             'Appointed' => $appointed,
             'Elective' => $elective,
         ];
-        $data[2]= [
+        $data[2] = [
 
             'Indigenous' => $Indigenous,
             'PWD' => $PWD,
             'Single Parent' => $Single_Parent,
-            'N/A' => $total- ($Indigenous+$PWD+$Single_Parent),
+            'N/A' => $total - ($Indigenous + $PWD + $Single_Parent),
         ];
-        $data[3]= [
+        $data[3] = [
 
             'Male' => $male,
             'Female' => $female,
@@ -656,5 +659,51 @@ class HomeController extends Controller
         ->get();
 
         return response()->json($covid, Response::HTTP_OK);
+    }
+    public function getMFOQuestions()
+    {
+        // edited
+        $ipcr_mfo = ipcr_mfo::join('departments', 'ipcr_mfos.dep_id', 'departments.id')
+        ->select('ipcr_mfos.id', 'ipcr_mfos.question', 'departments.name', 'ipcr_mfos.type')
+        ->get();
+
+        return response()->json($ipcr_mfo, Response::HTTP_OK);
+    }
+    public function getMFOTypes()
+    {
+        // edited
+        $ipcr_mfo = ipcr_mfo::select('type')
+        ->get();
+
+        return response()->json($ipcr_mfo, Response::HTTP_OK);
+    }
+    public function getQuestions()
+    {
+        // edited
+        $ipcr_mfo = ipcr_Questions::join('departments', 'ipcr__questions.dep_id', 'departments.id')
+        ->select('ipcr__questions.id', 'ipcr__questions.question', 'departments.name')
+        ->get();
+
+        return response()->json($ipcr_mfo, Response::HTTP_OK);
+    }
+    public function getOpcrUsers($user_id)
+    {
+        // edited
+        $all_ipcr = ipcr_forms::where('ipcr_forms.user_id', $user_id)
+            ->where('ipcr_forms.type', 'OPCR')
+            ->select('ipcr_forms.id', 'ipcr_forms.user_id', 'ipcr_forms.type', 'ipcr_forms.from', 'ipcr_forms.to')
+            ->get();
+
+        return response()->json($all_ipcr, Response::HTTP_OK);
+    }
+    public function getIpcrUsers($user_id)
+    {
+        // edited
+        $all_ipcr = ipcr_forms::where('ipcr_forms.user_id', $user_id)
+            ->where('ipcr_forms.type', 'IPCR')
+            ->select('ipcr_forms.id', 'ipcr_forms.user_id', 'ipcr_forms.type', 'ipcr_forms.from', 'ipcr_forms.to')
+            ->get();
+
+        return response()->json($all_ipcr, Response::HTTP_OK);
     }
 }

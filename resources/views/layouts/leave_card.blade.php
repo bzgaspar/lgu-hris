@@ -30,7 +30,7 @@
         }
 
         @page {
-            margin: 0 0 0 0;
+            margin: 35px 0;
             page-break-after: always !important;
             padding: 0;
         }

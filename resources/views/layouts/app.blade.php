@@ -87,6 +87,7 @@
                                     <a href="{{ route('users.files.create') }}" class="nav-link">My Files</a>
                                     <a href="{{ route('users.myleave.index') }}" class="nav-link">My Leave</a>
                                     <a href="{{ route('users.covid.index') }}" class="nav-link">Covid 19 Response</a>
+                                    <a href="" class="nav-link">Create IPCR</a>
                                 @endcan
                             </li>
                             <li class="nav-item d-block d-md-none">
@@ -371,6 +372,18 @@
                                                 class="list-group-item list-group-item-action border-0{{ request()->is('users/eSignature') ? ' active ' : '' }}">
                                                 <i class="fa-solid fa-pen me-1"></i>E-Signature
                                             </a>
+                                            @can('isEmp')
+                                                <a href="{{ route('users.IPCR.index') }}"
+                                                    class="list-group-item list-group-item-action border-0{{ request()->is('HumanResource/IPCR') ? ' active ' : '' }}">
+                                                    <i class="fa-solid fa-star-half-stroke me-1"></i>Create IPCR
+                                                </a>
+                                            @endcan
+                                            @can('isHead', 'isHRHead')
+                                                <a href="{{ route('users.IPCR.create') }}"
+                                                    class="list-group-item list-group-item-action border-0{{ request()->is('HumanResource/IPCR') ? ' active ' : '' }}">
+                                                    <i class="fa-solid fa-star-half-stroke me-1"></i>Create OPCR
+                                                </a>
+                                            @endcan
                                             @if (Auth::user()->hrmpsb)
                                                 <a class="list-group-item list-group-item-action border-0{{ request()->is('hr/ranking') ? ' active ' : '' }}"
                                                     href="{{ route('hr.ranking.index') }}"><i
@@ -408,12 +421,17 @@
                                                     <span class="float-end"><i class="fa-solid fa-caret-down"></i></span>
                                                 </a>
                                                 <div class="collapse ms-2" id="pms">
+                                                    <a class="list-group-item list-group-item-action border-0 {{ request()->is('hr/yearlyIPCR') ? ' active ' : '' }}"
+                                                        href="{{ route('hr.MFO_Questions.index') }}"><i
+                                                            class="fa-solid fa-question me-2"></i>IPCR/OPCR
+                                                        Questions</a>
                                                     <a class="list-group-item list-group-item-action border-0{{ request()->is('hr/pms') ? ' active ' : '' }}"
                                                         href="{{ route('hr.pms.index') }}"><i
                                                             class="fa-solid fa-plus me-2"></i>Add PMS</a>
                                                     <a class="list-group-item list-group-item-action border-0 {{ request()->is('hr/pmsEmployee/create') ? ' active ' : '' }}"
                                                         href="{{ route('hr.pmsEmployee.create') }}"><i
-                                                            class="fa-solid fa-chart-simple me-2"></i>Department Head</a>
+                                                            class="fa-solid fa-chart-simple me-2"></i>Department
+                                                        Head</a>
                                                     <a class="list-group-item list-group-item-action border-0 {{ request()->is('hr/yearlyIPCR') ? ' active ' : '' }}"
                                                         href="{{ route('hr.yearlyIPCR.index') }}"><i
                                                             class="fa-solid fa-calendar me-2"></i>Yearly IPCR</a>
@@ -429,7 +447,8 @@
                                                 <div class="collapse ms-2" id="lnd">
                                                     <a class="list-group-item list-group-item-action border-0{{ request()->is('hr/lnd/create') ? ' active ' : '' }}"
                                                         href="{{ route('hr.lnd.create') }}"><i
-                                                            class="fa-solid fa-globe me-2"></i>All Employee Certificates</a>
+                                                            class="fa-solid fa-globe me-2"></i>All Employee
+                                                        Certificates</a>
                                                     <a class="list-group-item list-group-item-action border-0{{ request()->is('hr/surveyQuestion') ? ' active ' : '' }}"
                                                         href="{{ route('hr.surveyQuestion.index') }}">
                                                         <i class="fa-solid fa-person-circle-question me-2"></i>Self Assesment
@@ -460,7 +479,8 @@
                                                             class="fa-solid fa-envelopes-bulk me-2"></i>Top 5 Offices</a>
                                                     <a class="list-group-item list-group-item-action border-0 {{ request()->is('hr/yearlyIPCR/create') ? ' active ' : '' }}"
                                                         href="{{ route('hr.yearlyIPCR.create') }}"><i
-                                                            class="fa-solid fa-calendar me-2"></i>Top 5 Offices Yearly</a>
+                                                            class="fa-solid fa-calendar me-2"></i>Top 5 Offices
+                                                        Yearly</a>
                                                 </div>
                                             </div>
                                             <hr class="text-dark">

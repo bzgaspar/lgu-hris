@@ -26,7 +26,11 @@ use App\Http\Controllers\hr\surveyResultController;
 use App\Http\Controllers\hr\top5Controller;
 use App\Http\Controllers\hr\TrainingNeedsController;
 use App\Http\Controllers\hr\YearlyIPCRController;
+use App\Http\Controllers\IPCR_FormController;
+use App\Http\Controllers\IPCR_OPCR_MFO_Controller;
+use App\Http\Controllers\IPCR_OPCRQuestionController;
 use App\Http\Controllers\ipcrController;
+use App\Http\Controllers\OPCR_FormController;
 use App\Http\Controllers\users\AccountController;
 use App\Http\Controllers\users\application;
 use App\Http\Controllers\users\CovidController;
@@ -87,7 +91,9 @@ Route::group(['middleware' => 'auth','middleware' => 'role:0,1,2,3,4,5,7','middl
         // pds
         // esignature
         Route::resource('/eSignature', SignatureController::class);
-        // esignature
+        // IPCR
+        Route::resource('/IPCR', IPCR_FormController::class);
+        Route::resource('/OPCR', OPCR_FormController::class);
 
         // user stuff
         Route::resource('/account', AccountController::class);
@@ -121,6 +127,8 @@ Route::group(['middleware' => 'auth','middleware' => 'role:0,1,2,3,4,5,7','middl
 
         // pms
         Route::resource('/pms', ipcrController::class);
+        Route::resource('/MFO_Questions', IPCR_OPCR_MFO_Controller::class);
+        Route::resource('/Indicators_questions', IPCR_OPCRQuestionController::class);
         Route::resource('/pmsEmployee', empPmsController::class);
         // pms
 

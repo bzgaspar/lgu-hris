@@ -18,6 +18,14 @@ Vue.component(
     require("./views/users/pds/civil_service.vue").default
 );
 
+Vue.component(
+    "users-ipcr-table",
+    require("./views/users/ipcr/table.vue").default
+);
+Vue.component(
+    "users-opcr-table",
+    require("./views/users/ipcr/table2.vue").default
+);
 // hr
 Vue.component(
     "dashboard-employee",
@@ -35,6 +43,10 @@ Vue.component(
 Vue.component("hr-plantilla", require("./views/hr/plantilla.vue").default);
 Vue.component("hr-publication", require("./views/hr/publication.vue").default);
 Vue.component("hr-department", require("./views/hr/department.vue").default);
+Vue.component(
+    "hr-opcr-ipcr-question",
+    require("./views/hr/pms/ipcr_opcr/index.vue").default
+);
 
 // R n R
 Vue.component(
@@ -45,8 +57,14 @@ Vue.component(
 // rsp
 Vue.component("hr-applicant", require("./views/hr/rsp/applicant.vue").default);
 Vue.component("hr-ranking", require("./views/hr/rsp/ranking.vue").default);
-Vue.component("hr-all_rating", require("./views/hr/rsp/all_rating.vue").default);
-Vue.component("hr-all_rating-add", require("./views/hr/rsp/all_rating_add.vue").default);
+Vue.component(
+    "hr-all_rating",
+    require("./views/hr/rsp/all_rating.vue").default
+);
+Vue.component(
+    "hr-all_rating-add",
+    require("./views/hr/rsp/all_rating_add.vue").default
+);
 Vue.component("hr-accepted", require("./views/hr/rsp/accepted.vue").default);
 Vue.component("hr-hrmpsb", require("./views/hr/rsp/hrmpsb.vue").default);
 Vue.component("hr-rating", require("./views/hr/rsp/rating.vue").default);

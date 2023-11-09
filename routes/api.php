@@ -27,6 +27,8 @@ Route::middleware('auth:sanctum')->get('/*', function (Request $request) {
 
 
 Route::get('/getMyInfo', [HomeController::class, 'getMyInfo'])->name('getMyInfo');
+Route::get('/getIpcrUsers/{user_id}', [HomeController::class, 'getIpcrUsers'])->name('getIpcrUsers');
+Route::get('/getOpcrUsers/{user_id}', [HomeController::class, 'getOpcrUsers'])->name('getOpcrUsers');
 
 Route::resource('/user', UserController::class);
 Route::get('/getDepartment', [HomeController::class, 'getDepartment'])->name('getDepartment');
@@ -64,6 +66,9 @@ Route::get('/getAverage/{dep_id}', [HomeController::class, 'getAverage'])->name(
 Route::get('/getYearlyRating', [HomeController::class, 'getYearlyRating'])->name('getYearlyRating');
 Route::get('/getYearlyTopRating', [HomeController::class, 'getYearlyTopRating'])->name('getYearlyTopRating');
 
+Route::get('/getMFOQuestions', [HomeController::class, 'getMFOQuestions'])->name('getMFOQuestions');
+Route::get('/getQuestions', [HomeController::class, 'getQuestions'])->name('getQuestions');
+Route::get('/getMFOTypes', [HomeController::class, 'getMFOTypes'])->name('getMFOTypes');
 
 //
 Route::get('/getChartEMP', [HomeController::class, 'getChartEMP'])->name('getChartEMP');
