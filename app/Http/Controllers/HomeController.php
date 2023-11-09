@@ -706,4 +706,24 @@ class HomeController extends Controller
 
         return response()->json($all_ipcr, Response::HTTP_OK);
     }
+    public function getIPCR()
+    {
+        // edited
+        $all_ipcr = ipcr_forms::join('users', 'users.id', 'ipcr_forms.user_id')
+            ->where('ipcr_forms.type', 'IPCR')
+            ->select('ipcr_forms.id', 'ipcr_forms.user_id', 'ipcr_forms.type', 'ipcr_forms.from', 'ipcr_forms.to', DB::raw("CONCAT(`users`.`first_name`,' ',`users`.`last_name`) as name"))
+            ->get();
+
+        return response()->json($all_ipcr, Response::HTTP_OK);
+    }
+    public function getOPCR()
+    {
+        // edited
+        $all_ipcr = ipcr_forms::join('users', 'users.id', 'ipcr_forms.user_id')
+            ->where('ipcr_forms.type', 'OPCR')
+            ->select('ipcr_forms.id', 'ipcr_forms.user_id', 'ipcr_forms.type', 'ipcr_forms.from', 'ipcr_forms.to', DB::raw("CONCAT(`users`.`first_name`,' ',`users`.`last_name`) as name"))
+            ->get();
+
+        return response()->json($all_ipcr, Response::HTTP_OK);
+    }
 }

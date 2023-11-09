@@ -18,14 +18,6 @@ Vue.component(
     require("./views/users/pds/civil_service.vue").default
 );
 
-Vue.component(
-    "users-ipcr-table",
-    require("./views/users/ipcr/table.vue").default
-);
-Vue.component(
-    "users-opcr-table",
-    require("./views/users/ipcr/table2.vue").default
-);
 // hr
 Vue.component(
     "dashboard-employee",
@@ -46,6 +38,23 @@ Vue.component("hr-department", require("./views/hr/department.vue").default);
 Vue.component(
     "hr-opcr-ipcr-question",
     require("./views/hr/pms/ipcr_opcr/index.vue").default
+);
+Vue.component(
+    "users-ipcr-table",
+    require("./views/users/ipcr/table.vue").default
+);
+Vue.component(
+    "users-opcr-table",
+    require("./views/users/ipcr/table2.vue").default
+);
+
+Vue.component(
+    "hr-ipcr-table",
+    require("./views/hr/pms/ipcr_opcr/ipcr.vue").default
+);
+Vue.component(
+    "hr-opcr-table",
+    require("./views/hr/pms/ipcr_opcr/opcr.vue").default
 );
 
 // R n R

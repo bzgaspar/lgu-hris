@@ -65,6 +65,8 @@ Route::get('/getYearsIPCR2', [HomeController::class, 'getYearsIPCR2'])->name('ge
 Route::get('/getAverage/{dep_id}', [HomeController::class, 'getAverage'])->name('getAverage');
 Route::get('/getYearlyRating', [HomeController::class, 'getYearlyRating'])->name('getYearlyRating');
 Route::get('/getYearlyTopRating', [HomeController::class, 'getYearlyTopRating'])->name('getYearlyTopRating');
+Route::get('/getIPCR', [HomeController::class, 'getIPCR'])->name('getIPCR');
+Route::get('/getOPCR', [HomeController::class, 'getOPCR'])->name('getOPCR');
 
 Route::get('/getMFOQuestions', [HomeController::class, 'getMFOQuestions'])->name('getMFOQuestions');
 Route::get('/getQuestions', [HomeController::class, 'getQuestions'])->name('getQuestions');

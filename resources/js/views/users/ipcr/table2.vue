@@ -71,7 +71,7 @@ export default {
             }
         },
         print_ipcr(id) {
-            window.location.href = "/users/OPCR/" + id;
+            window.open("/users/OPCR/" + id, "_blank", "noreferrer");
         },
         delete_ipcr(id) {
             if (confirm("Are you sure you want to delete this OPCR?")) {

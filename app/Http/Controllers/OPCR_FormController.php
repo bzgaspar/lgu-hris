@@ -21,7 +21,8 @@ class OPCR_FormController extends Controller
      */
     public function index()
     {
-        //
+        // admin ipcr
+        return view('hr.pms.ipcr_opcr.opcr');
     }
 
     /**
@@ -31,7 +32,13 @@ class OPCR_FormController extends Controller
      */
     public function create()
     {
-        //
+        // admin opcr
+        $user_department = EmployeePlantilla::where('user_id', Auth::user()->id)->first();
+        $all_indicators = ipcr_Questions::where('dep_id', $user_department->EPdesignation)->get();
+        $all_mfo_question = ipcr_mfo::where('dep_id', $user_department->EPdesignation)->get();
+        return view('users.opcr')
+        ->with('all_indicators', $all_indicators)
+        ->with('all_mfo_question', $all_mfo_question);
     }
 
     /**

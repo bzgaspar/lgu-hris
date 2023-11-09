@@ -71,7 +71,7 @@ export default {
             }
         },
         print_ipcr(id) {
-            window.location.href = "/users/IPCR/" + id;
+            window.open("/users/IPCR/" + id, "_blank", "noreferrer");
         },
         delete_ipcr(id) {
             if (confirm("Are you sure you want to delete this IPCR?")) {

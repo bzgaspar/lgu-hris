@@ -126,6 +126,19 @@
                                     <ul class="list-group">
                                         <li class="list-group-item border-0 m-0 p-0">
                                             <a class="list-group-item list-group-item-action border-0 text-muted"
+                                                href="{{ route('hr.MFO_Questions.index') }}">IPCR/OPCR
+                                                Questions</a>
+                                        </li>
+                                        <li class="list-group-item border-0 m-0 p-0">
+                                            <a class="list-group-item list-group-item-action border-0 text-muted"
+                                                href="{{ route('users.IPCR.index') }}">IPCR</a>
+                                        </li>
+                                        <li class="list-group-item border-0 m-0 p-0">
+                                            <a class="list-group-item list-group-item-action border-0 text-muted"
+                                                href="{{ route('users.OPCR.index') }}">OPCR</a>
+                                        </li>
+                                        <li class="list-group-item border-0 m-0 p-0">
+                                            <a class="list-group-item list-group-item-action border-0 text-muted"
                                                 href="{{ route('hr.pms.index') }}">Add
                                                 PMS</a>
                                         </li>
@@ -372,14 +385,14 @@
                                                 class="list-group-item list-group-item-action border-0{{ request()->is('users/eSignature') ? ' active ' : '' }}">
                                                 <i class="fa-solid fa-pen me-1"></i>E-Signature
                                             </a>
-                                            @can('isEmp')
-                                                <a href="{{ route('users.IPCR.index') }}"
+                                            @can('isEmp', 'isHR')
+                                                <a href="{{ route('users.IPCR.create') }}"
                                                     class="list-group-item list-group-item-action border-0{{ request()->is('HumanResource/IPCR') ? ' active ' : '' }}">
                                                     <i class="fa-solid fa-star-half-stroke me-1"></i>Create IPCR
                                                 </a>
                                             @endcan
                                             @can('isHead', 'isHRHead')
-                                                <a href="{{ route('users.IPCR.create') }}"
+                                                <a href="{{ route('users.OPCR.create') }}"
                                                     class="list-group-item list-group-item-action border-0{{ request()->is('HumanResource/IPCR') ? ' active ' : '' }}">
                                                     <i class="fa-solid fa-star-half-stroke me-1"></i>Create OPCR
                                                 </a>
@@ -425,6 +438,14 @@
                                                         href="{{ route('hr.MFO_Questions.index') }}"><i
                                                             class="fa-solid fa-question me-2"></i>IPCR/OPCR
                                                         Questions</a>
+                                                    <a class="list-group-item list-group-item-action border-0 {{ request()->is('hr/yearlyIPCR') ? ' active ' : '' }}"
+                                                        href="{{ route('users.IPCR.index') }}"><i
+                                                            class="fa-solid fa-ranking-star me-2"></i>IPCR
+                                                    </a>
+                                                    <a class="list-group-item list-group-item-action border-0 {{ request()->is('hr/yearlyIPCR') ? ' active ' : '' }}"
+                                                        href="{{ route('users.OPCR.index') }}"><i
+                                                            class="fa-solid fa-ranking-star me-2"></i>OPCR
+                                                    </a>
                                                     <a class="list-group-item list-group-item-action border-0{{ request()->is('hr/pms') ? ' active ' : '' }}"
                                                         href="{{ route('hr.pms.index') }}"><i
                                                             class="fa-solid fa-plus me-2"></i>Add PMS</a>
