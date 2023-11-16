@@ -232,7 +232,9 @@ export default {
         async deleteMfoQuestion(id) {
             if (confirm("Are you sure?")) {
                 axios
-                    .delete("/HumanResource/MFO_Questions/" + id)
+                    .post("/HumanResource/MFO_Questions/" + id, {
+                        _method: "DELETE",
+                    })
                     .then((resp) => {
                         this.getMFOQuestions();
                         if (this.$root.vtoast) {

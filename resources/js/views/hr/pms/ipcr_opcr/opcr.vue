@@ -57,16 +57,20 @@ export default {
         },
         delete_ipcr(id) {
             if (confirm("Are you sure you want to delete this OPCR?")) {
-                axios.delete("/users/OPCR/" + id).then((response) => {
-                    if (this.$root.vtoast) {
-                        this.$root.vtoast.show({
-                            message: "OPCR has been Deleted!",
-                            color: "success",
-                            icon: "mdi-exclamation",
-                        });
-                    }
-                    this.getIpcrs();
-                });
+                axios
+                    .post("/users/OPCR/" + id, {
+                        _method: "DELETE",
+                    })
+                    .then((response) => {
+                        if (this.$root.vtoast) {
+                            this.$root.vtoast.show({
+                                message: "OPCR has been Deleted!",
+                                color: "success",
+                                icon: "mdi-exclamation",
+                            });
+                        }
+                        this.getIpcrs();
+                    });
             }
         },
     },
