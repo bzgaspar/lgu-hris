@@ -24,7 +24,8 @@
                 <v-col cols="12" md="">
                     <v-row>
                         <v-col cols="2"
-                            >Initial Rating: <br> {{ form.average }}
+                            >Initial Rating: <br />
+                            {{ form.average }}
                         </v-col>
                         <v-col>
                             <v-combobox
@@ -154,37 +155,43 @@ export default {
                 });
         },
         async addYearlyRating() {
-            await axios.post("/HumanResource/yearlyIPCR", this.form).then((response) => {
-                this.form.dep_id = null;
-                this.form.year = null;
-                this.form.add_points = null;
-                this.$refs.formValid.resetValidation();
-                this.getYearlyRating();
-                this.average = null;
-                if (this.$root.vtoast) {
-                    this.$root.vtoast.show({
-                        message: "Rating Has been Added!",
-                        color: "success",
-                        icon: "mdi-exclamation",
-                    });
-                }
-            });
+            await axios
+                .post("/HumanResource/yearlyIPCR", this.form)
+                .then((response) => {
+                    this.form.dep_id = null;
+                    this.form.year = null;
+                    this.form.add_points = null;
+                    this.$refs.formValid.resetValidation();
+                    this.getYearlyRating();
+                    this.average = null;
+                    if (this.$root.vtoast) {
+                        this.$root.vtoast.show({
+                            message: "Rating Has been Added!",
+                            color: "success",
+                            icon: "mdi-exclamation",
+                        });
+                    }
+                });
         },
         async deleteRating(id) {
             const answer = window.confirm(
                 "Do you really want to Delete this Rating?"
             );
             if (answer) {
-                await axios.delete("/HumanResource/yearlyIPCR/" + id).then((response) => {
-                    this.getYearlyRating();
-                    if (this.$root.vtoast) {
-                        this.$root.vtoast.show({
-                            message: "Rating Has been Delete!",
-                            color: "success",
-                            icon: "mdi-exclamation",
-                        });
-                    }
-                });
+                await axios
+                    .post("/HumanResource/yearlyIPCR/" + id, {
+                        _method: "DELETE",
+                    })
+                    .then((response) => {
+                        this.getYearlyRating();
+                        if (this.$root.vtoast) {
+                            this.$root.vtoast.show({
+                                message: "Rating Has been Delete!",
+                                color: "success",
+                                icon: "mdi-exclamation",
+                            });
+                        }
+                    });
             }
         },
         async getYearlyRating() {

@@ -75,16 +75,20 @@ export default {
         },
         delete_ipcr(id) {
             if (confirm("Are you sure you want to delete this IPCR?")) {
-                axios.delete("/users/IPCR/" + id).then((response) => {
-                    if (this.$root.vtoast) {
-                        this.$root.vtoast.show({
-                            message: "IPCR has been Deleted!",
-                            color: "success",
-                            icon: "mdi-exclamation",
-                        });
-                    }
-                    this.getIpcrs();
-                });
+                axios
+                    .post("/users/IPCR/" + id, {
+                        _method: "DELETE",
+                    })
+                    .then((response) => {
+                        if (this.$root.vtoast) {
+                            this.$root.vtoast.show({
+                                message: "IPCR has been Deleted!",
+                                color: "success",
+                                icon: "mdi-exclamation",
+                            });
+                        }
+                        this.getIpcrs();
+                    });
             }
         },
     },

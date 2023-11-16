@@ -59,9 +59,9 @@
                         title="Accept"
                         @click="editPublication(item.id)"
                     >
-                        <i class="fa-solid fa-pen-to-square"></i
-                        > </v-btn
-                    ><v-btn v-if="item.document"
+                        <i class="fa-solid fa-pen-to-square"></i> </v-btn
+                    ><v-btn
+                        v-if="item.document"
                         @click="viewDocument(item.document)"
                         color="indigo"
                         small
@@ -139,7 +139,9 @@ export default {
         deletePublication(id) {
             if (confirm("Are you sure?")) {
                 axios
-                    .delete("/HumanResource/publication/" + id)
+                    .post("/HumanResource/publication/" + id, {
+                        _method: "DELETE",
+                    })
                     .then((resp) => {
                         window.location.reload();
                     })
@@ -147,8 +149,8 @@ export default {
             }
         },
         viewDocument(document) {
-            let url= "/storage/publicationFiles/" + document;
-            window.open(url, '_blank', 'noreferrer');
+            let url = "/storage/publicationFiles/" + document;
+            window.open(url, "_blank", "noreferrer");
         },
         // filters
         // genderFilter(value) {

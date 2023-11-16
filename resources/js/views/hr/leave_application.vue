@@ -166,9 +166,11 @@ export default {
                 } else if (a_r == 2) {
                     uri = "/" + id + "/edit";
                 }
-                axios.get("/HumanResource/leaveApplication" + uri).then((response) => {
-                    this.loadTable();
-                });
+                axios
+                    .get("/HumanResource/leaveApplication" + uri)
+                    .then((response) => {
+                        this.loadTable();
+                    });
             }
         },
         async getDep() {
@@ -183,16 +185,20 @@ export default {
         },
         deleteLeaveCard(id) {
             if (confirm("Are you sure?")) {
-                axios.delete("/HumanResource/leaveApplication/" + id).then((response) => {
-                    if (this.$root.vtoast) {
-                        this.$root.vtoast.show({
-                            message: "Leave Credit Deleted!",
-                            color: "success",
-                            icon: "mdi-exclamation",
-                        });
-                    }
-                    this.loadTable();
-                });
+                axios
+                    .post("/HumanResource/leaveApplication/" + id, {
+                        _method: "DELETE",
+                    })
+                    .then((response) => {
+                        if (this.$root.vtoast) {
+                            this.$root.vtoast.show({
+                                message: "Leave Credit Deleted!",
+                                color: "success",
+                                icon: "mdi-exclamation",
+                            });
+                        }
+                        this.loadTable();
+                    });
             }
         },
 

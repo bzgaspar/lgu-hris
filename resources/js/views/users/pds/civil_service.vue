@@ -26,7 +26,7 @@
                                 @click="
                                     editCivil(civil.pds_civil_service[0].id)
                                 "
-                                class="btn btn-warning btn-sm  text-white"
+                                class="btn btn-warning btn-sm text-white"
                             >
                                 <i
                                     class="fa fa-pencil text-white"
@@ -113,7 +113,9 @@ export default {
         deleteCivil(id) {
             if (confirm("Are you Sure?")) {
                 axios
-                    .delete("/users/pds/civilservice/" + id)
+                    .post("/users/pds/civilservice/" + id, {
+                        _method: "DELETE",
+                    })
                     .then((response) => {
                         window.location.href = "/users/pds/civilservice";
                     });

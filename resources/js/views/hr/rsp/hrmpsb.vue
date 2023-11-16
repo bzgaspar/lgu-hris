@@ -141,16 +141,20 @@ export default {
         deleteRecord(id) {
             if (confirm("Are you sure you want to delete this record?")) {
                 this.loading_btn_dlt = true;
-                axios.delete("/HumanResource/hrmpsb/" + id).then((response) => {
-                    this.getHRMPSB();
-                    if (this.$root.vtoast) {
-                        this.$root.vtoast.show({
-                            message: "HRMPSB Has been deleted!",
-                            color: "error",
-                            icon: "mdi-exclamation",
-                        });
-                    }
-                });
+                axios
+                    .post("/HumanResource/hrmpsb/" + id, {
+                        _method: "DELETE",
+                    })
+                    .then((response) => {
+                        this.getHRMPSB();
+                        if (this.$root.vtoast) {
+                            this.$root.vtoast.show({
+                                message: "HRMPSB Has been deleted!",
+                                color: "error",
+                                icon: "mdi-exclamation",
+                            });
+                        }
+                    });
             }
         },
     },

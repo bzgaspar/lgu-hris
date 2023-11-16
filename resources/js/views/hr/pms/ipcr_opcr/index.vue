@@ -251,7 +251,9 @@ export default {
         async deleteQuestion(id) {
             if (confirm("Are you sure?")) {
                 axios
-                    .delete("/HumanResource/Indicators_questions/" + id)
+                    .post("/HumanResource/Indicators_questions/" + id, {
+                        _method: "DELETE",
+                    })
                     .then((resp) => {
                         this.getQuestions();
                         if (this.$root.vtoast) {

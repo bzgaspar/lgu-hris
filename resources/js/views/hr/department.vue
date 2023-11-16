@@ -86,13 +86,14 @@ export default {
             // });
         },
         editDepartment(id) {
-            window.location.href =
-                "/HumanResource/department/" + id + "/edit";
+            window.location.href = "/HumanResource/department/" + id + "/edit";
         },
         deleteDepartment(id) {
             if (confirm("Are you sure?")) {
                 axios
-                    .delete("/HumanResource/department/" + id)
+                    .post("/HumanResource/department/" + id, {
+                        _method: "DELETE",
+                    })
                     .then((resp) => {
                         window.location.reload();
                     })

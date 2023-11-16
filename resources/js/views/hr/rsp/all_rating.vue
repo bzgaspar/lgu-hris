@@ -108,16 +108,20 @@ export default {
                 "Do you really want to Reject this Rating?"
             );
             if (answer) {
-                axios.delete("/HumanResource/deleteRating/" + id).then((response) => {
-                    this.fetchRatings();
-                    if (this.$root.vtoast) {
-                        this.$root.vtoast.show({
-                            message: "Rating has been Delete!",
-                            color: "success",
-                            icon: "mdi-exclamation",
-                        });
-                    }
-                });
+                axios
+                    .post("/HumanResource/deleteRating/" + id, {
+                        _method: "DELETE",
+                    })
+                    .then((response) => {
+                        this.fetchRatings();
+                        if (this.$root.vtoast) {
+                            this.$root.vtoast.show({
+                                message: "Rating has been Delete!",
+                                color: "success",
+                                icon: "mdi-exclamation",
+                            });
+                        }
+                    });
             }
         },
 

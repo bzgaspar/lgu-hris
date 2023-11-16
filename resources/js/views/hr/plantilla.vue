@@ -143,7 +143,9 @@ export default {
         deletePlantilla(id) {
             if (confirm("Are you sure?")) {
                 axios
-                    .delete("/HumanResource/plantilla/" + id)
+                    .post("/HumanResource/plantilla/" + id, {
+                        _method: "DELETE",
+                    })
                     .then((resp) => {
                         window.location.reload();
                     })
@@ -159,7 +161,9 @@ export default {
 
                 if (confirm("Are you sure?")) {
                     axios
-                        .delete("/HumanResource/plantilla/" + id)
+                        .post("/HumanResource/plantilla/" + id, {
+                            _method: "DELETE",
+                        })
                         .then((resp) => {
                             window.location.reload();
                         })

@@ -223,7 +223,8 @@ export default {
                 "Do you really want to accept this applicant?"
             );
             if (answer) {
-                window.location.href = "/HumanResource/manage_applicants/" + id + "/edit";
+                window.location.href =
+                    "/HumanResource/manage_applicants/" + id + "/edit";
             }
         },
         viewReject(id) {
@@ -231,16 +232,20 @@ export default {
                 "Do you really want to Reject this applicant?"
             );
             if (answer) {
-                axios.delete("/HumanResource/manage_applicants/" + id).then((response) => {
-                    this.fetchApplication();
-                    if (this.$root.vtoast) {
-                        this.$root.vtoast.show({
-                            message: "Applicant has been rejected!",
-                            color: "success",
-                            icon: "mdi-exclamation",
-                        });
-                    }
-                });
+                axios
+                    .post("/HumanResource/manage_applicants/" + id, {
+                        _method: "DELETE",
+                    })
+                    .then((response) => {
+                        this.fetchApplication();
+                        if (this.$root.vtoast) {
+                            this.$root.vtoast.show({
+                                message: "Applicant has been rejected!",
+                                color: "success",
+                                icon: "mdi-exclamation",
+                            });
+                        }
+                    });
             }
         },
         // filters
@@ -294,7 +299,8 @@ export default {
             this.selectedItems.map(function (value, key) {
                 selected.push(value.user_id);
             });
-            window.location.href = "/HumanResource/applicant/" + selected + "/edit";
+            window.location.href =
+                "/HumanResource/applicant/" + selected + "/edit";
         },
         async fetchApplication() {
             this.loading = true;
