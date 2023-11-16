@@ -385,13 +385,13 @@
                                                 class="list-group-item list-group-item-action border-0{{ request()->is('users/eSignature') ? ' active ' : '' }}">
                                                 <i class="fa-solid fa-pen me-1"></i>E-Signature
                                             </a>
-                                            @can('isEmp', 'isHR')
+                                            @can(['isEmp', 'isHR', 'isAdmin'])
                                                 <a href="{{ route('users.IPCR.create') }}"
                                                     class="list-group-item list-group-item-action border-0{{ request()->is('HumanResource/IPCR') ? ' active ' : '' }}">
                                                     <i class="fa-solid fa-star-half-stroke me-1"></i>Create IPCR
                                                 </a>
                                             @endcan
-                                            @can('isHead', 'isHRHead')
+                                            @can(['isHead', 'isHRHead', 'isAdmin'])
                                                 <a href="{{ route('users.OPCR.create') }}"
                                                     class="list-group-item list-group-item-action border-0{{ request()->is('HumanResource/IPCR') ? ' active ' : '' }}">
                                                     <i class="fa-solid fa-star-half-stroke me-1"></i>Create OPCR
