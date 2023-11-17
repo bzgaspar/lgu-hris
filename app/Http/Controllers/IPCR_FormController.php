@@ -50,7 +50,8 @@ class IPCR_FormController extends Controller
     {
         $request->validate([
             'from' => 'required',
-            'to' => 'required'
+            'to' => 'required',
+            'question' => 'required'
         ]);
         $ipcr = new ipcr_forms();
         $ipcr->user_id = Auth::user()->id;
@@ -152,7 +153,8 @@ class IPCR_FormController extends Controller
 
         $request->validate([
             'from' => 'required',
-            'to' => 'required'
+            'to' => 'required',
+            'question' => 'required',
         ]);
         $ipcr =  ipcr_forms::where('id', $id)->first();
         $ipcr->user_id = Auth::user()->id;

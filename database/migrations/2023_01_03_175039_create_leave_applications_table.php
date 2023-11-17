@@ -20,7 +20,7 @@ class CreateLeaveApplicationsTable extends Migration
             $table->string('type_other')->nullable();
             $table->string('details')->nullable();
             $table->string('details_other')->nullable();
-            $table->string('num_days')->nullable();
+            $table->integer('num_days')->nullable();
             $table->string('date_from')->nullable();
             $table->string('date_to')->nullable();
             $table->string('status')->default('1')->comment('1:pending 2:accepted 3:reject');
