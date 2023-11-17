@@ -7,6 +7,7 @@ use App\Models\admin\EmployeePlantilla;
 use App\Models\hr\hrmpsb;
 use App\Models\hr\InterviewExam;
 use App\Models\hr\LeaveCredit;
+use App\Models\hr\ListAwards;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -722,6 +723,15 @@ class HomeController extends Controller
         $all_ipcr = ipcr_forms::join('users', 'users.id', 'ipcr_forms.user_id')
             ->where('ipcr_forms.type', 'OPCR')
             ->select('ipcr_forms.id', 'ipcr_forms.user_id', 'ipcr_forms.type', 'ipcr_forms.from', 'ipcr_forms.to', DB::raw("CONCAT(`users`.`first_name`,' ',`users`.`last_name`) as name"))
+            ->get();
+
+        return response()->json($all_ipcr, Response::HTTP_OK);
+    }
+    public function getListOfAwards()
+    {
+        // edited
+        $all_ipcr = ListAwards::join('users', 'users.id', 'list_awards.user_id')
+        ->select('list_awards.id', 'list_awards.date', 'list_awards.user_id', 'list_awards.title', 'list_awards.document', DB::raw("CONCAT(`users`.`first_name`,' ',`users`.`last_name`) as name"))
             ->get();
 
         return response()->json($all_ipcr, Response::HTTP_OK);

@@ -489,6 +489,9 @@
                                                 <div class="collapse ms-2" id="rr">
 
                                                     <a class="list-group-item list-group-item-action border-0{{ request()->is('hr/certificates') ? ' active ' : '' }}"
+                                                        href="{{ route('hr.listAwards.index') }}"><i
+                                                            class="fa-solid fa-award me-2"></i>List of Awards</a>
+                                                    <a class="list-group-item list-group-item-action border-0{{ request()->is('hr/certificates') ? ' active ' : '' }}"
                                                         href="{{ route('hr.certificates.index') }}"><i
                                                             class="fa-solid fa-certificate me-2"></i>Certificate</a>
                                                     <a class="list-group-item list-group-item-action border-0{{ request()->is('hr/loyalty') ? ' active ' : '' }}"

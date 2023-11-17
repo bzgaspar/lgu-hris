@@ -32,6 +32,10 @@ Vue.component(
     "hr-service_record",
     require("./views/hr/service_record.vue").default
 );
+Vue.component(
+    "hr-list-awards",
+    require("./views/hr/RnR/listAwards.vue").default
+);
 Vue.component("hr-plantilla", require("./views/hr/plantilla.vue").default);
 Vue.component("hr-publication", require("./views/hr/publication.vue").default);
 Vue.component("hr-department", require("./views/hr/department.vue").default);

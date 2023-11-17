@@ -183,7 +183,7 @@
                     <td>Final Average Rating</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
-                    <td class="fw-bold text-end">{{ number_format($final_average = $sum_total / $sum_count, 2) }}</td>
+                    <td class="fw-bold text-end">{{ number_format($final_average = $sum_total / $sum_count, 5) }}</td>
                 </tr>
                 <tr>
                     <td>Total Overall Rating</td>

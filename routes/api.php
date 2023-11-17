@@ -55,6 +55,7 @@ Route::get('/getAccepted', [RangkingController::class, 'getAccepted'])->name('ge
 Route::get('/fetchRatings', [HomeController::class, 'fetchRatings'])->name('fetchRatings');
 Route::get('/fetchRatingsAdd', [HomeController::class, 'fetchRatingsAdd'])->name('fetchRatingsAdd');
 
+Route::get('/getListOfAwards', [HomeController::class, 'getListOfAwards'])->name('getListOfAwards');
 // pms
 Route::get('/getEmployee', [HomeController::class, 'getEmployee'])->name('getEmployee');
 Route::get('/getTop5', [HomeController::class, 'getTop5'])->name('getTop5');

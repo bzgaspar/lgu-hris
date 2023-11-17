@@ -13,6 +13,7 @@ use App\Http\Controllers\hr\hrmpsbController;
 use App\Http\Controllers\hr\InterviewExamController;
 use App\Http\Controllers\hr\leaveApplicationController;
 use App\Http\Controllers\hr\LeaveRecordController;
+use App\Http\Controllers\hr\ListAwardsController;
 use App\Http\Controllers\hr\loyaltyAwardController;
 use App\Http\Controllers\hr\ManageApplicantsController;
 use App\Http\Controllers\hr\printingController;
@@ -48,6 +49,7 @@ use App\Http\Controllers\users\pds\VoluntaryWork;
 use App\Http\Controllers\users\pds\WorkExperience;
 use App\Http\Controllers\users\SignatureController;
 use App\Http\Controllers\users\User;
+use App\Models\hr\ListAwards;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -136,6 +138,7 @@ Route::group(['middleware' => 'auth','middleware' => 'role:0,1,2,3,4,5,7','middl
         Route::resource('/loyalty', loyaltyAwardController::class);
         Route::resource('/top5', top5Controller::class);
         Route::resource('/certificates', certificatesController::class);
+        Route::resource('/listAwards', ListAwardsController::class);
         // r&r
 
         // rsp
