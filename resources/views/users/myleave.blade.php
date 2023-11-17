@@ -81,7 +81,7 @@
                         <div class="row">
                             <div class="col-12 col-md-4">
                                 <div class="form-floating mb-1">
-                                    <input type="text" class="form-control @error('num_days') is-invalid @enderror"
+                                    <input type="number" class="form-control @error('num_days') is-invalid @enderror"
                                         name="num_days" id="num_days" placeholder="Number of Working Days">
                                     <label for="num_days">Number of Working Days</label>
                                 </div>
@@ -154,11 +154,11 @@
                                 <td>
 
 
-                                    <form onsubmit="return confirm('Do you really want to delete your leave?');" action="{{ route('users.myleave.destroy', $item->id) }}" method="POST">
+                                    <form onsubmit="return confirm('Do you really want to delete your leave?');"
+                                        action="{{ route('users.myleave.destroy', $item->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <a target="_blank"
-                                            href="{{ route('users.myleave.show', $item->id) }}"
+                                        <a target="_blank" href="{{ route('users.myleave.show', $item->id) }}"
                                             class="btn btn-primary btn-sm" title="Print"><i
                                                 class="fa-solid fa-print"></i></a>
                                         @if ($item->status == 1)
