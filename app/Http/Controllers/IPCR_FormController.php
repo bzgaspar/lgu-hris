@@ -193,16 +193,18 @@ class IPCR_FormController extends Controller
         } elseif($aveRating >= 1.0 && $aveRating <= 1.99) {
             $equivalent = "Poor";
         }
-        $pms =  Ipcr::where('user_id', Auth::user()->id)
+        $pms =  Ipcr::where('user_id', $ipcr->user_id)
         ->where('from', $request->from)
         ->where('to', $request->to)
         ->first();
-        $pms->user_id = Auth::user()->id;
-        $pms->from = $request->from;
-        $pms->to = $request->to;
-        $pms->rating = $aveRating;
-        $pms->equivalent = $equivalent;
-        $pms->save();
+        if($pms) {
+            $pms->user_id = $ipcr->user_id;
+            $pms->from = $request->from;
+            $pms->to = $request->to;
+            $pms->rating = $aveRating;
+            $pms->equivalent = $equivalent;
+            $pms->save();
+        }
         Session::flash('alert', 'success|IPCR Has be Updated!');
         return redirect()->route('users.IPCR.index');
     }
