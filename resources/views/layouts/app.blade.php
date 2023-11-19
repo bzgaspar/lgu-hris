@@ -177,6 +177,10 @@
                                     <ul class="list-group">
                                         <li class="list-group-item border-0 m-0 p-0">
                                             <a class="list-group-item list-group-item-action border-0 text-muted"
+                                                href="{{ route('hr.listAwards.index') }}">List of Awards</a>
+                                        </li>
+                                        <li class="list-group-item border-0 m-0 p-0">
+                                            <a class="list-group-item list-group-item-action border-0 text-muted"
                                                 href="{{ route('hr.certificates.index') }}">Certificate</a>
                                         </li>
                                         <li class="list-group-item border-0 m-0 p-0">
