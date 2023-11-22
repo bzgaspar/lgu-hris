@@ -52,7 +52,11 @@ class OPCR_FormController extends Controller
         $request->validate([
             'from' => 'required',
             'to' => 'required',
-            'question' => 'required'
+            'question' => 'required',
+            'indicators' => 'required',
+            'rate4' => 'required',
+        ], [
+            'rate4.required' => 'Rating should not be empty.'
         ]);
         $ipcr = new ipcr_forms();
         $ipcr->user_id = Auth::user()->id;
@@ -133,7 +137,11 @@ class OPCR_FormController extends Controller
         $request->validate([
             'from' => 'required',
             'to' => 'required',
-            'question' => 'required'
+            'question' => 'required',
+            'indicators' => 'required',
+            'rate4' => 'required',
+        ], [
+            'rate4.required' => 'Rating should not be empty.'
         ]);
         $ipcr =  ipcr_forms::where('id', $id)->first();
         $ipcr->user_id = Auth::user()->id;
