@@ -34,8 +34,13 @@ class OPCR_FormController extends Controller
     {
         // admin opcr
         $user_department = EmployeePlantilla::where('user_id', Auth::user()->id)->first();
-        $all_indicators = ipcr_Questions::where('dep_id', $user_department->EPdesignation)->get();
-        $all_mfo_question = ipcr_mfo::where('dep_id', $user_department->EPdesignation)->get();
+        if($user_department) {
+            $all_indicators = ipcr_Questions::where('dep_id', $user_department->EPdesignation)->get();
+            $all_mfo_question = ipcr_mfo::where('dep_id', $user_department->EPdesignation)->get();
+        } else {
+            $all_indicators = ipcr_Questions::get();
+            $all_mfo_question = ipcr_mfo::get();
+        }
         return view('users.opcr')
         ->with('all_indicators', $all_indicators)
         ->with('all_mfo_question', $all_mfo_question);
@@ -53,10 +58,7 @@ class OPCR_FormController extends Controller
             'from' => 'required',
             'to' => 'required',
             'question' => 'required',
-            'indicators' => 'required',
-            'rate4' => 'required',
-        ], [
-            'rate4.required' => 'Rating should not be empty.'
+            'indicators' => 'required'
         ]);
         $ipcr = new ipcr_forms();
         $ipcr->user_id = Auth::user()->id;
@@ -138,10 +140,7 @@ class OPCR_FormController extends Controller
             'from' => 'required',
             'to' => 'required',
             'question' => 'required',
-            'indicators' => 'required',
-            'rate4' => 'required',
-        ], [
-            'rate4.required' => 'Rating should not be empty.'
+            'indicators' => 'required'
         ]);
         $ipcr =  ipcr_forms::where('id', $id)->first();
         $ipcr->user_id = Auth::user()->id;
