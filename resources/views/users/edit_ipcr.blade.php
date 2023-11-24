@@ -73,7 +73,7 @@
                 </div>
                 <div id="rowInHere" class="mb-0">
                     @foreach ($my_ipcr->ipcr_forms_details as $ipcr_details)
-                        <div class="row gx-1">
+                        <div class="row gx-1" id="{{ $loop->iteration - 1 }}">
                             <div class="col-12 col-md-3 p-2">
                                 <select class="form-select form-select-sm" name="question[]" id="question"
                                     placeholder="Question">
@@ -141,7 +141,9 @@
                                     placeholder="Remarks" type="text" />
                             </div>
                             <div class="col-12 col-md-1 px-0">
-                                &nbsp;
+                                <button type="button" class="text-danger"
+                                    onclick="deleteRow({{ $loop->iteration - 1 }})"><i
+                                        class="fa-solid fa-trash"></i></button>
                             </div>
                         </div>
                     @endforeach
@@ -168,6 +170,31 @@
 @section('customJS')
     <script>
         var row = 0;
+        // rowInHere
+
+        // Get the div element
+        const myDiv = document.getElementById('rowInHere');
+
+        // Get all child elements of the div
+        const divChildren = myDiv.children;
+
+        // Initialize variables to store the largest id and its corresponding element
+        let largestId = '';
+
+        // Iterate through the child elements
+        // for (let i = 0; i < divChildren.length; i++) {
+        //     const currentElement = divChildren[i];
+        //     console.log("id : ",
+        //         currentElement)
+        //     // Compare the id with the current largest id
+        //     if (currentElement.id > largestId) {
+        //         largestId = currentElement.id;
+        //     }
+        // }
+        row = divChildren.length
+
+        // Output the result
+        // console.log('Largest ID:', largestId);
 
         function AddRow() {
             // First create a DIV element.

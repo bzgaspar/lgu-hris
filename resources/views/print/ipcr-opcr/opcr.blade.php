@@ -165,23 +165,29 @@
                     <td class="fw-bold">Final Average Rating</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
-                    <td class="fw-bold text-end">{{ number_format($final_average = $sum_total / $sum_count, 5) }}</td>
+                    <td class="fw-bold text-end"> <?php $final_average = 0; ?>
+                        @if ($sum_count > 0)
+                            {{ number_format($final_average = $sum_total / $sum_count, 5) }}
+                        @endif
+                    </td>
                 </tr>
                 <tr>
                     <td class="fw-bold">Total Overall Rating</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td class="fw-bold text-end">
-                        @if ($final_average >= 5)
-                            Outstanding
-                        @elseif ($final_average >= 4.0 && $final_average <= 5)
-                            Very Satisfactory
-                        @elseif ($final_average >= 3.0 && $final_average <= 3.99)
-                            Satisfactory
-                        @elseif ($final_average >= 2.0 && $final_average <= 2.99)
-                            Unsatisfactory
-                        @elseif ($final_average >= 1.0 && $final_average <= 1.99)
-                            Poor
+                        @if ($final_average > 0)
+                            @if ($final_average >= 5)
+                                Outstanding
+                            @elseif ($final_average >= 4.0 && $final_average <= 5)
+                                Very Satisfactory
+                            @elseif ($final_average >= 3.0 && $final_average <= 3.99)
+                                Satisfactory
+                            @elseif ($final_average >= 2.0 && $final_average <= 2.99)
+                                Unsatisfactory
+                            @elseif ($final_average >= 1.0 && $final_average <= 1.99)
+                                Poor
+                            @endif
                         @endif
                     </td>
                 </tr>

@@ -74,84 +74,89 @@
                             @enderror
                         </td>
                     </tr>
-                    @foreach ($my_opcr->ipcr_forms_details as $opcr)
-                        <tr>
-                            <td>
-                                <select class="form-select form-select-sm" name="question[]" id="question"
-                                    placeholder="Question">
-                                    <option value="">Select question</option>
-                                    '@forelse ($all_mfo_question as $item)
-                                        @if ($opcr->ques1 === $item->id)
-                                            <option selected value="{{ $item->id }}">{{ $item->type }} |
-                                                {{ $item->question }}
-                                            </option>
-                                        @else
-                                            <option value="{{ $item->id }}">{{ $item->type }} |
-                                                {{ $item->question }}
-                                            </option>
-                                        @endif
-                                    '@empty
-                                        <option selected>No question Yet</option>
-                                        '
-                                    @endforelse
-                                </select>
-                            </td>
-                            <td>
-                                <select class="form-select form-select-sm" name="indicators[]" id="indicators"
-                                    placeholder="Indicators">
-                                    <option>Select question</option>
-                                    '@forelse ($all_indicators as $item)
-                                        @if ($opcr->ques2 === $item->id)
-                                            <option selected value="{{ $item->id }}">{{ $item->question }}</option>
-                                        @else
-                                            <option value="{{ $item->id }}">{{ $item->question }}</option>
-                                        @endif
-                                    '@empty
-                                        <option selected>No question Yet</option>
-                                        '
-                                    @endforelse
-                                </select>
-                            </td>
-                            <td>
-                                <input class="form-control form-control-sm" name="budget[]" placeholder="Budget"
-                                    value="{{ $opcr->ans1 }}" type="text" />
-                            </td>
-                            <td>
-                                <input class="form-control form-control-sm" name="accountable[]" placeholder="Accountable"
-                                    value="{{ $opcr->ans2 }}" type="text" />
-                            </td>
-                            <td>
-                                <input class="form-control form-control-sm" name="actual[]" placeholder="Acutal"
-                                    value="{{ $opcr->ans3 }}" type="text" />
-                            </td>
-                            <td>
-                                <div class="row gx-0 p-0 m-0">
-                                    <div class="col p-0">
-                                        <input class="form-control form-control-sm" name="rate1[]" type="text"
-                                            value="{{ $opcr->rate1 }}" placeholder="Q" />
+                    <tbody id="tbodyHeader">
+                        @foreach ($my_opcr->ipcr_forms_details as $opcr)
+                            <tr id="{{ $loop->iteration - 1 }}">
+                                <td>
+                                    <select class="form-select form-select-sm" name="question[]" id="question"
+                                        placeholder="Question">
+                                        <option value="">Select question</option>
+                                        '@forelse ($all_mfo_question as $item)
+                                            @if ($opcr->ques1 === $item->id)
+                                                <option selected value="{{ $item->id }}">{{ $item->type }} |
+                                                    {{ $item->question }}
+                                                </option>
+                                            @else
+                                                <option value="{{ $item->id }}">{{ $item->type }} |
+                                                    {{ $item->question }}
+                                                </option>
+                                            @endif
+                                        '@empty
+                                            <option selected>No question Yet</option>
+                                            '
+                                        @endforelse
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="form-select form-select-sm" name="indicators[]" id="indicators"
+                                        placeholder="Indicators">
+                                        <option>Select question</option>
+                                        '@forelse ($all_indicators as $item)
+                                            @if ($opcr->ques2 === $item->id)
+                                                <option selected value="{{ $item->id }}">{{ $item->question }}
+                                                </option>
+                                            @else
+                                                <option value="{{ $item->id }}">{{ $item->question }}</option>
+                                            @endif
+                                        '@empty
+                                            <option selected>No question Yet</option>
+                                            '
+                                        @endforelse
+                                    </select>
+                                </td>
+                                <td>
+                                    <input class="form-control form-control-sm" name="budget[]" placeholder="Budget"
+                                        value="{{ $opcr->ans1 }}" type="text" />
+                                </td>
+                                <td>
+                                    <input class="form-control form-control-sm" name="accountable[]"
+                                        placeholder="Accountable" value="{{ $opcr->ans2 }}" type="text" />
+                                </td>
+                                <td>
+                                    <input class="form-control form-control-sm" name="actual[]" placeholder="Acutal"
+                                        value="{{ $opcr->ans3 }}" type="text" />
+                                </td>
+                                <td>
+                                    <div class="row gx-0 p-0 m-0">
+                                        <div class="col p-0">
+                                            <input class="form-control form-control-sm" name="rate1[]" type="text"
+                                                value="{{ $opcr->rate1 }}" placeholder="Q" />
+                                        </div>
+                                        <div class="col p-0">
+                                            <input class="form-control form-control-sm" id="rate2[]"
+                                                name="rate2[]"type="text" value="{{ $opcr->rate2 }}" placeholder="E" />
+                                        </div>
+                                        <div class="col p-0">
+                                            <input class="form-control form-control-sm" id="rate3[]" name="rate3[]"
+                                                value="{{ $opcr->rate3 }}" type="text" placeholder="T" />
+                                        </div>
+                                        <div class="col p-0">
+                                            <input class="form-control form-control-sm" id="rate4[]"
+                                                name="rate4[]"type="text" value="{{ $opcr->rate4 }}" placeholder="A" />
+                                        </div>
                                     </div>
-                                    <div class="col p-0">
-                                        <input class="form-control form-control-sm" id="rate2[]" name="rate2[]"type="text"
-                                            value="{{ $opcr->rate2 }}" placeholder="E" />
-                                    </div>
-                                    <div class="col p-0">
-                                        <input class="form-control form-control-sm" id="rate3[]" name="rate3[]"
-                                            value="{{ $opcr->rate3 }}" type="text" placeholder="T" />
-                                    </div>
-                                    <div class="col p-0">
-                                        <input class="form-control form-control-sm" id="rate4[]"
-                                            name="rate4[]"type="text" value="{{ $opcr->rate4 }}" placeholder="A" />
-                                    </div>
-                                </div>
-                            </td>
-                            <td><input class="form-control form-control-sm" name="remarks[]"
-                                    placeholder="Remarks"type="text" value="{{ $opcr->remarks }}" />
-                            </td>
-                            <td class="text-center">
-
-                            </td>
-                        </tr>
-                    @endforeach
+                                </td>
+                                <td><input class="form-control form-control-sm" name="remarks[]"
+                                        placeholder="Remarks"type="text" value="{{ $opcr->remarks }}" />
+                                </td>
+                                <td class="text-center">
+                                    <button type="button" class="text-danger"
+                                        onclick="deleteRow({{ $loop->iteration - 1 }})"><i
+                                            class="fa-solid fa-trash"></i></button>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -175,6 +180,11 @@
 @section('customJS')
     <script>
         var row = 0;
+
+        const myDiv = document.getElementById('tbodyHeader');
+        const divChildren = myDiv.children;
+        // console.log(divChildren)
+        row = divChildren.length
 
         function AddRow() {
             // First create a DIV element.
