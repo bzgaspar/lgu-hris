@@ -27,7 +27,6 @@ class Department extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**

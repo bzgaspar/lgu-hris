@@ -62,7 +62,7 @@
         }
 
         @page {
-            margin: 0;
+            margin: 35px 0;
             padding: 0;
         }
     </style>

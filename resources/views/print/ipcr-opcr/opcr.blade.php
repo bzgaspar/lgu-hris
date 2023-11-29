@@ -54,7 +54,7 @@
                 <tr class="mt-0 pt-0">
                     <td></td>
                     <td>
-                        Date: <b><u>{{ date('F d, Y', strtotime($ipcr->created_at)) }}</u></b>
+                        Date: <b contenteditable="true"><u>{{ date('F d, Y', strtotime($ipcr->created_at)) }}</u></b>
                     </td>
                 </tr>
                 <tr>

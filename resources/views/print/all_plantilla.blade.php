@@ -36,7 +36,7 @@
             </div>
 
         </center> --}}
-        <center class="pt-4">
+        <center class="">
             <strong>
                 <h5>Plantilla of LGU Personnel FY {{ date('Y', strtotime(now())) }}</h5>
                 <h5>Delfin Albano, Isabla</h5>

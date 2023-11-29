@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\Department;
 use App\Http\Controllers\admin\PlantillaController;
 use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\Files201Controller;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\hr\applicantController;
 use App\Http\Controllers\hr\AssessmentController;
@@ -96,6 +97,7 @@ Route::group(['middleware' => 'auth','middleware' => 'role:0,1,2,3,4,5,7','middl
         // IPCR
         Route::resource('/IPCR', IPCR_FormController::class);
         Route::resource('/OPCR', OPCR_FormController::class);
+        Route::resource('/Files_201', Files201Controller::class);
 
         // user stuff
         Route::resource('/account', AccountController::class);
@@ -162,6 +164,9 @@ Route::group(['middleware' => 'auth','middleware' => 'role:0,1,2,3,4,5,7','middl
         Route::resource('/printing', printingController::class);
         Route::resource('/leaveApplication', leaveApplicationController::class);
         Route::resource('/yearlyIPCR', YearlyIPCRController::class);
+
+        // print gender
+        Route::get('/employeesGender/{gender}', [User::class, 'employeesGender'])->name('user.employeesGender');
 
         Route::get('/user/covid', [User::class, 'covid'])->name('user.covid');
         Route::get('/leavecard/{id}', [LeaveRecordController::class,'print'])->name('leavecard');

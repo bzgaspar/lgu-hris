@@ -179,7 +179,7 @@
         const divChildren = myDiv.children;
 
         // Initialize variables to store the largest id and its corresponding element
-        let largestId = '';
+        // let largestId = '';
 
         // Iterate through the child elements
         // for (let i = 0; i < divChildren.length; i++) {

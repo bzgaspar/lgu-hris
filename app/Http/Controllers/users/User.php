@@ -17,6 +17,7 @@ use App\Models\users\others;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -33,7 +34,7 @@ class User extends Controller
     {
         $user = $this->user->findOrFail(Auth::user()->id);
         $progress = $this->pdsProgress();
-        if (Auth::user()->id ==1) {
+        if (Auth::user()->id == 1) {
             return redirect()->route('admin.user.index');
         } else {
             return view('users.PDS.index')->with('user', $user)->with('progress', $progress);
@@ -41,7 +42,7 @@ class User extends Controller
     }
     public function covid()
     {
-       return view('admin.covid');
+        return view('admin.covid');
     }
 
     public function pdsProgress()
@@ -77,7 +78,7 @@ class User extends Controller
         if (others::where('user_id', Auth::user()->id)->exists()) {
             $progress += 10;
         }
-        $progress = ($progress / 55)*100;
+        $progress = ($progress / 55) * 100;
         return round($progress, 2);
     }
 
@@ -156,5 +157,15 @@ class User extends Controller
         Artisan::call('schedule:work');
         dd(Artisan::output());
 
+    }
+    public function employeesGender($gender)
+    {
+        $data = ModelsUser::leftJoin('personals', 'personals.user_id', 'users.id')
+        ->leftJoin('employee_plantillas', 'employee_plantillas.user_id', 'users.id')
+        ->select(DB::raw("CONCAT(`users`.`first_name`,' ',`users`.`last_name`) as name"), 'employee_plantillas.EPposition')
+        ->where('sex', 'like', $gender)->get();
+
+
+        return view('print.EMPbyGender')->with('data', $data)->with('gender', $gender);
     }
 }

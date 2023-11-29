@@ -79,6 +79,9 @@
                                 <a href="{{ route('users.pds.index') }}" class="nav-link">Personal Data Sheet</a>
                             </li>
                             <li class="nav-item d-block d-md-none">
+                                <a href="{{ route('users.Files_201.index') }}" class="nav-link">201 Files</a>
+                            </li>
+                            <li class="nav-item d-block d-md-none">
                                 @can('isUser')
                                     <a href="{{ route('users.application.index') }}" class="nav-link">My Applications</a>
                                 @else
@@ -274,6 +277,7 @@
                                     aria-labelledby="navbarDropdown">
                                     <a href="{{ route('users.pds.index') }}" class="dropdown-item">Personal Data
                                         Sheet</a>
+                                        <a href="{{ route('users.Files_201.index') }}" class="dropdown-item">201 Files</a>
                                     <a href="{{ route('users.account.edit', Auth::user()->id) }}"
                                         class="dropdown-item">Account Settings</a>
 
@@ -353,6 +357,10 @@
                                             <a href="{{ route('users.pds.index') }}"
                                                 class="list-group-item list-group-item-action border-0 {{ request()->is('users/pds') ? 'active' : '' }}">
                                                 <i class="fa-solid fa-address-card me-1"></i> Personal DataSheet
+                                            </a>
+                                            <a href="{{ route('users.Files_201.index') }}"
+                                                class="list-group-item list-group-item-action border-0 {{ request()->is('users/Files_201') ? 'active' : '' }}">
+                                                <i class="fa-solid fa-folder-open me-1"></i> 201 Files
                                             </a>
                                             <a href="{{ route('users.covid.index') }}"
                                                 class="list-group-item list-group-item-action border-0{{ request()->is('users/covid') ? ' active ' : '' }}">
