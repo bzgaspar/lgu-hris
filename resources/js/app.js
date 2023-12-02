@@ -12,6 +12,7 @@ Vue.use(PortalVue);
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 
+Vue.component("profile-view", require("./views/ProfileView.vue").default);
 Vue.component("bell-component", require("./views/bell.vue").default);
 Vue.component(
     "civil_service-component",

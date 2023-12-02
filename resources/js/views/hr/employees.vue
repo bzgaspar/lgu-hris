@@ -62,6 +62,16 @@
             >
                 <template v-slot:item.actions="{ item }">
                     <v-btn
+                        color="success"
+                        small
+                        outlined
+                        title="View Emp"
+                        @click="ViewProfile(item.id)"
+                    >
+                        <!-- <v-icon>mdi-eye</v-icon> -->
+                        <i class="fa-solid fa-eye me-1"></i>View
+                    </v-btn>
+                    <v-btn
                         color="primary"
                         small
                         outlined
@@ -126,7 +136,11 @@ export default {
     },
     methods: {
         openCOE(id) {
-            window.open("/HumanResource/dashboard/" + id, "_blank", "noreferrer");
+            window.open(
+                "/HumanResource/dashboard/" + id,
+                "_blank",
+                "noreferrer"
+            );
         },
         openPDS(id) {
             window.open("/users/pds/" + id + "/print", "_blank", "noreferrer");
@@ -144,6 +158,9 @@ export default {
             axios.get("/api/getChartEMP").then((response) => {
                 this.chartData = response.data;
             });
+        },
+        ViewProfile(id) {
+            window.open("/ProfileView/" + id, "_blank");
         },
         async getDep() {
             await axios.get("/api/getDepartment").then((response) => {

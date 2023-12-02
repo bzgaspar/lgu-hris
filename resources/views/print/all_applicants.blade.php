@@ -38,6 +38,7 @@
         </center> --}}
         <center class="pt-4">
             <strong>
+                <img src="{{ asset('images/DA-logo.png') }}" alt="" width="60px" height="60px"><br>
                 <h5>LIST OF APPLICANTS FOR PERMANENT POSITION {{ date('m/Y', strtotime(now())) }}</h5>
                 <h5>LGU-Delfin Albano, Isabla</h5>
             </strong>

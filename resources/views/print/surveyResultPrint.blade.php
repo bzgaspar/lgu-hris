@@ -25,7 +25,7 @@
         <center class="pt-3 m-3">
             <div class="row">
                 <div class="col">
-                    {{-- <img src="{{ asset('images/DA-logo.png') }}" alt="" width="60px" height="60px"><br> --}}
+                    <img src="{{ asset('images/DA-logo.png') }}" alt="" width="60px" height="60px"><br>
                     <b>Learning and Development Needs Assesment (LDNA)</b> <br>
                     Self-Assessment Tally Sheet <br>
                     <strong>Local Government Unit (LGU)</strong>

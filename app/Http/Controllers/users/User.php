@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\users;
 
 use App\Http\Controllers\Controller;
+use App\Models\admin\Department;
 use App\Models\pds\civilservice;
 use App\Models\pds\educational;
 use App\Models\pds\family;
@@ -43,6 +44,11 @@ class User extends Controller
     public function covid()
     {
         return view('admin.covid');
+    }
+    public function ProfileView($id)
+    {
+        $user = $this->user->findOrFail($id);
+        return view('users.profileView')->with('user',$user);
     }
 
     public function pdsProgress()
@@ -167,5 +173,47 @@ class User extends Controller
 
 
         return view('print.EMPbyGender')->with('data', $data)->with('gender', $gender);
+    }
+    public function ViewByGenderCount()
+    {
+        $all_department = Department::get();
+        $all_users = ModelsUser::join('employee_plantillas', 'employee_plantillas.user_id', 'users.id')
+        ->join('departments', 'employee_plantillas.dep_id', 'departments.id')
+        ->join('personals', 'personals.user_id', 'users.id')
+        ->select('departments.name as dep_name', 'departments.id as dep_id', 'personals.sex')
+        ->get();
+
+        return view('print.EMPbyGenderCount')->with('all_users', $all_users)->with('all_department', $all_department);
+    }
+    public function ViewPwdSpI()
+    {
+        $all_department = Department::get();
+        $all_users = ModelsUser::join('employee_plantillas', 'employee_plantillas.user_id', 'users.id')
+        ->join('departments', 'employee_plantillas.dep_id', 'departments.id')
+        ->join('others', 'others.user_id', 'users.id')
+        ->select('others.Q40b as pwd', 'others.Q40a as indigenous', 'others.Q40c as solo_parent', 'departments.id as dep_id')
+        ->get();
+
+        return view('print.EMPbyPWD')->with('all_users', $all_users)->with('all_department', $all_department);
+    }
+    public function ViewStatus()
+    {
+        $all_department = Department::get();
+        $all_users = ModelsUser::join('employee_plantillas', 'employee_plantillas.user_id', 'users.id')
+        ->join('departments', 'employee_plantillas.dep_id', 'departments.id')
+        ->select('employee_plantillas.status as status', 'departments.id as dep_id')
+        ->get();
+
+        return view('print.EMPbyStatus')->with('all_users', $all_users)->with('all_department', $all_department);
+    }
+    public function ViewCovidResponse()
+    {
+        $all_department = Department::get();
+        $all_users = ModelsUser::join('employee_plantillas', 'employee_plantillas.user_id', 'users.id')
+        ->join('departments', 'employee_plantillas.dep_id', 'departments.id')
+        ->join('covids', 'covids.user_id', 'users.id')
+        ->select('covids.booster as booster', 'departments.id as dep_id')
+        ->get();
+        return view('print.EMPbyCovid')->with('all_users', $all_users)->with('all_department', $all_department);
     }
 }

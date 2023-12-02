@@ -36,128 +36,128 @@
         </div>
         <div class="row justify-content-center mb-4">
             <div class="col-12">
-                <table class="table-borderless" id="rowInHere">
-                    <tr>
-                        <th width="15%">MFO/PAP</th>
-                        <th width="15%">SUCCESS INDICATORS</th>
-                        <th width="10%">Allotted Budget</th>
-                        <th width="10%">Individual/Department Accountable</th>
-                        <th width="10%">Actual</th>
-                        <th width="15%">Rating</th>
-                        <th>Remarks</th>
-                        <th width="auto"></th>
-                    </tr>
-                    <tr>
-                        <td>
-                            @error('question')
-                                <p class="text-danger" style="font-size: 10px">{{ $message }}</p>
-                            @enderror
-                        </td>
-                        <td>
-                            @error('indicators')
-                                <p class="text-danger" style="font-size: 10px">{{ $message }}</p>
-                            @enderror
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td> @error('actual')
-                                <p class="text-danger" style="font-size: 10px">{{ $message }}</p>
-                            @enderror
-                        </td>
-                        <td>
-                            @error('rate4')
-                                <p class="text-danger" style="font-size: 10px">{{ $message }}</p>
-                            @enderror
-                        </td>
-                        <td> @error('remarks')
-                                <p class="text-danger" style="font-size: 10px">{{ $message }}</p>
-                            @enderror
-                        </td>
-                    </tr>
-                    <tbody id="tbodyHeader">
-                        @foreach ($my_opcr->ipcr_forms_details as $opcr)
-                            <tr id="{{ $loop->iteration - 1 }}">
-                                <td>
-                                    <select class="form-select form-select-sm" name="question[]" id="question"
-                                        placeholder="Question">
-                                        <option value="">Select question</option>
-                                        '@forelse ($all_mfo_question as $item)
-                                            @if ($opcr->ques1 === $item->id)
-                                                <option selected value="{{ $item->id }}">{{ $item->type }} |
-                                                    {{ $item->question }}
-                                                </option>
-                                            @else
-                                                <option value="{{ $item->id }}">{{ $item->type }} |
-                                                    {{ $item->question }}
-                                                </option>
-                                            @endif
-                                        '@empty
-                                            <option selected>No question Yet</option>
-                                            '
-                                        @endforelse
-                                    </select>
-                                </td>
-                                <td>
-                                    <select class="form-select form-select-sm" name="indicators[]" id="indicators"
-                                        placeholder="Indicators">
-                                        <option>Select question</option>
-                                        '@forelse ($all_indicators as $item)
-                                            @if ($opcr->ques2 === $item->id)
-                                                <option selected value="{{ $item->id }}">{{ $item->question }}
-                                                </option>
-                                            @else
-                                                <option value="{{ $item->id }}">{{ $item->question }}</option>
-                                            @endif
-                                        '@empty
-                                            <option selected>No question Yet</option>
-                                            '
-                                        @endforelse
-                                    </select>
-                                </td>
-                                <td>
-                                    <input class="form-control form-control-sm" name="budget[]" placeholder="Budget"
-                                        value="{{ $opcr->ans1 }}" type="text" />
-                                </td>
-                                <td>
-                                    <input class="form-control form-control-sm" name="accountable[]"
-                                        placeholder="Accountable" value="{{ $opcr->ans2 }}" type="text" />
-                                </td>
-                                <td>
-                                    <input class="form-control form-control-sm" name="actual[]" placeholder="Acutal"
-                                        value="{{ $opcr->ans3 }}" type="text" />
-                                </td>
-                                <td>
-                                    <div class="row gx-0 p-0 m-0">
-                                        <div class="col p-0">
-                                            <input class="form-control form-control-sm" name="rate1[]" type="text"
-                                                value="{{ $opcr->rate1 }}" placeholder="Q" />
-                                        </div>
-                                        <div class="col p-0">
-                                            <input class="form-control form-control-sm" id="rate2[]"
-                                                name="rate2[]"type="text" value="{{ $opcr->rate2 }}" placeholder="E" />
-                                        </div>
-                                        <div class="col p-0">
-                                            <input class="form-control form-control-sm" id="rate3[]" name="rate3[]"
-                                                value="{{ $opcr->rate3 }}" type="text" placeholder="T" />
-                                        </div>
-                                        <div class="col p-0">
-                                            <input class="form-control form-control-sm" id="rate4[]"
-                                                name="rate4[]"type="text" value="{{ $opcr->rate4 }}" placeholder="A" />
-                                        </div>
+                <div class="row gx-2 mt-3">
+                    <div class="col-4 p-2  border border-success rounded">MFO/PAP</div>
+                    <div class="col-4 p-2  border border-success rounded">SUCCESS INDICATORS</div>
+                    <div class="col-2 p-2  border border-success rounded">Allotted Budget</div>
+                    <div class="col-2 p-2  border border-success rounded">Individual/Department Accountable</div>
+                </div>
+                <div class="row gx-2 mt-3">
+                    <div class="col-6 p-2  border border-success rounded">Actual</div>
+                    <div class="col-4 p-2  border border-success rounded">Rating</div>
+                    <div class="col-1 p-2  border border-success rounded">Remarks</div>
+                </div>
+                <div class="row">
+                    <div class="col-2">
+                        @error('question')
+                            <p class="text-danger" style="font-size: 10px">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="col-2">
+                        @error('indicators')
+                            <p class="text-danger" style="font-size: 10px">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="col-4">
+                        @error('actual')
+                            <p class="text-danger" style="font-size: 10px">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="col-2">
+                        @error('rate4')
+                            <p class="text-danger" style="font-size: 10px">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="col-2">
+                        @error('remarks')
+                            <p class="text-danger" style="font-size: 10px">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+                <div id="rowInHere" class="mb-0">
+                    @foreach ($my_opcr->ipcr_forms_details as $opcr)
+                        <div class="row gx-1 border mt-3 border-dark rounded" id="{{ $loop->iteration - 1 }}">
+                            <div class="col-12 col-md-4 p-2">
+                                <select class="form-select form-select-sm" name="question[]" id="question"
+                                    placeholder="Question">
+                                    <option value="">Select question</option>
+                                    '@forelse ($all_mfo_question as $item)
+                                        @if ($opcr->ques1 === $item->id)
+                                            <option selected value="{{ $item->id }}">{{ $item->type }} |
+                                                {{ $item->question }}
+                                            </option>
+                                        @else
+                                            <option value="{{ $item->id }}">{{ $item->type }} |
+                                                {{ $item->question }}
+                                            </option>
+                                        @endif
+                                    '@empty
+                                        <option selected>No question Yet</option>
+                                        '
+                                    @endforelse
+                                </select>
+                            </div>
+                            <div class="col-12 col-md-4 p-2">
+                                <select class="form-select form-select-sm" name="indicators[]" id="indicators"
+                                    placeholder="Indicators">
+                                    <option>Select question</option>
+                                    '@forelse ($all_indicators as $item)
+                                        @if ($opcr->ques2 === $item->id)
+                                            <option selected value="{{ $item->id }}">{{ $item->question }}
+                                            </option>
+                                        @else
+                                            <option value="{{ $item->id }}">{{ $item->question }}</option>
+                                        @endif
+                                    '@empty
+                                        <option selected>No question Yet</option>
+                                        '
+                                    @endforelse
+                                </select>
+                            </div>
+                            <div class="col-12 col-md-2 p-2">
+                                <input class="form-control form-control-sm" name="budget[]" placeholder="Budget"
+                                    value="{{ $opcr->ans1 }}" type="text" />
+                            </div>
+                            <div class="col-12 col-md-2 p-2">
+                                <input class="form-control form-control-sm" name="accountable[]" placeholder="Accountable"
+                                    value="{{ $opcr->ans2 }}" type="text" />
+                            </div>
+                            <div class="col-12 col-md-6 p-2">
+                                <input class="form-control form-control-sm" name="actual[]" placeholder="Acutal"
+                                    value="{{ $opcr->ans3 }}" type="text" />
+                            </div>
+                            <div class="col-12 col-md-4 p-2">
+                                <div class="row gx-0 p-0 m-0">
+                                    <div class="col p-0">
+                                        <input class="form-control form-control-sm" name="rate1[]" type="text"
+                                            value="{{ $opcr->rate1 }}" placeholder="Q" />
                                     </div>
-                                </td>
-                                <td><input class="form-control form-control-sm" name="remarks[]"
-                                        placeholder="Remarks"type="text" value="{{ $opcr->remarks }}" />
-                                </td>
-                                <td class="text-center">
-                                    <button type="button" class="text-danger"
-                                        onclick="deleteRow({{ $loop->iteration - 1 }})"><i
-                                            class="fa-solid fa-trash"></i></button>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                                    <div class="col p-0">
+                                        <input class="form-control form-control-sm" id="rate2[]"
+                                            name="rate2[]"type="text" value="{{ $opcr->rate2 }}" placeholder="E" />
+                                    </div>
+                                    <div class="col p-0">
+                                        <input class="form-control form-control-sm" id="rate3[]" name="rate3[]"
+                                            value="{{ $opcr->rate3 }}" type="text" placeholder="T" />
+                                    </div>
+                                    <div class="col p-0">
+                                        <input class="form-control form-control-sm" id="rate4[]"
+                                            name="rate4[]"type="text" value="{{ $opcr->rate4 }}" placeholder="A" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-1 p-2">
+                                <input class="form-control form-control-sm" name="remarks[]"
+                                    placeholder="Remarks"type="text" value="{{ $opcr->remarks }}" />
+                            </div>
+                            <div class="col-12 col-md-1 p-2">
+                                <button type="button" class="text-danger"
+                                    onclick="deleteRow({{ $loop->iteration - 1 }})"><i
+                                        class="fa-solid fa-trash"></i></button>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
             </div>
         </div>
         <div class="row">
@@ -181,52 +181,54 @@
     <script>
         var row = 0;
 
-        const myDiv = document.getElementById('tbodyHeader');
+        const myDiv = document.getElementById('rowInHere');
         const divChildren = myDiv.children;
         // console.log(divChildren)
         row = divChildren.length
 
         function AddRow() {
             // First create a DIV element.
-            var txtNewInputBox = document.createElement("tbody");
+            var txtNewInputBox = document.createElement("div");
 
             // Then add the content (a new input box) of the element.
             txtNewInputBox.innerHTML =
-                `<tr  id="` + row + `">` +
-                `<td>` +
+                `<div class="row gx-1 border mt-3 border-dark rounded" id="` +
+                row + `">` +
+                `<div class="col-12 col-md-4 p-2">` +
                 `<select class="form-select form-select-sm" name="question[]" id="question" placeholder="Question">` +
-                `<option value="">Select question</option>` +
+                `<option value="" >Select question</option>` +
                 `@forelse ($all_mfo_question as $item)` +
-                `<option value="{{ $item->id }}">{{ substr($item->type, 0, 1) }} | {{ $item->question }}` +
+                `<option value="{{ $item->id }}">{{ $item->type }} | {{ $item->question }}` +
                 `</option>` +
                 `@empty` +
                 `<option selected>No question Yet</option>` +
                 `@endforelse` +
                 `</select>` +
-                `</td>` +
-                `<td>` +
+                `</div>` +
+                `<div class="col-12 col-md-4 p-2">` +
                 `<select class="form-select form-select-sm" name="indicators[]"  id="indicators" placeholder="Indicators">` +
-                `<option>Select question</option>` +
+                `<option >Select question</option>` +
                 `@forelse ($all_indicators as $item)` +
                 `<option value="{{ $item->id }}">{{ $item->question }}</option>` +
                 `@empty` +
                 `<option selected>No question Yet</option>` +
                 `@endforelse` +
                 `</select>` +
-                `</td>` +
-                `<td>` +
+                `</div>` +
+                `<div class="col-12 col-md-2 p-2">` +
                 `<input class="form-control form-control-sm" name="budget[]"  placeholder="Budget" type="text" />` +
-                `</td>` +
-                `<td>` +
+                `</div>` +
+                `<div class="col-12 col-md-2 p-2">` +
                 `<input class="form-control form-control-sm" name="accountable[]"  placeholder="Accountable" type="text" />` +
-                `</td>` +
-                `<td>` +
-                `<input class="form-control form-control-sm" name="actual[]"  placeholder="Acutal" type="text" />` +
-                `</td>` +
-                `<td>` +
+                `</div>` +
+                `<div class="col-12 col-md-6 p-2">` +
+                `<textarea rows="1" class="form-control form-control-sm" name="actual[]" placeholder="Acutal"></textarea>` +
+                `</div>` +
+                `<div class="col-12 col-md-3 p-2">` +
                 `<div class="row gx-0 p-0 m-0">` +
                 `<div class="col p-0">` +
-                `<input class="form-control form-control-sm" id="rate1[` + row + `]" onkeyup="getAverageRow(` + row +
+                `<input class="form-control form-control-sm" id="rate1[` + row +
+                `]" onkeyup="getAverageRow(` + row +
                 `)" name="rate1[]" type="text" placeholder="Q" />` +
                 `</div>` +
                 `<div class="col p-0">` +
@@ -242,10 +244,11 @@
                 `]" name="rate4[]" onkeyup="getAverageRow(` + row + `)" type="text" placeholder="A" />` +
                 `</div>` +
                 `</div>` +
-                `</td>` +
-                `<td><input class="form-control form-control-sm" name="remarks[]" placeholder="Remarks"type="text" />` +
-                `</td>` +
-                `<td class="text-center">` +
+                `</div>` +
+                `<div class="col-12 col-md-2 p-2">` +
+                `<input class="form-control form-control-sm" name="remarks[]" placeholder="Remarks"type="text" />` +
+                `</div>` +
+                `<div class="col-12 col-md-1 p-2">` +
                 `<button type="button" class="text-danger" onclick="deleteRow(` + row +
                 `)"><i class="fa-solid fa-trash"></i></button>` +
                 `</td>` +

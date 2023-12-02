@@ -38,6 +38,7 @@
         </center> --}}
         <center class="">
             <strong>
+                <img src="{{ asset('images/DA-logo.png') }}" alt="" width="60px" height="60px"><br>
                 <h5>Plantilla of LGU Personnel FY {{ date('Y', strtotime(now())) }}</h5>
                 <h5>Delfin Albano, Isabla</h5>
             </strong>

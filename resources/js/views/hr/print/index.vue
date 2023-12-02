@@ -218,7 +218,7 @@
             </div>
             <div class="col">
                 <div class="card">
-                    <div class="card-header">Employee Plantilla</div>
+                    <div class="card-header">Employee Gender Count</div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col">
@@ -226,7 +226,92 @@
                                     type="button"
                                     id="leavecard"
                                     class="btn btn-outline-success w-100"
-                                    @click="ViewPlantilla()"
+                                    @click="ViewByGenderCount()"
+                                >
+                                    Print
+                                </button>
+                                <p class="mb-3">&nbsp;</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row my-2 gx-4">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        PWD / Single Parent / Indigenous
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <button
+                                    type="button"
+                                    id="pds"
+                                    class="btn btn-outline-success w-100"
+                                    @click="ViewPwdSpI()"
+                                >
+                                    Print
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">Employee Status</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <button
+                                    type="button"
+                                    id="leavecard"
+                                    class="btn btn-outline-success w-100"
+                                    @click="ViewStatus()"
+                                >
+                                    Print
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row my-2 gx-4">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        Covid 19 Response
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <button
+                                    type="button"
+                                    id="pds"
+                                    class="btn btn-outline-success w-100"
+                                    @click="ViewCovidResponse()"
+                                >
+                                    Print
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">Employee Status</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <button
+                                    type="button"
+                                    id="leavecard"
+                                    class="btn btn-outline-success w-100"
+                                    @click="ViewStatus()"
                                 >
                                     Print
                                 </button>
@@ -285,7 +370,22 @@ export default {
             window.open("/HumanResource/publication/create", "_blank");
         },
         ViewByGender() {
-            window.open("/HumanResource/employeesGender/" + this.gender, "_blank");
+            window.open(
+                "/HumanResource/employeesGender/" + this.gender,
+                "_blank"
+            );
+        },
+        ViewByGenderCount() {
+            window.open("/HumanResource/ViewByGenderCount", "_blank");
+        },
+        ViewPwdSpI() {
+            window.open("/HumanResource/ViewPwdSpI", "_blank");
+        },
+        ViewStatus() {
+            window.open("/HumanResource/ViewStatus", "_blank");
+        },
+        ViewCovidResponse() {
+            window.open("/HumanResource/ViewCovidResponse", "_blank");
         },
     },
 

@@ -119,8 +119,8 @@
                     <tbody>
                         @forelse ($user->serviceRecord as $item)
                             <tr>
-                                <td>{{ $item->from }}</td>
-                                <td>{{ $item->to }}</td>
+                                <td>{{ date('mm/dd/yyyy', $item->from) }}</td>
+                                <td>{{ date('mm/dd/yyyy', $item->to) }}</td>
                                 <td>
                                     @if ($item->empPlantilla)
                                         {{ $item->empPlantilla->EPposition }}

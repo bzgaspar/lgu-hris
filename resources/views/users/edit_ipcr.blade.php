@@ -38,11 +38,12 @@
         <div class="row justify-content-center mb-4">
             <div class="col-12">
                 <div class="row">
-                    <div class="col-3 p-0"><label>MFO/PAP</label></div>
-                    <div class="col-3 p-0"><label>SUCCESS INDICATORS</label></div>
-                    <div class="col-2 p-0"><label>Actual</label></div>
-                    <div class="col-2 p-0"><label>Rating</label></div>
+                    <div class="col-6 p-0"><label>MFO/PAP</label></div>
+                    <div class="col-6 p-0"><label>SUCCESS INDICATORS</label></div>
+                    <div class="col-6 p-0"><label>Actual</label></div>
+                    <div class="col-3 p-0"><label>Rating</label></div>
                     <div class="col-2 p-0"><label>Remarks</label></div>
+                    <div class="col-1 p-0">&nbsp;</div>
                 </div>
                 <div class="row">
                     <div class="col-3">
@@ -73,8 +74,8 @@
                 </div>
                 <div id="rowInHere" class="mb-0">
                     @foreach ($my_ipcr->ipcr_forms_details as $ipcr_details)
-                        <div class="row gx-1" id="{{ $loop->iteration - 1 }}">
-                            <div class="col-12 col-md-3 p-2">
+                        <div class="row gx-1 border mt-3 border-dark rounded" id="{{ $loop->iteration - 1 }}">
+                            <div class="col-12 col-md-6 p-2">
                                 <select class="form-select form-select-sm" name="question[]" id="question"
                                     placeholder="Question">
                                     <option value="">Select question</option>
@@ -92,7 +93,7 @@
                                     @endforelse
                                 </select>
                             </div>
-                            <div class="col-12 col-md-2 p-2">
+                            <div class="col-12 col-md-6 p-2">
                                 <select class="form-select form-select-sm" name="indicators[]" id="indicators"
                                     placeholder="Indicators">
                                     <option value="">Select question</option>
@@ -107,11 +108,11 @@
                                     @endforelse
                                 </select>
                             </div>
-                            <div class="col-12 col-md-2 p-2">
+                            <div class="col-12 col-md-5 p-2">
                                 <input class="form-control form-control-sm" name="actual[]" placeholder="Acutal"
                                     value="{{ old('actual', $ipcr_details->ans1) }}" type="text" />
                             </div>
-                            <div class="col-12 col-md-2 p-2">
+                            <div class="col-12 col-md-3 p-2">
                                 <div class="row gx-0 p-0 m-0">
                                     <div class="col p-0">
                                         <input class="form-control form-control-sm" id="rate1[]"
@@ -135,7 +136,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-md-2 p-2">
+                            <div class="col-12 col-md-3 p-2">
                                 <input class="form-control form-control-sm"
                                     value="{{ old('remarks', $ipcr_details->remarks) }}" name="remarks[]"
                                     placeholder="Remarks" type="text" />
@@ -202,11 +203,11 @@
 
             // Then add the content (a new input box) of the element.
             txtNewInputBox.innerHTML =
-                `<div class="row gx-1" id="` +
+                `<div class="row gx-1 border mt-3 border-dark rounded" id="` +
                 row + `">` +
-                `<div class="col-12 col-md-3 p-2">` +
+                `<div class="col-12 col-md-6 p-2">` +
                 `<select class="form-select form-select-sm" name="question[]" id="question" placeholder="Question">` +
-                `<option value=""  >Select question</option>` +
+                `<option value="" >Select question</option>` +
                 `@forelse ($all_mfo_question as $item)` +
                 `<option value="{{ $item->id }}">{{ substr($item->type, 0, 1) }} | {{ $item->question }}</option> ` +
                 `@empty` +
@@ -214,9 +215,9 @@
                 `@endforelse` +
                 `</select>` +
                 `</div>` +
-                `<div class="col-12 col-md-2 p-2">` +
+                `<div class="col-12 col-md-6 p-2">` +
                 `<select class="form-select form-select-sm" name="indicators[]" id="indicators" placeholder="Indicators">` +
-                `<option value=""  >Select question</option>` +
+                `<option value="" >Select question</option>` +
                 `@forelse ($all_indicators as $item)` +
                 `<option value="{{ $item->id }}">{{ $item->question }}</option> ` +
                 `@empty` +
@@ -224,34 +225,35 @@
                 `@endforelse` +
                 `</select>` +
                 `</div>` +
-                `<div class="col-12 col-md-2 p-2">` +
-                `<input class="form-control form-control-sm" name="actual[]" placeholder="Acutal" type="text"/>` +
+                `<div class="col-12 col-md-6 p-2">` +
+                `<textarea rows="1" class="form-control form-control-sm" name="actual[]" placeholder="Acutal"></textarea>` +
                 `</div>` +
-                `<div class="col-12 col-md-2 p-2">` +
+                `<div class="col-12 col-md-3 p-2">` +
                 `<div class="row gx-0 p-0 m-0">` +
                 `<div class="col p-0">` +
-                `<input class="form-control form-control-sm" id="rate1[` + row + `]" onkeyup="getAverageRow(` +
+                `<input class="form-control form-control-sm"  id="rate1[` + row +
+                `]" onkeyup="getAverageRow(` +
                 row + `)" name="rate1[]"  type="text" placeholder="Q" />` +
                 `</div>` +
                 `<div class="col p-0">` +
-                `<input class="form-control form-control-sm" id="rate2[` + row +
+                `<input class="form-control form-control-sm"  id="rate2[` + row +
                 `]" name="rate2[]" onkeyup="getAverageRow(` +
                 row + `)" type="text" placeholder="E" />` +
                 `</div>` +
                 `<div class="col p-0">` +
-                `<input class="form-control form-control-sm" id="rate3[` + row +
+                `<input class="form-control form-control-sm"  id="rate3[` + row +
                 `]" name="rate3[]" onkeyup="getAverageRow(` +
                 row + `)" type="text" placeholder="T" />` +
                 `</div>` +
                 `<div class="col p-0">` +
-                `<input class="form-control form-control-sm" id="rate4[` + row +
+                `<input class="form-control form-control-sm"  id="rate4[` + row +
                 `]" name="rate4[]" onkeyup="getAverageRow(` +
                 row + `)" type="text" placeholder="A" />` +
                 `</div>` +
                 `</div>` +
                 `</div>` +
                 `<div class="col-12 col-md-2 p-2">` +
-                `<input class="form-control form-control-sm" name="remarks[]" placeholder="Remarks" type="text"/>` +
+                `<input class="form-control form-control-sm"  name="remarks[]" placeholder="Remarks" type="text"/>` +
                 `</div>` +
                 `<div class="col-12 col-md-1 px-0">` +
                 `<button type="button" class="text-danger" onclick="deleteRow(` + row +

@@ -29,12 +29,14 @@
         </div>
         <div class="row justify-content-center mb-4">
             <div class="col-12">
-                <div class="row">
-                    <div class="col-2 p-0"><label>MFO/PAP</label></div>
-                    <div class="col-2 p-0"><label>SUCCESS INDICATORS</label></div>
-                    <div class="col-4 p-0"><label>Actual</label></div>
-                    <div class="col-2 p-0"><label>Rating</label></div>
-                    <div class="col-2 p-0"><label>Remarks</label></div>
+                <div class="row gx-2 mt-2">
+                    <div class="col-6 p-2 border border-success rounded">MFO/PAP</div>
+                    <div class="col-6 p-2 border border-success rounded">SUCCESS INDICATORS</div>
+                </div>
+                <div class="row gx-2 mt-4">
+                    <div class="col-6 p-2 border border-success rounded">Actual</div>
+                    <div class="col-3 p-2 border border-success rounded">Rating</div>
+                    <div class="col-2 p-2 border border-success rounded">Remarks</div>
                 </div>
                 <div class="row">
                     <div class="col-2">
@@ -62,9 +64,6 @@
                             <p class="text-danger" style="font-size: 10px">{{ $message }}</p>
                         @enderror
                     </div>
-                </div>
-                <div id="rowInHere" class="mb-0">
-
                 </div>
             </div>
         </div>
@@ -95,9 +94,9 @@
 
             // Then add the content (a new input box) of the element.
             txtNewInputBox.innerHTML =
-                `<div class="row gx-1" id="` +
+                `<div class="row gx-1 border mt-3 border-dark rounded" id="` +
                 row + `">` +
-                `<div class="col-12 col-md-2 p-2">` +
+                `<div class="col-12 col-md-6 p-2">` +
                 `<select class="form-select form-select-sm" style="height:50px;" name="question[]" id="question" placeholder="Question">` +
                 `<option value="" >Select question</option>` +
                 `@forelse ($all_mfo_question as $item)` +
@@ -107,7 +106,7 @@
                 `@endforelse` +
                 `</select>` +
                 `</div>` +
-                `<div class="col-12 col-md-2 p-2">` +
+                `<div class="col-12 col-md-6 p-2">` +
                 `<select class="form-select form-select-sm" style="height:50px;" name="indicators[]" id="indicators" placeholder="Indicators">` +
                 `<option value="" >Select question</option>` +
                 `@forelse ($all_indicators as $item)` +
@@ -117,13 +116,14 @@
                 `@endforelse` +
                 `</select>` +
                 `</div>` +
-                `<div class="col-12 col-md-4 p-2">` +
+                `<div class="col-12 col-md-6 p-2">` +
                 `<textarea rows="2" class="form-control form-control-sm" name="actual[]" placeholder="Acutal"></textarea>` +
                 `</div>` +
-                `<div class="col-12 col-md-2 p-2">` +
+                `<div class="col-12 col-md-3 p-2">` +
                 `<div class="row gx-0 p-0 m-0">` +
                 `<div class="col p-0">` +
-                `<input class="form-control form-control-sm"  style="height:50px;" id="rate1[` + row + `]" onkeyup="getAverageRow(` +
+                `<input class="form-control form-control-sm"  style="height:50px;" id="rate1[` + row +
+                `]" onkeyup="getAverageRow(` +
                 row + `)" name="rate1[]"  type="text" placeholder="Q" />` +
                 `</div>` +
                 `<div class="col p-0">` +
@@ -143,7 +143,7 @@
                 `</div>` +
                 `</div>` +
                 `</div>` +
-                `<div class="col-12 col-md-1 p-2">` +
+                `<div class="col-12 col-md-2 p-2">` +
                 `<input class="form-control form-control-sm" style="height:50px;"  name="remarks[]" placeholder="Remarks" type="text"/>` +
                 `</div>` +
                 `<div class="col-12 col-md-1 px-0">` +

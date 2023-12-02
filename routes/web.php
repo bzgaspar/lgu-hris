@@ -73,6 +73,7 @@ Route::group(['middleware' => 'auth','middleware' => 'role:0,1,2,3,4,5,7','middl
 
     Route::get('/getUserPds', [HomeController::class, 'getUserPds'])->name('getUserPds');
     Route::get('/getUser', [HomeController::class, 'getUser'])->name('getUser');
+    Route::get('/ProfileView/{user_id}', [User::class, 'ProfileView'])->name('ProfileView');
 
 
     Route::group(['prefix' => 'users','as' => 'users.'], function () {
@@ -167,6 +168,10 @@ Route::group(['middleware' => 'auth','middleware' => 'role:0,1,2,3,4,5,7','middl
 
         // print gender
         Route::get('/employeesGender/{gender}', [User::class, 'employeesGender'])->name('user.employeesGender');
+        Route::get('/ViewByGenderCount', [User::class, 'ViewByGenderCount'])->name('ViewByGenderCount');
+        Route::get('/ViewPwdSpI', [User::class, 'ViewPwdSpI'])->name('ViewPwdSpI');
+        Route::get('/ViewStatus', [User::class, 'ViewStatus'])->name('ViewStatus');
+        Route::get('/ViewCovidResponse', [User::class, 'ViewCovidResponse'])->name('ViewCovidResponse');
 
         Route::get('/user/covid', [User::class, 'covid'])->name('user.covid');
         Route::get('/leavecard/{id}', [LeaveRecordController::class,'print'])->name('leavecard');

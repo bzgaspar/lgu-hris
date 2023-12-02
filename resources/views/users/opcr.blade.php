@@ -29,45 +29,48 @@
         </div>
         <div class="row justify-content-center mb-4">
             <div class="col-12">
-                <table class="table-borderless" id="rowInHere">
-                    <tr>
-                        <th width="10%">MFO/PAP</th>
-                        <th width="10%">SUCCESS INDICATORS</th>
-                        <th width="10%">Allotted Budget</th>
-                        <th width="10%">Individual/Department Accountable</th>
-                        <th width="30%">Actual</th>
-                        <th width="15%">Rating</th>
-                        <th>Remarks</th>
-                        <th width="auto"></th>
-                    </tr>
-                    <tr>
-                        <td>
-                            @error('question')
-                                <p class="text-danger" style="font-size: 10px">{{ $message }}</p>
-                            @enderror
-                        </td>
-                        <td>
-                            @error('indicators')
-                                <p class="text-danger" style="font-size: 10px">{{ $message }}</p>
-                            @enderror
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td> @error('actual')
-                                <p class="text-danger" style="font-size: 10px">{{ $message }}</p>
-                            @enderror
-                        </td>
-                        <td>
-                            @error('rate4')
-                                <p class="text-danger" style="font-size: 10px">{{ $message }}</p>
-                            @enderror
-                        </td>
-                        <td> @error('remarks')
-                                <p class="text-danger" style="font-size: 10px">{{ $message }}</p>
-                            @enderror
-                        </td>
-                    </tr>
-                </table>
+
+                <div class="row gx-2 mt-3">
+                    <div class="col-4 p-2  border border-success rounded">MFO/PAP</div>
+                    <div class="col-4 p-2  border border-success rounded">SUCCESS INDICATORS</div>
+                    <div class="col-2 p-2  border border-success rounded">Allotted Budget</div>
+                    <div class="col-2 p-2  border border-success rounded">Individual/Department Accountable</div>
+                </div>
+                <div class="row gx-2 mt-3">
+                    <div class="col-6 p-2  border border-success rounded">Actual</div>
+                    <div class="col-4 p-2  border border-success rounded">Rating</div>
+                    <div class="col-1 p-2  border border-success rounded">Remarks</div>
+                </div>
+                <div class="row">
+                    <div class="col-2">
+                        @error('question')
+                            <p class="text-danger" style="font-size: 10px">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="col-2">
+                        @error('indicators')
+                            <p class="text-danger" style="font-size: 10px">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="col-4">
+                        @error('actual')
+                            <p class="text-danger" style="font-size: 10px">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="col-2">
+                        @error('rate4')
+                            <p class="text-danger" style="font-size: 10px">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="col-2">
+                        @error('remarks')
+                            <p class="text-danger" style="font-size: 10px">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+                <div id="rowInHere" class="mb-0">
+
+                </div>
             </div>
         </div>
         <div class="row">
@@ -93,24 +96,25 @@
 
         function AddRow() {
             // First create a DIV element.
-            var txtNewInputBox = document.createElement("tbody");
+            var txtNewInputBox = document.createElement("div");
 
             // Then add the content (a new input box) of the element.
             txtNewInputBox.innerHTML =
-                `<tr  id="` + row + `">` +
-                `<td>` +
-                `<select class="form-select form-select-sm" style="height:50px;" name="question[]" id="question" placeholder="Question">` +
+                `<div class="row gx-1 border mt-3 border-dark rounded" id="` +
+                row + `">` +
+                `<div class="col-12 col-md-4 p-2">` +
+                `<select class="form-select form-select-sm" name="question[]" id="question" placeholder="Question">` +
                 `<option value="" >Select question</option>` +
                 `@forelse ($all_mfo_question as $item)` +
-                `<option value="{{ $item->id }}">{{ substr($item->type, 0, 1) }} | {{ $item->question }}` +
+                `<option value="{{ $item->id }}">{{ $item->type}} | {{ $item->question }}` +
                 `</option>` +
                 `@empty` +
                 `<option selected>No question Yet</option>` +
                 `@endforelse` +
                 `</select>` +
-                `</td>` +
-                `<td>` +
-                `<select class="form-select form-select-sm" style="height:50px;" name="indicators[]"  id="indicators" placeholder="Indicators">` +
+                `</div>` +
+                `<div class="col-12 col-md-4 p-2">` +
+                `<select class="form-select form-select-sm" name="indicators[]"  id="indicators" placeholder="Indicators">` +
                 `<option >Select question</option>` +
                 `@forelse ($all_indicators as $item)` +
                 `<option value="{{ $item->id }}">{{ $item->question }}</option>` +
@@ -118,40 +122,41 @@
                 `<option selected>No question Yet</option>` +
                 `@endforelse` +
                 `</select>` +
-                `</td>` +
-                `<td>` +
-                `<input class="form-control form-control-sm" style="height:50px;" name="budget[]"  placeholder="Budget" type="text" />` +
-                `</td>` +
-                `<td>` +
-                `<input class="form-control form-control-sm" style="height:50px;" name="accountable[]"  placeholder="Accountable" type="text" />` +
-                `</td>` +
-                `<td>` +
-                `<textarea rows="2" class="form-control form-control-sm" name="actual[]" placeholder="Acutal"></textarea>` +
-                `</td>` +
-                `<td>` +
+                `</div>` +
+                `<div class="col-12 col-md-2 p-2">` +
+                `<input class="form-control form-control-sm" name="budget[]"  placeholder="Budget" type="text" />` +
+                `</div>` +
+                `<div class="col-12 col-md-2 p-2">` +
+                `<input class="form-control form-control-sm" name="accountable[]"  placeholder="Accountable" type="text" />` +
+                `</div>` +
+                `<div class="col-12 col-md-6 p-2">` +
+                `<textarea rows="1" class="form-control form-control-sm" name="actual[]" placeholder="Acutal"></textarea>` +
+                `</div>` +
+                `<div class="col-12 col-md-3 p-2">` +
                 `<div class="row gx-0 p-0 m-0">` +
                 `<div class="col p-0">` +
-                `<input class="form-control form-control-sm" style="height:50px;" id="rate1[` + row +
+                `<input class="form-control form-control-sm" id="rate1[` + row +
                 `]" onkeyup="getAverageRow(` + row +
                 `)" name="rate1[]" type="text" placeholder="Q" />` +
                 `</div>` +
                 `<div class="col p-0">` +
-                `<input class="form-control form-control-sm" style="height:50px;" id="rate2[` + row +
+                `<input class="form-control form-control-sm" id="rate2[` + row +
                 `]" name="rate2[]" onkeyup="getAverageRow(` + row + `)" type="text" placeholder="E" />` +
                 `</div>` +
                 `<div class="col p-0">` +
-                `<input class="form-control form-control-sm" style="height:50px;" id="rate3[` + row +
+                `<input class="form-control form-control-sm" id="rate3[` + row +
                 `]" name="rate3[]" onkeyup="getAverageRow(` + row + `)" type="text" placeholder="T" />` +
                 `</div>` +
                 `<div class="col p-0">` +
-                `<input class="form-control form-control-sm" style="height:50px;" id="rate4[` + row +
+                `<input class="form-control form-control-sm" id="rate4[` + row +
                 `]" name="rate4[]" onkeyup="getAverageRow(` + row + `)" type="text" placeholder="A" />` +
                 `</div>` +
                 `</div>` +
-                `</td>` +
-                `<td><input class="form-control form-control-sm" style="height:50px;" name="remarks[]" placeholder="Remarks"type="text" />` +
-                `</td>` +
-                `<td class="text-center">` +
+                `</div>` +
+                `<div class="col-12 col-md-2 p-2">` +
+                `<input class="form-control form-control-sm" name="remarks[]" placeholder="Remarks"type="text" />` +
+                `</div>` +
+                `<div class="col-12 col-md-1 p-2">` +
                 `<button type="button" class="text-danger" onclick="deleteRow(` + row +
                 `)"><i class="fa-solid fa-trash"></i></button>` +
                 `</td>` +
