@@ -73,8 +73,9 @@
                     </div>
                 </div>
                 <div id="rowInHere" class="mb-0">
-                    <div>
-                        @foreach ($my_ipcr->ipcr_forms_details as $ipcr_details)
+
+                    @foreach ($my_ipcr->ipcr_forms_details as $ipcr_details)
+                        <div>
                             <div class="row gx-1 border mt-3 border-dark rounded" id="{{ $loop->iteration - 1 }}">
                                 <div class="col-12 col-md-6 p-2">
                                     <select class="form-select form-select-sm" name="question[]" id="question"
@@ -156,8 +157,8 @@
                                             class="fa-solid fa-trash"></i></button>
                                 </div>
                             </div>
-                        @endforeach
-                    </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
