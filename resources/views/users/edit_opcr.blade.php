@@ -75,97 +75,99 @@
                     </div>
                 </div>
                 <div id="rowInHere" class="mb-0">
-                    @foreach ($my_opcr->ipcr_forms_details as $opcr)
-                        <div class="row gx-1 border mt-3 border-dark rounded" id="{{ $loop->iteration - 1 }}">
-                            <div class="col-12 col-md-4 p-2">
-                                <select class="form-select form-select-sm" name="question[]" id="question"
-                                    placeholder="Question">
-                                    <option value="">Select question</option>
-                                    '@forelse ($all_mfo_question as $item)
-                                        @if ($opcr->ques1 === $item->id)
-                                            <option selected value="{{ $item->id }}">{{ $item->type }} |
-                                                {{ $item->question }}
-                                            </option>
-                                        @else
-                                            <option value="{{ $item->id }}">{{ $item->type }} |
-                                                {{ $item->question }}
-                                            </option>
-                                        @endif
-                                    '@empty
-                                        <option selected>No question Yet</option>
-                                        '
-                                    @endforelse
-                                </select>
-                            </div>
-                            <div class="col-12 col-md-4 p-2">
-                                <select class="form-select form-select-sm" name="indicators[]" id="indicators"
-                                    placeholder="Indicators">
-                                    <option>Select question</option>
-                                    '@forelse ($all_indicators as $item)
-                                        @if ($opcr->ques2 === $item->id)
-                                            <option selected value="{{ $item->id }}">{{ $item->type }} |
-                                                {{ $item->question }}
-                                            </option>
-                                        @else
-                                            <option value="{{ $item->id }}">{{ $item->question }}</option>
-                                        @endif
-                                    '@empty
-                                        <option selected>No question Yet</option>
-                                        '
-                                    @endforelse
-                                </select>
-                            </div>
-                            <div class="col-12 col-md-2 p-2">
-                                <input class="form-control form-control-sm" name="budget[]" placeholder="Budget"
-                                    value="{{ $opcr->ans1 }}" type="text" />
-                            </div>
-                            <div class="col-12 col-md-2 p-2">
-                                <input class="form-control form-control-sm" name="accountable[]" placeholder="Accountable"
-                                    value="{{ $opcr->ans2 }}" type="text" />
-                            </div>
-                            <div class="col-12 col-md-6 p-2">
-                                <input class="form-control form-control-sm" name="actual[]" placeholder="Acutal"
-                                    value="{{ $opcr->ans3 }}" type="text" />
-                            </div>
-                            <div class="col-12 col-md-4 p-2">
-                                <div class="row gx-0 p-0 m-0">
-                                    <div class="col p-0">
-                                        <input class="form-control form-control-sm" name="rate1[]" type="text"
-                                            id="rate1[{{ $loop->iteration - 1 }}]"
-                                            onkeyup="getAverageRow({{ $loop->iteration - 1 }})"
-                                            value="{{ $opcr->rate1 }}" placeholder="Q" />
-                                    </div>
-                                    <div class="col p-0">
-                                        <input class="form-control form-control-sm"
-                                            id="rate2[{{ $loop->iteration - 1 }}]"
-                                            onkeyup="getAverageRow({{ $loop->iteration - 1 }})" name="rate2[]"type="text"
-                                            value="{{ $opcr->rate2 }}" placeholder="E" />
-                                    </div>
-                                    <div class="col p-0">
-                                        <input class="form-control form-control-sm"
-                                            id="rate3[{{ $loop->iteration - 1 }}]"
-                                            onkeyup="getAverageRow({{ $loop->iteration - 1 }})" name="rate3[]"
-                                            value="{{ $opcr->rate3 }}" type="text" placeholder="T" />
-                                    </div>
-                                    <div class="col p-0">
-                                        <input class="form-control form-control-sm"
-                                            id="rate4[{{ $loop->iteration - 1 }}]" name="rate4[]"type="text"
-                                            onkeyup="getAverageRow({{ $loop->iteration - 1 }})"
-                                            value="{{ $opcr->rate4 }}" placeholder="A" />
+                    <div>
+                        @foreach ($my_opcr->ipcr_forms_details as $opcr)
+                            <div class="row gx-1 border mt-3 border-dark rounded" id="{{ $loop->iteration - 1 }}">
+                                <div class="col-12 col-md-4 p-2">
+                                    <select class="form-select form-select-sm" name="question[]" id="question"
+                                        placeholder="Question">
+                                        <option value="">Select question</option>
+                                        '@forelse ($all_mfo_question as $item)
+                                            @if ($opcr->ques1 === $item->id)
+                                                <option selected value="{{ $item->id }}">{{ $item->type }} |
+                                                    {{ $item->question }}
+                                                </option>
+                                            @else
+                                                <option value="{{ $item->id }}">{{ $item->type }} |
+                                                    {{ $item->question }}
+                                                </option>
+                                            @endif
+                                        '@empty
+                                            <option selected>No question Yet</option>
+                                            '
+                                        @endforelse
+                                    </select>
+                                </div>
+                                <div class="col-12 col-md-4 p-2">
+                                    <select class="form-select form-select-sm" name="indicators[]" id="indicators"
+                                        placeholder="Indicators">
+                                        <option>Select question</option>
+                                        '@forelse ($all_indicators as $item)
+                                            @if ($opcr->ques2 === $item->id)
+                                                <option selected value="{{ $item->id }}">{{ $item->type }} |
+                                                    {{ $item->question }}
+                                                </option>
+                                            @else
+                                                <option value="{{ $item->id }}">{{ $item->question }}</option>
+                                            @endif
+                                        '@empty
+                                            <option selected>No question Yet</option>
+                                            '
+                                        @endforelse
+                                    </select>
+                                </div>
+                                <div class="col-12 col-md-2 p-2">
+                                    <input class="form-control form-control-sm" name="budget[]" placeholder="Budget"
+                                        value="{{ $opcr->ans1 }}" type="text" />
+                                </div>
+                                <div class="col-12 col-md-2 p-2">
+                                    <input class="form-control form-control-sm" name="accountable[]"
+                                        placeholder="Accountable" value="{{ $opcr->ans2 }}" type="text" />
+                                </div>
+                                <div class="col-12 col-md-6 p-2">
+                                    <input class="form-control form-control-sm" name="actual[]" placeholder="Acutal"
+                                        value="{{ $opcr->ans3 }}" type="text" />
+                                </div>
+                                <div class="col-12 col-md-4 p-2">
+                                    <div class="row gx-0 p-0 m-0">
+                                        <div class="col p-0">
+                                            <input class="form-control form-control-sm" name="rate1[]" type="text"
+                                                id="rate1[{{ $loop->iteration - 1 }}]"
+                                                onkeyup="getAverageRow({{ $loop->iteration - 1 }})"
+                                                value="{{ $opcr->rate1 }}" placeholder="Q" />
+                                        </div>
+                                        <div class="col p-0">
+                                            <input class="form-control form-control-sm"
+                                                id="rate2[{{ $loop->iteration - 1 }}]"
+                                                onkeyup="getAverageRow({{ $loop->iteration - 1 }})"
+                                                name="rate2[]"type="text" value="{{ $opcr->rate2 }}" placeholder="E" />
+                                        </div>
+                                        <div class="col p-0">
+                                            <input class="form-control form-control-sm"
+                                                id="rate3[{{ $loop->iteration - 1 }}]"
+                                                onkeyup="getAverageRow({{ $loop->iteration - 1 }})" name="rate3[]"
+                                                value="{{ $opcr->rate3 }}" type="text" placeholder="T" />
+                                        </div>
+                                        <div class="col p-0">
+                                            <input class="form-control form-control-sm"
+                                                id="rate4[{{ $loop->iteration - 1 }}]" name="rate4[]"type="text"
+                                                onkeyup="getAverageRow({{ $loop->iteration - 1 }})"
+                                                value="{{ $opcr->rate4 }}" placeholder="A" />
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="col-12 col-md-1 p-2">
+                                    <input class="form-control form-control-sm" name="remarks[]"
+                                        placeholder="Remarks"type="text" value="{{ $opcr->remarks }}" />
+                                </div>
+                                <div class="col-12 col-md-1 p-2">
+                                    <button type="button" class="text-danger"
+                                        onclick="deleteRow({{ $loop->iteration - 1 }})"><i
+                                            class="fa-solid fa-trash"></i></button>
+                                </div>
                             </div>
-                            <div class="col-12 col-md-1 p-2">
-                                <input class="form-control form-control-sm" name="remarks[]"
-                                    placeholder="Remarks"type="text" value="{{ $opcr->remarks }}" />
-                            </div>
-                            <div class="col-12 col-md-1 p-2">
-                                <button type="button" class="text-danger"
-                                    onclick="deleteRow({{ $loop->iteration - 1 }})"><i
-                                        class="fa-solid fa-trash"></i></button>
-                            </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
