@@ -130,19 +130,23 @@
                                 <div class="row gx-0 p-0 m-0">
                                     <div class="col p-0">
                                         <input class="form-control form-control-sm" name="rate1[]" type="text"
-                                            value="{{ $opcr->rate1 }}" placeholder="Q" />
+                                            id="rate1[{{ $loop->iteration - 1 }}]" value="{{ $opcr->rate1 }}"
+                                            placeholder="Q" />
                                     </div>
                                     <div class="col p-0">
-                                        <input class="form-control form-control-sm" id="rate2[]"
-                                            name="rate2[]"type="text" value="{{ $opcr->rate2 }}" placeholder="E" />
+                                        <input class="form-control form-control-sm"
+                                            id="rate2[{{ $loop->iteration - 1 }}]" name="rate2[]"type="text"
+                                            value="{{ $opcr->rate2 }}" placeholder="E" />
                                     </div>
                                     <div class="col p-0">
-                                        <input class="form-control form-control-sm" id="rate3[]" name="rate3[]"
+                                        <input class="form-control form-control-sm"
+                                            id="rate3[{{ $loop->iteration - 1 }}]" name="rate3[]"
                                             value="{{ $opcr->rate3 }}" type="text" placeholder="T" />
                                     </div>
                                     <div class="col p-0">
-                                        <input class="form-control form-control-sm" id="rate4[]"
-                                            name="rate4[]"type="text" value="{{ $opcr->rate4 }}" placeholder="A" />
+                                        <input class="form-control form-control-sm"
+                                            id="rate4[{{ $loop->iteration - 1 }}]" name="rate4[]"type="text"
+                                            value="{{ $opcr->rate4 }}" placeholder="A" />
                                     </div>
                                 </div>
                             </div>
@@ -184,7 +188,7 @@
         const myDiv = document.getElementById('rowInHere');
         const divChildren = myDiv.children;
         // console.log(divChildren)
-        row = divChildren.length
+        row = divChildren.length + 1
 
         function AddRow() {
             // First create a DIV element.
