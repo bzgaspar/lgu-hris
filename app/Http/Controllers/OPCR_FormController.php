@@ -150,7 +150,7 @@ class OPCR_FormController extends Controller
         $ipcr->save();
         $details = [];
         $rating = 0;
-        for($i = 0;$i < count($request->question);$i++) {
+        for($i = 0;$i < count($request->question) - 1;$i++) {
             if($request->question[$i]) {
                 $details[] = [
                     'form_id' => $ipcr->id,
