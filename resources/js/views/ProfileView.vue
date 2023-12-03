@@ -3,7 +3,7 @@
         <v-row class="justify-content-center">
             <v-col cols="12" md="6">
                 <img
-                    src="{{ asset('storage/user_avatar/' . Auth::user()->avatar) }}"
+                    src=""
                     alt=""
                     class="avatar-img mx-auto d-block"
                 />

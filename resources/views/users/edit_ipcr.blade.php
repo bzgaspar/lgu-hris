@@ -192,7 +192,7 @@
         //         largestId = currentElement.id;
         //     }
         // }
-        row = divChildren.length
+        row = divChildren.length - 1
 
         // Output the result
         // console.log('Largest ID:', largestId);

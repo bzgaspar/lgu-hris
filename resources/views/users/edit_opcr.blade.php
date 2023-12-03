@@ -184,7 +184,7 @@
         const myDiv = document.getElementById('rowInHere');
         const divChildren = myDiv.children;
         // console.log(divChildren)
-        row = divChildren.length
+        row = divChildren.length - 1
 
         function AddRow() {
             // First create a DIV element.
