@@ -194,7 +194,7 @@
         //         largestId = currentElement.id;
         //     }
         // }
-        row = divChildren.length + 1
+        row = divChildren.length
 
         // Output the result
         // console.log('Largest ID:', largestId);
@@ -245,12 +245,12 @@
                 `<div class="col p-0">` +
                 `<input class="form-control form-control-sm"  id="rate3[` + row +
                 `]" name="rate3[]" onkeyup="getAverageRow(` +
-                row + `)" type="text" placeholder="T" />` +
+                row + `)" type="text" placeholder="E" />` +
                 `</div>` +
                 `<div class="col p-0">` +
                 `<input class="form-control form-control-sm"  id="rate4[` + row +
                 `]" name="rate4[]" onkeyup="getAverageRow(` +
-                row + `)" type="text" placeholder="A" />` +
+                row + `)" type="text" placeholder="E" />` +
                 `</div>` +
                 `</div>` +
                 `</div>` +
