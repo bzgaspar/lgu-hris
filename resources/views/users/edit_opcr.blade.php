@@ -131,22 +131,22 @@
                                 <div class="row gx-0 p-0 m-0">
                                     <div class="col p-0">
                                         <input class="form-control form-control-sm" name="rate1[]" type="text"
-                                            id="rate1[{{ $loop->iteration - 1 }}]" value="{{ $opcr->rate1 }}"
+                                            id="rate1[{{ $loop->iteration - 1 }}]" onkeyup="getAverageRow({{ $loop->iteration - 1 }})" value="{{ $opcr->rate1 }}"
                                             placeholder="Q" />
                                     </div>
                                     <div class="col p-0">
                                         <input class="form-control form-control-sm"
-                                            id="rate2[{{ $loop->iteration - 1 }}]" name="rate2[]"type="text"
+                                            id="rate2[{{ $loop->iteration - 1 }}]" onkeyup="getAverageRow({{ $loop->iteration - 1 }})" name="rate2[]"type="text"
                                             value="{{ $opcr->rate2 }}" placeholder="E" />
                                     </div>
                                     <div class="col p-0">
                                         <input class="form-control form-control-sm"
-                                            id="rate3[{{ $loop->iteration - 1 }}]" name="rate3[]"
+                                            id="rate3[{{ $loop->iteration - 1 }}]" onkeyup="getAverageRow({{ $loop->iteration - 1 }})" name="rate3[]"
                                             value="{{ $opcr->rate3 }}" type="text" placeholder="T" />
                                     </div>
                                     <div class="col p-0">
                                         <input class="form-control form-control-sm"
-                                            id="rate4[{{ $loop->iteration - 1 }}]" name="rate4[]"type="text"
+                                            id="rate4[{{ $loop->iteration - 1 }}]" name="rate4[]"type="text" onkeyup="getAverageRow({{ $loop->iteration - 1 }})"
                                             value="{{ $opcr->rate4 }}" placeholder="A" />
                                     </div>
                                 </div>
@@ -229,7 +229,7 @@
                 `<div class="col-12 col-md-6 p-2">` +
                 `<textarea rows="1" class="form-control form-control-sm" name="actual[]" placeholder="Acutal"></textarea>` +
                 `</div>` +
-                `<div class="col-12 col-md-3 p-2">` +
+                `<div class="col-12 col-md-4 p-2">` +
                 `<div class="row gx-0 p-0 m-0">` +
                 `<div class="col p-0">` +
                 `<input class="form-control form-control-sm" id="rate1[` + row +
@@ -242,22 +242,24 @@
                 `</div>` +
                 `<div class="col p-0">` +
                 `<input class="form-control form-control-sm" id="rate3[` + row +
-                `]" name="rate3[]" onkeyup="getAverageRow(` + row + `)" type="text" placeholder="T" />` +
+                `]" name="rate3[]" onkeyup="getAverageRow(` + row + `)" type="text" placeholder="T" value="` + row +
+                `" />` +
                 `</div>` +
                 `<div class="col p-0">` +
                 `<input class="form-control form-control-sm" id="rate4[` + row +
-                `]" name="rate4[]" onkeyup="getAverageRow(` + row + `)" type="text" placeholder="A" />` +
+                `]" name="rate4[]" onkeyup="getAverageRow(` + row + `)" type="text" placeholder="A" value="` + row +
+                `" />` +
                 `</div>` +
                 `</div>` +
                 `</div>` +
-                `<div class="col-12 col-md-2 p-2">` +
+                `<div class="col-12 col-md-1 p-2">` +
                 `<input class="form-control form-control-sm" name="remarks[]" placeholder="Remarks"type="text" />` +
                 `</div>` +
                 `<div class="col-12 col-md-1 p-2">` +
                 `<button type="button" class="text-danger" onclick="deleteRow(` + row +
                 `)"><i class="fa-solid fa-trash"></i></button>` +
-                `</td>` +
-                `</tr>`;
+                `</div>` +
+                `</div>`;
 
 
             // Finally put it where it is supposed to appear.

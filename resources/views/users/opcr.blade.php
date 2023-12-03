@@ -132,7 +132,7 @@
                 `<div class="col-12 col-md-6 p-2">` +
                 `<textarea rows="1" class="form-control form-control-sm" name="actual[]" placeholder="Acutal"></textarea>` +
                 `</div>` +
-                `<div class="col-12 col-md-3 p-2">` +
+                `<div class="col-12 col-md-4 p-2">` +
                 `<div class="row gx-0 p-0 m-0">` +
                 `<div class="col p-0">` +
                 `<input class="form-control form-control-sm" id="rate1[` + row +
@@ -153,14 +153,14 @@
                 `</div>` +
                 `</div>` +
                 `</div>` +
-                `<div class="col-12 col-md-2 p-2">` +
+                `<div class="col-12 col-md-1 p-2">` +
                 `<input class="form-control form-control-sm" name="remarks[]" placeholder="Remarks"type="text" />` +
                 `</div>` +
                 `<div class="col-12 col-md-1 p-2">` +
                 `<button type="button" class="text-danger" onclick="deleteRow(` + row +
                 `)"><i class="fa-solid fa-trash"></i></button>` +
-                `</td>` +
-                `</tr>`;
+                `</div>` +
+                `</div>`;
 
 
             // Finally put it where it is supposed to appear.
