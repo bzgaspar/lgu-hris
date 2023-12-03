@@ -115,26 +115,29 @@
                             <div class="col-12 col-md-3 p-2">
                                 <div class="row gx-0 p-0 m-0">
                                     <div class="col p-0">
-                                        <input class="form-control form-control-sm" id="rate1[{{ }}]"
-                                            value="{{ old('rate1', $ipcr_details->rate1) }}"
-                                            name="rate1[{{ $loop->iteration - 1 }}]" type="text" placeholder="Q" />
+                                        <input class="form-control form-control-sm" id="rate1[{{ $loop->iteration - 1 }}]"
+                                            value="{{ old('rate1', $ipcr_details->rate1) }}" name="rate1[]" type="text"
+                                            placeholder="Q" type="text"
+                                            onkeyup="getAverageRow({{ $loop->iteration - 1 }})" />
                                     </div>
                                     <div class="col p-0">
                                         <input class="form-control form-control-sm" id="rate2[{{ $loop->iteration - 1 }}]"
                                             name="rate2[]" value="{{ old('rate2', $ipcr_details->rate2) }}" type="text"
-                                            placeholder="E" />
+                                            onkeyup="getAverageRow({{ $loop->iteration - 1 }})" placeholder="E" />
                                     </div>
                                     <div class="col p-0">
                                         <input class="form-control form-control-sm"
                                             id="rate3[{{ $loop->iteration - 1 }}]" name="rate3[]"
                                             value="{{ old('rate3', $ipcr_details->rate3) }}" type="text"
-                                            placeholder="T" />
+                                            placeholder="T" type="text"
+                                            onkeyup="getAverageRow({{ $loop->iteration - 1 }})" />
                                     </div>
                                     <div class="col p-0">
                                         <input class="form-control form-control-sm"
                                             id="rate4[{{ $loop->iteration - 1 }}]" name="rate4[]"
                                             value="{{ old('rate4', $ipcr_details->rate4) }}" type="text"
-                                            placeholder="A" />
+                                            placeholder="A" type="text"
+                                            onkeyup="getAverageRow({{ $loop->iteration - 1 }})" />
                                     </div>
                                 </div>
                             </div>

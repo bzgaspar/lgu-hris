@@ -68,10 +68,10 @@
                         @enderror
                     </div>
                 </div>
-                <div id="rowInHere" class="mb-0">
-
-                </div>
             </div>
+        </div>
+        <div id="rowInHere" class="mb-0">
+
         </div>
         <div class="row">
             <div class="col">
@@ -106,7 +106,7 @@
                 `<select class="form-select form-select-sm" name="question[]" id="question" placeholder="Question">` +
                 `<option value="" >Select question</option>` +
                 `@forelse ($all_mfo_question as $item)` +
-                `<option value="{{ $item->id }}">{{ $item->type}} | {{ $item->question }}` +
+                `<option value="{{ $item->id }}">{{ $item->type }} | {{ $item->question }}` +
                 `</option>` +
                 `@empty` +
                 `<option selected>No question Yet</option>` +
@@ -117,7 +117,7 @@
                 `<select class="form-select form-select-sm" name="indicators[]"  id="indicators" placeholder="Indicators">` +
                 `<option >Select question</option>` +
                 `@forelse ($all_indicators as $item)` +
-                `<option value="{{ $item->id }}">{{ $item->type}} | {{ $item->question }}</option>` +
+                `<option value="{{ $item->id }}">{{ $item->type }} | {{ $item->question }}</option>` +
                 `@empty` +
                 `<option selected>No question Yet</option>` +
                 `@endforelse` +

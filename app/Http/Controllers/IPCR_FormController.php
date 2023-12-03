@@ -106,7 +106,7 @@ class IPCR_FormController extends Controller
         $pms->save();
 
         Session::flash('alert', 'success|IPCR Has be Added!');
-        return redirect()->back();
+        return redirect()->route('users.IPCR.create');
 
     }
 
@@ -215,7 +215,7 @@ class IPCR_FormController extends Controller
             $pms->save();
         }
         Session::flash('alert', 'success|IPCR Has be Updated!');
-        return redirect()->route('users.IPCR.index');
+        return redirect()->route('users.IPCR.create');
     }
 
     /**
