@@ -34,6 +34,7 @@ class IPCR_OPCRQuestionController extends Controller
     {
         $MFO_question = new ipcr_Questions();
         $MFO_question->question = $request->question;
+        $MFO_question->type = $request->type;
         $MFO_question->dep_id = $request->dep_id;
         $MFO_question->save();
 
@@ -71,7 +72,12 @@ class IPCR_OPCRQuestionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $MFO_question = ipcr_Questions::findOrFail($id);
+        $MFO_question->question = $request->question;
+        $MFO_question->type = $request->type;
+        $MFO_question->save();
+
+        return response()->json(null, 200);
     }
 
     /**

@@ -682,7 +682,7 @@ class HomeController extends Controller
     {
         // edited
         $ipcr_mfo = ipcr_Questions::join('departments', 'ipcr__questions.dep_id', 'departments.id')
-        ->select('ipcr__questions.id', 'ipcr__questions.question', 'departments.name')
+        ->select('ipcr__questions.id', 'ipcr__questions.type', 'ipcr__questions.question', 'departments.name')
         ->get();
 
         return response()->json($ipcr_mfo, Response::HTTP_OK);

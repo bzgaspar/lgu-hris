@@ -75,7 +75,12 @@ class IPCR_OPCR_MFO_Controller extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $MFO_question = ipcr_mfo::findOrFail($id);
+        $MFO_question->type = $request->type;
+        $MFO_question->question = $request->question;
+        $MFO_question->save();
+
+        return response()->json(null, 200);
     }
 
     /**

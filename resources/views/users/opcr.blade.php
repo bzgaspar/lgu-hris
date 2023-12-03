@@ -117,7 +117,7 @@
                 `<select class="form-select form-select-sm" name="indicators[]"  id="indicators" placeholder="Indicators">` +
                 `<option >Select question</option>` +
                 `@forelse ($all_indicators as $item)` +
-                `<option value="{{ $item->id }}">{{ $item->question }}</option>` +
+                `<option value="{{ $item->id }}">{{ $item->type}} | {{ $item->question }}</option>` +
                 `@empty` +
                 `<option selected>No question Yet</option>` +
                 `@endforelse` +

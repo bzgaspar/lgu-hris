@@ -103,7 +103,8 @@
                                     <option>Select question</option>
                                     '@forelse ($all_indicators as $item)
                                         @if ($opcr->ques2 === $item->id)
-                                            <option selected value="{{ $item->id }}">{{ $item->question }}
+                                            <option selected value="{{ $item->id }}">{{ $item->type }} |
+                                                {{ $item->question }}
                                             </option>
                                         @else
                                             <option value="{{ $item->id }}">{{ $item->question }}</option>
@@ -213,7 +214,7 @@
                 `<select class="form-select form-select-sm" name="indicators[]"  id="indicators" placeholder="Indicators">` +
                 `<option >Select question</option>` +
                 `@forelse ($all_indicators as $item)` +
-                `<option value="{{ $item->id }}">{{ $item->question }}</option>` +
+                `<option value="{{ $item->id }}">{{ $item->type }} | {{ $item->question }}</option>` +
                 `@empty` +
                 `<option selected>No question Yet</option>` +
                 `@endforelse` +

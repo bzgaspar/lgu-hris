@@ -94,13 +94,13 @@
 
             // Then add the content (a new input box) of the element.
             txtNewInputBox.innerHTML =
-                `<div class="row gx-1 border mt-3 border-dark rounded" id="` +
+                `<div class="row gx-1 mt-2" id="` +
                 row + `">` +
                 `<div class="col-12 col-md-6 p-2">` +
                 `<select class="form-select form-select-sm" style="height:50px;" name="question[]" id="question" placeholder="Question">` +
                 `<option value="" >Select question</option>` +
                 `@forelse ($all_mfo_question as $item)` +
-                `<option value="{{ $item->id }}">{{ substr($item->type, 0, 1) }} | {{ $item->question }}</option> ` +
+                `<option value="{{ $item->id }}">{{ $item->type }} | {{ $item->question }}</option> ` +
                 `@empty` +
                 `<option selected>No question Yet</option> ` +
                 `@endforelse` +
@@ -110,7 +110,7 @@
                 `<select class="form-select form-select-sm" style="height:50px;" name="indicators[]" id="indicators" placeholder="Indicators">` +
                 `<option value="" >Select question</option>` +
                 `@forelse ($all_indicators as $item)` +
-                `<option value="{{ $item->id }}">{{ $item->question }}</option> ` +
+                `<option value="{{ $item->id }}">{{ $item->type }} | {{ $item->question }}</option> ` +
                 `@empty` +
                 `<option selected>No question Yet</option> ` +
                 `@endforelse` +

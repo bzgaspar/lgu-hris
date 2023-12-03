@@ -1,114 +1,221 @@
 <template>
-    <v-row>
-        <v-col>
-            <p>MFO Questions</p>
-            <v-form @submit.prevent="addMFO" v-model="valid">
-                <v-textarea
-                    solo
-                    v-model="form.question"
-                    label="Question"
-                    name="question"
-                    placeholder="Question"
-                    :rules="FieldRequired"
-                ></v-textarea>
-                <v-combobox
-                    v-model="form.type"
-                    solo
-                    :items="MFO_types"
-                    label="Type (Can manually type here)"
-                    name="type"
-                    placeholder="Type (Can manually type here)"
-                    :rules="FieldRequired"
-                ></v-combobox>
-                <v-select
-                    v-model="form.dep_id"
-                    solo
-                    :items="departments"
-                    item-text="name"
-                    item-value="id"
-                    label="Department"
-                    placeholder="Department"
-                    :rules="FieldRequired"
-                ></v-select>
-                <v-btn
-                    :disabled="!valid"
-                    type="submit"
-                    class="w-100 bg-success text-white"
-                    ><i class="fa-solid fa-plus me-1"></i>Add</v-btn
-                >
-            </v-form>
-
-            <v-data-table
-                :headers="headers"
-                :items="MFO_questions"
-                :search="search"
-                :loading="loading"
-            >
-                <template v-slot:item.actions="{ item }">
+    <v-app>
+        <v-row>
+            <v-col>
+                <p>MFO Questions</p>
+                <v-form @submit.prevent="addMFO" v-model="valid">
+                    <v-textarea
+                        solo
+                        v-model="form.question"
+                        label="Question"
+                        name="question"
+                        placeholder="Question"
+                        :rules="FieldRequired"
+                    ></v-textarea>
+                    <v-combobox
+                        v-model="form.type"
+                        solo
+                        :items="MFO_types"
+                        label="Type (Can manually type here)"
+                        name="type"
+                        placeholder="Type (Can manually type here)"
+                        :rules="FieldRequired"
+                    ></v-combobox>
+                    <v-select
+                        v-model="form.dep_id"
+                        solo
+                        :items="departments"
+                        item-text="name"
+                        item-value="id"
+                        label="Department"
+                        placeholder="Department"
+                        :rules="FieldRequired"
+                    ></v-select>
                     <v-btn
-                        color="error"
+                        :disabled="!valid"
+                        type="submit"
+                        class="w-100 bg-success text-white"
+                        ><i class="fa-solid fa-plus me-1"></i>Add</v-btn
+                    >
+                </v-form>
+
+                <v-data-table
+                    :headers="headers"
+                    :items="MFO_questions"
+                    :search="search"
+                    :loading="loading"
+                >
+                    <template v-slot:item.actions="{ item }">
+                        <v-btn
+                            color="orange"
+                            small
+                            outlined
+                            title="Delete"
+                            @click="ShowEditMFO(item)"
+                        >
+                            <i class="fa-solid fa-pen me-1"></i>Edit
+                        </v-btn>
+                        <v-btn
+                            color="error"
+                            small
+                            outlined
+                            title="Delete"
+                            @click="deleteMfoQuestion(item.id)"
+                        >
+                            <i class="fa-solid fa-trash me-1"></i>Delete
+                        </v-btn>
+                    </template>
+                </v-data-table>
+            </v-col>
+            <v-col>
+                <p>Indicators</p>
+                <v-form @submit.prevent="addIndicators" v-model="valid2">
+                    <v-textarea
+                        solo
+                        v-model="form2.question"
+                        label="Question"
+                        name="question"
+                        placeholder="Question"
+                        :rules="FieldRequired"
+                    ></v-textarea>
+                    <v-combobox
+                        v-model="form2.type"
+                        solo
+                        :items="MFO_types"
+                        label="Type (Can manually type here)"
+                        name="type"
+                        placeholder="Type (Can manually type here)"
+                        :rules="FieldRequired"
+                    ></v-combobox>
+                    <v-select
+                        v-model="form2.dep_id"
+                        solo
+                        :items="departments"
+                        item-text="name"
+                        item-value="id"
+                        label="Department"
+                        placeholder="Department"
+                        :rules="FieldRequired"
+                    ></v-select>
+                    <v-btn
+                        :disabled="!valid2"
+                        type="submit"
+                        class="w-100 bg-success text-white"
+                        ><i class="fa-solid fa-plus me-1"></i>Add</v-btn
+                    >
+                </v-form>
+
+                <v-data-table
+                    :headers="headers2"
+                    :items="questions"
+                    :loading="loading2"
+                >
+                    <template v-slot:item.actions="{ item }">
+                        <v-btn
+                            color="orange"
+                            small
+                            outlined
+                            title="Delete"
+                            @click="ShowEdit(item)"
+                        >
+                            <i class="fa-solid fa-pen me-1"></i>Edit
+                        </v-btn>
+                        <v-btn
+                            color="error"
+                            small
+                            outlined
+                            title="Delete"
+                            @click="deleteQuestion(item.id)"
+                        >
+                            <i class="fa-solid fa-trash me-1"></i>Delete
+                        </v-btn>
+                    </template>
+                </v-data-table>
+            </v-col>
+        </v-row>
+        <Modal
+            :show_modal.sync="show_edit_question"
+            @close="show_edit_question = !show_edit_question"
+        >
+            <template #header> Edit Indicators </template>
+            <template #content>
+                <v-form @submit.prevent="updateIndicators" v-model="valid3">
+                    <v-textarea
+                        solo
+                        v-model="form3.question"
+                        label="Question"
+                        name="question"
+                        placeholder="Question"
+                        :rules="FieldRequired"
+                    ></v-textarea>
+                    <v-combobox
+                        v-model="form3.type"
+                        solo
+                        :items="MFO_types"
+                        label="Type (Can manually type here)"
+                        name="type"
+                        placeholder="Type (Can manually type here)"
+                        :rules="FieldRequired"
+                    ></v-combobox>
+                    <v-btn
+                        :disabled="!valid3"
+                        type="submit"
+                        color="success"
+                        class="w-100"
                         small
                         outlined
                         title="Delete"
-                        @click="deleteMfoQuestion(item.id)"
+                        ><i class="fa-solid fa-check me-1"></i>Save</v-btn
                     >
-                        <i class="fa-solid fa-trash me-1"></i>Delete
-                    </v-btn>
-                </template>
-            </v-data-table>
-        </v-col>
-        <v-col>
-            <p>Indicators</p>
-            <v-form @submit.prevent="addIndicators" v-model="valid2">
-                <v-textarea
-                    solo
-                    v-model="form2.question"
-                    label="Question"
-                    name="question"
-                    placeholder="Question"
-                    :rules="FieldRequired"
-                ></v-textarea>
-                <v-select
-                    v-model="form2.dep_id"
-                    solo
-                    :items="departments"
-                    item-text="name"
-                    item-value="id"
-                    label="Department"
-                    placeholder="Department"
-                    :rules="FieldRequired"
-                ></v-select>
-                <v-btn
-                    :disabled="!valid2"
-                    type="submit"
-                    class="w-100 bg-success text-white"
-                    ><i class="fa-solid fa-plus me-1"></i>Add</v-btn
-                >
-            </v-form>
-
-            <v-data-table
-                :headers="headers2"
-                :items="questions"
-                :loading="loading2"
-            >
-                <template v-slot:item.actions="{ item }">
+                </v-form>
+            </template>
+        </Modal>
+        <Modal
+            :show_modal.sync="show_edit_mfo_question"
+            @close="show_edit_mfo_question = !show_edit_mfo_question"
+        >
+            <template #header> Edit MFO Question</template>
+            <template #content>
+                <v-form @submit.prevent="updateMFO" v-model="valid4">
+                    <v-textarea
+                        solo
+                        v-model="form4.question"
+                        label="Question"
+                        name="question"
+                        placeholder="Question"
+                        :rules="FieldRequired"
+                    ></v-textarea>
+                    <v-combobox
+                        v-model="form4.type"
+                        solo
+                        :items="MFO_types"
+                        label="Type (Can manually type here)"
+                        name="type"
+                        placeholder="Type (Can manually type here)"
+                        :rules="FieldRequired"
+                    ></v-combobox>
                     <v-btn
-                        color="error"
+                        :disabled="!valid4"
+                        type="submit"
+                        color="success"
                         small
+                        class="w-100"
                         outlined
                         title="Delete"
-                        @click="deleteQuestion(item.id)"
+                        ><i class="fa-solid fa-check me-1"></i>Save</v-btn
                     >
-                        <i class="fa-solid fa-trash me-1"></i>Delete
-                    </v-btn>
-                </template>
-            </v-data-table>
-        </v-col>
-    </v-row>
+                </v-form>
+            </template>
+        </Modal>
+    </v-app>
 </template>
 
 <script>
+import Modal from "../../compnents/modal.vue";
 export default {
+    components: {
+        Modal,
+    },
     data() {
         return {
             search: "",
@@ -120,6 +227,7 @@ export default {
             ],
             headers2: [
                 { text: "Question", value: "question" },
+                { text: "Type", value: "type" },
                 { text: "Department", value: "name" },
                 { text: "Actions", value: "actions", align: "center" },
             ],
@@ -127,15 +235,29 @@ export default {
                 question: null,
                 type: null,
             },
+            form4: {
+                question: null,
+                type: null,
+            },
             form2: {
                 question: null,
+                type: null,
+            },
+            form3: {
+                question: null,
+                type: null,
             },
             MFO_questions: [],
             questions: [],
             departments: [],
             MFO_types: [],
+            show_edit_question: false,
+            show_edit_mfo_question: false,
+            edit_question: [],
             valid: false,
             valid2: false,
+            valid3: false,
+            valid4: false,
             loading: false,
             loading2: false,
             FieldRequired: [(v) => !!v || "This field is required"],
@@ -172,6 +294,27 @@ export default {
                     if (this.$root.vtoast) {
                         this.$root.vtoast.show({
                             message: "Question Has been Added!",
+                            color: "success",
+                            icon: "mdi-exclamation",
+                        });
+                    }
+                });
+        },
+        async updateMFO() {
+            await axios
+                .patch(
+                    "/HumanResource/MFO_Questions/" + this.form4.id,
+                    this.form4
+                )
+                .then((response) => {
+                    this.form4.question = null;
+                    this.form4.type = null;
+                    this.form4.dep_id = null;
+                    this.getMFOQuestions();
+                    this.show_edit_mfo_question = !this.show_edit_mfo_question;
+                    if (this.$root.vtoast) {
+                        this.$root.vtoast.show({
+                            message: "Question Has been Updated!",
                             color: "success",
                             icon: "mdi-exclamation",
                         });
@@ -229,6 +372,26 @@ export default {
                     }
                 });
         },
+        async updateIndicators() {
+            await axios
+                .patch(
+                    "/HumanResource/Indicators_questions/" + this.form3.id,
+                    this.form3
+                )
+                .then((response) => {
+                    this.form3.question = null;
+                    this.form3.dep_id = null;
+                    this.getQuestions();
+                    this.show_edit_question = !this.show_edit_question;
+                    if (this.$root.vtoast) {
+                        this.$root.vtoast.show({
+                            message: "Question Has been Updated!",
+                            color: "success",
+                            icon: "mdi-exclamation",
+                        });
+                    }
+                });
+        },
         async deleteMfoQuestion(id) {
             if (confirm("Are you sure?")) {
                 axios
@@ -266,6 +429,18 @@ export default {
                     })
                     .catch((error) => {});
             }
+        },
+        async ShowEdit(item) {
+            this.show_edit_question = !this.show_edit_question;
+            this.form3.question = item.question;
+            this.form3.type = item.type;
+            this.form3.id = item.id;
+        },
+        async ShowEditMFO(item) {
+            this.show_edit_mfo_question = !this.show_edit_mfo_question;
+            this.form4.question = item.question;
+            this.form4.type = item.type;
+            this.form4.id = item.id;
         },
     },
     created() {
