@@ -258,7 +258,9 @@ class HomeController extends Controller
     }
     public function getEmployees()
     {
-        $all_ipcr = User::get();
+        $all_ipcr = User::Join('empPlantilla', 'employee_plantillas.user_id', 'users.id')
+        ->select(DB::raw("CONCAT(`users`.`first_name`,' ',`users`.`last_name`) as name"), 'users.id as user_id')
+        ->get();
 
         return response()->json($all_ipcr, Response::HTTP_OK);
     }
