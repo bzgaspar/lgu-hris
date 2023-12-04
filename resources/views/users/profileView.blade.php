@@ -14,10 +14,10 @@
             </p>
             <p>
                 @if ($user->empPlantilla)
-                {{ $user->empPlantilla->EPposition }}
+                    {{ $user->empPlantilla->EPposition }}
                 @endif
             </p>
         </div>
     </div>
-    <profile-view />
+    <profile-view :user_id="{{ $user->id }}" :user_role="{{ $user->role }}" />
 @endsection

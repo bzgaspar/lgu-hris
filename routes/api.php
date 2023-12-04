@@ -48,6 +48,10 @@ Route::get('/getUserLeave/{user_id}', [HomeController::class, 'getUserLeave'])->
 Route::get('/getLeaveCredit/{user_id}', [HomeController::class, 'getLeaveCredit'])->name('getLeaveCredit');
 
 
+Route::get('/getUserServiceRecord/{id}', [HomeController::class, 'getUserServiceRecord'])->name('getUserServiceRecord');
+Route::get('/getFiles201/{id}', [HomeController::class, 'getFiles201'])->name('getFiles201');
+
+
 // rsp
 Route::get('/getApplicants', [HomeController::class, 'getApplicants'])->name('getApplicants');
 Route::get('/getRanking', [RangkingController::class, 'getRanking'])->name('getRanking');

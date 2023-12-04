@@ -4,7 +4,9 @@
 @section('customCSS')
 
     <style>
-        center .contents * {}
+        center .contents * {
+            font-size: 11px;
+        }
 
         .row .col {
             padding: 0 !important;
@@ -12,8 +14,8 @@
 
         .table td,
         .table th {
-            font-size: 12px;
-            padding: 0;
+            font-size: 11px;
+            padding: 3px;
         }
     </style>
 
@@ -22,7 +24,7 @@
 
     <page size="A4">
 
-        <center class="pt-3 m-3">
+        <center class="m-3 pt-3">
             <div class="row">
                 <div class="col">
                     <img src="{{ asset('images/DA-logo.png') }}" alt="" width="60px" height="60px"><br>
@@ -35,17 +37,17 @@
             <p class="text-center text-decoration-underline fs-5 text-uppercase mt-2"><strong>service record</strong></p>
             </div>
             <div class="contents">
-                <div class="row">
+                <div class="row" style="padding: 0 !important">
                     <div class="col-7">
-                        <div class="row ">
-                            <div class="col-2">Name: </div>
-                            <div class="col border-bottom">{{ $user->last_name }}</div>
-                            <div class="col border-bottom">{{ $user->first_name }}</div>
+                        <div class="row" style="padding: 0 !important">
+                            <div style="padding: 0 !important" class="col-2">Name: </div>
+                            <div style="padding: 0 !important" class="col border-bottom">{{ $user->last_name }}</div>
+                            <div style="padding: 0 !important" class="col border-bottom">{{ $user->first_name }}</div>
                             @if ($user->pdsPersonal)
-                                <div class="col border-bottom">
+                                <div style="padding: 0 !important" class="col border-bottom">
                                     {{ $user->pdsPersonal->ext_name }}
                                 </div>
-                                <div class="col border-bottom">
+                                <div style="padding: 0 !important" class="col border-bottom">
                                     {{ $user->pdsPersonal->middle_name }}
                                 </div>
                             @endif
@@ -72,8 +74,8 @@
                 <div class="row">
                     <div class="col-4">
                         <div class="row">
-                            <div class="col-4">Birth: </div>
-                            <div class="col text-start border-bottom">
+                            <div style="padding: 0 !important" class="col-4">Birth: </div>
+                            <div style="padding: 0 !important" class="col text-start border-bottom">
                                 @if ($user->pdsPersonal)
                                     {{ date('M, d Y', strtotime($user->pdsPersonal->date_birth)) }}
                                 @endif
@@ -119,8 +121,8 @@
                     <tbody>
                         @forelse ($user->serviceRecord as $item)
                             <tr>
-                                <td>{{ date('mm/dd/yyyy', $item->from) }}</td>
-                                <td>{{ date('mm/dd/yyyy', $item->to) }}</td>
+                                <td>{{ date('m/d/Y', strtotime($item->from)) }}</td>
+                                <td>{{ date('m/d/Y', strtotime($item->to)) }}</td>
                                 <td>
                                     @if ($item->empPlantilla)
                                         {{ $item->empPlantilla->EPposition }}

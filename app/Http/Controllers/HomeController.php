@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\admin\Department;
 use App\Models\admin\EmployeePlantilla;
+use App\Models\Files_201;
 use App\Models\hr\hrmpsb;
 use App\Models\hr\InterviewExam;
 use App\Models\hr\LeaveCredit;
@@ -735,5 +736,19 @@ class HomeController extends Controller
             ->get();
 
         return response()->json($all_ipcr, Response::HTTP_OK);
+    }
+    public function getUserServiceRecord($id)
+    {
+        // edited
+        $data = ServiceRecord::where('user_id', $id)->orderByDesc('from')->get();
+
+        return response()->json($data, Response::HTTP_OK);
+    }
+    public function getFiles201($id)
+    {
+        // edited
+        $data = Files_201::where('user_id', $id)->get();
+
+        return response()->json($data, Response::HTTP_OK);
     }
 }
