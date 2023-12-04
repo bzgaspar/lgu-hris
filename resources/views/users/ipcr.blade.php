@@ -120,7 +120,7 @@
                 `</select>` +
                 `</div>` +
                 `<div class="col-12 col-md-6 p-2">` +
-                `<textarea rows="2" class="form-control form-control-sm" name="actual[]" placeholder="Acutal"></textarea>` +
+                `<textarea rows="2" class="form-control form-control-sm" name="actual[]" placeholder="Actual"></textarea>` +
                 `</div>` +
                 `<div class="col-12 col-md-3 p-2">` +
                 `<div class="row gx-0 p-0 m-0">` +

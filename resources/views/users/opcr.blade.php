@@ -130,7 +130,7 @@
                 `<input class="form-control form-control-sm" name="accountable[]"  placeholder="Accountable" type="text" />` +
                 `</div>` +
                 `<div class="col-12 col-md-6 p-2">` +
-                `<textarea rows="1" class="form-control form-control-sm" name="actual[]" placeholder="Acutal"></textarea>` +
+                `<textarea rows="1" class="form-control form-control-sm" name="actual[]" placeholder="Actual"></textarea>` +
                 `</div>` +
                 `<div class="col-12 col-md-4 p-2">` +
                 `<div class="row gx-0 p-0 m-0">` +

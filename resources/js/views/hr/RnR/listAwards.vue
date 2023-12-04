@@ -205,6 +205,7 @@ export default {
                 },
                 { text: "Name", align: "center", value: "name" },
                 { text: "Title", align: "center", value: "title" },
+                { text: "Date", align: "center", value: "date" },
                 { text: "Actions", align: "center", value: "actions" },
             ],
         };
