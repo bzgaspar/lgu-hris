@@ -221,7 +221,7 @@ export default {
         },
         getEmployee() {
             setTimeout(async () => {
-                await axios.get("/api/getEmployee").then((response) => {
+                await axios.get("/api/getEmployees").then((response) => {
                     let data = response.data;
                     let emp = [];
                     if (data) {

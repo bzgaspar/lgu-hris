@@ -256,6 +256,13 @@ class HomeController extends Controller
 
         return response()->json($all_ipcr, Response::HTTP_OK);
     }
+    public function getEmployees()
+    {
+        $all_ipcr = User::Join('employee_plantillas', 'employee_plantillas.user_id', 'users.id')
+        ->get();
+
+        return response()->json($all_ipcr, Response::HTTP_OK);
+    }
     public function getDepartmentHead()
     {
         $all_ipcr = Ipcr::leftJoin('users', 'users.id', '=', 'ipcrs.user_id')

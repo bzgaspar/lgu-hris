@@ -80,3 +80,5 @@ Route::get('/getMFOTypes', [HomeController::class, 'getMFOTypes'])->name('getMFO
 //
 Route::get('/getChartEMP', [HomeController::class, 'getChartEMP'])->name('getChartEMP');
 Route::get('/fetchCovidResponse', [HomeController::class, 'fetchCovidResponse'])->name('fetchCovidResponse');
+
+Route::get('/getEmployees', [HomeController::class, 'getEmployees'])->name('getEmployees');
