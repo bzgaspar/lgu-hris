@@ -2,7 +2,7 @@
 
 @section('title', 'Profile View | ' . $user->first_name)
 @section('content')
-    <img src="{{ asset('storage/user_avatar/' . $user->avatar) }}" alt="" class="avatar-img mx-auto d-block" />
+    <img src="{{ asset('storage/user_avatar/' . $user->avatar) }}" alt="" class="avatar-img mx-auto d-block my-0" />
     <div class="row justify-content-center">
         <div class="col-6 text-center">
             <p class="fw-bold mb-0">{{ $user->first_name }}
