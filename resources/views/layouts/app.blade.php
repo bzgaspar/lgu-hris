@@ -28,6 +28,25 @@
         <link href="{{ asset('storage/css/navbar.css') }}" rel="stylesheet">
     @endif
     <style>
+        .avatar-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 2px solid white;
+            margin-top: 25%;
+            display: flex;
+            object-fit: cover;
+        }
+
+        .avatar-img-lg {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 2px solid white;
+            display: flex;
+            object-fit: cover;
+        }
+
         .v-application--wrap {
             min-height: 0vh !important;
         }
@@ -277,7 +296,7 @@
                                     aria-labelledby="navbarDropdown">
                                     <a href="{{ route('users.pds.index') }}" class="dropdown-item">Personal Data
                                         Sheet</a>
-                                        <a href="{{ route('users.Files_201.index') }}" class="dropdown-item">201 Files</a>
+                                    <a href="{{ route('users.Files_201.index') }}" class="dropdown-item">201 Files</a>
                                     <a href="{{ route('users.account.edit', Auth::user()->id) }}"
                                         class="dropdown-item">Account Settings</a>
 
