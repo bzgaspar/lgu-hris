@@ -26,7 +26,7 @@ class Files201Controller extends Controller
     public function index()
     {
         $files_201 = $this->files_201->where('user_id', Auth::user()->id)->get();
-        return view('users.files.files_201')->with('files_201', $files_201)->with('files_201_edit', null);
+        return view('users.Files.files_201')->with('files_201', $files_201)->with('files_201_edit', null);
     }
 
     /**
@@ -93,7 +93,7 @@ class Files201Controller extends Controller
         $data = $this->files_201->findOrFail($id);
 
         $files_201 = $this->files_201->where('user_id', Auth::user()->id)->get();
-        return view('users.files.files_201')->with('files_201', $files_201)->with('files_201_edit', $data);
+        return view('users.Files.files_201')->with('files_201', $files_201)->with('files_201_edit', $data);
     }
 
     /**
