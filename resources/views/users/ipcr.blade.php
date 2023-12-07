@@ -210,13 +210,13 @@
             // if (r1 && r2 && r3) {
             //     document.getElementById('rate4[' + rowNumber + ']').value = (r1 + r2 + r3) / 3
             // }
-            if (r1) {
+            if (r1 === r1) {
                 arr.push(r1)
             }
-            if (r2) {
+            if (r2 === r2) {
                 arr.push(r2)
             }
-            if (r3) {
+            if (r3 === r3) {
                 arr.push(r3)
             }
             let total = 0;
