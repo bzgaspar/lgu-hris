@@ -16,6 +16,29 @@ export default {
         IPCR,
         OPCR,
     },
+    data() {
+        return {
+            chartData: {
+                2020: ["4.8"],
+                2021: ["4.9"],
+                2022: ["4.4"],
+                2023: ["4.88"],
+                2024: ["4.7"],
+                2025: ["4.6"],
+            },
+            chartOptions: {
+                scales: {
+                    x: {
+                        type: "linear",
+                        position: "bottom",
+                    },
+                    y: {
+                        min: 0,
+                    },
+                },
+            },
+        };
+    },
 };
 </script>
 

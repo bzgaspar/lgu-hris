@@ -84,3 +84,6 @@ Route::get('/fetchCovidResponse', [HomeController::class, 'fetchCovidResponse'])
 Route::get('/getEmployees', [HomeController::class, 'getEmployees'])->name('getEmployees');
 Route::get('/getUserPdsFiles/{id}', [HomeController::class, 'getUserPdsFiles'])->name('getUserPdsFiles');
 Route::get('/getUserOtherInformation/{id}', [HomeController::class, 'getUserOtherInformation'])->name('getUserOtherInformation');
+
+Route::get('/getIpcrData/{id}', [HomeController::class, 'getIpcrData'])->name('getIpcrData');
+Route::get('/getOpcrData/{id}', [HomeController::class, 'getOpcrData'])->name('getOpcrData');

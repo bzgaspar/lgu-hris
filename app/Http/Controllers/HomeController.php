@@ -721,6 +721,44 @@ class HomeController extends Controller
 
         return response()->json($all_ipcr, Response::HTTP_OK);
     }
+    public function getIpcrData($user_id)
+    {
+        // edited
+        $all_ipcr = ipcr_forms::where('ipcr_forms.user_id', $user_id)
+            ->where('ipcr_forms.type', 'IPCR')
+            ->select('ipcr_forms.id', 'ipcr_forms.user_id', 'ipcr_forms.type', 'ipcr_forms.from', 'ipcr_forms.to')
+            ->orderByDesc('ipcr_forms.to')
+            ->take(5)->get();
+        $total = [];
+        foreach($all_ipcr as $ipcr) {
+            $sub_total = 0;
+            foreach($ipcr->ipcr_forms_details as $data) {
+                $sub_total += $data->rate4;
+            }
+            $total[$ipcr->from . '-' . $ipcr->to] = $sub_total / count($ipcr->ipcr_forms_details);
+        }
+
+        return response()->json($total, Response::HTTP_OK);
+    }
+    public function getOpcrData($user_id)
+    {
+        // edited
+        $all_ipcr = ipcr_forms::where('ipcr_forms.user_id', $user_id)
+            ->where('ipcr_forms.type', 'OPCR')
+            ->select('ipcr_forms.id', 'ipcr_forms.user_id', 'ipcr_forms.type', 'ipcr_forms.from', 'ipcr_forms.to')
+            ->orderByDesc('ipcr_forms.to')
+            ->take(5)->get();
+        $total = [];
+        foreach($all_ipcr as $ipcr) {
+            $sub_total = 0;
+            foreach($ipcr->ipcr_forms_details as $data) {
+                $sub_total += $data->rate4;
+            }
+            $total[$ipcr->from . '-' . $ipcr->to] = $sub_total / count($ipcr->ipcr_forms_details);
+        }
+
+        return response()->json($total, Response::HTTP_OK);
+    }
     public function getIPCR()
     {
         // edited
