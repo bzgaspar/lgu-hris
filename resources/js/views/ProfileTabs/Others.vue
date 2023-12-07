@@ -54,6 +54,12 @@
                                 formattedDate
                             }}</v-col>
                         </v-row>
+                        <v-row>
+                            <v-col>Current Salary:</v-col>
+                            <v-col class="font-weight-bold">{{
+                                formattedSalary
+                            }}</v-col>
+                        </v-row>
                     </v-col>
                 </v-row>
             </v-card-text>
@@ -94,6 +100,14 @@ export default {
                 this.otherInformation.next_loyalty,
                 "YYYY-MM-DD HH:mm:ss"
             ).format("DD-MM-YYYY");
+        },
+        formattedSalary() {
+            const formattedNumber = Number(
+                this.otherInformation.latest_salary
+            ).toFixed(2);
+
+            // Use regex to add commas as thousand separators
+            return formattedNumber.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         },
     },
 };

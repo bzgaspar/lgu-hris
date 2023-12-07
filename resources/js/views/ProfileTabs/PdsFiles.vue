@@ -1,10 +1,6 @@
 <template>
     <v-app>
-        <v-data-table
-            :headers="headers"
-            :items="files"
-            :loading="loading"
-        >
+        <v-data-table :headers="headers" :items="files" :loading="loading">
             <template v-slot:item.view="{ item }">
                 <v-btn
                     color="success"

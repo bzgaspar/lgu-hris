@@ -766,22 +766,22 @@ class HomeController extends Controller
     }
     public function getUserPdsFiles($id)
     {
-        $data = User::leftJoin('educationals', 'educationals.user_id', 'users.id')
-        ->leftJoin('civilservices', 'civilservices.user_id', 'users.id')
-        ->leftJoin('workexperiences', 'workexperiences.user_id', 'users.id')
-        ->leftJoin('voluntaryworks', 'voluntaryworks.user_id', 'users.id')
-        ->leftJoin('learningdevelopments', 'learningdevelopments.user_id', 'users.id')
-        ->leftJoin('otherinformations', 'otherinformations.user_id', 'users.id')
+        $data = User::join('educationals', 'educationals.user_id', 'users.id')
+        ->join('civilservices', 'civilservices.user_id', 'users.id')
+        ->join('learningdevelopments', 'learningdevelopments.user_id', 'users.id')
+        ->join('otherinformations', 'otherinformations.user_id', 'users.id')
+        ->whereNotNull('educationals.document')
+        ->whereNotNull('civilservices.document')
+        ->whereNotNull('learningdevelopments.document')
+        ->whereNotNull('otherinformations.document')
         ->select(
             'educationals.document',
             'civilservices.document',
-            'workexperiences.document',
-            'voluntaryworks.document',
             'learningdevelopments.document',
             'otherinformations.document',
-            'educationals.user_id'
         )
         ->where('users.id', $id)->get();
+
 
         return response()->json($data, Response::HTTP_OK);
     }
@@ -795,6 +795,8 @@ class HomeController extends Controller
         $department = $user->empPlantilla->department ? $user->empPlantilla->department : null;
         $designation = $user->empPlantilla->designation ? $user->empPlantilla->designation : null;
 
+        $latest_service_record = $user->serviceRecord()->orderByDesc('from')->first();
+
         $tlb = $this->getTBL($id, $latest_vl + $latest_sl);
         $next_loyalty = $user->loyaltyRecord ? $user->loyaltyRecord->next_loyalty : null;
         $data = [
@@ -805,6 +807,7 @@ class HomeController extends Controller
             'next_loyalty' => $next_loyalty,
             'department' => $department,
             'designation' => $designation,
+            'latest_salary' => $latest_service_record->salary,
         ];
 
 
