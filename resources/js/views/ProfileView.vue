@@ -10,7 +10,7 @@
             >
                 <v-tabs-slider></v-tabs-slider>
 
-                <v-tab href="#tab-1"> PDS </v-tab>
+                <!-- <v-tab href="#tab-1"> PDS </v-tab> -->
                 <v-tab href="#tab-2"> PDS Files </v-tab>
                 <v-tab href="#tab-3"> 201 Files </v-tab>
                 <v-tab href="#tab-4"> IPCR / OPCR </v-tab>
@@ -19,13 +19,13 @@
                 <v-tab href="#tab-7"> Others </v-tab>
             </v-tabs>
             <v-tabs-items v-model="tab">
-                <v-tab-item value="tab-1">
+                <!-- <v-tab-item value="tab-1">
                     <v-card flat>
                         <v-card-text>
                             <PDS />
                         </v-card-text>
                     </v-card>
-                </v-tab-item>
+                </v-tab-item> -->
                 <v-tab-item value="tab-2">
                     <v-card flat>
                         <v-card-text
@@ -63,7 +63,7 @@
                 </v-tab-item>
                 <v-tab-item value="tab-7">
                     <v-card flat>
-                        <v-card-text><Others /></v-card-text>
+                        <v-card-text><Others :user_id="user_id" /></v-card-text>
                     </v-card>
                 </v-tab-item>
             </v-tabs-items>

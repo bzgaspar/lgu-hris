@@ -129,7 +129,7 @@ export default {
                 return true;
             }
             if (value) {
-                let val = moment(value, "MM-DD-YYYY").format("MM-YYYY");
+                let val = (value, "MM-DD-YYYY").format("MM-YYYY");
                 let from = moment(this.from_filter_value, "YYYY-MM-DD").format(
                     "MM-YYYY"
                 );

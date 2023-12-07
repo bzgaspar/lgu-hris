@@ -436,72 +436,77 @@ class HomeController extends Controller
     {
         $user = User::findOrFail($id);
         if($user) {
-            $user_dep = $user->empPlantilla->designation->id;
-            // $user_dep = $user->empPlantilla->dep_id;
+            if($user->empPlantilla) {
+                $user_dep = $user->empPlantilla->designation->id;
+                // $user_dep = $user->empPlantilla->dep_id;
 
 
-            if($user_dep != 15) {
-                $dep_head = EmployeePlantilla::leftJoin('users', 'employee_plantillas.user_id', 'users.id')
-                ->leftJoin('personals', 'users.id', '=', 'personals.user_id')
-                ->select('users.id as id', 'personals.first_name', 'personals.salutation_before', 'personals.salutation_after', 'personals.middle_name', 'personals.last_name')
-            ->where('employee_plantillas.dep_id', $user_dep)->where('users.role', 3)->first();
+                if($user_dep != 15) {
+                    $dep_head = EmployeePlantilla::leftJoin('users', 'employee_plantillas.user_id', 'users.id')
+                    ->leftJoin('personals', 'users.id', '=', 'personals.user_id')
+                    ->select('users.id as id', 'personals.first_name', 'personals.salutation_before', 'personals.salutation_after', 'personals.middle_name', 'personals.last_name')
+                ->where('employee_plantillas.dep_id', $user_dep)->where('users.role', 3)->first();
 
-            } elseif($user_dep == 1) {
-                $dep_head = EmployeePlantilla::leftJoin('users', 'employee_plantillas.user_id', 'users.id')
-                ->leftJoin('personals', 'users.id', '=', 'personals.user_id')
-                ->select('users.id as id', 'personals.first_name', 'personals.salutation_before', 'personals.salutation_after', 'personals.middle_name', 'personals.last_name')
-            ->where('employee_plantillas.dep_id', $user_dep)->where('users.role', 5)->first();
-            } else {
-                $dep_head = EmployeePlantilla::leftJoin('users', 'employee_plantillas.user_id', 'users.id')
-                ->leftJoin('personals', 'users.id', '=', 'personals.user_id')
-                ->select('users.id as id', 'personals.first_name', 'personals.salutation_before', 'personals.salutation_after', 'personals.middle_name', 'personals.last_name')
-            ->where('employee_plantillas.dep_id', $user_dep)->where('users.role', 7)->first();
-            }
-            if(!$dep_head) {
-                $dep_head = EmployeePlantilla::leftJoin('users', 'employee_plantillas.user_id', 'users.id')
-                ->leftJoin('personals', 'users.id', '=', 'personals.user_id')
-                ->select('users.id as id', 'personals.first_name', 'personals.salutation_before', 'personals.salutation_after', 'personals.middle_name', 'personals.last_name')
-                ->where('employee_plantillas.dep_id', $user_dep)->where('users.role', 7)->first();
-            }
-
-            if($dep_head) {
-                $signature = Signature::where('user_id', $dep_head->id)->first();
-                $full_name =
-                $dep_head->first_name . ' ' .
-                substr($dep_head->middle_name, 0, 1) . '. ' .
-                $dep_head->last_name;
-
-                $salutation_before = '';
-                $ext_name = '';
-                $salutation_after = '';
-
-                if($dep_head->salutation_before && strtolower($dep_head->salutation_before) != 'n/a') {
-                    $salutation_before = $dep_head->salutation_before;
-                }
-                if($dep_head->salutation_after && strtolower($dep_head->salutation_after) != 'n/a') {
-                    $salutation_after = $dep_head->salutation_after;
-                }
-                if(strtolower($dep_head->ext_name) != 'n/a') {
-                    $full_name = $full_name . ' ' . $dep_head->ext_name;
-                }
-
-                $full_name = $salutation_before . ' ' . $full_name . ' ' . $ext_name . ', ' . $salutation_after;
-
-
-
-                if($signature) {
-                    $sig = $signature->signature;
+                } elseif($user_dep == 1) {
+                    $dep_head = EmployeePlantilla::leftJoin('users', 'employee_plantillas.user_id', 'users.id')
+                    ->leftJoin('personals', 'users.id', '=', 'personals.user_id')
+                    ->select('users.id as id', 'personals.first_name', 'personals.salutation_before', 'personals.salutation_after', 'personals.middle_name', 'personals.last_name')
+                ->where('employee_plantillas.dep_id', $user_dep)->where('users.role', 5)->first();
                 } else {
-                    $sig = null;
+                    $dep_head = EmployeePlantilla::leftJoin('users', 'employee_plantillas.user_id', 'users.id')
+                    ->leftJoin('personals', 'users.id', '=', 'personals.user_id')
+                    ->select('users.id as id', 'personals.first_name', 'personals.salutation_before', 'personals.salutation_after', 'personals.middle_name', 'personals.last_name')
+                ->where('employee_plantillas.dep_id', $user_dep)->where('users.role', 7)->first();
                 }
-                $details = [
-                    'full_name' => $full_name,
-                    'signature' => $sig,
-                ];
-                return $details;
+                if(!$dep_head) {
+                    $dep_head = EmployeePlantilla::leftJoin('users', 'employee_plantillas.user_id', 'users.id')
+                    ->leftJoin('personals', 'users.id', '=', 'personals.user_id')
+                    ->select('users.id as id', 'personals.first_name', 'personals.salutation_before', 'personals.salutation_after', 'personals.middle_name', 'personals.last_name')
+                    ->where('employee_plantillas.dep_id', $user_dep)->where('users.role', 7)->first();
+                }
+
+                if($dep_head) {
+                    $signature = Signature::where('user_id', $dep_head->id)->first();
+                    $full_name =
+                    $dep_head->first_name . ' ' .
+                    substr($dep_head->middle_name, 0, 1) . '. ' .
+                    $dep_head->last_name;
+
+                    $salutation_before = '';
+                    $ext_name = '';
+                    $salutation_after = '';
+
+                    if($dep_head->salutation_before && strtolower($dep_head->salutation_before) != 'n/a') {
+                        $salutation_before = $dep_head->salutation_before;
+                    }
+                    if($dep_head->salutation_after && strtolower($dep_head->salutation_after) != 'n/a') {
+                        $salutation_after = $dep_head->salutation_after;
+                    }
+                    if(strtolower($dep_head->ext_name) != 'n/a') {
+                        $full_name = $full_name . ' ' . $dep_head->ext_name;
+                    }
+
+                    $full_name = $salutation_before . ' ' . $full_name . ' ' . $ext_name . ', ' . $salutation_after;
+
+
+
+                    if($signature) {
+                        $sig = $signature->signature;
+                    } else {
+                        $sig = null;
+                    }
+                    $details = [
+                        'full_name' => $full_name,
+                        'signature' => $sig,
+                    ];
+                    return $details;
+                } else {
+                    return null;
+                }
             } else {
                 return null;
             }
+
         } else {
             return null;
         }
@@ -756,6 +761,52 @@ class HomeController extends Controller
     {
         // edited
         $data = Files_201::where('user_id', $id)->get();
+
+        return response()->json($data, Response::HTTP_OK);
+    }
+    public function getUserPdsFiles($id)
+    {
+        $data = User::leftJoin('educationals', 'educationals.user_id', 'users.id')
+        ->leftJoin('civilservices', 'civilservices.user_id', 'users.id')
+        ->leftJoin('workexperiences', 'workexperiences.user_id', 'users.id')
+        ->leftJoin('voluntaryworks', 'voluntaryworks.user_id', 'users.id')
+        ->leftJoin('learningdevelopments', 'learningdevelopments.user_id', 'users.id')
+        ->leftJoin('otherinformations', 'otherinformations.user_id', 'users.id')
+        ->select(
+            'educationals.document',
+            'civilservices.document',
+            'workexperiences.document',
+            'voluntaryworks.document',
+            'learningdevelopments.document',
+            'otherinformations.document',
+            'educationals.user_id'
+        )
+        ->where('users.id', $id)->get();
+
+        return response()->json($data, Response::HTTP_OK);
+    }
+    public function getUserOtherInformation($id)
+    {
+        // edited
+        $user = User::where('users.id', $id)->first();
+        $latest_vl = $user->leaveCreditlatest ? $user->leaveCreditlatest->elc_vl_balance : null;
+        $latest_sl = $user->leaveCreditlatest ? $user->leaveCreditlatest->elc_sl_balance : null;
+        $plantilla = $user->empPlantilla;
+        $department = $user->empPlantilla->department ? $user->empPlantilla->department : null;
+        $designation = $user->empPlantilla->designation ? $user->empPlantilla->designation : null;
+
+        $tlb = $this->getTBL($id, $latest_vl + $latest_sl);
+        $next_loyalty = $user->loyaltyRecord ? $user->loyaltyRecord->next_loyalty : null;
+        $data = [
+            'latest_vl' => $latest_vl,
+            'latest_sl' => $latest_sl,
+            'plantilla' => $plantilla,
+            'tlb' => $tlb,
+            'next_loyalty' => $next_loyalty,
+            'department' => $department,
+            'designation' => $designation,
+        ];
+
 
         return response()->json($data, Response::HTTP_OK);
     }

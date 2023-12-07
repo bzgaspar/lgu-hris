@@ -82,3 +82,5 @@ Route::get('/getChartEMP', [HomeController::class, 'getChartEMP'])->name('getCha
 Route::get('/fetchCovidResponse', [HomeController::class, 'fetchCovidResponse'])->name('fetchCovidResponse');
 
 Route::get('/getEmployees', [HomeController::class, 'getEmployees'])->name('getEmployees');
+Route::get('/getUserPdsFiles/{id}', [HomeController::class, 'getUserPdsFiles'])->name('getUserPdsFiles');
+Route::get('/getUserOtherInformation/{id}', [HomeController::class, 'getUserOtherInformation'])->name('getUserOtherInformation');
