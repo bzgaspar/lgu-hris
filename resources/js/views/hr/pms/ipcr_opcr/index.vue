@@ -40,6 +40,7 @@
                 </v-form>
                 <v-text-field
                     v-model="search1"
+                    class="mt-4"
                     append-icon="mdi-magnify"
                     label="Search"
                     single-line
@@ -117,6 +118,7 @@
                     v-model="search2"
                     append-icon="mdi-magnify"
                     label="Search"
+                    class="mt-4"
                     single-line
                     hide-details
                     solo
