@@ -489,7 +489,6 @@ export default {
                     this.prev_leave = response.data;
                     this.old_elc_vl_balance = this.prev_leave.elc_vl_balance;
                     this.old_elc_sl_balance = this.prev_leave.elc_sl_balance;
-                    this.edit_form.user_id = this.leave_card_id;
                     this.edit_form = this.edit_leave;
                     if (this.edit_form.elc_vl_auw_p) {
                         this.vl_deductions = this.edit_form.elc_vl_auw_p;
@@ -538,7 +537,7 @@ export default {
                 Vue.set(this.edit_form, "_method", "PATCH");
                 await axios
                     .post(
-                        "/HumanResource/leave/" + this.leave_card_id,
+                        "/HumanResource/leave/" + this.edit_form.id,
                         this.edit_form
                     )
                     .then((response) => {
