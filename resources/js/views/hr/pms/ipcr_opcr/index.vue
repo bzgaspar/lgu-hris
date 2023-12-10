@@ -38,11 +38,19 @@
                         ><i class="fa-solid fa-plus me-1"></i>Add</v-btn
                     >
                 </v-form>
-
+                <v-text-field
+                    v-model="search1"
+                    append-icon="mdi-magnify"
+                    label="Search"
+                    single-line
+                    hide-details
+                    solo
+                    dense
+                ></v-text-field>
                 <v-data-table
                     :headers="headers"
                     :items="MFO_questions"
-                    :search="search"
+                    :search="search1"
                     :loading="loading"
                 >
                     <template v-slot:item.actions="{ item }">
@@ -105,9 +113,19 @@
                     >
                 </v-form>
 
+                <v-text-field
+                    v-model="search2"
+                    append-icon="mdi-magnify"
+                    label="Search"
+                    single-line
+                    hide-details
+                    solo
+                    dense
+                ></v-text-field>
                 <v-data-table
                     :headers="headers2"
                     :items="questions"
+                    :search="search2"
                     :loading="loading2"
                 >
                     <template v-slot:item.actions="{ item }">
@@ -238,6 +256,7 @@ export default {
             form4: {
                 question: null,
                 type: null,
+                _method: "PATCH",
             },
             form2: {
                 question: null,
@@ -246,6 +265,7 @@ export default {
             form3: {
                 question: null,
                 type: null,
+                _method: "PATCH",
             },
             MFO_questions: [],
             questions: [],
@@ -256,6 +276,8 @@ export default {
             edit_question: [],
             valid: false,
             valid2: false,
+            search1: null,
+            search2: null,
             valid3: false,
             valid4: false,
             loading: false,
@@ -302,7 +324,7 @@ export default {
         },
         async updateMFO() {
             await axios
-                .patch(
+                .post(
                     "/HumanResource/MFO_Questions/" + this.form4.id,
                     this.form4
                 )
@@ -374,7 +396,7 @@ export default {
         },
         async updateIndicators() {
             await axios
-                .patch(
+                .post(
                     "/HumanResource/Indicators_questions/" + this.form3.id,
                     this.form3
                 )

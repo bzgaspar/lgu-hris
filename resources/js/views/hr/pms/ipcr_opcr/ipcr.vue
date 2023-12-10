@@ -1,6 +1,24 @@
 <template>
     <div class="mt-3">
-        <v-data-table :headers="headers" :items="forms" :loading="loading">
+        <v-row justify-end>
+            <v-col xs="12">
+                <v-text-field
+                    v-model="search"
+                    append-icon="mdi-magnify"
+                    label="Search"
+                    single-line
+                    hide-details
+                    solo
+                    dense
+                ></v-text-field>
+            </v-col>
+        </v-row>
+        <v-data-table
+            :headers="headers"
+            :items="forms"
+            :loading="loading"
+            :search="search"
+        >
             <template v-slot:item.actions="{ item }">
                 <v-btn
                     class="border border-success text-success"
@@ -40,6 +58,7 @@ export default {
                 type: null,
             },
             forms: [],
+            search: null,
             valid: false,
             loading: false,
         };
