@@ -343,6 +343,7 @@ export default {
                             icon: "mdi-exclamation",
                         });
                     }
+                    this.loading = false;
                 });
         },
         async getMFOQuestions() {
@@ -354,7 +355,6 @@ export default {
             });
         },
         async getMFOTypes() {
-            this.loading = true;
             await axios.get("/api/getMFOTypes").then((response) => {
                 let arry = Object.keys(response.data).map(
                     (key) => response.data[key].type
@@ -374,10 +374,10 @@ export default {
             });
         },
         async getQuestions() {
-            this.loading = true;
+            this.loading2 = true;
             await axios.get("/api/getQuestions").then((response) => {
                 this.questions = response.data;
-                this.loading = false;
+                this.loading2 = false;
             });
         },
         async addIndicators() {
@@ -414,6 +414,7 @@ export default {
                             icon: "mdi-exclamation",
                         });
                     }
+                    this.loading2 = false;
                 });
         },
         async deleteMfoQuestion(id) {
