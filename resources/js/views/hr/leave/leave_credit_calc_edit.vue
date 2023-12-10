@@ -534,11 +534,11 @@ export default {
                     this.edit_form.elc_sl_auw_p = 0;
                 }
 
-                Vue.set(this.edit_form, "_method", "PATCH");
                 await axios
                     .post(
                         "/HumanResource/leave/" + this.edit_form.id,
-                        this.edit_form
+                        this.edit_form,
+                        { _method: "PATCH" }
                     )
                     .then((response) => {
                         this.$emit("close");
