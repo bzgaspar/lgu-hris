@@ -538,7 +538,11 @@ export default {
                     .post(
                         "/HumanResource/leave/" + this.edit_form.id,
                         this.edit_form,
-                        { _method: "PATCH" }
+                        {
+                            headers: {
+                                "X-HTTP-Method-Override": "PATCH",
+                            },
+                        }
                     )
                     .then((response) => {
                         this.$emit("close");

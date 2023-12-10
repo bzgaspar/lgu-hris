@@ -136,11 +136,7 @@ class LeaveRecordController extends Controller
     {
         $leave = $request->toArray();
         $check_leave = $this->leavecredit->findOrFail($request->id);
-        $timestamps =
-        [
-            'updated_at' =>  now(),
-        ];
-        $this->leavecredit->where('id', $request->id)->update(array_merge($leave, $timestamps));
+        $check_leave->update($leave);
         $difference_vl = $request->elc_vl_balance - $check_leave->elc_vl_balance;
         $difference_sl = $request->elc_sl_balance - $check_leave->elc_sl_balance;
         $following_leave = $this->leavecredit->where('id', '>', $request->id)->where('user_id', $request->user_id)->get();
