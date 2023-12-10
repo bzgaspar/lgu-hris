@@ -534,8 +534,13 @@ export default {
                     this.edit_form.elc_sl_auwo_p = this.sl_deductions;
                     this.edit_form.elc_sl_auw_p = 0;
                 }
+
+                Vue.set(this.edit_form, "_method", "PATCH");
                 await axios
-                    .put("/HumanResource/leave/" + this.leave_card_id, this.edit_form)
+                    .post(
+                        "/HumanResource/leave/" + this.leave_card_id,
+                        this.edit_form
+                    )
                     .then((response) => {
                         this.$emit("close");
 
