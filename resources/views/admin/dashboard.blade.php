@@ -10,15 +10,15 @@
             <div class="single-chart mx-auto">
                 <svg viewBox="0 0 36 36" class="circular-chart success">
                     <path class="circle-bg" d="M18 2.0845
-                                  a 15.9155 15.9155 0 0 1 0 31.831
-                                  a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                      a 15.9155 15.9155 0 0 1 0 31.831
+                                      a 15.9155 15.9155 0 0 1 0 -31.831" />
                     <path class="circle"
                         stroke-dasharray="
                     {{ ($user_count['total_ol_alluser'] / $user_count['total_alluser']) * 100 }}
                     , 100"
                         d="M18 2.0845
-                                  a 15.9155 15.9155 0 0 1 0 31.831
-                                  a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                      a 15.9155 15.9155 0 0 1 0 31.831
+                                      a 15.9155 15.9155 0 0 1 0 -31.831" />
                     <text x="18" y="20.35"
                         class="percentage">{{ $user_count['total_ol_alluser'] . '/' . $user_count['total_alluser'] }}</text>
                 </svg>
@@ -29,16 +29,16 @@
             <div class="single-chart mx-auto">
                 <svg viewBox="0 0 36 36" class="circular-chart warning">
                     <path class="circle-bg" d="M18 2.0845
-                                  a 15.9155 15.9155 0 0 1 0 31.831
-                                  a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                      a 15.9155 15.9155 0 0 1 0 31.831
+                                      a 15.9155 15.9155 0 0 1 0 -31.831" />
                     <path class="circle"
                         stroke-dasharray="
 
                     {{ ($user_count['ol_emp_count'] / $user_count['total_emp_count']) * 100 }}
                     , 100"
                         d="M18 2.0845
-                                  a 15.9155 15.9155 0 0 1 0 31.831
-                                  a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                      a 15.9155 15.9155 0 0 1 0 31.831
+                                      a 15.9155 15.9155 0 0 1 0 -31.831" />
                     <text x="18" y="20.35"
                         class="percentage">{{ $user_count['ol_emp_count'] . '/' . $user_count['total_emp_count'] }}</text>
                 </svg>
@@ -49,15 +49,15 @@
             <div class="single-chart mx-auto">
                 <svg viewBox="0 0 36 36" class="circular-chart primary">
                     <path class="circle-bg" d="M18 2.0845
-                                  a 15.9155 15.9155 0 0 1 0 31.831
-                                  a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                      a 15.9155 15.9155 0 0 1 0 31.831
+                                      a 15.9155 15.9155 0 0 1 0 -31.831" />
                     <path class="circle"
                         stroke-dasharray="
                     {{ ($user_count['ol_users_count'] / $user_count['total_users_count']) * 100 }}
                     , 100"
                         d="M18 2.0845
-                                  a 15.9155 15.9155 0 0 1 0 31.831
-                                  a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                      a 15.9155 15.9155 0 0 1 0 31.831
+                                      a 15.9155 15.9155 0 0 1 0 -31.831" />
                     <text x="18" y="20.35"
                         class="percentage">{{ $user_count['ol_users_count'] . '/' . $user_count['total_users_count'] }}</text>
                 </svg>
@@ -71,7 +71,7 @@
             <div class="row">
                 <div class="col">
                     <a href="{{ route('admin.backUp') }}" class="btn btn-success">Backup</a>
-                    <a href="{{ route('admin.backUp') }}" class="btn btn-success">Backup DB</a>
+                    <a href="{{ route('admin.backUpDB') }}" class="btn btn-success">Backup DB</a>
                     <a href="{{ route('admin.backUpClean') }}" class="btn btn-success">Clean Backup</a>
                 </div>
             </div>
