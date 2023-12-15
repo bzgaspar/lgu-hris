@@ -187,6 +187,7 @@ Route::group(['middleware' => 'auth','middleware' => 'role:0,1,2,3,4,5,7','middl
         Route::patch('/user/{id}/unbanned', [User::class, 'unbanned'])->name('user.unbanned');
 
 
+        Route::get('/backUpDB', [User::class, 'backUpDB'])->name('backUpDB');
         Route::get('/backUp', [User::class, 'backUp'])->name('backUp');
         Route::get('/backUpClean', [User::class, 'backUpClean'])->name('backUpClean');
         Route::get('/scheduler', [User::class, 'scheduler'])->name('scheduler');
