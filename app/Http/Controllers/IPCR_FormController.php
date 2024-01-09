@@ -187,8 +187,13 @@ class IPCR_FormController extends Controller
                 $rating += $request->rate4[$i];
             }
         }
+        $old_details = ipcr_forms_detail::where('form_id', $ipcr->id)->get();
         ipcr_forms_detail::where('form_id', $ipcr->id)->delete();
-        ipcr_forms_detail::insert($details);
+        if(!ipcr_forms_detail::insert($details)) {
+            ipcr_forms_detail::insert($old_details);
+            Session::flash('alert', 'error|IPCR Has not been Updated!');
+            return redirect()->back();
+        }
         $aveRating = $rating / count($request->question);
         $equivalent = "";
         if($aveRating >= 5.0) {

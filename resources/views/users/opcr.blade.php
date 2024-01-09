@@ -127,7 +127,7 @@
                 `<input class="form-control form-control-sm" name="budget[]"  placeholder="Budget" type="text" />` +
                 `</div>` +
                 `<div class="col-12 col-md-2 p-2">` +
-                `<input class="form-control form-control-sm" name="accountable[]"  placeholder="Accountable" type="text" />` +
+                `<textarea rows="1"  class="form-control form-control-sm" name="accountable[]"  placeholder="Accountable"></textarea>` +
                 `</div>` +
                 `<div class="col-12 col-md-6 p-2">` +
                 `<textarea rows="1" class="form-control form-control-sm" name="actual[]" placeholder="Actual"></textarea>` +
