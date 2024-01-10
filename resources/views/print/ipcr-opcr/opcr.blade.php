@@ -98,8 +98,13 @@
                         {{-- {{ dd($loop->iteration - 1) }} --}}
                         @if ($types[$i] === $ipcr_item->ipcr_mfo->type)
                             <tr class="fw-bold" style="white-space: pre-line;">
-                                <td style="text-indent: 15px">{{ $ipcr_item->ipcr_mfo->question }}</td>
-                                <td>{{ $ipcr_item->ipcr_Questions->question }}</td>
+                                <td style="text-indent: 15px;">@if ($ipcr_item->ipcr_mfo)
+                                    {{ $ipcr_item->ipcr_mfo->question }}
+                                @endif</td>
+
+                                <td>@if ($ipcr_item->ipcr_Questions)
+                                    {{ $ipcr_item->ipcr_Questions->question }}
+                                @endif </td>
                                 <td class="text-center">{{ $ipcr_item->ans1 }}</td>
                                 <td class="text-center">{{ $ipcr_item->ans2 }}</td>
                                 <td class="text-center">{{ $ipcr_item->ans3 }}</td>
