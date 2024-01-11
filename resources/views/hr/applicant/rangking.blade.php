@@ -34,7 +34,7 @@
             </div>
         </div>
         <hr-ranking></hr-ranking>
-        @if (Auth::user()->id == 1 || Auth::user()->id == 2)
+        @if (Auth::user()->id == 1 || Auth::user()->id == 2 || Auth::user()->role == 0)
             <div class="mt-1">
                 <hr-all_rating></hr-all_rating>
             </div>
