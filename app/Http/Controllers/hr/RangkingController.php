@@ -89,61 +89,113 @@ class RangkingController extends Controller
     }
     private function ranking($applicants)
     {
-        // $total_lnd = 0;
+        // // $total_lnd = 0;
+        // $percent = 0;
+        // $rank = [];
+        // $ctr = 0;
+        // foreach ($applicants as $app) {
+        //     if ($app->publication->status == 1) {
+        //         $over_all = 0;
+        //         for ($i = 0; $i < count($app->InterviewExamRaters); $i++) {
+        //             $sum = 0;
+        //             if($app->AdditionalPointsRaters && count($app->AdditionalPointsRaters) >= $i) {
+        //                 if($app->AdditionalPointsRaters[$i]->experience) {
+        //                     $sum += round($app->AdditionalPointsRaters[$i]->experience * .15, 2);
+        //                 }
+        //                 if($app->AdditionalPointsRaters[$i]->education) {
+        //                     $sum += $app->AdditionalPointsRaters[$i]->education * .15;
+        //                 }
+        //                 if($app->AdditionalPointsRaters[$i]->eligibility) {
+        //                     $sum += round($app->AdditionalPointsRaters[$i]->eligibility * .10, 2);
+        //                 }
+        //             }
+        //             if($app->InterviewExamRaters && count($app->InterviewExamRaters) >= $i) {
+        //                 if($app->InterviewExamRaters[$i]->written_exam) {
+        //                     $sum += round($app->InterviewExamRaters[$i]->written_exam * .1, 2);
+        //                 }
+        //                 if($app->InterviewExamRaters[$i]->oral_exam) {
+        //                     $sum += round($app->InterviewExamRaters[$i]->oral_exam * .1, 2);
+        //                 }
+        //                 if($app->InterviewExamRaters[$i]->background) {
+        //                     $sum += round($app->InterviewExamRaters[$i]->background * .1, 2);
+        //                 }
+        //                 if($app->InterviewExamRaters[$i]->performance) {
+        //                     $sum += round($app->InterviewExamRaters[$i]->performance * .1, 2);
+        //                 }
+        //                 if($app->InterviewExamRaters[$i]->pspt) {
+        //                     $sum += round($app->InterviewExamRaters[$i]->pspt * .1, 2);
+        //                 }
+        //                 if($app->InterviewExamRaters[$i]->potential) {
+        //                     $sum += round($app->InterviewExamRaters[$i]->potential * .1, 2);
+        //                 }
+        //             }
+        //             $over_all += round($sum, 2);
+        //         }
+        //         if($over_all > 0) {
+        //             $over_all = round($over_all / count($app->InterviewExamRaters), 2);
+        //         }
+        //         // $percent = $over_all;
+        //         $total = ['total' => $over_all];
+        //         $app = $app->toArray();
+        //         $rank[$ctr] = array_merge($app, $total);
+        //         $ctr++;
+
+        //         $percent = 0;
+        //     }
+        // }
+        // return collect($rank)->sortByDesc('total');
+        // Assuming $applicants is the array of applicants
+        $total_lnd = 0;
         $percent = 0;
         $rank = [];
         $ctr = 0;
-        foreach ($applicants as $app) {
-            if ($app->publication->status == 1) {
-                $over_all = 0;
-                for ($i = 0; $i < count($app->InterviewExamRaters); $i++) {
-                    $sum = 0;
-                    if($app->AdditionalPointsRaters && count($app->AdditionalPointsRaters) >= $i) {
-                        if($app->AdditionalPointsRaters[$i]->experience) {
-                            $sum += round($app->AdditionalPointsRaters[$i]->experience *.15, 2);
-                        }
-                        if($app->AdditionalPointsRaters[$i]->education) {
-                            $sum += $app->AdditionalPointsRaters[$i]->education *.15;
-                        }
-                        if($app->AdditionalPointsRaters[$i]->eligibility) {
-                            $sum += round($app->AdditionalPointsRaters[$i]->eligibility *.10, 2);
-                        }
-                    }
-                    if($app->InterviewExamRaters && count($app->InterviewExamRaters) >= $i) {
-                        if($app->InterviewExamRaters[$i]->written_exam) {
-                            $sum += round($app->InterviewExamRaters[$i]->written_exam *.1, 2);
-                        }
-                        if($app->InterviewExamRaters[$i]->oral_exam) {
-                            $sum += round($app->InterviewExamRaters[$i]->oral_exam *.1, 2);
-                        }
-                        if($app->InterviewExamRaters[$i]->background) {
-                            $sum += round($app->InterviewExamRaters[$i]->background *.1, 2);
-                        }
-                        if($app->InterviewExamRaters[$i]->performance) {
-                            $sum += round($app->InterviewExamRaters[$i]->performance *.1, 2);
-                        }
-                        if($app->InterviewExamRaters[$i]->pspt) {
-                            $sum += round($app->InterviewExamRaters[$i]->pspt *.1, 2);
-                        }
-                        if($app->InterviewExamRaters[$i]->potential) {
-                            $sum += round($app->InterviewExamRaters[$i]->potential *.1, 2);
-                        }
-                    }
-                    $over_all += round($sum, 2);
-                }
-                if($over_all > 0) {
-                    $over_all = round($over_all/count($app->InterviewExamRaters), 2);
-                }
-                // $percent = $over_all;
-                $total = ['total'=>$over_all];
-                $app = $app->toArray();
-                $rank[$ctr] = array_merge($app, $total);
-                $ctr++;
 
-                $percent = 0;
+        foreach ($applicants as $app) {
+            // Check if $app->publication exists and has status property
+            if (isset($app->publication) && $app->publication->status == 1) {
+                $over_all = 0;
+
+                // Check if $app->InterviewExamRaters is not empty
+                if (!empty($app->InterviewExamRaters)) {
+                    for ($i = 0; $i < count($app->InterviewExamRaters); $i++) {
+                        $sum = 0;
+
+                        // Check if $app->AdditionalPointsRaters is not empty and has the expected structure
+                        if (!empty($app->AdditionalPointsRaters) && count($app->AdditionalPointsRaters) > $i) {
+                            if ($app->AdditionalPointsRaters[$i]->experience) {
+                                $sum += round($app->AdditionalPointsRaters[$i]->experience * 0.15, 2);
+                            }
+                            // Add similar checks for other properties in AdditionalPointsRaters
+                        }
+
+                        // Check if $app->InterviewExamRaters is not empty and has the expected structure
+                        if (!empty($app->InterviewExamRaters) && count($app->InterviewExamRaters) > $i) {
+                            if ($app->InterviewExamRaters[$i]->written_exam) {
+                                $sum += round($app->InterviewExamRaters[$i]->written_exam * 0.1, 2);
+                            }
+                            // Add similar checks for other properties in InterviewExamRaters
+                        }
+
+                        $over_all += round($sum, 2);
+                    }
+
+                    if ($over_all > 0) {
+                        $over_all = round($over_all / count($app->InterviewExamRaters), 2);
+                    }
+
+                    $total = ['total' => $over_all];
+                    $appArray = $app->toArray();
+                    $rank[$ctr] = array_merge($appArray, $total);
+                    $ctr++;
+
+                    $percent = 0;
+                }
             }
         }
+
+        // Assuming you want to sort the resulting collection by 'total'
         return collect($rank)->sortByDesc('total');
+
     }
     private function app_ranking($applicants)
     {
@@ -172,13 +224,13 @@ class RangkingController extends Controller
                             $total_WE +=  $toDate->diffInDays($fromDate);
                         }
 
-                        $total_WE = round((($total_WE/$xp)*10), 2);
+                        $total_WE = round((($total_WE / $xp) * 10), 2);
 
-                        if ($total_WE > 0 && $total_WE <=10) {
+                        if ($total_WE > 0 && $total_WE <= 10) {
                             $total_WE = $total_WE;
                         } elseif ($total_WE > 10) {
                             $total_WE = 10;
-                        } elseif ($total_WE <0) {
+                        } elseif ($total_WE < 0) {
                             $total_WE = 0;
                         }
                     }
@@ -195,11 +247,11 @@ class RangkingController extends Controller
 
                                 $total_educ +=  $toDate->diffInDays($fromDate);
 
-                                $total_educ = round((($total_educ/$educ_xp)*10), 2);
+                                $total_educ = round((($total_educ / $educ_xp) * 10), 2);
                             }
                         }
                         if ($total_educ <= 10 && $total_educ > 0) {
-                            $percent +=$total_educ;
+                            $percent += $total_educ;
                         }
                     } else {
                         $percent += 15;
@@ -253,7 +305,7 @@ class RangkingController extends Controller
                 }
 
                 $percent += $total_WE;
-                $rank[$ctr] =[
+                $rank[$ctr] = [
                     'user' => $app->user,
                     'app' => $app,
                     'total' => $percent,
