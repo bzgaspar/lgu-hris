@@ -98,7 +98,7 @@ class RangkingController extends Controller
                 $over_all = 0;
                 for ($i = 0; $i < count($app->InterviewExamRaters); $i++) {
                     $sum = 0;
-                    if($app->AdditionalPointsRaters) {
+                    if($app->AdditionalPointsRaters && count($app->AdditionalPointsRaters) >= $i) {
                         if($app->AdditionalPointsRaters[$i]->experience) {
                             $sum += round($app->AdditionalPointsRaters[$i]->experience *.15, 2);
                         }
@@ -109,7 +109,7 @@ class RangkingController extends Controller
                             $sum += round($app->AdditionalPointsRaters[$i]->eligibility *.10, 2);
                         }
                     }
-                    if($app->InterviewExamRaters) {
+                    if($app->InterviewExamRaters && count($app->InterviewExamRaters) >= $i) {
                         if($app->InterviewExamRaters[$i]->written_exam) {
                             $sum += round($app->InterviewExamRaters[$i]->written_exam *.1, 2);
                         }
