@@ -199,6 +199,12 @@ export default {
                     sortable: false,
                 },
                 {
+                    text: "Total Points",
+                    align: "center",
+                    value: "total",
+                    sortable: false,
+                },
+                {
                     text: "Action",
                     value: "actions",
                     align: "center",
@@ -208,7 +214,6 @@ export default {
             application: [],
         };
     },
-
     methods: {
         viewApplicant(id) {
             window.location.href = "/HumanResource/applicant/" + id;
