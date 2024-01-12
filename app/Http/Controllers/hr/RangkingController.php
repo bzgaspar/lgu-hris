@@ -67,7 +67,6 @@ class RangkingController extends Controller
         ->get();
 
         $ranking = $this->ranking($all_applicants);
-
         return response()->json($ranking, Response::HTTP_OK);
     }
 
@@ -98,7 +97,7 @@ class RangkingController extends Controller
         //         $over_all = 0;
         //         for ($i = 0; $i < count($app->InterviewExamRaters); $i++) {
         //             $sum = 0;
-        //             if($app->AdditionalPointsRaters && count($app->AdditionalPointsRaters) >= $i) {
+        //             if($app->AdditionalPointsRaters && count($app->AdditionalPointsRaters) > $i) {
         //                 if($app->AdditionalPointsRaters[$i]->experience) {
         //                     $sum += round($app->AdditionalPointsRaters[$i]->experience * .15, 2);
         //                 }
@@ -109,7 +108,7 @@ class RangkingController extends Controller
         //                     $sum += round($app->AdditionalPointsRaters[$i]->eligibility * .10, 2);
         //                 }
         //             }
-        //             if($app->InterviewExamRaters && count($app->InterviewExamRaters) >= $i) {
+        //             if($app->InterviewExamRaters && count($app->InterviewExamRaters) > $i) {
         //                 if($app->InterviewExamRaters[$i]->written_exam) {
         //                     $sum += round($app->InterviewExamRaters[$i]->written_exam * .1, 2);
         //                 }
@@ -144,6 +143,8 @@ class RangkingController extends Controller
         //     }
         // }
         // return collect($rank)->sortByDesc('total');
+
+
         // Assuming $applicants is the array of applicants
         $total_lnd = 0;
         $percent = 0;
@@ -162,18 +163,37 @@ class RangkingController extends Controller
 
                         // Check if $app->AdditionalPointsRaters is not empty and has the expected structure
                         if (!empty($app->AdditionalPointsRaters) && count($app->AdditionalPointsRaters) > $i) {
-                            if ($app->AdditionalPointsRaters[$i]->experience) {
-                                $sum += round($app->AdditionalPointsRaters[$i]->experience * 0.15, 2);
+                            if($app->AdditionalPointsRaters[$i]->experience) {
+                                $sum += round($app->AdditionalPointsRaters[$i]->experience * .15, 2);
                             }
-                            // Add similar checks for other properties in AdditionalPointsRaters
+                            if($app->AdditionalPointsRaters[$i]->education) {
+                                $sum += $app->AdditionalPointsRaters[$i]->education * .15;
+                            }
+                            if($app->AdditionalPointsRaters[$i]->eligibility) {
+                                $sum += round($app->AdditionalPointsRaters[$i]->eligibility * .10, 2);
+                            }
                         }
 
                         // Check if $app->InterviewExamRaters is not empty and has the expected structure
                         if (!empty($app->InterviewExamRaters) && count($app->InterviewExamRaters) > $i) {
-                            if ($app->InterviewExamRaters[$i]->written_exam) {
-                                $sum += round($app->InterviewExamRaters[$i]->written_exam * 0.1, 2);
+                            if($app->InterviewExamRaters[$i]->written_exam) {
+                                $sum += round($app->InterviewExamRaters[$i]->written_exam * .1, 2);
                             }
-                            // Add similar checks for other properties in InterviewExamRaters
+                            if($app->InterviewExamRaters[$i]->oral_exam) {
+                                $sum += round($app->InterviewExamRaters[$i]->oral_exam * .1, 2);
+                            }
+                            if($app->InterviewExamRaters[$i]->background) {
+                                $sum += round($app->InterviewExamRaters[$i]->background * .1, 2);
+                            }
+                            if($app->InterviewExamRaters[$i]->performance) {
+                                $sum += round($app->InterviewExamRaters[$i]->performance * .1, 2);
+                            }
+                            if($app->InterviewExamRaters[$i]->pspt) {
+                                $sum += round($app->InterviewExamRaters[$i]->pspt * .1, 2);
+                            }
+                            if($app->InterviewExamRaters[$i]->potential) {
+                                $sum += round($app->InterviewExamRaters[$i]->potential * .1, 2);
+                            }
                         }
 
                         $over_all += round($sum, 2);
