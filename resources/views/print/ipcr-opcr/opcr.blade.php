@@ -52,17 +52,17 @@
                     </td>
                 </tr>
                 <tr class="mt-0 pt-0">
-                    <td></td>
+                    <td contenteditable="true"></td>
                     <td>
                         Date: <b contenteditable="true"><u>{{ date('F d, Y', strtotime($ipcr->created_at)) }}</u></b>
                     </td>
                 </tr>
                 <tr>
-                    <td class="text-end"></td>
+                    <td class="text-end" contenteditable="true"></td>
                     <td>
                         <div class="mb-0 mt-3">Approved:</div>
                         <p class="mb-0 fw-bold mt-5">ARNOLD EDWARD P. CO</p>
-                        <p>Municipal Mayor</p>
+                        <p contenteditable="true">Municipal Mayor</p>
                     </td>
                 </tr>
             </table>
@@ -98,13 +98,17 @@
                         {{-- {{ dd($loop->iteration - 1) }} --}}
                         @if ($types[$i] === $ipcr_item->ipcr_mfo->type)
                             <tr class="fw-bold" style="white-space: pre-line;">
-                                <td style="text-indent: 15px;">@if ($ipcr_item->ipcr_mfo)
-                                    {{ $ipcr_item->ipcr_mfo->question }}
-                                @endif</td>
+                                <td style="text-indent: 15px;">
+                                    @if ($ipcr_item->ipcr_mfo)
+                                        {{ $ipcr_item->ipcr_mfo->question }}
+                                    @endif
+                                </td>
 
-                                <td>@if ($ipcr_item->ipcr_Questions)
-                                    {{ $ipcr_item->ipcr_Questions->question }}
-                                @endif </td>
+                                <td>
+                                    @if ($ipcr_item->ipcr_Questions)
+                                        {{ $ipcr_item->ipcr_Questions->question }}
+                                    @endif
+                                </td>
                                 <td class="text-center">{{ $ipcr_item->ans1 }}</td>
                                 <td class="text-center">{{ $ipcr_item->ans2 }}</td>
                                 <td class="text-center">{{ $ipcr_item->ans3 }}</td>

@@ -75,17 +75,17 @@
                             @endif
                         </p>
                     </td>
-                    <td contenteditable="true">Click here to Edit</td>
+                    <td contenteditable="true"></td>
                     <td class="text-center">
                         <p class="mt-4 mb-0" contenteditable="true">
                             ARNOLD EDWARD P. CO
                         </p>
                     </td>
-                    <td contenteditable="true">Municipal Mayor</td>
+                    <td contenteditable="true"></td>
                 </tr>
-                <td width="40%"></td>
+                <td width="40%" contenteditable="true">Click here to Edit</td>
                 <td width="10%">Date</td>
-                <td width="40%"></td>
+                <td width="40%" contenteditable="true"> Municipal Mayor</td>
                 <td width="10%">Date</td>
             </table>
             <img src="{{ asset('images/ipcr-table/ipcr-opcr.png') }}" alt="" class="w-100"
@@ -118,13 +118,17 @@
                         {{-- {{ dd($loop->iteration - 1) }} --}}
                         @if ($types[$i] === $ipcr_item->ipcr_mfo->type)
                             <tr class="fw-bold" style="white-space: pre-line;">
-                                <td style="text-indent: 15px;">@if ($ipcr_item->ipcr_mfo)
-                                    {{ $ipcr_item->ipcr_mfo->question }}
-                                @endif</td>
+                                <td style="text-indent: 15px;">
+                                    @if ($ipcr_item->ipcr_mfo)
+                                        {{ $ipcr_item->ipcr_mfo->question }}
+                                    @endif
+                                </td>
 
-                                <td>@if ($ipcr_item->ipcr_Questions)
-                                    {{ $ipcr_item->ipcr_Questions->question }}
-                                @endif </td>
+                                <td>
+                                    @if ($ipcr_item->ipcr_Questions)
+                                        {{ $ipcr_item->ipcr_Questions->question }}
+                                    @endif
+                                </td>
                                 <td class="text-center">{{ $ipcr_item->ans1 }}</td>
                                 <td class="text-center">{{ $ipcr_item->rate1 }}</td>
                                 <td class="text-center">{{ $ipcr_item->rate2 }}</td>
