@@ -242,7 +242,7 @@
                                 @endif {{ $ipcr->user->last_name }}</b>
                         </p>
                     </td>
-                    <td class="text-center fw-bold align-bottom"></td>
+                    <td class="text-center fw-bold align-bottom" contenteditable="true"></td>
                     <td>
                         <p style="font-size: 12px" class="mb-4 mt-0">
                             I certify that I discussed my assessment of the performance with the employee.</p>
@@ -254,21 +254,21 @@
                             @endif
                         </p>
                     </td>
-                    <td class="text-center fw-bold align-bottom"></td>
+                    <td class="text-center fw-bold align-bottom" contenteditable="true"></td>
                     <td>
                         <p>&nbsp;</p>
                         <p class="mt-5 mb-0 text-center">
                             <b>ARNOLD EDWARD P. CO</b>
                         </p>
                     </td>
-                    <td></td>
+                    <td contenteditable="true" class="text-center"></td>
                 </tr>
                 <tr>
-                    <td class="text-center">Ratee</td>
+                    <td class="text-center" contenteditable="true">Ratee</td>
                     <td contenteditable="true">Date</td>
-                    <td class="text-center">Department Head</td>
+                    <td class="text-center" contenteditable="true">Department Head</td>
                     <td contenteditable="true">Date</td>
-                    <td class="text-center">Municipal Mayor</td>
+                    <td class="text-center" contenteditable="true">Municipal Mayor</td>
                     <td contenteditable="true">Date</td>
                 </tr>
             </table>
