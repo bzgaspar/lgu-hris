@@ -75,17 +75,17 @@
                             @endif
                         </p>
                     </td>
-                    <td contenteditable="true"></td>
+                    <td contenteditable="true" class="text-center"></td>
                     <td class="text-center">
                         <p class="mt-4 mb-0" contenteditable="true">
                             ARNOLD EDWARD P. CO
                         </p>
                     </td>
-                    <td contenteditable="true"></td>
+                    <td contenteditable="true" class="text-center"></td>
                 </tr>
-                <td width="40%" contenteditable="true">Click here to Edit</td>
+                <td width="40%" contenteditable="true" class="text-center">Click here to Edit</td>
                 <td width="10%">Date</td>
-                <td width="40%" contenteditable="true"> Municipal Mayor</td>
+                <td width="40%" contenteditable="true" class="text-center"> Municipal Mayor</td>
                 <td width="10%">Date</td>
             </table>
             <img src="{{ asset('images/ipcr-table/ipcr-opcr.png') }}" alt="" class="w-100"

@@ -62,7 +62,7 @@
                     <td>
                         <div class="mb-0 mt-3">Approved:</div>
                         <p class="mb-0 fw-bold mt-5">ARNOLD EDWARD P. CO</p>
-                        <p contenteditable="true">Municipal Mayor</p>
+                        <p contenteditable="true" class="text-center">Municipal Mayor</p>
                     </td>
                 </tr>
             </table>
