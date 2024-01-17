@@ -75,13 +75,13 @@
                             @endif
                         </p>
                     </td>
-                    <td></td>
+                    <td contenteditable="true">Click here to Edit</td>
                     <td class="text-center">
                         <p class="mt-4 mb-0" contenteditable="true">
                             ARNOLD EDWARD P. CO
                         </p>
                     </td>
-                    <td></td>
+                    <td contenteditable="true">Municipal Mayor</td>
                 </tr>
                 <td width="40%"></td>
                 <td width="10%">Date</td>
