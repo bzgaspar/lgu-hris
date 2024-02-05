@@ -143,7 +143,10 @@
                             <?php
                             $i++;
                             ?>
-                        @endif
+                       @else{
+                        <p class="text-center">No rates yet</p>
+                       }
+                       @endif
                     @empty
                     @endforelse
                 </div>
