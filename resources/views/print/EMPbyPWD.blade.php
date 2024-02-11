@@ -43,6 +43,12 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php 
+                            $total = 0;
+                            $total_p = 0;
+                            $total_s = 0;
+                            $total_i = 0;
+                             ?>
                     @forelse ($all_department as $dep)
                         <tr>
                             <td class="ps-2">
@@ -67,13 +73,25 @@
                             }
                             ?>
 
-                            <td class="text-center">{{ $pwd_count }}</td>
-                            <td class="text-center">{{ $sp_count }}</td>
-                            <td class="text-center">{{ $id_count }}</td>
-                            <td class="text-center">{{ $pwd_count + $sp_count + $id_count }}</td>
+                            <td class="text-center">
+                                <?php $total_p +=  $pwd_count ?>{{ $pwd_count }}</td>
+                            <td class="text-center">
+                                <?php $total_s +=  $sp_count ?>{{ $sp_count }}</td>
+                            <td class="text-center">
+                                <?php $total_i +=  $id_count ?>{{ $id_count }}</td>
+                            <td class="text-center">
+                                <?php $total += $pwd_count + $sp_count + $id_count ?>
+                                {{ $pwd_count + $sp_count + $id_count }}</td>
                         </tr>
                     @empty
                     @endforelse
+                    <tr class="fw-bold">
+                        <td class="ps-2">Total</td>
+                        <td class="text-center">{{$total_p}}</td>
+                        <td class="text-center">{{$total_s}}</td>
+                        <td class="text-center">{{$total_i}}</td>
+                        <td class="text-center">{{$total}}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>

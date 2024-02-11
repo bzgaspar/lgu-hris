@@ -44,6 +44,13 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php 
+                            $total = 0;
+                            $total_1 = 0;
+                            $total_2 = 0;
+                            $total_3 = 0;
+                            $total_4 = 0;
+                             ?>
                     @forelse ($all_department as $dep)
                         <tr>
                             <td class="ps-2">
@@ -72,14 +79,32 @@
                             }
                             ?>
 
-                            <td class="text-center">{{ $first_count }}</td>
-                            <td class="text-center">{{ $second_count }}</td>
-                            <td class="text-center">{{ $third_count }}</td>
-                            <td class="text-center">{{ $fourth_count }}</td>
-                            <td class="text-center">{{ $first_count + $second_count + $third_count + $fourth_count }}</td>
+                            <td class="text-center">
+                                <?php $total_1 +=  $first_count ?>
+                                {{ $first_count }}</td>
+                            <td class="text-center">
+                                <?php $total_2 +=  $second_count ?>
+                                {{ $second_count }}</td>
+                            <td class="text-center">
+                                <?php $total_3 +=  $third_count ?>
+                                {{ $third_count }}</td>
+                            <td class="text-center">
+                                <?php $total_4 +=  $fourth_count ?>
+                                {{ $fourth_count }}</td>
+                            <td class="text-center">
+                                <?php $total += $first_count + $second_count + $third_count + $fourth_count ?>
+                                {{ $first_count + $second_count + $third_count + $fourth_count }}</td>
                         </tr>
                     @empty
                     @endforelse
+                    <tr class="fw-bold">
+                        <td class="ps-2">Total</td>
+                        <td class="text-center">{{$total_1}}</td>
+                        <td class="text-center">{{$total_2}}</td>
+                        <td class="text-center">{{$total_3}}</td>
+                        <td class="text-center">{{$total_4}}</td>
+                        <td class="text-center">{{$total}}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>

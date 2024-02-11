@@ -45,6 +45,14 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php 
+                            $total = 0;
+                            $total_p = 0;
+                            $total_c = 0;
+                            $total_ct = 0;
+                            $total_a = 0;
+                            $total_e = 0;
+                             ?>
                     @forelse ($all_department as $dep)
                         <tr>
                             <td class="ps-2">
@@ -77,15 +85,37 @@
                             }
                             ?>
 
-                            <td class="text-center">{{ $permanent_count }}</td>
-                            <td class="text-center">{{ $cos_count }}</td>
-                            <td class="text-center">{{ $ct_count }}</td>
-                            <td class="text-center">{{ $appointed_count }}</td>
-                            <td class="text-center">{{ $elective_count }}</td>
-                            <td class="text-center">{{ $permanent_count + $cos_count + $ct_count+ $appointed_count+ $elective_count }}</td>
+                            <td class="text-center">
+                                <?php $total_p +=  $permanent_count ?>
+                                {{ $permanent_count }}</td>
+                            <td class="text-center">
+                                <?php $total_c +=  $cos_count ?>
+                                {{ $cos_count }}</td>
+                            <td class="text-center">
+                                <?php $total_ct +=  $ct_count ?>
+                                {{ $ct_count }}</td>
+                            <td class="text-center">
+                                <?php $total_a +=  $appointed_count ?>
+                                {{ $appointed_count }}</td>
+                            <td class="text-center">
+                                <?php $total_e +=  $elective_count ?>
+                                {{ $elective_count }}</td>
+                            <td class="text-center">
+                                
+                                <?php $total += $permanent_count + $cos_count + $ct_count+ $appointed_count+ $elective_count ?>
+                                {{ $permanent_count + $cos_count + $ct_count+ $appointed_count+ $elective_count }}</td>
                         </tr>
                     @empty
                     @endforelse
+                    <tr class="fw-bold">
+                        <td class="ps-2">Total</td>
+                        <td class="text-center">{{$total_p}}</td>
+                        <td class="text-center">{{$total_c}}</td>
+                        <td class="text-center">{{$total_ct}}</td>
+                        <td class="text-center">{{$total_a}}</td>
+                        <td class="text-center">{{$total_e}}</td>
+                        <td class="text-center">{{$total}}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>

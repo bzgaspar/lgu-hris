@@ -56,6 +56,11 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php 
+                            $total = 0;
+                            $total_m = 0;
+                            $total_f = 0;
+                             ?>
                     @forelse ($all_department as $dep)
                         <tr>
                             <td class="ps-2">
@@ -75,12 +80,23 @@
                             }
                             ?>
 
-                            <td class="text-center">{{ $male_count }}</td>
-                            <td class="text-center">{{ $female_count }}</td>
-                            <td class="text-center">{{ $male_count + $female_count }}</td>
+                            <td class="text-center">
+                                <?php $total_m += $male_count ?>{{ $male_count }}</td>
+                            <td class="text-center">
+                                <?php $total_f +=  $female_count ?>
+                                {{ $female_count }}</td>
+                            <td class="text-center">
+                                <?php $total += $male_count + $female_count ?>
+                                {{ $male_count + $female_count }}</td>
                         </tr>
                     @empty
                     @endforelse
+                    <tr class="fw-bold">
+                        <td class="ps-2">Total</td>
+                        <td class="text-center">{{$total_m}}</td>
+                        <td class="text-center">{{$total_f}}</td>
+                        <td class="text-center">{{$total}}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
