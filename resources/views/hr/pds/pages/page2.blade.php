@@ -82,7 +82,11 @@
                     </td>
                     <td class=xl7110301 width=90 style='border-left:none;width:68pt'>{{ $civil->CSRating }}</td>
                     <td colspan=2 class=xl13810301 width=96 style='border-left:none;width:72pt'>
-                        {{ date('m-d-Y', strtotime($civil->CSDate)) }}</td>
+                        @if ($civil->CSDate == 'n/a' || $civil->CSDate == 'N/A'||$civil->CSDate == 'N/a' || $civil->CSDate == 'n/A')
+                            {{$civil->CSDate}}
+                        @else
+                            {{ date('m-d-Y', strtotime($civil->CSDate)) }}
+                        @endif</td>
                     <td colspan=3 class=xl10610301 width=247 style='border-left:none;width:185pt'>
                         {{ $civil->CSPlaceExam }}</td>
                     <td class=xl7210301 width=78 style='border-left:none;width:59pt'>{{ $civil->CSnumber }}</td>
@@ -181,7 +185,10 @@
 
             <tr height=32 style='mso-height-source:userset;height:22.5pt'>
                 <td colspan=2 height=32 class=xl9510301 width=67 style='height:22.5pt;
-                  width:50pt'>{{ date('m-d-Y', strtotime($work->WEidfrom)) }}
+                  width:50pt'> @if ($work->WEidto == 'PRESENT')
+                          PRESENT
+                      @else{{ date('m-d-Y', strtotime($work->WEidto)) }}
+                      @endif
                 </td>
                 <td class=xl9510301 width=68 style='border-top:none;width:51pt'>{{ date('m-d-Y', strtotime($work->WEidto)) }}</td>
                 <td colspan=3 class=xl7210301 width=213 style='border-left:none;width:161pt;font-size:11px;'>{{ $work->WEpostit }}</td>
