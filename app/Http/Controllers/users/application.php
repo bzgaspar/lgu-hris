@@ -98,15 +98,10 @@ class application extends Controller
         if ($this->application->save()) {
 
             // uncomment if there is an error
-            // $this->interviewExam->user_id = Auth::user()->id;
-            // $this->interviewExam->app_id = $this->application->id;
-            // $this->interviewExam->pub_id = $id;
-            // $this->interviewExam->save();
-
-            // $this->additionalPoints->user_id = Auth::user()->id;
-            // $this->additionalPoints->app_id = $this->application->id;
-            // $this->additionalPoints->pub_id = $id;
-            // $this->additionalPoints->save();
+            $this->interviewExam->user_id = Auth::user()->id;
+            $this->interviewExam->app_id = $this->application->id;
+            $this->interviewExam->pub_id = $id;
+            $this->interviewExam->save();
             Session::flash('alert', 'success|Application has been Sent');
             return redirect()->route('users.application.index');
         } else {
