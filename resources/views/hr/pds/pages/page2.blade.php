@@ -185,12 +185,12 @@
 
             <tr height=32 style='mso-height-source:userset;height:22.5pt'>
                 <td colspan=2 height=32 class=xl9510301 width=67 style='height:22.5pt;
-                  width:50pt'> @if ($work->WEidto == 'PRESENT')
+                  width:50pt'> {{ date('m-d-Y', strtotime($work->WEidfrom)) }}
+                </td>
+                <td class=xl9510301 width=68 style='border-top:none;width:51pt'>@if ($work->WEidfrom == 'PRESENT')
                           PRESENT
                       @else{{ date('m-d-Y', strtotime($work->WEidto)) }}
-                      @endif
-                </td>
-                <td class=xl9510301 width=68 style='border-top:none;width:51pt'>{{ date('m-d-Y', strtotime($work->WEidto)) }}</td>
+                      @endif</td>
                 <td colspan=3 class=xl7210301 width=213 style='border-left:none;width:161pt;font-size:11px;'>{{ $work->WEpostit }}</td>
                 <td colspan=3 class=xl8310301 width=219 style='border-left:none;width:164pt'>{{ $work->WEdepagen }}</td>
                 <td class=xl9310301 width=59 style='border-top:none;border-left:none;
