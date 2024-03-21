@@ -65,7 +65,7 @@
                                     <th>POTENTIAL 10%</th>
                                     <th>Total 100%</th>
                                 </tr>
-                                @if (count($item['additional_points_raters']) > 0)
+                                @if (count($item) > 0)
                                     
                                 @for ($i = 0; $i < count($item['additional_points_raters']); $i++)
                                     <tr>
