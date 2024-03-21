@@ -123,7 +123,7 @@
                             <tr>
                                 <td>{{ date('m/d/Y', strtotime($item->from)) }}</td>
                                 <td>
-                                    @if ($item == 'PRESENT')
+                                    @if ($item->to == 'PRESENT')
                                         PRESENT
                                         @else
                                         {{ date('m/d/Y', strtotime($item->to)) }}
