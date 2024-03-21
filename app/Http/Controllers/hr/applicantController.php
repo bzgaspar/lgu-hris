@@ -75,7 +75,13 @@ class applicantController extends Controller
             $this->interviewExam->pub_id = $app->pub_id;
             $this->interviewExam->save();
            }
-
+        $addPoints = $this->additionalPoints->where('app_id', $app->id)->first();
+           if(!$addPoints){
+             $this->additionalPoints->user_id = $app->user_id;
+            $this->additionalPoints->app_id = $app->id;
+            $this->additionalPoints->pub_id = $app->pub_id;
+            $this->additionalPoints->save();
+           }
         $additionalPoints = null;
         $interviewExamRated = null;
         if(Auth::user()->hrmpsb) {
