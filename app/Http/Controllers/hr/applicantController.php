@@ -69,7 +69,6 @@ class applicantController extends Controller
     {
         $app = $this->application->findOrFail($id);
         $interviewExam = $this->interviewExam->where('app_id', $app->id)->first();
-
            if(!$interviewExam){
              $this->interviewExam->user_id = $app->user_id;
             $this->interviewExam->app_id = $app->id;
