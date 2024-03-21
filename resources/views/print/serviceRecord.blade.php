@@ -122,7 +122,13 @@
                         @forelse ($user->serviceRecord as $item)
                             <tr>
                                 <td>{{ date('m/d/Y', strtotime($item->from)) }}</td>
-                                <td>{{ date('m/d/Y', strtotime($item->to)) }}</td>
+                                <td>
+                                    @if ($item === 'PRESENT')
+                                        PRESENT
+                                        @else
+                                        {{ date('m/d/Y', strtotime($item->to)) }}F
+                                    @endif
+                                </td>
                                 <td>
                                     @if ($item->empPlantilla)
                                         {{ $item->empPlantilla->EPposition }}
