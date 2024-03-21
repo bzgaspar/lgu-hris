@@ -77,6 +77,7 @@ class applicantController extends Controller
             $this->interviewExam->save();
            }
         $addPoints = $this->additionalPoints->where('app_id', $app->id)->first();
+           dd($addPoints);
            if(!$addPoints){
              $this->additionalPoints->user_id = $app->user_id;
             $this->additionalPoints->app_id = $app->id;

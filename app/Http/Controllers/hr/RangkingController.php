@@ -146,19 +146,19 @@ class RangkingController extends Controller
 
 
         // Assuming $applicants is the array of applicants
-        $total_lnd = 0;
-        $percent = 0;
         $rank = [];
         $ctr = 0;
 
         foreach ($applicants as $app) {
+
             // Check if $app->publication exists and has status property
             if (isset($app->publication) && $app->publication->status == 1) {
                 $over_all = 0;
 
                 // Check if $app->InterviewExamRaters is not empty
-                if (!empty($app->InterviewExamRaters)) {
-                    for ($i = 0; $i < count($app->InterviewExamRaters); $i++) {
+                
+                if (!empty($app->AdditionalPointsRaters)) {
+                    for ($i = 0; $i < count($app->AdditionalPointsRaters); $i++) {
                         $sum = 0;
 
                         // Check if $app->AdditionalPointsRaters is not empty and has the expected structure
@@ -387,9 +387,9 @@ class RangkingController extends Controller
         ->where('applications.status', '!=', '2')
         ->with('publication')
         ->where('applications.pub_id', $id)->get();
-
         $hrmpsb = hrmpsb::all();
         $publication = $this->publication->findOrFail($id);
+        
         $ranking = $this->ranking($all_applicants);
         return view('print.rangking_applicant')
         ->with('ranking', $ranking)
