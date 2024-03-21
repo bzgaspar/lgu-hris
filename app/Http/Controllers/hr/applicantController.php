@@ -73,6 +73,7 @@ class applicantController extends Controller
              $this->interviewExam->user_id = $app->user_id;
             $this->interviewExam->app_id = $app->id;
             $this->interviewExam->pub_id = $app->pub_id;
+            $this->interviewExam->rater_id = Auth::user()->id;
             $this->interviewExam->save();
            }
         $addPoints = $this->additionalPoints->where('app_id', $app->id)->first();
@@ -80,6 +81,7 @@ class applicantController extends Controller
              $this->additionalPoints->user_id = $app->user_id;
             $this->additionalPoints->app_id = $app->id;
             $this->additionalPoints->pub_id = $app->pub_id;
+            $this->additionalPoints->rater_id = Auth::user()->id;
             $this->additionalPoints->save();
            }
         $additionalPoints = null;

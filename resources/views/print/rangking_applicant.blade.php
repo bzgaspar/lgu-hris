@@ -65,8 +65,7 @@
                                     <th>POTENTIAL 10%</th>
                                     <th>Total 100%</th>
                                 </tr>
-                                @if (count($item) > 0)
-                                    
+                                    {{dd($item)}}
                                 @for ($i = 0; $i < count($item['additional_points_raters']); $i++)
                                     <tr>
                                         <?php $sum = 0; ?>
@@ -129,7 +128,6 @@
                                     $over_all += $sum;
                                     ?>
                                 @endfor
-                                @endif
                                 <tr>
                                     <td colspan="10" class="bg-secondary text-white fw-bold text-end">Total</td>
                                     <td class="bg-secondary text-white fw-bold">
