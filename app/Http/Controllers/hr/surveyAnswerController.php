@@ -87,16 +87,12 @@ class surveyAnswerController extends Controller
             if ($request->question) {
                 for ($i = 0; $i < count($request->question); $i++) {
                     if ($request->question != "" && $request->answer != "") {
-                        $status = 0;
-                        if ($request->standard[$i] - $request->answer[$i] > 0) {
-                            $status = 1;
-                        }
                         $details[] = [
                             'answer_id' => $form->id,
                             'question_id' => $request->question[$i],
                             'formDetails_id' => $request->surveyFormDetails[$i],
                             'answer' => $request->answer[$i],
-                            'gap' => ($request->standard[$i] - $request->answer[$i]),
+                            'gap' => (intval($request->standard[$i]) - intval($request->answer[$i])),
                             'created_at' => now(),
                             'updated_at' => now(),
                         ];

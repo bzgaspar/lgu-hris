@@ -36,7 +36,7 @@
                     <tr class="text-center">
                         <th width="40%">Deparmtent</th>
                         <th width="10%">Permanent</th>
-                        <th width="10%">COS</th>
+                        <th width="10%">Casual</th>
                         <th width="10%">Co-Terminus</th>
                         <th width="10%">Appointed</th>
                         <th width="10%">Elective</th>

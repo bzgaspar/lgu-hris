@@ -190,7 +190,8 @@
                     <td class=xl9510301 width=68 style='border-top:none;width:51pt'>
                       @if ($work->WEidto == 'PRESENT')
                           PRESENT
-                      @else{{ date('m-d-Y', strtotime($work->WEidto)) }}
+                      @else
+                        {{ date('m-d-Y', strtotime($work->WEidto)) }}
                       @endif
                         </td>
                     <td colspan=3 class=xl7210301 width=213 style='border-left:none;width:161pt;font-size:11px;'>
