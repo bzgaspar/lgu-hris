@@ -120,7 +120,7 @@ Route::group(['middleware' => 'auth','middleware' => 'role:0,1,2,3,4,5,7','middl
 
     });
     #hr
-    Route::group(['prefix' => 'HumanResource','as' => 'hr.','middleware' => 'role:0,4,7'], function () {
+    Route::group(['prefix' => 'HumanResource','as' => 'hr.','middleware' => 'role:0,4,7,3'], function () {
         // lnd
         Route::resource('/lnd', LearningDevelopment::class);
         Route::resource('/trainingneeds', TrainingNeedsController::class); // compliance

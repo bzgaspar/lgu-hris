@@ -427,6 +427,11 @@
                                                     class="list-group-item list-group-item-action border-0{{ request()->is('HumanResource/IPCR') ? ' active ' : '' }}">
                                                     <i class="fa-solid fa-star-half-stroke me-1"></i>Create OPCR
                                                 </a>
+
+                                                    <a class="list-group-item list-group-item-action border-0 {{ request()->is('hr/yearlyIPCR') ? ' active ' : '' }}"
+                                                        href="{{ route('hr.MFO_Questions.index') }}"><i
+                                                            class="fa-solid fa-question me-2"></i>IPCR/OPCR
+                                                        Questions</a>
                                             @endcanany
                                             @if (Auth::user()->hrmpsb)
                                                 <a class="list-group-item list-group-item-action border-0{{ request()->is('hr/ranking') ? ' active ' : '' }}"
