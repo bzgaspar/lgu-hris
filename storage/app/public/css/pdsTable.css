@@ -1,0 +1,36 @@
+.page1-table tr td {
+    padding: 1px;
+}
+
+.page1-table {
+    font-size: 12px;
+    max-width: 90%;
+    padding: 2px;
+    border: solid 2px black;
+}
+
+.td-default {
+    background-color: rgba(190, 190, 190, 0.597) !important;
+    font-weight: bold;
+    color: black;
+}
+
+@media print {
+    .page1-table tr td {
+        padding: 1px;
+    }
+
+    .page1-table {
+        font-size: 12px;
+        max-width: 90%;
+        padding: 2px;
+        border: solid 2px black;
+    }
+
+    .td-default {
+        background-color: rgba(190, 190, 190, 0.597) !important;
+        font-weight: bold;
+        color: black;
+    }
+
+}

@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\AccreditedLearningServiceProviderController;
 use App\Http\Controllers\admin\PlantillaController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\hr\empPmsController;
 use App\Http\Controllers\hr\RangkingController;
 use App\Http\Controllers\hr\YearlyIPCRController;
+use App\Http\Controllers\SeparatedController;
 use App\Models\hr\YearlyIPCR;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -87,3 +89,7 @@ Route::get('/getUserOtherInformation/{id}', [HomeController::class, 'getUserOthe
 
 Route::get('/getIpcrData/{id}', [HomeController::class, 'getIpcrData'])->name('getIpcrData');
 Route::get('/getOpcrData/{id}', [HomeController::class, 'getOpcrData'])->name('getOpcrData');
+
+
+Route::apiResource('separations', SeparatedController::class);
+Route::apiResource('providers', AccreditedLearningServiceProviderController::class);

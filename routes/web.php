@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccreditedLearningServiceProviderController;
 use App\Http\Controllers\admin\Department;
 use App\Http\Controllers\admin\PlantillaController;
 use App\Http\Controllers\admin\UserController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\hr\dashboard;
 use App\Http\Controllers\hr\empPmsController;
 use App\Http\Controllers\hr\hrmpsbController;
 use App\Http\Controllers\hr\InterviewExamController;
+use App\Http\Controllers\SeparatedController;
 use App\Http\Controllers\hr\leaveApplicationController;
 use App\Http\Controllers\hr\LeaveRecordController;
 use App\Http\Controllers\hr\ListAwardsController;
@@ -129,6 +131,7 @@ Route::group(['middleware' => 'auth','middleware' => 'role:0,1,2,3,4,5,7','middl
         Route::resource('/surveyForm', surveyFormController::class);
         Route::resource('/surveyResult', surveyResultController::class);
         // lnd
+        Route::resource('/providers', AccreditedLearningServiceProviderController::class);
 
         // pms
         Route::resource('/pms', ipcrController::class);
@@ -146,6 +149,7 @@ Route::group(['middleware' => 'auth','middleware' => 'role:0,1,2,3,4,5,7','middl
 
         // rsp
         Route::resource('/interview', InterviewExamController::class);
+        Route::resource('/separated', SeparatedController::class);
         Route::resource('/manage_applicants', ManageApplicantsController::class);
         Route::resource('/applicant', applicantController::class);
         Route::resource('/ranking', RangkingController::class);
@@ -172,6 +176,9 @@ Route::group(['middleware' => 'auth','middleware' => 'role:0,1,2,3,4,5,7','middl
         Route::get('/ViewPwdSpI', [User::class, 'ViewPwdSpI'])->name('ViewPwdSpI');
         Route::get('/ViewStatus', [User::class, 'ViewStatus'])->name('ViewStatus');
         Route::get('/ViewCovidResponse', [User::class, 'ViewCovidResponse'])->name('ViewCovidResponse');
+
+
+        Route::get('/PrintReligions', [HomeController::class, 'getReligionPrint'])->name('GetReligionPrint');
 
         Route::get('/user/covid', [User::class, 'covid'])->name('user.covid');
         Route::get('/leavecard/{id}', [LeaveRecordController::class,'print'])->name('leavecard');

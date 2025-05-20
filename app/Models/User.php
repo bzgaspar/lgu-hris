@@ -8,6 +8,7 @@ use App\Models\hr\hrmpsb;
 use App\Models\hr\InterviewExam;
 use App\Models\hr\LeaveCredit;
 use App\Models\hr\loyaltyRecord;
+use App\Models\hr\Separated;
 use App\Models\hr\ServiceRecord;
 use App\Models\hr\surveyAnswer;
 use App\Models\pds\civilservice;
@@ -298,5 +299,9 @@ class User extends Authenticatable implements MustVerifyEmail
         }
         return false;
     }
+public function separations()
+{
+    return $this->hasMany(Separated::class);
+}
 
 }

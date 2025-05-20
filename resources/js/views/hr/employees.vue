@@ -2,21 +2,60 @@
     <v-app style="min-height: 0px !important">
         <v-row height="50px">
             <v-col cols="12" md="6" class="border border-black rounded">
-                Employee Plantilla
+                Employee Plantilla <br />
+                <v-btn
+                    color="success"
+                    small
+                    outlined
+                    title="View Employee Plantilla"
+                    @click="goToPrint('HumanResource/plantilla/create')"
+                >
+                    <i class="fa-solid fa-print me-1"></i>Print
+                </v-btn>
                 <pie-chart :data="chartData[1]"></pie-chart>
             </v-col>
             <v-col cols="12" md="6" class="border border-black rounded">
-                PWD , Indigenous and Single Parent
+                PWD , Indigenous and Single Parent<br />
+                <v-btn
+                    color="success"
+                    small
+                    outlined
+                    title="View Employee Specials"
+                    @click="goToPrint('HumanResource/ViewPwdSpI')"
+                >
+                    <i class="fa-solid fa-print me-1"></i>Print
+                </v-btn>
+
                 <pie-chart :data="chartData[2]"></pie-chart>
             </v-col>
         </v-row>
         <v-row>
             <v-col cols="12" md="6" class="border border-black rounded">
-                Gender
+                Gender<br />
+                <v-btn
+                    color="success"
+                    small
+                    outlined
+                    title="View Employee Genders"
+                    @click="goToPrint('HumanResource/ViewByGenderCount')"
+                >
+                    <i class="fa-solid fa-print me-1"></i>Print
+                </v-btn>
+
                 <pie-chart :data="chartData[3]"></pie-chart>
             </v-col>
             <v-col cols="12" md="6" class="border border-black rounded">
-                Religion
+                Religion<br />
+                <v-btn
+                    color="success"
+                    small
+                    outlined
+                    title="View Employee Plantilla"
+                    @click="goToPrint('HumanResource/PrintReligions')"
+                >
+                    <i class="fa-solid fa-print me-1"></i>Print
+                </v-btn>
+
                 <pie-chart :data="chartData[0]"></pie-chart>
             </v-col>
         </v-row>
@@ -153,6 +192,9 @@ export default {
                     this.loading = false;
                 });
             }, 1000);
+        },
+        goToPrint(link) {
+            window.open(`/${link}`, "_blank", "noreferrer");
         },
         getChartEMP() {
             axios.get("/api/getChartEMP").then((response) => {

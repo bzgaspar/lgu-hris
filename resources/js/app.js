@@ -62,6 +62,9 @@ Vue.component(
     require("./views/hr/pms/ipcr_opcr/opcr.vue").default
 );
 
+// LND
+Vue.component("hr-accreditedlsp", require("./views/hr/lnd/accreditedLSP.vue").default);
+
 // R n R
 Vue.component(
     "hr-loyalty-reward",
@@ -70,6 +73,7 @@ Vue.component(
 
 // rsp
 Vue.component("hr-applicant", require("./views/hr/rsp/applicant.vue").default);
+Vue.component("hr-separated", require("./views/hr/rsp/separated.vue").default);
 Vue.component("hr-ranking", require("./views/hr/rsp/ranking.vue").default);
 Vue.component(
     "hr-all_rating",

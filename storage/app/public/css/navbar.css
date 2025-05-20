@@ -1,0 +1,46 @@
+.background-image {
+    /* background-image: url('../images/MH-da.jpg'); */
+    min-height: 1.5in;
+    padding-top: 90px;
+    background:
+        /* top, transparent red, faked with gradient */
+        linear-gradient(rgba(46, 139, 86, 0.786),
+            rgba(17, 146, 73, 0.786)),
+        /* bottom, image */
+        url('../images/MH-da.jpg');
+    background-position: center;
+    background-size: cover;
+
+}
+
+.background-image .container {
+    background-color: rgba(255, 255, 255, 0.786);
+    border-radius: 15px;
+}
+
+@media screen and (max-width: 992px) {
+    .background-image {
+        padding-top: 0;
+        min-height: inherit;
+        background-image: none;
+    }
+
+    .background-image .container {
+        background-color: transparent;
+        border-radius: 0;
+    }
+
+}
+
+body {
+    font-family: 'Trebuchet MS', sans-serif;
+    width: 100vw;
+    overflow-x: hidden;
+}
+
+
+@media screen and (max-width: 492px) {
+    .navbar-brand-text {
+        display: none;
+    }
+}

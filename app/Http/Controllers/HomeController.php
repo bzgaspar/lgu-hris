@@ -567,6 +567,21 @@ class HomeController extends Controller
     }
 
 
+    public function getReligionPrint()
+    {
+        $religion = others::join('employee_plantillas', 'employee_plantillas.user_id', 'others.user_id')->select('others.IDc1', DB::raw('COUNT(*) as count'))
+        ->groupBy('others.IDc1')
+        ->get();
+
+        $rel_count = array_reduce($religion->toArray(), function ($carry, $item) {
+            $index = $item['IDc1'];
+            $carry[$index] = $item['count'];
+            return $carry;
+        }, []);
+
+         $rel_count;
+return view('print.EMPbyReligion')->with('religions',$rel_count);
+    }
     public function getChartEMP()
     {
 

@@ -11,5 +11,16 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+/storage/app/public/application-files
+/storage/app/public/compliance
+/storage/app/public/files_201
+/storage/app/public/listAwards
+/storage/app/public/pdsFiles
+/storage/app/public/publicationFiles
+/storage/app/public/user_avatar
+/storage/app/public/Vcard
+/storage/app/backup-temp
+/storage/app/HRIS---LGU-Delfin-Albano
+/storage/app/myBackup
 /.idea
 /.vscode

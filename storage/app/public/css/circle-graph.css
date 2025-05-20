@@ -1,0 +1,46 @@
+svg text {
+    font-size: 10px;
+}
+
+.single-chart {
+    width: 9rem;
+}
+
+
+.circle-bg {
+    fill: none;
+    stroke: #eee;
+    stroke-width: 3.8;
+}
+
+.circle {
+    fill: none;
+    stroke-width: 2.8;
+    stroke-linecap: round;
+    animation: progress 1s ease-out forwards;
+}
+
+@keyframes progress {
+    0% {
+        stroke-dasharray: 0 100;
+    }
+}
+
+.circular-chart.warning .circle {
+    stroke: orange;
+}
+
+.circular-chart.success .circle {
+    stroke: seagreen;
+}
+
+.circular-chart.primary .circle {
+    stroke: blue;
+}
+
+.percentage {
+    fill: #666;
+    font-family: sans-serif;
+    font-size: 0.5em;
+    text-anchor: middle;
+}

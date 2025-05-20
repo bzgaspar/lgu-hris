@@ -460,6 +460,9 @@
                                                     <a class="list-group-item list-group-item-action border-0{{ request()->is('hr/manage_applicants/create') ? ' active ' : '' }}"
                                                         href="{{ route('hr.manage_applicants.create') }}"><i
                                                             class="fa-solid fa-check me-2"></i>Accepted</a>
+                                                    <a class="list-group-item list-group-item-action border-0{{ request()->is('hr/manage_applicants/create') ? ' active ' : '' }}"
+                                                        href="{{ route('hr.separated.index') }}"><i
+                                                            class="fa-solid fa-people-pulling me-2"></i>Separated</a>
                                                 </div>
                                                 {{-- PMS --}}
                                                 <a href="#pms"
@@ -514,6 +517,9 @@
                                                         href="{{ route('hr.surveyForm.index') }}"><i
                                                             class="fa-solid fa-person-dots-from-line me-2"></i>Training Need
                                                         Analysis</a>
+                                                    <a class="list-group-item list-group-item-action border-0{{ request()->is('hr/surveyForm') ? ' active ' : '' }}"
+                                                        href="{{ route('hr.providers.index') }}"><i
+                                                            class="fa-solid fa-chalkboard-user me-2"></i>Accredited Learning Service Provider</a>
                                                 </div>
                                                 {{-- R n R --}}
                                                 <a href="#rr"
