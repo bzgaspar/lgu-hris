@@ -128,9 +128,10 @@ export default {
       };
 
       const url = this.form.id ? `/api/separations/${this.form.id}` : "/api/separations";
-      const method = this.form.id ? axios.put : axios.post;
 
-      method(url, payload)
+        axios.post(url, payload, this.form.id ? {
+            _method: "put",
+        } : {})
         .then(() => {
           this.$root.vtoast?.show({
             message: `Separation ${this.form.id ? 'updated' : 'added'}!`,
@@ -162,7 +163,9 @@ export default {
     },
     deleteRecord(id) {
       if (!confirm("Are you sure you want to delete this record?")) return;
-      axios.delete(`/api/separations/${id}`)
+      axios.post(`/api/separations/${id}`,{
+                        _method: "DELETE",
+                    })
         .then(() => {
           this.$root.vtoast?.show({
             message: "Record deleted!",
