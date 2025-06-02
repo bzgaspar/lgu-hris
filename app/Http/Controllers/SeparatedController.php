@@ -42,9 +42,9 @@ class SeparatedController extends Controller
             'remarks' => 'required|in:resign,retired',
         ]);
 
-        $separation->update($validated);
+        $res = $separation->update($validated);
 
-        return response()->json($separation);
+        return response()->json($res,200);
     }
 
     public function destroy($id)
@@ -52,6 +52,6 @@ class SeparatedController extends Controller
         $separation = Separated::findOrFail($id);
         $separation->delete();
 
-        return response()->json(['message' => 'Deleted']);
+        return response()->json(['message' => 'Deleted'],200);
     }
 }
